@@ -557,3 +557,37 @@
   .bts7-panel[data-handle="daily-barrier-moisturizing-cream"] .bts7-visual{right:8vw}
   .bts7-product-sheet__panel{left:auto;width:min(560px,42vw);top:0;max-height:none;border-radius:30px 0 0 30px}
 }
+
+
+/* v7.4 — prevent alternate editorial panels from clipping at narrow widths */
+@media(max-width:749px){
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy{
+    width:54%;
+    padding-right:2px;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy h2,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy h2{
+    font-size:70px;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy h3,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy h3{
+    font-size:27px;
+    max-width:8.6ch;
+    margin-left:auto;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy>p,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy>p{
+    max-width:24ch;
+    margin-left:auto;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-visual,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-visual{
+    width:54vw;
+    left:-2vw;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-benefits,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-benefits{
+    max-width:178px;
+  }
+}
