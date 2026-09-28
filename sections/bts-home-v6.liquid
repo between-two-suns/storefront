@@ -15,8 +15,56 @@
   <section id="environment" class="bts6-hero-journey" data-bts6-hero>
     <div class="bts6-hero-stage" data-environment="base">
       <div class="bts6-aperture" aria-hidden="true">
-        <div class="bts6-aperture__form bts6-aperture__form--left"><i></i></div>
-        <div class="bts6-aperture__form bts6-aperture__form--right"><i></i></div>
+        <svg class="bts6-aperture__svg" viewBox="0 0 390 844" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bts6-mint-surface" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D7F0E2"/>
+              <stop offset="42%" stop-color="#A9DDBF"/>
+              <stop offset="100%" stop-color="#79C69F"/>
+            </linearGradient>
+            <linearGradient id="bts6-blue-surface" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E1F2F7"/>
+              <stop offset="44%" stop-color="#B8E0EC"/>
+              <stop offset="100%" stop-color="#92CDE1"/>
+            </linearGradient>
+            <linearGradient id="bts6-sheen-left" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".04"/>
+              <stop offset="70%" stop-color="#FFFFFF" stop-opacity=".34"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".08"/>
+            </linearGradient>
+            <linearGradient id="bts6-sheen-right" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".04"/>
+              <stop offset="70%" stop-color="#FFFFFF" stop-opacity=".34"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".08"/>
+            </linearGradient>
+            <filter id="bts6-surface-grain" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency=".016 .04" numOctaves="2" seed="7" result="noise"/>
+              <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+              <feComponentTransfer in="mono" result="softNoise">
+                <feFuncA type="table" tableValues="0 .11"/>
+              </feComponentTransfer>
+              <feBlend in="SourceGraphic" in2="softNoise" mode="soft-light"/>
+            </filter>
+          </defs>
+
+          <g class="bts6-aperture__surface bts6-aperture__surface--left">
+            <path class="bts6-aperture__body" fill="url(#bts6-mint-surface)" filter="url(#bts6-surface-grain)"
+              d="M0 0H74C112 75 132 180 126 304C121 407 121 442 128 546C135 669 113 773 73 844H0Z"/>
+            <path class="bts6-aperture__sheen" fill="url(#bts6-sheen-left)"
+              d="M0 0H55C92 90 106 194 103 306C99 416 100 439 105 545C110 666 93 766 56 844H0Z"/>
+            <path class="bts6-aperture__edge" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="1"
+              d="M74 0C112 75 132 180 126 304C121 407 121 442 128 546C135 669 113 773 73 844"/>
+          </g>
+
+          <g class="bts6-aperture__surface bts6-aperture__surface--right">
+            <path class="bts6-aperture__body" fill="url(#bts6-blue-surface)" filter="url(#bts6-surface-grain)"
+              d="M390 0H316C278 75 258 180 264 304C269 407 269 442 262 546C255 669 277 773 317 844H390Z"/>
+            <path class="bts6-aperture__sheen" fill="url(#bts6-sheen-right)"
+              d="M390 0H335C298 90 284 194 287 306C291 416 290 439 285 545C280 666 297 766 334 844H390Z"/>
+            <path class="bts6-aperture__edge" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="1"
+              d="M316 0C278 75 258 180 264 304C269 407 269 442 262 546C255 669 277 773 317 844"/>
+          </g>
+        </svg>
       </div>
 
       <div class="bts6-layer bts6-layer--hero" data-bts6-hero-layer>
@@ -80,8 +128,10 @@
   <section class="bts6-product-journey" data-bts6-products>
     <div class="bts6-product-stage">
       <div class="bts6-product-aperture" aria-hidden="true">
-        <span class="bts6-product-aperture__left"></span>
-        <span class="bts6-product-aperture__right"></span>
+        <svg viewBox="0 0 390 844" preserveAspectRatio="none">
+          <path class="bts6-product-aperture__left" d="M0 0H48C78 112 86 245 78 391C70 544 75 690 48 844H0Z"/>
+          <path class="bts6-product-aperture__right" d="M390 0H342C312 112 304 245 312 391C320 544 315 690 342 844H390Z"/>
+        </svg>
       </div>
       <img class="bts6-product-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="24" height="27" alt="" aria-hidden="true">
 
