@@ -74,31 +74,31 @@
         <div class="bts-environment__copy" aria-live="polite">
           <p class="bts-environment__index">01 / 05</p>
           <h2 class="bts-display" data-env-title>SUN</h2>
-          <p data-env-copy>Stronger UV. Higher exposure. Your skin adapts.</p>
+          <p data-env-copy>Stronger UV. Higher exposure.</p>
         </div>
 
-        <div class="bts-env-core" aria-hidden="true">
+        <div class="bts-environment__mark" aria-hidden="true">
           {% if settings.brand_mark != blank %}
-            {{ settings.brand_mark | image_url: width: 260 | image_tag: widths: '120,180,260', loading: 'lazy', alt: '' }}
+            {{ settings.brand_mark | image_url: width: 120 | image_tag: widths: '54,80,120', loading: 'lazy', alt: '' }}
           {% else %}
-            <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="92" height="100" alt="" loading="lazy">
+            <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="38" height="42" alt="" loading="lazy">
           {% endif %}
         </div>
 
         <div class="bts-environment__nav" role="group" aria-label="Environmental states">
-          <button type="button" data-env-button="sun" data-index="01" data-title="SUN" data-copy="Stronger UV. Higher exposure. Your skin adapts." aria-pressed="true">
+          <button type="button" data-env-button="sun" data-index="01" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true">
             <span class="bts-env-dot"></span><span>SUN</span>
           </button>
-          <button type="button" data-env-button="dust" data-index="02" data-title="DUST" data-copy="Particles settle. Skin meets the outside world." aria-pressed="false">
+          <button type="button" data-env-button="dust" data-index="02" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false">
             <span class="bts-env-dot"></span><span>DUST</span>
           </button>
-          <button type="button" data-env-button="pollution" data-index="03" data-title="POLLUTION" data-copy="Urban exposure changes what your skin faces every day." aria-pressed="false">
+          <button type="button" data-env-button="pollution" data-index="03" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false">
             <span class="bts-env-dot"></span><span>POLLUTION</span>
           </button>
-          <button type="button" data-env-button="dry-ac" data-index="04" data-title="DRY AC" data-copy="Cooler air. Lower humidity. A different kind of stress." aria-pressed="false">
+          <button type="button" data-env-button="dry-ac" data-index="04" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false">
             <span class="bts-env-dot"></span><span>DRY AC</span>
           </button>
-          <button type="button" data-env-button="humidity" data-index="05" data-title="HUMIDITY" data-copy="Moisture rises. Comfort, oil and balance shift again." aria-pressed="false">
+          <button type="button" data-env-button="humidity" data-index="05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false">
             <span class="bts-env-dot"></span><span>HUMIDITY</span>
           </button>
         </div>
@@ -108,13 +108,13 @@
 
   <section id="routine" class="bts-routine" data-bts-routine data-time="am">
     <div class="bts-routine__heading">
-      <p class="bts-kicker">YOUR ROUTINE</p>
+      <p class="bts-kicker">THE COMPLETE ROUTINE</p>
       <div class="bts-time-toggle" role="group" aria-label="Routine time">
         <button type="button" data-time-button="am" aria-pressed="true">AM <span aria-hidden="true">☀</span></button>
         <button type="button" data-time-button="pm" aria-pressed="false">PM <span aria-hidden="true">◐</span></button>
       </div>
-      <h2 class="bts-display"><span>FOUR STEPS.</span><span>A STRONGER YOU.</span></h2>
-      <p class="bts-routine__lede">A climate-adapted routine built to move through changing environments with you.</p>
+      <h2 class="bts-display"><span>YOUR ADAPTIVE</span><span>DAILY ROUTINE.</span></h2>
+      <p class="bts-routine__lede">Four essentials. Built for life between environments.</p>
     </div>
 
     <div class="bts-routine__rail" aria-label="Routine steps">
@@ -190,9 +190,11 @@
       >
         ADD COMPLETE ROUTINE <span aria-hidden="true">→</span>
       </button>
-      {% unless reset_product != blank and clarity_product != blank and barrier_product != blank and defense_product != blank %}
-        <p class="bts-routine__setup-note">Select all four products in the theme editor to enable one-tap routine add.</p>
-      {% endunless %}
+      {% if request.design_mode %}
+        {% unless reset_product != blank and clarity_product != blank and barrier_product != blank and defense_product != blank %}
+          <p class="bts-routine__setup-note">Assign the four products in this section to enable one-tap routine add.</p>
+        {% endunless %}
+      {% endif %}
     </div>
   </section>
 
