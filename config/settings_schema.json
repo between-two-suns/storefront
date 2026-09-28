@@ -1,0 +1,67 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "BETWEEN TWO SUNS",
+    "theme_version": "0.1.0",
+    "theme_author": "BETWEEN TWO SUNS",
+    "theme_documentation_url": "https://github.com/between-two-suns/storefront",
+    "theme_support_url": "https://github.com/between-two-suns/storefront/issues"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Wordmark"
+      },
+      {
+        "type": "image_picker",
+        "id": "brand_mark",
+        "label": "Between mark"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Warm background",
+        "default": "#F4F0E8"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_mint",
+        "label": "Reset / mint",
+        "default": "#8DDAB2"
+      },
+      {
+        "type": "color",
+        "id": "color_blue",
+        "label": "Clarity / powder blue",
+        "default": "#A6DDED"
+      },
+      {
+        "type": "color",
+        "id": "color_lilac",
+        "label": "Barrier / lilac",
+        "default": "#C9A8DB"
+      },
+      {
+        "type": "color",
+        "id": "color_peach",
+        "label": "Defense / peach",
+        "default": "#F2A07D"
+      },
+      {
+        "type": "checkbox",
+        "id": "motion_enabled",
+        "label": "Enable signature motion",
+        "default": true
+      }
+    ]
+  }
+]
