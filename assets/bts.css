@@ -3427,3 +3427,25 @@ body { font-family: var(--bts-body); }
 @media (max-width: 430px) {
   .bts-header__logo { height: 48px; }
 }
+
+
+/* Accessible header controls */
+.bts-menu__close{
+  min-width:56px;
+  min-height:44px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:right;
+  font:700 10px/1 var(--bts-body);
+  letter-spacing:.16em;
+}
+.bts-menu__close:focus-visible,
+.bts-menu__toggle:focus-visible,
+.bts-header__bag:focus-visible,
+.bts-header__brand:focus-visible{
+  outline:2px solid var(--bts-ink);
+  outline-offset:3px;
+}
