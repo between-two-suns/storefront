@@ -1,0 +1,55 @@
+<header class="bts-header" data-bts-header>
+  <a class="bts-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+    {% if settings.logo != blank %}
+      {{ settings.logo | image_url: width: 420 | image_tag: class: 'bts-header__logo', widths: '160,240,320,420', loading: 'eager', alt: shop.name }}
+    {% else %}
+      <span class="bts-header__wordmark" aria-hidden="true">BETWEEN<br>TWO SUNS</span>
+    {% endif %}
+  </a>
+
+  <div class="bts-header__actions">
+    <a class="bts-header__bag" href="{{ routes.cart_url }}">
+      BAG <span aria-hidden="true">({{ cart.item_count }})</span>
+      <span class="visually-hidden">{{ cart.item_count }} items</span>
+    </a>
+
+    <details class="bts-menu">
+      <summary class="bts-menu__toggle">
+        <span>MENU</span>
+      </summary>
+      <div class="bts-menu__panel">
+        <div class="bts-menu__top">
+          <span class="bts-kicker">BETWEEN TWO SUNS</span>
+          <span class="bts-menu__close" aria-hidden="true">CLOSE</span>
+        </div>
+        <nav aria-label="Primary">
+          <ul class="bts-menu__list" role="list">
+            {% if section.settings.menu != blank %}
+              {% for link in section.settings.menu.links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            {% else %}
+              <li><a href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a></li>
+              <li><a href="/#routine">SHOP THE ROUTINE</a></li>
+              <li><a href="/#environment">WHY CLIMATE-ADAPTED</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        <p class="bts-menu__signature">fresh skin. always.</p>
+      </div>
+    </details>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "BTS header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
