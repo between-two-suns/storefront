@@ -87,6 +87,9 @@
     const envIndex = hero?.querySelector('[data-bts7-env-index]');
     const envTitle = hero?.querySelector('[data-bts7-env-title]');
     const envCopy = hero?.querySelector('[data-bts7-env-copy]');
+    const heroCopyEl = hero?.querySelector('[data-bts7-hero-copy]');
+    const betweenEl = hero?.querySelector('[data-bts7-between]');
+    const envTabsEl = hero?.querySelector('[data-bts7-env-tabs]');
 
     const paintShape = (shape) => {
       if (left) left.setAttribute('d', pathD(shape));
@@ -147,6 +150,10 @@
         heroStage.style.setProperty('--hero-pointer', heroOpacity > .55 ? 'auto' : 'none');
         heroStage.style.setProperty('--between-pointer', betweenOpacity > .55 ? 'auto' : 'none');
         heroStage.style.setProperty('--tabs-pointer', tabsOpacity > .55 ? 'auto' : 'none');
+        heroCopyEl?.setAttribute('aria-hidden', heroOpacity > .08 ? 'false' : 'true');
+        betweenEl?.setAttribute('aria-hidden', betweenOpacity > .08 ? 'false' : 'true');
+        envTabsEl?.setAttribute('aria-hidden', tabsOpacity > .08 ? 'false' : 'true');
+        envButtons.forEach(btn => btn.tabIndex = tabsOpacity > .55 ? 0 : -1);
 
         let shape;
         if (p < .20) {
