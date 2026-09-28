@@ -134,8 +134,8 @@
           const shift=distance*24;
           const scale=.975+eased*.025;
 
-          panel.style.opacity=eased.toFixed(4);
-          panel.style.transform=`translateY(${shift.toFixed(2)}px) scale(${scale.toFixed(4)})`;
+          panel.style.opacity='1';
+          panel.style.transform='none';
           panel.style.setProperty('--presence',eased.toFixed(4));
           panel.style.setProperty('--distance',distance.toFixed(4));
 
@@ -143,6 +143,7 @@
           if(visual){
             const productShift=distance*34;
             const productScale=.94+eased*.06;
+            visual.style.opacity=eased.toFixed(4);
             visual.style.transform=`translateY(${productShift.toFixed(2)}px) scale(${productScale.toFixed(4)})`;
           }
 
