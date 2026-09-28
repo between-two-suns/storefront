@@ -582,3 +582,43 @@
   vector-effect:non-scaling-stroke;
   filter:drop-shadow(0 3px 8px rgba(30,30,25,.08));
 }
+
+
+/* v6.5 — eliminate crossfade collisions; keep motion on products, not copy */
+.bts6-layer--between{
+  opacity:1 !important;
+}
+.bts6-product-panel{
+  opacity:1 !important;
+  transform:none !important;
+}
+.bts6-product-panel .bts6-product-copy,
+.bts6-product-panel .bts6-product-commerce{
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none;
+  transition:opacity .18s ease,transform .32s cubic-bezier(.22,1,.36,1);
+}
+.bts6-product-panel.is-active .bts6-product-copy,
+.bts6-product-panel.is-active .bts6-product-commerce{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+.bts6-product-panel:before{
+  opacity:var(--presence,0);
+}
+.bts6-product-visual{
+  pointer-events:none;
+}
+.bts6-product-visual img{
+  opacity:var(--presence,0);
+}
+.bts6-product-panel:not(.is-active) .bts6-reset-wipe,
+.bts6-product-panel:not(.is-active) .bts6-clarity-lens,
+.bts6-product-panel:not(.is-active) .bts6-barrier-ring,
+.bts6-product-panel:not(.is-active) .bts6-defense-light{
+  opacity:0 !important;
+}
+.bts6-thread__draw{opacity:.38}
+.bts6-thread__ghost{stroke:rgba(16,16,16,.035)}
