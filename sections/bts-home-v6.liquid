@@ -3,12 +3,16 @@
   assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
   assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
   assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
+  assign reset_product = all_products['daily-reset-cleanser']
+  assign clarity_product = all_products['clarity-serum']
+  assign barrier_product = all_products['daily-barrier-moisturizing-cream']
+  assign defense_product = all_products['daily-defense-sunscreen-spf-50']
 %}
 
 <section class="bts6" data-bts6>
   <div class="bts6-page-progress" aria-hidden="true"><span data-bts6-page-progress></span></div>
 
-  <section class="bts6-hero-journey" data-bts6-hero>
+  <section id="environment" class="bts6-hero-journey" data-bts6-hero>
     <div class="bts6-hero-stage" data-environment="base">
       <div class="bts6-aperture" aria-hidden="true">
         <div class="bts6-aperture__form bts6-aperture__form--left"><i></i></div>
@@ -28,6 +32,13 @@
           <span>SUN</span><span>DUST</span><span>POLLUTION</span><span>DRY AC</span><span>HUMIDITY</span>
         </div>
 
+        <div class="bts6-hero-products" aria-label="The four-step routine">
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536">
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536">
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536">
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536">
+        </div>
+
         <div class="bts6-actions">
           <a class="bts6-btn bts6-btn--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
           <a class="bts6-btn bts6-btn--ghost" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
@@ -41,10 +52,9 @@
 
       <div class="bts6-bridge" data-bts6-bridge aria-hidden="true">
         <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="42" height="46" alt="">
-        <span>BETWEEN</span>
       </div>
 
-      <div class="bts6-layer bts6-layer--between" data-bts6-between-layer aria-hidden="true">
+      <div class="bts6-layer bts6-layer--between" data-bts6-between-layer>
         <img class="bts6-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
         <p class="bts6-kicker">DIFFERENT PLACES. SAME YOU.</p>
         <h2 class="bts6-display"><span>THE SPACE</span><span>BETWEEN.</span></h2>
@@ -106,8 +116,11 @@
           <img src="{{ reset_url }}" alt="BETWEEN TWO SUNS Daily Reset Cleanser" width="1024" height="1536" loading="eager">
         </div>
         <div class="bts6-product-commerce">
-          <div><span>DAILY RESET CLEANSER</span><small>200 ml</small></div>
-          <button type="button" data-demo-add="RESET">ADD TO ROUTINE <b>+</b></button>
+          <div>
+            <a href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY RESET CLEANSER</a>
+            <small>200 ml</small>
+          </div>
+          <button type="button" data-routine-toggle="reset" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
 
@@ -124,8 +137,11 @@
           <img src="{{ clarity_url }}" alt="BETWEEN TWO SUNS Clarity Serum" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts6-product-commerce">
-          <div><span>CLARITY SERUM</span><small>30 ml</small></div>
-          <button type="button" data-demo-add="CLARITY">ADD TO ROUTINE <b>+</b></button>
+          <div>
+            <a href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">CLARITY SERUM</a>
+            <small>30 ml</small>
+          </div>
+          <button type="button" data-routine-toggle="clarity" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
 
@@ -143,8 +159,11 @@
           <img src="{{ barrier_url }}" alt="BETWEEN TWO SUNS Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts6-product-commerce">
-          <div><span>DAILY BARRIER MOISTURIZING CREAM</span><small>50 g</small></div>
-          <button type="button" data-demo-add="BARRIER">ADD TO ROUTINE <b>+</b></button>
+          <div>
+            <a href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY BARRIER MOISTURIZING CREAM</a>
+            <small>50 g</small>
+          </div>
+          <button type="button" data-routine-toggle="barrier" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
 
@@ -161,8 +180,11 @@
           <img src="{{ defense_url }}" alt="BETWEEN TWO SUNS Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts6-product-commerce">
-          <div><span>DAILY DEFENSE SUNSCREEN SPF 50</span><small>50 g</small></div>
-          <button type="button" data-demo-add="DEFENSE">ADD TO ROUTINE <b>+</b></button>
+          <div>
+            <a href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY DEFENSE SUNSCREEN SPF 50</a>
+            <small>50 g</small>
+          </div>
+          <button type="button" data-routine-toggle="defense" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
 
@@ -186,22 +208,22 @@
       <div class="bts6-lineup__halo" aria-hidden="true"></div>
 
       <article data-lineup-step="reset">
-        <div class="bts6-lineup-img"><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy"></div>
+        <a class="bts6-lineup-img" href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy"></a>
         <div class="bts6-lineup-label"><span>01</span><strong>RESET</strong><small>CLEANSE</small></div>
       </article>
 
       <article data-lineup-step="clarity">
-        <div class="bts6-lineup-img"><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy"></div>
+        <a class="bts6-lineup-img" href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy"></a>
         <div class="bts6-lineup-label"><span>02</span><strong>CLARITY</strong><small>TREAT</small></div>
       </article>
 
       <article data-lineup-step="barrier">
-        <div class="bts6-lineup-img"><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy"></div>
+        <a class="bts6-lineup-img" href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy"></a>
         <div class="bts6-lineup-label"><span>03</span><strong>BARRIER</strong><small>HYDRATE</small></div>
       </article>
 
       <article data-lineup-step="defense">
-        <div class="bts6-lineup-img"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy"></div>
+        <a class="bts6-lineup-img" href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy"></a>
         <div class="bts6-lineup-label"><span>04</span><strong>DEFENSE</strong><small>PROTECT</small></div>
       </article>
     </div>
@@ -221,9 +243,30 @@
         <div><span>COMPLETE ROUTINE</span><strong data-routine-count>4 STEPS · AM</strong></div>
         <p>Built for life between environments.</p>
       </div>
-      <button type="button" data-routine-add>ADD 4 PRODUCTS <span aria-hidden="true">→</span></button>
+      <button type="button" data-routine-review>REVIEW 4-PRODUCT ROUTINE <span aria-hidden="true">→</span></button>
     </div>
   </section>
+
+  <aside class="bts6-routine-drawer" data-routine-drawer hidden aria-labelledby="RoutineDrawerTitle">
+    <button class="bts6-routine-drawer__scrim" type="button" data-routine-close aria-label="Close routine review"></button>
+    <div class="bts6-routine-drawer__panel">
+      <div class="bts6-routine-drawer__top">
+        <div>
+          <p class="bts6-kicker">YOUR ROUTINE</p>
+          <h2 id="RoutineDrawerTitle" class="bts6-display" data-routine-drawer-title>4 PRODUCTS · AM</h2>
+        </div>
+        <button type="button" data-routine-close aria-label="Close routine review">CLOSE</button>
+      </div>
+      <div class="bts6-routine-drawer__items">
+        <a data-drawer-item="reset" href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ reset_url }}" alt=""><span><b>01 · RESET</b><small>Daily Reset Cleanser · 200 ml</small></span><i>→</i></a>
+        <a data-drawer-item="clarity" href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ clarity_url }}" alt=""><span><b>02 · CLARITY</b><small>Clarity Serum · 30 ml</small></span><i>→</i></a>
+        <a data-drawer-item="barrier" href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ barrier_url }}" alt=""><span><b>03 · BARRIER</b><small>Daily Barrier Moisturizing Cream · 50 g</small></span><i>→</i></a>
+        <a data-drawer-item="defense" href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ defense_url }}" alt=""><span><b>04 · DEFENSE</b><small>Daily Defense Sunscreen SPF 50 · 50 g</small></span><i>→</i></a>
+      </div>
+      <a class="bts6-routine-drawer__shop" href="{{ routes.all_products_collection_url }}">EXPLORE ALL PRODUCTS <span aria-hidden="true">→</span></a>
+      <p>Final prices, availability and checkout actions will be sourced from Shopify when launch product data is finalized.</p>
+    </div>
+  </aside>
 
   <section class="bts6-proof">
     <div class="bts6-proof__lead">
