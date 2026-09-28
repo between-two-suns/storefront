@@ -48,11 +48,11 @@
         const r=hero.getBoundingClientRect();
         const travel=Math.max(hero.offsetHeight-innerHeight,1);
         const p=clamp(-r.top/travel);
-        const compress=clamp(p/.21);
-        const open=clamp((p-.20)/.29);
-        const heroOpacity=1-clamp((p-.13)/.18);
-        const betweenOpacity=clamp((p-.30)/.17);
-        const tabsOpacity=clamp((p-.48)/.12);
+        const compress=clamp(p/.20);
+        const open=clamp((p-.24)/.23);
+        const heroOpacity=1-clamp((p-.10)/.12);
+        const betweenOpacity=clamp((p-.30)/.10);
+        const tabsOpacity=clamp((p-.48)/.10);
         heroStage.style.setProperty('--hero-progress',p.toFixed(4));
         heroStage.style.setProperty('--hero-compress',compress.toFixed(4));
         heroStage.style.setProperty('--hero-open',open.toFixed(4));
@@ -80,25 +80,79 @@
     const markers=[...(productJourney?.querySelectorAll('[data-step-marker]')||[])];
     if(productJourney&&panels.length){
       let last=-1,ticking=false;
+      const stage=productJourney.querySelector('.bts6-product-stage');
+
       const activate=(idx)=>{
-        if(idx===last)return;last=idx;
-        panels.forEach((panel,i)=>panel.classList.toggle('is-active',i===idx));
+        if(idx===last)return;
+        last=idx;
+        panels.forEach((panel,i)=>{
+          panel.classList.toggle('is-active',i===idx);
+          panel.style.pointerEvents=i===idx?'auto':'none';
+        });
         markers.forEach((marker,i)=>marker.classList.toggle('is-active',i===idx));
         const sku=getComputedStyle(panels[idx]).getPropertyValue('--sku').trim();
-        productJourney.querySelector('.bts6-product-stage')?.style.setProperty('--active-sku',sku||'#4CB383');
+        stage?.style.setProperty('--active-sku',sku||'#4CB383');
       };
+
       const updateProducts=()=>{
         const r=productJourney.getBoundingClientRect();
         const travel=Math.max(productJourney.offsetHeight-innerHeight,1);
         const p=clamp(-r.top/travel);
-        const raw=p*panels.length;
-        const idx=Math.min(panels.length-1,Math.floor(raw));
+        const raw=p*(panels.length-1);
+        const idx=Math.min(panels.length-1,Math.round(raw));
         activate(idx);
-        const local=raw-idx;
-        const panel=panels[idx];
-        panel?.style.setProperty('--local',local.toFixed(4));
+
+        panels.forEach((panel,i)=>{
+          const distance=i-raw;
+          const presence=clamp(1-Math.abs(distance));
+          const eased=presence*presence*(3-2*presence);
+          const shift=distance*24;
+          const scale=.975+eased*.025;
+
+          panel.style.opacity=eased.toFixed(4);
+          panel.style.transform=`translateY(${shift.toFixed(2)}px) scale(${scale.toFixed(4)})`;
+          panel.style.setProperty('--presence',eased.toFixed(4));
+          panel.style.setProperty('--distance',distance.toFixed(4));
+
+          const visual=panel.querySelector('.bts6-product-visual img');
+          if(visual){
+            const productShift=distance*34;
+            const productScale=.94+eased*.06;
+            visual.style.transform=`translateY(${productShift.toFixed(2)}px) scale(${productScale.toFixed(4)})`;
+          }
+
+          if(panel.dataset.productPanel==='1'&&visual){
+            const blur=(1-eased)*11;
+            const sat=.78+eased*.22;
+            visual.style.filter=`blur(${blur.toFixed(2)}px) saturate(${sat.toFixed(2)}) drop-shadow(0 25px 24px rgba(32,32,27,.09))`;
+          }
+
+          const lens=panel.querySelector('.bts6-clarity-lens');
+          if(lens){
+            lens.style.opacity=(.15+eased*.85).toFixed(3);
+            lens.style.transform=`scale(${(.82+eased*.22).toFixed(3)})`;
+          }
+
+          panel.querySelectorAll('.bts6-barrier-ring').forEach((ring,ringIndex)=>{
+            ring.style.opacity=(eased*(ringIndex===0?1:.55)).toFixed(3);
+            ring.style.transform=`scale(${(.78+eased*.22).toFixed(3)})`;
+          });
+
+          const light=panel.querySelector('.bts6-defense-light');
+          if(light){
+            light.style.opacity=eased.toFixed(3);
+            light.style.transform=`rotate(${(-18+eased*23).toFixed(1)}deg)`;
+          }
+
+          const wipe=panel.querySelector('.bts6-reset-wipe');
+          if(wipe){
+            wipe.style.transform=`translateX(${(24-eased*22).toFixed(1)}%) rotate(${(-7+eased*3).toFixed(1)}deg)`;
+          }
+        });
+
         ticking=false;
       };
+
       const req=()=>{if(ticking)return;ticking=true;requestAnimationFrame(updateProducts)};
       activate(0);updateProducts();
       if(!reduce){addEventListener('scroll',req,{passive:true});addEventListener('resize',req)}
