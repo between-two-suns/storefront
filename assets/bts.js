@@ -15,17 +15,31 @@
     });
   };
 
-  const initHero = (root) => {
-    const hero = root.querySelector('[data-bts-hero]');
-    if (!hero || reduceMotion) return;
+  const initSignatureHero = (root) => {
+    const shell = root.querySelector('[data-bts-hero-shell]');
+    const stage = shell?.querySelector('.bts-v4-hero-stage');
+    if (!shell || !stage || reduceMotion) return;
 
     let ticking = false;
 
     const update = () => {
-      const rect = hero.getBoundingClientRect();
-      const viewport = Math.max(window.innerHeight, 1);
-      const progress = clamp((-rect.top) / Math.max(rect.height * .65, 1));
-      hero.style.setProperty('--bts-hero-shift', progress.toFixed(4));
+      const rect = shell.getBoundingClientRect();
+      const travel = Math.max(shell.offsetHeight - window.innerHeight, 1);
+      const p = clamp(-rect.top / travel);
+
+      const compress = clamp(p / .35);
+      const open = clamp((p - .42) / .58);
+      const heroOpacity = 1 - clamp((p - .18) / .28);
+      const betweenOpacity = clamp((p - .42) / .26);
+
+      stage.style.setProperty('--bts-progress', p.toFixed(4));
+      stage.style.setProperty('--bts-compress', compress.toFixed(4));
+      stage.style.setProperty('--bts-open', open.toFixed(4));
+      stage.style.setProperty('--bts-hero-opacity', heroOpacity.toFixed(4));
+      stage.style.setProperty('--bts-between-opacity', betweenOpacity.toFixed(4));
+      stage.style.setProperty('--bts-hero-pointer', heroOpacity > .5 ? 'auto' : 'none');
+      stage.style.setProperty('--bts-between-pointer', betweenOpacity > .55 ? 'auto' : 'none');
+
       ticking = false;
     };
 
@@ -41,16 +55,16 @@
   };
 
   const initEnvironment = (root) => {
-    const environment = root.querySelector('[data-bts-environment]');
-    if (!environment) return;
+    const stage = root.querySelector('.bts-v4-hero-stage');
+    if (!stage) return;
 
-    const buttons = [...environment.querySelectorAll('[data-env-button]')];
-    const index = environment.querySelector('[data-env-index]');
-    const title = environment.querySelector('[data-env-title]');
-    const copy = environment.querySelector('[data-env-copy]');
+    const buttons = [...stage.querySelectorAll('[data-env-button]')];
+    const index = stage.querySelector('[data-env-index]');
+    const title = stage.querySelector('[data-env-title]');
+    const copy = stage.querySelector('[data-env-copy]');
 
     const setState = (button) => {
-      environment.dataset.env = button.dataset.envButton;
+      stage.dataset.env = button.dataset.envButton;
 
       buttons.forEach((item) => {
         item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
@@ -138,7 +152,7 @@
 
   const initExperience = () => {
     document.querySelectorAll('[data-bts-experience]').forEach((root) => {
-      initHero(root);
+      initSignatureHero(root);
       initEnvironment(root);
       initRoutine(root);
     });
