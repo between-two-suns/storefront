@@ -3,7 +3,20 @@
   assign clarity_product = section.settings.product_2
   assign barrier_product = section.settings.product_3
   assign defense_product = section.settings.product_4
-%}
+
+  if reset_product == blank
+    assign reset_product = all_products['daily-reset-cleanser']
+  endif
+  if clarity_product == blank
+    assign clarity_product = all_products['clarity-serum']
+  endif
+  if barrier_product == blank
+    assign barrier_product = all_products['daily-barrier-moisturizing-cream']
+  endif
+  if defense_product == blank
+    assign defense_product = all_products['daily-defense-sunscreen-spf-50']
+  endif
+%>
 
 <section
   class="bts-experience"
