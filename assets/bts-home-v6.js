@@ -86,6 +86,14 @@
     if(productJourney&&panels.length){
       let last=-1,ticking=false;
       const stage=productJourney.querySelector('.bts6-product-stage');
+      const threadPath=productJourney.querySelector('[data-bts6-thread-path]');
+      const threadNode=productJourney.querySelector('[data-bts6-thread-node]');
+      let threadLength=0;
+      if(threadPath){
+        threadLength=threadPath.getTotalLength();
+        threadPath.style.strokeDasharray=String(threadLength);
+        threadPath.style.strokeDashoffset=String(threadLength);
+      }
 
       const activate=(idx)=>{
         if(idx===last)return;
@@ -106,6 +114,18 @@
         const raw=p*(panels.length-1);
         const idx=Math.min(panels.length-1,Math.round(raw));
         activate(idx);
+
+        if(threadPath&&threadLength){
+          const drawn=threadLength*p;
+          threadPath.style.strokeDashoffset=String(threadLength-drawn);
+          if(threadNode){
+            const point=threadPath.getPointAtLength(Math.max(0,Math.min(threadLength,drawn)));
+            threadNode.setAttribute('cx',point.x.toFixed(2));
+            threadNode.setAttribute('cy',point.y.toFixed(2));
+            const colors=['#59B98A','#69B6DF','#B392CB','#EE8B68'];
+            threadNode.style.fill=colors[idx]||colors[0];
+          }
+        }
 
         panels.forEach((panel,i)=>{
           const distance=i-raw;
