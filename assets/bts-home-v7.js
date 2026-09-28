@@ -140,14 +140,14 @@
         const travel = Math.max(hero.offsetHeight - innerHeight, 1);
         const p = clamp(-r.top / travel);
 
-        const heroOpacity = 1 - smooth(.08, .15, p);
-        const bridgeIn = smooth(.13, .155, p);
-        const bridgeOut = 1 - smooth(.185, .215, p);
+        const heroOpacity = 1 - smooth(.135, .16, p);
+        const bridgeIn = smooth(.155, .175, p);
+        const bridgeOut = 1 - smooth(.195, .215, p);
         const bridgeOpacity = Math.min(bridgeIn, bridgeOut);
-        const betweenOpacity = smooth(.20, .28, p);
+        const betweenOpacity = smooth(.205, .255, p);
         const tabsOpacity = smooth(.34, .41, p);
-        const compress = smooth(0, .15, p);
-        const open = smooth(.15, .30, p);
+        const compress = smooth(0, .16, p);
+        const open = smooth(.16, .30, p);
 
         heroStage.style.setProperty('--hero-progress', p.toFixed(4));
         heroStage.style.setProperty('--hero-opacity', heroOpacity.toFixed(4));
@@ -165,11 +165,11 @@
         envButtons.forEach(btn => btn.tabIndex = tabsOpacity > .55 ? 0 : -1);
 
         let shape;
-        if (p < .15) {
-          shape = interpolateShape(SHAPES.base, SHAPES.compress, smooth(0, .15, p));
+        if (p < .16) {
+          shape = interpolateShape(SHAPES.base, SHAPES.compress, smooth(0, .16, p));
           heroStage.dataset.environment = 'base';
         } else if (p < .38) {
-          shape = interpolateShape(SHAPES.compress, SHAPES.open, smooth(.15, .38, p));
+          shape = interpolateShape(SHAPES.compress, SHAPES.open, smooth(.16, .38, p));
           heroStage.dataset.environment = 'base';
         } else {
           const ep = clamp((p - .40) / .56);
