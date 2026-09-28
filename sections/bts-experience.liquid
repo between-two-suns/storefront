@@ -19,7 +19,7 @@
 %}
 
 <section
-  class="bts-experience bts-experience--v3"
+  class="bts-experience bts-experience--v4"
   data-bts-experience
   style="
     --bts-bg: {{ settings.color_background | default: '#F4F0E8' }};
@@ -30,61 +30,59 @@
     --bts-peach: {{ settings.color_peach | default: '#F2A07D' }};
   "
 >
-  <section class="bts-v3-hero" data-bts-hero>
-    <div class="bts-v3-aperture" aria-hidden="true">
-      <div class="bts-v3-form bts-v3-form--left"></div>
-      <div class="bts-v3-form bts-v3-form--right"></div>
-    </div>
-
-    <div class="bts-v3-hero__inner">
-      <p class="bts-kicker">CLIMATE-ADAPTED SKINCARE</p>
-      <h1 class="bts-display bts-v3-hero__title">
-        <span>YOUR SKIN</span>
-        <span>LIVES</span>
-        <span>BETWEEN.</span>
-      </h1>
-      <p class="bts-v3-hero__sub">For life between environments.</p>
-
-      <div class="bts-v3-hero__actions">
-        <a class="bts-button bts-button--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
-        <a class="bts-text-link" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+  <section class="bts-v4-hero-shell" data-bts-hero-shell>
+    <div class="bts-v4-hero-stage" data-env="sun">
+      <div class="bts-v4-aperture" aria-hidden="true">
+        <div class="bts-v4-form bts-v4-form--left"></div>
+        <div class="bts-v4-form bts-v4-form--right"></div>
       </div>
-    </div>
 
-    <div class="bts-v3-hero__signature">
-      <span>fresh skin. always.</span>
-      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="" loading="eager">
-    </div>
-  </section>
+      <div class="bts-v4-hero-state" data-bts-hero-state>
+        <div class="bts-v4-hero-copy">
+          <h1 class="bts-display bts-v4-hero-title">
+            <span>YOUR SKIN</span>
+            <span>MOVES THROUGH</span>
+            <span>A LOT.</span>
+          </h1>
+          <p>Climate-adapted skincare for life between environments.</p>
+        </div>
 
-  <section id="environment" class="bts-v3-environment" data-bts-environment data-env="sun">
-    <div class="bts-v3-environment__visual" aria-hidden="true">
-      <div class="bts-v3-env-form bts-v3-env-form--left"></div>
-      <div class="bts-v3-env-form bts-v3-env-form--right"></div>
-    </div>
+        <div class="bts-v4-stressors" aria-label="Environmental stressors">
+          <span>SUN</span>
+          <span>DUST</span>
+          <span>POLLUTION</span>
+          <span>DRY AC</span>
+          <span>HUMIDITY</span>
+        </div>
 
-    <div class="bts-v3-environment__inner">
-      <div class="bts-v3-environment__intro">
-        <p class="bts-kicker">WHY CLIMATE-ADAPTED</p>
+        <div class="bts-v4-hero-actions">
+          <a class="bts-button bts-button--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
+          <a class="bts-button bts-button--outline" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+        </div>
+
+        <div class="bts-v4-hero-foot">
+          <span>DIFFERENT ENVIRONMENTS.<br>HEALTHIER SKIN.</span>
+          <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="30" height="33" alt="">
+        </div>
+      </div>
+
+      <div class="bts-v4-between-state" data-bts-between-state aria-hidden="true">
+        <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="30" height="33" alt="">
+        <p class="bts-kicker">DIFFERENT PLACES. SAME YOU.</p>
         <h2 class="bts-display">
-          <span>THE WORLD CHANGES.</span>
-          <span>YOUR SKIN ADAPTS.</span>
+          <span>THE SPACE</span>
+          <span>BETWEEN.</span>
         </h2>
-        <p>Sun. Dust. Pollution. Dry AC. Humidity. The conditions around you keep changing — your routine should be built for that reality.</p>
-      </div>
+        <p class="bts-v4-between-copy">Skin changes. So does your environment.</p>
 
-      <div class="bts-v3-environment__state" aria-live="polite">
-        <div class="bts-v3-environment__mark">
-          <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="26" height="29" alt="">
-        </div>
-        <div>
-          <span class="bts-v3-environment__index" data-env-index>01 / 05</span>
+        <div class="bts-v4-env-state" aria-live="polite">
+          <span data-env-index>01 / 05</span>
           <strong data-env-title>SUN</strong>
-          <p data-env-copy>Stronger UV. Higher exposure.</p>
+          <small data-env-copy>Stronger UV. Higher exposure.</small>
         </div>
       </div>
 
-      <div class="bts-v3-environment__nav" role="group" aria-label="Environmental states">
+      <div class="bts-v4-env-nav" role="group" aria-label="Explore your environment">
         <button type="button" data-env-button="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true">SUN</button>
         <button type="button" data-env-button="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false">DUST</button>
         <button type="button" data-env-button="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false">POLLUTION</button>
@@ -94,14 +92,49 @@
     </div>
   </section>
 
-  <section id="routine" class="bts-v3-routine" data-bts-routine data-time="am">
-    <div class="bts-v3-routine__head">
-      <p class="bts-kicker">THE COMPLETE ROUTINE</p>
+  <section class="bts-v4-reset">
+    <div class="bts-v4-reset__inner">
+      <div class="bts-v4-reset__copy">
+        <div class="bts-v4-reset__eyebrow">
+          <span>01 / 04</span>
+          <span>CLEANSE</span>
+        </div>
+
+        <h2 class="bts-display bts-v4-reset__title">RESET</h2>
+        <h3>A FRESH START, ANYWHERE.</h3>
+        <p>Removes oil and buildup without stripping. Keeps skin balanced, fresh and ready for what's next.</p>
+
+        <div class="bts-v4-reset__benefits">
+          <span>OIL BALANCING</span>
+          <span>SOOTHES SKIN</span>
+          <span>NON-STRIPPING</span>
+        </div>
+
+        {% if reset_product != blank %}
+          <a class="bts-button bts-button--solid" href="{{ reset_product.url }}">DISCOVER RESET <span aria-hidden="true">→</span></a>
+        {% endif %}
+      </div>
+
+      <div class="bts-v4-reset__visual">
+        {% if reset_product != blank and reset_product.featured_image != blank %}
+          {{ reset_product.featured_image | image_url: width: 1100 | image_tag: widths: '420,640,840,1100', sizes: '(max-width: 749px) 70vw, 42vw', loading: 'lazy', class: 'bts-v4-reset__product', alt: reset_product.featured_image.alt }}
+        {% else %}
+          <div class="bts-v4-reset__material" aria-hidden="true">
+            <img src="{{ 'bts-wordmark-white.svg' | asset_url }}" width="170" height="147" alt="">
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="routine" class="bts-v4-routine" data-bts-routine data-time="am">
+    <div class="bts-v4-routine__head">
+      <p class="bts-kicker">BUILD YOUR ROUTINE</p>
       <h2 class="bts-display">
-        <span>YOUR ADAPTIVE</span>
-        <span>DAILY ROUTINE.</span>
+        <span>FOUR STEPS.</span>
+        <span>EVERY ENVIRONMENT.</span>
       </h2>
-      <p>Four essentials. Built for life between environments.</p>
+      <p>Four essentials. One adaptive system.</p>
 
       <div class="bts-time-toggle" role="group" aria-label="Routine time">
         <button type="button" data-time-button="am" aria-pressed="true">AM <span aria-hidden="true">☀</span></button>
@@ -109,51 +142,59 @@
       </div>
     </div>
 
-    <div class="bts-v3-routine__path" aria-label="Routine steps">
-      <span class="bts-v3-routine__line" aria-hidden="true"></span>
+    <div class="bts-v4-routine__path">
+      <span class="bts-v4-routine__line" aria-hidden="true"></span>
 
-      <article class="bts-v3-step bts-v3-step--reset" data-routine-item data-time="am,pm" data-step="01" data-variant-id="{% if reset_product != blank %}{{ reset_product.selected_or_first_available_variant.id }}{% endif %}">
+      <article class="bts-v4-routine-card bts-v4-routine-card--reset" data-routine-item data-time="am,pm" data-step="01" data-variant-id="{% if reset_product != blank %}{{ reset_product.selected_or_first_available_variant.id }}{% endif %}">
         <a href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}#{% endif %}">
-          <span class="bts-v3-step__number">01</span>
-          <span class="bts-v3-step__dot"></span>
-          <span class="bts-v3-step__role">CLEANSE</span>
-          <strong>{% if reset_product != blank %}{{ reset_product.title }}{% else %}Daily Reset Cleanser{% endif %}</strong>
+          <span class="bts-v4-routine-card__step">01</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <strong>RESET</strong>
+          <small>CLEANSE</small>
+          <p>{% if reset_product != blank %}{{ reset_product.title }}{% else %}Daily Reset Cleanser{% endif %}</p>
         </a>
       </article>
 
-      <article class="bts-v3-step bts-v3-step--clarity" data-routine-item data-time="am,pm" data-step="02" data-variant-id="{% if clarity_product != blank %}{{ clarity_product.selected_or_first_available_variant.id }}{% endif %}">
+      <article class="bts-v4-routine-card bts-v4-routine-card--clarity" data-routine-item data-time="am,pm" data-step="02" data-variant-id="{% if clarity_product != blank %}{{ clarity_product.selected_or_first_available_variant.id }}{% endif %}">
         <a href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}#{% endif %}">
-          <span class="bts-v3-step__number">02</span>
-          <span class="bts-v3-step__dot"></span>
-          <span class="bts-v3-step__role">TREAT</span>
-          <strong>{% if clarity_product != blank %}{{ clarity_product.title }}{% else %}Clarity Serum{% endif %}</strong>
+          <span class="bts-v4-routine-card__step">02</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <strong>CLARITY</strong>
+          <small>TREAT</small>
+          <p>{% if clarity_product != blank %}{{ clarity_product.title }}{% else %}Clarity Serum{% endif %}</p>
         </a>
       </article>
 
-      <article class="bts-v3-step bts-v3-step--barrier" data-routine-item data-time="am,pm" data-step="03" data-variant-id="{% if barrier_product != blank %}{{ barrier_product.selected_or_first_available_variant.id }}{% endif %}">
+      <article class="bts-v4-routine-card bts-v4-routine-card--barrier" data-routine-item data-time="am,pm" data-step="03" data-variant-id="{% if barrier_product != blank %}{{ barrier_product.selected_or_first_available_variant.id }}{% endif %}">
         <a href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}#{% endif %}">
-          <span class="bts-v3-step__number">03</span>
-          <span class="bts-v3-step__dot"></span>
-          <span class="bts-v3-step__role">HYDRATE</span>
-          <strong>{% if barrier_product != blank %}{{ barrier_product.title }}{% else %}Daily Barrier Moisturizing Cream{% endif %}</strong>
+          <span class="bts-v4-routine-card__step">03</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <strong>BARRIER</strong>
+          <small>HYDRATE</small>
+          <p>{% if barrier_product != blank %}{{ barrier_product.title }}{% else %}Daily Barrier Moisturizing Cream{% endif %}</p>
         </a>
       </article>
 
-      <article class="bts-v3-step bts-v3-step--defense" data-routine-item data-time="am" data-defense data-step="04" data-variant-id="{% if defense_product != blank %}{{ defense_product.selected_or_first_available_variant.id }}{% endif %}">
+      <article class="bts-v4-routine-card bts-v4-routine-card--defense" data-routine-item data-time="am" data-defense data-step="04" data-variant-id="{% if defense_product != blank %}{{ defense_product.selected_or_first_available_variant.id }}{% endif %}">
         <a href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}#{% endif %}">
-          <span class="bts-v3-step__number">04</span>
-          <span class="bts-v3-step__dot"></span>
-          <span class="bts-v3-step__role">PROTECT</span>
-          <strong>{% if defense_product != blank %}{{ defense_product.title }}{% else %}Daily Defense Sunscreen SPF 50{% endif %}</strong>
+          <span class="bts-v4-routine-card__step">04</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <strong>DEFENSE</strong>
+          <small>PROTECT</small>
+          <p>{% if defense_product != blank %}{{ defense_product.title }}{% else %}Daily Defense Sunscreen SPF 50{% endif %}</p>
         </a>
       </article>
     </div>
 
-    <div class="bts-v3-routine__commerce">
-      <div class="bts-v3-routine__summary">
-        <strong data-routine-count>4 STEPS · AM</strong>
-        <span>One routine. Changing environments.</span>
+    <div class="bts-v4-routine__commerce">
+      <div>
+        <div>
+          <span class="bts-kicker">COMPLETE ROUTINE</span>
+          <strong data-routine-count>4 STEPS · AM</strong>
+        </div>
+        <span class="bts-v4-routine__promise">Built for life between environments.</span>
       </div>
+
       <button
         class="bts-button bts-button--solid bts-button--wide"
         type="button"
@@ -165,20 +206,11 @@
     </div>
   </section>
 
-  <section class="bts-v3-close">
-    <div class="bts-v3-close__forms" aria-hidden="true">
-      <div></div><div></div>
-    </div>
-    <div class="bts-v3-close__inner">
-      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="30" height="33" alt="">
-      <p class="bts-kicker">BETWEEN TWO SUNS</p>
-      <h2 class="bts-display">
-        <span>READY FOR</span>
-        <span>WHAT COMES NEXT.</span>
-      </h2>
-      <p>Climate-adapted skincare for everyday change.</p>
-      <a class="bts-text-link" href="{{ routes.all_products_collection_url }}">EXPLORE THE RANGE</a>
-    </div>
+  <section class="bts-v4-end">
+    <div class="bts-v4-end__word">BETWEEN TWO SUNS</div>
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="34" height="37" alt="">
+    <h2>fresh skin. always.</h2>
+    <p>Climate-adapted skincare for life between environments.</p>
   </section>
 </section>
 
