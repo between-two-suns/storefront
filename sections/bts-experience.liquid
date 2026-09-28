@@ -31,7 +31,7 @@
   "
 >
   <section class="bts-v4-hero-shell" data-bts-hero-shell>
-    <div class="bts-v4-hero-stage" data-env="sun">
+    <div class="bts-v4-hero-stage" data-env="base">
       <div class="bts-v4-aperture" aria-hidden="true">
         <div class="bts-v4-form bts-v4-form--left"></div>
         <div class="bts-v4-form bts-v4-form--right"></div>
@@ -39,9 +39,12 @@
 
       <div class="bts-v4-hero-state" data-bts-hero-state>
         <div class="bts-v4-hero-copy">
+          <img class="bts-v4-hero-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
           <h1 class="bts-display bts-v4-hero-title">
-            <span>YOUR SKIN</span>
-            <span>MOVES THROUGH</span>
+            <span>YOUR</span>
+            <span>SKIN</span>
+            <span>MOVES</span>
+            <span>THROUGH</span>
             <span>A LOT.</span>
           </h1>
           <p>Climate-adapted skincare for life between environments.</p>
@@ -82,12 +85,15 @@
         </div>
       </div>
 
-      <div class="bts-v4-env-nav" role="group" aria-label="Explore your environment">
+      <div class="bts-v4-env-wrap">
+        <span class="bts-kicker">SCROLL TO SHIFT YOUR ENVIRONMENT</span>
+        <div class="bts-v4-env-nav" role="group" aria-label="Explore your environment">
         <button type="button" data-env-button="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true">SUN</button>
         <button type="button" data-env-button="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false">DUST</button>
         <button type="button" data-env-button="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false">POLLUTION</button>
         <button type="button" data-env-button="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false">DRY AC</button>
         <button type="button" data-env-button="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false">HUMIDITY</button>
+        </div>
       </div>
     </div>
   </section>
