@@ -464,3 +464,37 @@
   .bts6-proof__grid article{grid-template-columns:1fr;grid-template-rows:auto auto auto;min-height:185px}
   .bts6-proof__grid strong{grid-row:auto;font-size:70px}
 }
+
+
+/* v6.3 — intentional bridge state between hero and environmental story */
+.bts6-layer--hero h1{
+  width:min(100%,318px);
+  font-size:75px;
+}
+.bts6-bridge{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:grid;
+  place-content:center;
+  justify-items:center;
+  gap:12px;
+  opacity:var(--bridge-opacity,0);
+  transform:scale(calc(.94 + var(--bridge-opacity,0)*.06));
+  pointer-events:none;
+}
+.bts6-bridge img{
+  width:38px;
+  height:auto;
+}
+.bts6-bridge span{
+  font-size:8px;
+  letter-spacing:.28em;
+  font-weight:700;
+}
+.bts6-layer--between{
+  clip-path:inset(var(--between-clip,50%) 0 var(--between-clip,50%) 0);
+}
+@media(max-width:374px){
+  .bts6-layer--hero h1{width:min(100%,304px);font-size:71px}
+}
