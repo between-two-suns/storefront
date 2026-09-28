@@ -679,3 +679,68 @@
   .bts7-product-action>div span{max-width:21ch}
   .bts7-product-action button{min-width:108px;padding-inline:12px}
 }
+
+
+/* v7.6 — hard mobile-safe editorial rails */
+@media(max-width:749px){
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy{
+    position:absolute;
+    top:130px;
+    right:24px;
+    width:43%;
+    max-width:168px;
+    margin:0;
+    padding:0;
+    text-align:right;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy h2,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy h2{
+    max-width:100%;
+    margin-left:auto;
+    font-size:62px;
+    line-height:.75;
+    letter-spacing:-.005em;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy h3,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy h3{
+    max-width:7.4ch;
+    margin-left:auto;
+    font-size:24px;
+    line-height:.88;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-copy>p,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-copy>p{
+    width:100%;
+    max-width:100%;
+    margin-left:auto;
+    font-size:11px;
+    line-height:1.38;
+    overflow-wrap:break-word;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-meta,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-meta{
+    justify-content:flex-end;
+    gap:6px;
+    white-space:normal;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-benefits,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-benefits{
+    width:100%;
+    max-width:100%;
+    margin-left:auto;
+    justify-content:flex-end;
+    gap:6px 8px;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-benefits span,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-benefits span{
+    font-size:9px;
+  }
+  .bts7-panel[data-handle="clarity-serum"] .bts7-visual,
+  .bts7-panel[data-handle="daily-defense-sunscreen-spf-50"] .bts7-visual{
+    left:3px;
+    right:auto;
+    width:50vw;
+    max-width:210px;
+  }
+}
