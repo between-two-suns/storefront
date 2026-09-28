@@ -1274,3 +1274,444 @@ img {
     height: 400px;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   BTS v0.2 — art-direction correction after first real-device review.
+   The previous pass proved the mechanics but was visually too generic,
+   over-scaled and too literal. These overrides restore the "between" space.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --bts-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --bts-bg: #f6f2ea;
+  --bts-gutter: clamp(20px, 5.6vw, 34px);
+}
+
+.bts-header {
+  height: 76px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  align-items: flex-start;
+}
+
+.bts-header__logo {
+  height: 40px;
+  width: auto;
+}
+
+.bts-header__bag,
+.bts-menu__toggle {
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+
+.bts-display {
+  font-family: var(--bts-display);
+  font-weight: 800;
+  letter-spacing: -.055em;
+  line-height: .78;
+}
+
+.bts-kicker {
+  font-size: 9px;
+  letter-spacing: .25em;
+  line-height: 1.35;
+}
+
+.bts-hero-shell {
+  min-height: 150svh;
+}
+
+.bts-stage--hero {
+  padding:
+    calc(var(--bts-header-h) + 54px)
+    var(--bts-gutter)
+    max(38px, env(safe-area-inset-bottom));
+  align-items: center;
+  --aperture-open: calc(.12 + var(--hero-progress, 0) * .9);
+}
+
+.bts-form {
+  top: -12%;
+  bottom: -12%;
+  width: 46vw;
+  max-width: none;
+  border-radius: 52% 48% 50% 46% / 17% 19% 17% 20%;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    inset 0 0 55px rgba(255,255,255,.15);
+}
+
+.bts-form::before {
+  opacity: .36;
+  background:
+    radial-gradient(ellipse at 58% 24%, rgba(255,255,255,.62), transparent 34%),
+    linear-gradient(155deg, rgba(255,255,255,.24), transparent 38% 76%, rgba(0,0,0,.025));
+}
+
+.bts-form::after {
+  opacity: .08;
+  background-image:
+    radial-gradient(circle at 20% 30%, currentColor 0 .75px, transparent 1px),
+    radial-gradient(circle at 70% 60%, currentColor 0 .7px, transparent 1px);
+  background-size: 26px 29px, 35px 31px;
+}
+
+.bts-form--left {
+  transform: translateX(calc(-58% - var(--aperture-open) * 10%)) rotate(-1.2deg);
+  background:
+    radial-gradient(ellipse at 75% 44%, rgba(255,255,255,.46), transparent 34%),
+    linear-gradient(150deg, #b6dfca, #8fcfaf 74%);
+}
+
+.bts-form--right {
+  transform: translateX(calc(58% + var(--aperture-open) * 10%)) rotate(1.2deg);
+  background:
+    radial-gradient(ellipse at 28% 46%, rgba(255,255,255,.5), transparent 34%),
+    linear-gradient(220deg, #cceaf2, #a8d9e9 74%);
+}
+
+.bts-hero__content {
+  width: min(100%, 430px);
+  gap: 18px;
+}
+
+.bts-hero__title {
+  width: 100%;
+  max-width: 9ch;
+  font-size: clamp(64px, 18vw, 96px);
+  line-height: .76;
+  text-wrap: balance;
+}
+
+.bts-hero__sub {
+  max-width: 26ch;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.bts-button {
+  min-height: 50px;
+  font-size: 10px;
+  letter-spacing: .15em;
+}
+
+.bts-button--solid {
+  background: #45af82;
+}
+
+.bts-hero__bottom {
+  bottom: max(25px, env(safe-area-inset-bottom));
+}
+
+.bts-signature {
+  font-size: 9px;
+  letter-spacing: .25em;
+}
+
+.bts-brand-mark {
+  width: 26px;
+}
+
+/* One composition, five changing environmental states. */
+.bts-environment-shell {
+  min-height: 370svh;
+}
+
+.bts-stage--environment {
+  padding:
+    calc(var(--bts-header-h) + 38px)
+    var(--bts-gutter)
+    max(28px, env(safe-area-inset-bottom));
+  --aperture-open: .2;
+}
+
+.bts-stage--environment .bts-form {
+  width: 43vw;
+}
+
+.bts-stage--environment .bts-form--left {
+  transform: translateX(-58%) rotate(-1deg);
+}
+
+.bts-stage--environment .bts-form--right {
+  transform: translateX(58%) rotate(1deg);
+}
+
+.bts-environment__content {
+  min-height: calc(100svh - var(--bts-header-h) - 66px);
+  grid-template-rows: auto 1fr auto;
+}
+
+.bts-environment__copy {
+  align-self: center;
+  width: min(100%, 250px);
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+.bts-environment__index {
+  margin: 0 0 9px;
+  font-size: 9px;
+  letter-spacing: .22em;
+}
+
+.bts-environment__copy h2 {
+  width: 100%;
+  margin: 0 0 12px;
+  font-size: clamp(66px, 20vw, 104px);
+  line-height: .78;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+.bts-environment__copy > p:last-child {
+  margin: 0;
+  max-width: 24ch;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.bts-environment__mark {
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%,-50%);
+  width: 28px;
+  opacity: .88;
+}
+
+.bts-environment__mark img {
+  width: 100%;
+  height: auto;
+}
+
+.bts-environment__nav {
+  gap: 2px;
+}
+
+.bts-environment__nav button {
+  min-height: 48px;
+  font-size: 7px;
+  letter-spacing: .04em;
+}
+
+.bts-env-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* Environment texture is atmospheric, not decorative CGI. */
+.bts-stage--environment[data-env="sun"] .bts-form::after { opacity: .04; }
+.bts-stage--environment[data-env="dust"] .bts-form::after { opacity: .26; }
+.bts-stage--environment[data-env="pollution"] .bts-form::after { opacity: .12; }
+.bts-stage--environment[data-env="dry-ac"] .bts-form::after { opacity: .03; }
+.bts-stage--environment[data-env="humidity"] .bts-form::after { opacity: .12; }
+
+/* Routine: quieter commerce layer, with product-shaped placeholders only until
+   final pack renders are attached. */
+.bts-routine {
+  padding: 112px var(--bts-gutter) 72px;
+}
+
+.bts-routine__heading {
+  gap: 13px;
+}
+
+.bts-routine__heading h2 {
+  max-width: 9ch;
+  font-size: clamp(56px, 16.5vw, 92px);
+  line-height: .78;
+}
+
+.bts-routine__lede {
+  max-width: 28ch;
+  font-size: 13px;
+}
+
+.bts-time-toggle {
+  order: 3;
+  margin-top: 2px;
+  background: rgba(255,255,255,.38);
+}
+
+.bts-time-toggle button {
+  min-width: 76px;
+  min-height: 36px;
+  font-size: 10px;
+}
+
+.bts-routine__rail {
+  margin-top: 44px;
+  gap: 10px;
+}
+
+.bts-routine-card__media {
+  height: clamp(165px, 48vw, 270px);
+}
+
+.bts-pack {
+  position: relative;
+  width: 76%;
+  height: 68%;
+  max-height: 210px;
+  border-radius: 16px 16px 10px 10px;
+  overflow: visible;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 14px 3px;
+  font-family: var(--bts-display);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.35),
+    0 16px 26px rgba(38,34,28,.07);
+}
+
+.bts-pack::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -19%;
+  transform: translateX(-50%);
+  width: 58%;
+  height: 21%;
+  border-radius: 10px 10px 4px 4px;
+  background: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.26);
+}
+
+.bts-pack--reset::before {
+  width: 48%;
+  height: 24%;
+  top: -22%;
+  border-radius: 4px;
+}
+
+.bts-pack--reset::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: 49%;
+  width: 42%;
+  height: 5px;
+  border-radius: 5px;
+  background: #f5f1e9;
+  transform: translateX(-12%);
+}
+
+.bts-pack--clarity {
+  width: 62%;
+  height: 56%;
+  border-radius: 34px 34px 12px 12px;
+}
+
+.bts-pack--clarity::before {
+  width: 20%;
+  height: 34%;
+  top: -31%;
+  border-radius: 10px 10px 3px 3px;
+}
+
+.bts-pack--barrier,
+.bts-pack--defense {
+  width: 76%;
+  height: 67%;
+  border-radius: 20px 20px 10px 10px;
+}
+
+.bts-routine-card__meta {
+  min-height: 64px;
+}
+
+.bts-routine-card__meta strong,
+.bts-routine-card__meta span {
+  font-size: 9px;
+}
+
+.bts-routine-card__meta small {
+  font-size: 7px;
+}
+
+.bts-routine__commerce {
+  margin-top: 34px;
+}
+
+.bts-routine__commerce > div > span {
+  font-size: 22px;
+}
+
+.bts-routine__commerce > div > small {
+  font-size: 9px;
+}
+
+.bts-routine__setup-note {
+  display: none;
+}
+
+/* Manifesto becomes a calmer punctuation mark instead of another oversized ad. */
+.bts-manifesto {
+  min-height: 92svh;
+  padding: 110px var(--bts-gutter) 82px;
+}
+
+.bts-aperture--manifesto .bts-form {
+  width: 42vw;
+}
+
+.bts-aperture--manifesto .bts-form--left {
+  transform: translateX(-59%);
+}
+
+.bts-aperture--manifesto .bts-form--right {
+  transform: translateX(59%);
+}
+
+.bts-manifesto__content {
+  gap: 16px;
+}
+
+.bts-manifesto__content h2 {
+  max-width: 9ch;
+  font-size: clamp(55px, 16.8vw, 96px);
+  line-height: .78;
+}
+
+.bts-manifesto__bridge {
+  max-width: 12ch;
+  font-family: var(--bts-display);
+  font-size: clamp(28px, 8.5vw, 46px);
+  line-height: .82;
+}
+
+@media (min-width: 750px) {
+  .bts-header__logo { height: 48px; }
+
+  .bts-form {
+    width: 38vw;
+  }
+
+  .bts-hero__title {
+    max-width: 9ch;
+    font-size: clamp(100px, 11vw, 168px);
+  }
+
+  .bts-stage--environment .bts-form {
+    width: 36vw;
+  }
+
+  .bts-environment__copy {
+    width: min(100%, 420px);
+  }
+
+  .bts-environment__copy h2 {
+    font-size: clamp(100px, 10vw, 150px);
+  }
+}
