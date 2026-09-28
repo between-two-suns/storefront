@@ -83,12 +83,15 @@
     const productJourney=root.querySelector('[data-bts6-products]');
     const panels=[...(productJourney?.querySelectorAll('[data-product-panel]')||[])];
     const markers=[...(productJourney?.querySelectorAll('[data-step-marker]')||[])];
+
     if(productJourney&&panels.length){
-      let last=-1,ticking=false;
+      let activeIndex=-1;
+      let ticking=false;
       const stage=productJourney.querySelector('.bts6-product-stage');
       const threadPath=productJourney.querySelector('[data-bts6-thread-path]');
       const threadNode=productJourney.querySelector('[data-bts6-thread-node]');
       let threadLength=0;
+
       if(threadPath){
         threadLength=threadPath.getTotalLength();
         threadPath.style.strokeDasharray=String(threadLength);
@@ -96,22 +99,60 @@
       }
 
       const activate=(idx)=>{
-        if(idx===last)return;
-        last=idx;
+        if(idx===activeIndex)return;
+        activeIndex=idx;
+
         panels.forEach((panel,i)=>{
           const active=i===idx;
-          panel.style.opacity='1';
-          panel.style.transform='none';
+          panel.classList.toggle('is-active',active);
+          panel.style.pointerEvents=active?'auto':'none';
           panel.style.setProperty('--presence',active?'1':'0');
-          panel.style.setProperty('--distance',String(i-raw));
         });
+
+        markers.forEach((marker,i)=>marker.classList.toggle('is-active',i===idx));
+
+        const sku=getComputedStyle(panels[idx]).getPropertyValue('--sku').trim();
+        stage?.style.setProperty('--active-sku',sku||'#4CB383');
+      };
+
+      const updateProducts=()=>{
+        const r=productJourney.getBoundingClientRect();
+        const travel=Math.max(productJourney.offsetHeight-innerHeight,1);
+        const p=clamp(-r.top/travel);
+        const raw=p*(panels.length-1);
+        const idx=Math.min(panels.length-1,Math.max(0,Math.round(raw)));
+
+        activate(idx);
+
+        if(threadPath&&threadLength){
+          const drawn=threadLength*p;
+          threadPath.style.strokeDashoffset=String(threadLength-drawn);
+
+          if(threadNode){
+            const point=threadPath.getPointAtLength(Math.max(0,Math.min(threadLength,drawn)));
+            threadNode.setAttribute('cx',point.x.toFixed(2));
+            threadNode.setAttribute('cy',point.y.toFixed(2));
+            const colors=['#59B98A','#69B6DF','#B392CB','#EE8B68'];
+            threadNode.style.fill=colors[idx]||colors[0];
+          }
+        }
 
         ticking=false;
       };
 
-      const req=()=>{if(ticking)return;ticking=true;requestAnimationFrame(updateProducts)};
-      activate(0);updateProducts();
-      if(!reduce){addEventListener('scroll',req,{passive:true});addEventListener('resize',req)}
+      const req=()=>{
+        if(ticking)return;
+        ticking=true;
+        requestAnimationFrame(updateProducts);
+      };
+
+      activate(0);
+      updateProducts();
+
+      if(!reduce){
+        addEventListener('scroll',req,{passive:true});
+        addEventListener('resize',req);
+      }
     }
 
     root.querySelectorAll('[data-demo-add]').forEach(btn=>btn.addEventListener('click',()=>{
