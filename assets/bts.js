@@ -1,6 +1,5 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
 
   const initMenu = () => {
@@ -17,17 +16,16 @@
   };
 
   const initHero = (root) => {
-    const shell = root.querySelector('[data-bts-hero]');
-    const stage = shell?.querySelector('.bts-stage--hero');
-    if (!shell || !stage || reduceMotion) return;
+    const hero = root.querySelector('[data-bts-hero]');
+    if (!hero || reduceMotion) return;
 
     let ticking = false;
 
     const update = () => {
-      const rect = shell.getBoundingClientRect();
-      const travel = Math.max(shell.offsetHeight - window.innerHeight, 1);
-      const progress = clamp(-rect.top / travel);
-      stage.style.setProperty('--hero-progress', progress.toFixed(4));
+      const rect = hero.getBoundingClientRect();
+      const viewport = Math.max(window.innerHeight, 1);
+      const progress = clamp((-rect.top) / Math.max(rect.height * .65, 1));
+      hero.style.setProperty('--bts-hero-shift', progress.toFixed(4));
       ticking = false;
     };
 
@@ -43,69 +41,29 @@
   };
 
   const initEnvironment = (root) => {
-    const shell = root.querySelector('[data-bts-environment]');
-    const stage = shell?.querySelector('.bts-stage--environment');
-    const buttons = [...(stage?.querySelectorAll('[data-env-button]') || [])];
-    const title = stage?.querySelector('[data-env-title]');
-    const copy = stage?.querySelector('[data-env-copy]');
-    const index = stage?.querySelector('.bts-environment__index');
+    const environment = root.querySelector('[data-bts-environment]');
+    if (!environment) return;
 
-    if (!shell || !stage || !buttons.length || !title || !copy || !index) return;
+    const buttons = [...environment.querySelectorAll('[data-env-button]')];
+    const index = environment.querySelector('[data-env-index]');
+    const title = environment.querySelector('[data-env-title]');
+    const copy = environment.querySelector('[data-env-copy]');
 
     const setState = (button) => {
-      const environment = button.dataset.envButton;
-      stage.dataset.env = environment;
+      environment.dataset.env = button.dataset.envButton;
 
       buttons.forEach((item) => {
         item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
       });
 
-      index.textContent = `${button.dataset.index} / 05`;
-      title.textContent = button.dataset.title;
-      copy.textContent = button.dataset.copy;
+      if (index) index.textContent = button.dataset.index;
+      if (title) title.textContent = button.dataset.title;
+      if (copy) copy.textContent = button.dataset.copy;
     };
 
-    buttons.forEach((button, buttonIndex) => {
-      button.addEventListener('click', () => {
-        setState(button);
-
-        if (reduceMotion) return;
-
-        const travel = Math.max(shell.offsetHeight - window.innerHeight, 0);
-        const fraction = buttons.length === 1 ? 0 : buttonIndex / (buttons.length - 1);
-        const top = window.scrollY + shell.getBoundingClientRect().top + travel * fraction;
-        window.scrollTo({ top, behavior: 'smooth' });
-      });
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => setState(button));
     });
-
-    if (reduceMotion) return;
-
-    let lastIndex = -1;
-    let ticking = false;
-
-    const updateFromScroll = () => {
-      const rect = shell.getBoundingClientRect();
-      const travel = Math.max(shell.offsetHeight - window.innerHeight, 1);
-      const progress = clamp(-rect.top / travel);
-      const nextIndex = Math.min(buttons.length - 1, Math.floor(progress * buttons.length));
-
-      if (nextIndex !== lastIndex) {
-        lastIndex = nextIndex;
-        setState(buttons[nextIndex]);
-      }
-
-      ticking = false;
-    };
-
-    const requestUpdate = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(updateFromScroll);
-    };
-
-    updateFromScroll();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
   };
 
   const initRoutine = (root) => {
@@ -115,7 +73,6 @@
     const timeButtons = [...routine.querySelectorAll('[data-time-button]')];
     const count = routine.querySelector('[data-routine-count]');
     const addButton = routine.querySelector('[data-bts-add-routine]');
-    const defense = routine.querySelector('[data-defense]');
 
     const setTime = (time) => {
       routine.dataset.time = time;
@@ -123,10 +80,6 @@
       timeButtons.forEach((button) => {
         button.setAttribute('aria-pressed', button.dataset.timeButton === time ? 'true' : 'false');
       });
-
-      if (defense) {
-        defense.setAttribute('aria-hidden', time === 'pm' ? 'true' : 'false');
-      }
 
       if (count) {
         count.textContent = time === 'pm' ? '3 STEPS · PM' : '4 STEPS · AM';
@@ -150,8 +103,9 @@
         .map((id) => ({ id, quantity: 1 }));
 
       const expected = time === 'am' ? 4 : 3;
+
       if (items.length !== expected) {
-        addButton.textContent = 'SELECT ROUTINE PRODUCTS FIRST';
+        addButton.textContent = 'ROUTINE NOT READY';
         return;
       }
 
@@ -170,14 +124,10 @@
           body: JSON.stringify({ items })
         });
 
-        if (!response.ok) {
-          throw new Error(`Cart add failed: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Cart add failed: ${response.status}`);
 
         addButton.textContent = 'ROUTINE ADDED ✓';
-        window.setTimeout(() => {
-          window.location.assign(`${rootPath}cart`);
-        }, 350);
+        window.setTimeout(() => window.location.assign(`${rootPath}cart`), 300);
       } catch (error) {
         console.error('[BTS] Could not add routine', error);
         addButton.disabled = false;
