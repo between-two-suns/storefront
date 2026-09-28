@@ -49,10 +49,10 @@
         const travel=Math.max(hero.offsetHeight-innerHeight,1);
         const p=clamp(-r.top/travel);
         const compress=clamp(p/.21);
-        const open=clamp((p-.28)/.25);
-        const heroOpacity=1-clamp((p-.10)/.13);
-        const betweenOpacity=clamp((p-.27)/.12);
-        const tabsOpacity=clamp((p-.47)/.12);
+        const open=clamp((p-.20)/.29);
+        const heroOpacity=1-clamp((p-.13)/.18);
+        const betweenOpacity=clamp((p-.30)/.17);
+        const tabsOpacity=clamp((p-.48)/.12);
         heroStage.style.setProperty('--hero-progress',p.toFixed(4));
         heroStage.style.setProperty('--hero-compress',compress.toFixed(4));
         heroStage.style.setProperty('--hero-open',open.toFixed(4));
