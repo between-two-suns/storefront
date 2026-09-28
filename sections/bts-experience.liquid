@@ -16,6 +16,11 @@
   if defense_product == blank
     assign defense_product = all_products['daily-defense-sunscreen-spf-50']
   endif
+
+  assign reset_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-reset-cleanser.jpg?v=1790626659'
+  assign clarity_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-serum.jpg?v=1790626663'
+  assign barrier_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-barrier-moisturizing-cream.jpg?v=1790626668'
+  assign defense_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-defense-sunscreen-spf-50.jpg?v=1790626674'
 %}
 
 <section
@@ -122,13 +127,14 @@
       </div>
 
       <div class="bts-v4-reset__visual">
-        {% if reset_product != blank and reset_product.featured_image != blank %}
-          {{ reset_product.featured_image | image_url: width: 1100 | image_tag: widths: '420,640,840,1100', sizes: '(max-width: 749px) 70vw, 42vw', loading: 'lazy', class: 'bts-v4-reset__product', alt: reset_product.featured_image.alt }}
-        {% else %}
-          <div class="bts-v4-reset__material" aria-hidden="true">
-            <img src="{{ 'bts-wordmark-white.svg' | asset_url }}" width="170" height="147" alt="">
-          </div>
-        {% endif %}
+        <img
+          src="{{ reset_render }}"
+          class="bts-v4-reset__product"
+          alt="BETWEEN TWO SUNS Daily Reset Cleanser"
+          loading="lazy"
+          width="1024"
+          height="1536"
+        >
       </div>
     </div>
   </section>
@@ -156,9 +162,7 @@
           <span class="bts-v4-routine-card__step">01</span>
           <span class="bts-v4-routine-card__dot"></span>
           <span class="bts-v4-routine-card__product">
-            {% if reset_product != blank and reset_product.featured_image != blank %}
-              {{ reset_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: reset_product.featured_image.alt }}
-            {% endif %}
+            <img src="{{ reset_render }}" alt="Daily Reset Cleanser" loading="lazy" width="1024" height="1536">
           </span>
           <strong>RESET</strong>
           <small>CLEANSE</small>
@@ -171,9 +175,7 @@
           <span class="bts-v4-routine-card__step">02</span>
           <span class="bts-v4-routine-card__dot"></span>
           <span class="bts-v4-routine-card__product">
-            {% if clarity_product != blank and clarity_product.featured_image != blank %}
-              {{ clarity_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: clarity_product.featured_image.alt }}
-            {% endif %}
+            <img src="{{ clarity_render }}" alt="Clarity Serum" loading="lazy" width="1024" height="1536">
           </span>
           <strong>CLARITY</strong>
           <small>TREAT</small>
@@ -186,9 +188,7 @@
           <span class="bts-v4-routine-card__step">03</span>
           <span class="bts-v4-routine-card__dot"></span>
           <span class="bts-v4-routine-card__product">
-            {% if barrier_product != blank and barrier_product.featured_image != blank %}
-              {{ barrier_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: barrier_product.featured_image.alt }}
-            {% endif %}
+            <img src="{{ barrier_render }}" alt="Daily Barrier Moisturizing Cream" loading="lazy" width="1024" height="1536">
           </span>
           <strong>BARRIER</strong>
           <small>HYDRATE</small>
@@ -201,9 +201,7 @@
           <span class="bts-v4-routine-card__step">04</span>
           <span class="bts-v4-routine-card__dot"></span>
           <span class="bts-v4-routine-card__product">
-            {% if defense_product != blank and defense_product.featured_image != blank %}
-              {{ defense_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: defense_product.featured_image.alt }}
-            {% endif %}
+            <img src="{{ defense_render }}" alt="Daily Defense Sunscreen SPF 50" loading="lazy" width="1024" height="1536">
           </span>
           <strong>DEFENSE</strong>
           <small>PROTECT</small>
