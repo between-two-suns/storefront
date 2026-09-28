@@ -3303,3 +3303,79 @@ body { font-family: var(--bts-body); }
     font-size: 7px;
   }
 }
+
+
+/* v0.4.3 — pinned narrative: hero → between → 5 environmental states */
+.bts-v4-hero-shell {
+  min-height: 365svh;
+}
+
+.bts-v4-hero-stage[data-env="base"] .bts-v4-form--left,
+.bts-v4-hero-stage[data-env="sun"] .bts-v4-form--left,
+.bts-v4-hero-stage[data-env="dust"] .bts-v4-form--left,
+.bts-v4-hero-stage[data-env="pollution"] .bts-v4-form--left,
+.bts-v4-hero-stage[data-env="dry-ac"] .bts-v4-form--left,
+.bts-v4-hero-stage[data-env="humidity"] .bts-v4-form--left {
+  background:
+    radial-gradient(circle at 24% 16%, rgba(255,255,255,.88) 0 2px, transparent 2.8px),
+    radial-gradient(circle at 53% 34%, rgba(255,255,255,.65) 0 4px, transparent 5px),
+    radial-gradient(circle at 69% 62%, rgba(255,255,255,.7) 0 3px, transparent 4px),
+    radial-gradient(circle at 34% 82%, rgba(255,255,255,.58) 0 5px, transparent 6px),
+    radial-gradient(ellipse at 58% 38%, rgba(255,255,255,.55), transparent 32%),
+    linear-gradient(160deg, #c9ead9, #8dccae 76%);
+  background-size: 42px 48px, 71px 78px, 59px 66px, 92px 104px, auto, auto;
+}
+
+.bts-v4-hero-stage[data-env="base"] .bts-v4-form--right,
+.bts-v4-hero-stage[data-env="sun"] .bts-v4-form--right,
+.bts-v4-hero-stage[data-env="dust"] .bts-v4-form--right,
+.bts-v4-hero-stage[data-env="pollution"] .bts-v4-form--right,
+.bts-v4-hero-stage[data-env="dry-ac"] .bts-v4-form--right,
+.bts-v4-hero-stage[data-env="humidity"] .bts-v4-form--right {
+  background:
+    radial-gradient(circle at 76% 15%, rgba(255,255,255,.9) 0 2px, transparent 2.8px),
+    radial-gradient(circle at 47% 38%, rgba(255,255,255,.66) 0 4px, transparent 5px),
+    radial-gradient(circle at 31% 64%, rgba(255,255,255,.72) 0 3px, transparent 4px),
+    radial-gradient(circle at 67% 83%, rgba(255,255,255,.6) 0 5px, transparent 6px),
+    radial-gradient(ellipse at 42% 40%, rgba(255,255,255,.58), transparent 32%),
+    linear-gradient(210deg, #d7edf4, #9fcfe0 76%);
+  background-size: 42px 48px, 71px 78px, 59px 66px, 92px 104px, auto, auto;
+}
+
+.bts-v4-hero-stage[data-env="base"] .bts-v4-form { filter: none; }
+.bts-v4-hero-stage[data-env="sun"] .bts-v4-form { filter: brightness(1.07) saturate(1.04); }
+.bts-v4-hero-stage[data-env="dust"] .bts-v4-form { filter: sepia(.12) saturate(.78) contrast(.94); }
+.bts-v4-hero-stage[data-env="pollution"] .bts-v4-form { filter: grayscale(.25) saturate(.55) contrast(.91); }
+.bts-v4-hero-stage[data-env="dry-ac"] .bts-v4-form { filter: saturate(.65) brightness(1.05) contrast(1.04); }
+.bts-v4-hero-stage[data-env="humidity"] .bts-v4-form { filter: saturate(1.08) brightness(1.04); }
+
+.bts-v4-hero-stage[data-env="dust"]::after,
+.bts-v4-hero-stage[data-env="pollution"]::after,
+.bts-v4-hero-stage[data-env="humidity"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bts-v4-hero-stage[data-env="dust"]::after {
+  opacity: .25;
+  background-image:
+    radial-gradient(circle, rgba(116,96,77,.34) 0 .8px, transparent 1px),
+    radial-gradient(circle, rgba(116,96,77,.22) 0 .7px, transparent 1px);
+  background-size: 13px 17px, 23px 19px;
+}
+
+.bts-v4-hero-stage[data-env="pollution"]::after {
+  background: linear-gradient(115deg, transparent 0 25%, rgba(89,98,99,.09) 44%, transparent 68%);
+  backdrop-filter: blur(1.5px);
+}
+
+.bts-v4-hero-stage[data-env="humidity"]::after {
+  opacity: .18;
+  background:
+    radial-gradient(ellipse at 15% 27%, rgba(255,255,255,.9) 0 2px, transparent 2.8px),
+    radial-gradient(ellipse at 78% 68%, rgba(255,255,255,.75) 0 3px, transparent 3.8px);
+  background-size: 48px 56px, 67px 74px;
+}
