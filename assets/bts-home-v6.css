@@ -222,3 +222,245 @@
   .bts6-lineup-img{height:205px}
   .bts6-lineup img{height:200px}
 }
+
+
+/* ==========================================================================
+   v6.2 — jury-gate refinement
+   Non-overlapping hero transition, fluid product theatre, cinematic routine.
+   ========================================================================== */
+
+/* Hero aperture gains depth without glossy-CGI noise. */
+.bts6-aperture__form{
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.24),
+    inset 0 0 40px rgba(255,255,255,.12);
+}
+.bts6-aperture__form:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(104deg,transparent 12%,rgba(255,255,255,.15) 37%,transparent 58%),
+    radial-gradient(ellipse at 50% 50%,transparent 0 52%,rgba(255,255,255,.08) 64%,transparent 72%);
+  opacity:.8;
+  pointer-events:none;
+}
+.bts6-layer--hero,
+.bts6-layer--between{
+  transition:none;
+}
+
+/* Product panels interpolate continuously in JS rather than hard-cutting. */
+.bts6-product-panel{
+  transition:none;
+  will-change:opacity,transform;
+}
+.bts6-product-panel:before{
+  transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .35s ease;
+}
+.bts6-product-panel .bts6-product-visual img{
+  will-change:transform,filter,opacity;
+}
+.bts6-product-panel[data-product-panel="0"] .bts6-product-copy{transform-origin:left top}
+.bts6-product-panel[data-product-panel="1"] .bts6-product-copy{transform-origin:left top}
+.bts6-product-panel[data-product-panel="2"] .bts6-product-copy{transform-origin:left top}
+.bts6-product-panel[data-product-panel="3"] .bts6-product-copy{transform-origin:left top}
+.bts6-product-scrollhint{top:101px;right:22px;opacity:.38}
+.bts6-product-commerce{
+  background:rgba(250,248,242,.88);
+  border-color:rgba(16,16,16,.1);
+}
+.bts6-product-commerce button{
+  min-width:126px;
+}
+
+/* Routine becomes a product composition, not four tiny equal cards. */
+.bts6-routine{
+  min-height:116svh;
+  padding-top:102px;
+}
+.bts6-routine-head h2{
+  max-width:5.7ch;
+}
+.bts6-lineup{
+  position:relative;
+  width:min(100%,430px);
+  height:350px;
+  margin:28px auto 0;
+  display:block;
+  overflow:visible;
+}
+.bts6-lineup__halo{
+  position:absolute;
+  left:7%;
+  right:7%;
+  top:58px;
+  height:210px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 18% 53%,rgba(89,185,138,.14),transparent 29%),
+    radial-gradient(circle at 42% 49%,rgba(105,182,223,.13),transparent 30%),
+    radial-gradient(circle at 67% 49%,rgba(179,146,203,.13),transparent 31%),
+    radial-gradient(circle at 86% 53%,rgba(238,139,104,.12),transparent 28%);
+  filter:blur(2px);
+  pointer-events:none;
+}
+.bts6-lineup article{
+  position:absolute;
+  bottom:0;
+  width:31%;
+  min-width:0;
+  text-align:center;
+  transition:
+    left .65s cubic-bezier(.22,1,.36,1),
+    opacity .4s ease,
+    transform .65s cubic-bezier(.22,1,.36,1);
+}
+.bts6-lineup article[data-lineup-step="reset"]{left:-1%}
+.bts6-lineup article[data-lineup-step="clarity"]{left:21%}
+.bts6-lineup article[data-lineup-step="barrier"]{left:45%}
+.bts6-lineup article[data-lineup-step="defense"]{left:70%}
+
+.bts6-lineup-img{
+  height:258px;
+  display:grid;
+  place-items:end center;
+  overflow:visible;
+}
+.bts6-lineup img{
+  width:136%;
+  height:254px;
+  object-fit:contain;
+  mix-blend-mode:normal;
+  filter:drop-shadow(0 16px 18px rgba(32,32,27,.08));
+  transition:transform .65s cubic-bezier(.22,1,.36,1);
+}
+.bts6-lineup article[data-lineup-step="clarity"] img{width:119%;transform:translateY(7px)}
+.bts6-lineup article[data-lineup-step="barrier"] img,
+.bts6-lineup article[data-lineup-step="defense"] img{width:126%}
+
+.bts6-lineup-label{
+  min-height:58px;
+  margin-top:-2px;
+  display:grid;
+  justify-items:center;
+  gap:2px;
+}
+.bts6-lineup-label>span{font-size:8px;font-weight:700}
+.bts6-lineup-label strong{font-size:18px;line-height:1}
+.bts6-lineup-label small{font-size:7px;letter-spacing:.07em;opacity:.5}
+
+.bts6-routine[data-time="pm"] .bts6-lineup article[data-lineup-step="reset"]{left:4%;transform:scale(1.04)}
+.bts6-routine[data-time="pm"] .bts6-lineup article[data-lineup-step="clarity"]{left:34%;transform:scale(1.04)}
+.bts6-routine[data-time="pm"] .bts6-lineup article[data-lineup-step="barrier"]{left:64%;transform:scale(1.04)}
+.bts6-routine[data-time="pm"] .bts6-lineup article[data-lineup-step="defense"]{
+  left:98%;opacity:0;transform:translateX(35px) scale(.9);pointer-events:none
+}
+.bts6-routine[data-time="pm"] .bts6-lineup article:not([data-lineup-step="defense"]) img{transform:none}
+.bts6-routine[data-time="pm"] .bts6-lineup article[data-lineup-step="clarity"] img{transform:translateY(7px)}
+
+.bts6-routine-path{
+  width:min(88%,360px);
+  margin:4px auto 0;
+  display:grid;
+  grid-template-columns:auto 1fr auto 1fr auto 1fr auto;
+  align-items:center;
+  gap:5px;
+}
+.bts6-routine-path span{
+  width:19px;height:19px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--c);color:#fff;
+  font-size:7px;font-weight:700
+}
+.bts6-routine-path i{
+  height:1px;background:rgba(16,16,16,.12)
+}
+.bts6-routine-card{
+  margin-top:22px;
+  padding:19px;
+  border-radius:28px;
+}
+.bts6-routine-card>button{
+  min-height:52px;
+}
+
+/* Source-supported system story; no invented reviews or clinical claims. */
+.bts6-proof{
+  padding:110px 22px 105px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.0),rgba(255,255,255,.28)),
+    var(--cream);
+}
+.bts6-proof__lead{
+  width:min(100%,420px);
+  margin:0 auto;
+  display:grid;
+  justify-items:center;
+  text-align:center;
+  gap:13px;
+}
+.bts6-proof__lead>img{width:24px;height:auto;margin-bottom:5px}
+.bts6-proof__lead h2{
+  max-width:5.8ch;
+  font-size:78px;
+  line-height:.76;
+}
+.bts6-proof__lead h2 span{display:block}
+.bts6-proof__grid{
+  width:min(100%,680px);
+  margin:48px auto 0;
+  display:grid;
+  gap:10px;
+}
+.bts6-proof__grid article{
+  min-height:122px;
+  padding:18px;
+  border-top:1px solid rgba(16,16,16,.14);
+  display:grid;
+  grid-template-columns:70px 1fr;
+  grid-template-rows:auto auto;
+  column-gap:15px;
+  align-items:start;
+}
+.bts6-proof__grid strong{
+  grid-row:1 / span 2;
+  font-size:48px;
+  line-height:.85;
+}
+.bts6-proof__grid span{
+  font-size:8px;
+  letter-spacing:.12em;
+  font-weight:700;
+}
+.bts6-proof__grid p{
+  margin-top:7px;
+  max-width:28ch;
+  font-size:11px;
+  line-height:1.4;
+}
+.bts6-end{min-height:72svh}
+
+@media(max-width:374px){
+  .bts6-layer--hero h1{font-size:70px}
+  .bts6-product-copy h2{font-size:80px}
+  .bts6-product-copy h3{font-size:30px}
+  .bts6-lineup{height:328px}
+  .bts6-lineup-img{height:238px}
+  .bts6-lineup img{height:234px}
+}
+
+@media(min-width:750px){
+  .bts6-lineup{height:500px;width:min(100%,880px)}
+  .bts6-lineup-img{height:405px}
+  .bts6-lineup img{height:400px;width:105%}
+  .bts6-lineup article{width:27%}
+  .bts6-lineup article[data-lineup-step="reset"]{left:2%}
+  .bts6-lineup article[data-lineup-step="clarity"]{left:25%}
+  .bts6-lineup article[data-lineup-step="barrier"]{left:49%}
+  .bts6-lineup article[data-lineup-step="defense"]{left:73%}
+  .bts6-proof__lead h2{font-size:118px}
+  .bts6-proof__grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .bts6-proof__grid article{grid-template-columns:1fr;grid-template-rows:auto auto auto;min-height:185px}
+  .bts6-proof__grid strong{grid-row:auto;font-size:70px}
+}
