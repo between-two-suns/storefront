@@ -39,9 +39,9 @@
 
       <div class="bts7-hero-products" data-bts7-hero-products aria-hidden="true">
         <img class="bts7-hp bts7-hp--reset" src="{{ reset_url }}" alt="" width="1024" height="1536" loading="eager">
-        <img class="bts7-hp bts7-hp--clarity" src="{{ clarity_url }}" alt="" width="1024" height="1536" loading="eager">
-        <img class="bts7-hp bts7-hp--barrier" src="{{ barrier_url }}" alt="" width="1024" height="1536" loading="eager">
-        <img class="bts7-hp bts7-hp--defense" src="{{ defense_url }}" alt="" width="1024" height="1536" loading="eager">
+        <img class="bts7-hp bts7-hp--clarity" src="{{ clarity_url }}" alt="" width="1024" height="1536" loading="lazy" decoding="async">
+        <img class="bts7-hp bts7-hp--barrier" src="{{ barrier_url }}" alt="" width="1024" height="1536" loading="lazy" decoding="async">
+        <img class="bts7-hp bts7-hp--defense" src="{{ defense_url }}" alt="" width="1024" height="1536" loading="lazy" decoding="async">
       </div>
 
       <div class="bts7-hero-copy" data-bts7-hero-copy>
@@ -74,16 +74,17 @@
           <span data-bts7-env-index>01 / 05</span>
           <strong data-bts7-env-title>SUN</strong>
           <small data-bts7-env-copy>Stronger UV. Higher exposure.</small>
+          <em data-bts7-env-response>ROUTINE RESPONSE · DEFENSE SPF 50</em>
         </div>
         <span class="bts7-sr" data-bts7-env-announcer aria-live="polite"></span>
       </div>
 
       <div class="bts7-env-tabs" data-bts7-env-tabs role="group" aria-label="Explore your environment">
-        <button type="button" data-env="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true"><i class="bts7-env-icon bts7-env-icon--sun"></i><span>SUN</span></button>
-        <button type="button" data-env="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--dust"></i><span>DUST</span></button>
-        <button type="button" data-env="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--pollution"></i><span>POLLUTION</span></button>
-        <button type="button" data-env="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--dry"></i><span>DRY AC</span></button>
-        <button type="button" data-env="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--humidity"></i><span>HUMIDITY</span></button>
+        <button type="button" data-env="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." data-response="ROUTINE RESPONSE · DEFENSE SPF 50" aria-pressed="true"><i class="bts7-env-icon bts7-env-icon--sun"></i><span>SUN</span></button>
+        <button type="button" data-env="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." data-response="ROUTINE RESPONSE · RESET" aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--dust"></i><span>DUST</span></button>
+        <button type="button" data-env="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." data-response="ROUTINE RESPONSE · RESET + CLARITY" aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--pollution"></i><span>POLLUTION</span></button>
+        <button type="button" data-env="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." data-response="ROUTINE RESPONSE · BARRIER" aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--dry"></i><span>DRY AC</span></button>
+        <button type="button" data-env="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." data-response="ROUTINE RESPONSE · KEEP IT LIGHT" aria-pressed="false"><i class="bts7-env-icon bts7-env-icon--humidity"></i><span>HUMIDITY</span></button>
       </div>
     </div>
   </section>
@@ -144,7 +145,7 @@
           <img src="{{ reset_url }}" alt="BETWEEN TWO SUNS Daily Reset Cleanser" width="1024" height="1536" loading="eager">
         </div>
         <div class="bts7-product-action">
-          <div><span>DAILY RESET CLEANSER</span><small>200 ml</small></div>
+          <div><span>DAILY RESET CLEANSER</span><small>200 ml</small><button class="bts7-detail-link" type="button" data-product-info="reset">VIEW DETAILS</button></div>
           <button type="button" data-select-product="reset" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
@@ -162,7 +163,7 @@
           <img src="{{ clarity_url }}" alt="BETWEEN TWO SUNS Clarity Serum" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts7-product-action">
-          <div><span>CLARITY SERUM</span><small>30 ml</small></div>
+          <div><span>CLARITY SERUM</span><small>30 ml</small><button class="bts7-detail-link" type="button" data-product-info="clarity">VIEW DETAILS</button></div>
           <button type="button" data-select-product="clarity" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
@@ -181,7 +182,7 @@
           <img src="{{ barrier_url }}" alt="BETWEEN TWO SUNS Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts7-product-action">
-          <div><span>DAILY BARRIER MOISTURIZING CREAM</span><small>50 g</small></div>
+          <div><span>DAILY BARRIER MOISTURIZING CREAM</span><small>50 g</small><button class="bts7-detail-link" type="button" data-product-info="barrier">VIEW DETAILS</button></div>
           <button type="button" data-select-product="barrier" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
@@ -200,7 +201,7 @@
           <img src="{{ defense_url }}" alt="BETWEEN TWO SUNS Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
         </div>
         <div class="bts7-product-action">
-          <div><span>DAILY DEFENSE SUNSCREEN SPF 50</span><small>50 g</small></div>
+          <div><span>DAILY DEFENSE SUNSCREEN SPF 50</span><small>50 g</small><button class="bts7-detail-link" type="button" data-product-info="defense">VIEW DETAILS</button></div>
           <button type="button" data-select-product="defense" aria-pressed="true">IN ROUTINE <b>✓</b></button>
         </div>
       </article>
@@ -208,10 +209,10 @@
 
     <div class="bts7-products-static" data-bts7-products-static>
       <p class="bts7-kicker">THE FOUR STEPS</p>
-      <article><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536"><div><strong>01 RESET</strong><span>Cleanse · 200 ml</span></div><button class="bts7-static-select" type="button" data-static-select-product="reset" aria-pressed="true">IN ROUTINE ✓</button></article>
-      <article><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536"><div><strong>02 CLARITY</strong><span>Treat · 30 ml</span></div><button class="bts7-static-select" type="button" data-static-select-product="clarity" aria-pressed="true">IN ROUTINE ✓</button></article>
-      <article><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536"><div><strong>03 BARRIER</strong><span>Hydrate · 50 g</span></div><button class="bts7-static-select" type="button" data-static-select-product="barrier" aria-pressed="true">IN ROUTINE ✓</button></article>
-      <article><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536"><div><strong>04 DEFENSE</strong><span>Protect · 50 g</span></div><button class="bts7-static-select" type="button" data-static-select-product="defense" aria-pressed="true">IN ROUTINE ✓</button></article>
+      <article><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536"><div><strong>01 RESET</strong><span>Cleanse · 200 ml</span><button class="bts7-static-detail" type="button" data-product-info="reset">VIEW DETAILS</button></div><button class="bts7-static-select" type="button" data-static-select-product="reset" aria-pressed="true">IN ROUTINE ✓</button></article>
+      <article><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536"><div><strong>02 CLARITY</strong><span>Treat · 30 ml</span><button class="bts7-static-detail" type="button" data-product-info="clarity">VIEW DETAILS</button></div><button class="bts7-static-select" type="button" data-static-select-product="clarity" aria-pressed="true">IN ROUTINE ✓</button></article>
+      <article><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536"><div><strong>03 BARRIER</strong><span>Hydrate · 50 g</span><button class="bts7-static-detail" type="button" data-product-info="barrier">VIEW DETAILS</button></div><button class="bts7-static-select" type="button" data-static-select-product="barrier" aria-pressed="true">IN ROUTINE ✓</button></article>
+      <article><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536"><div><strong>04 DEFENSE</strong><span>Protect · 50 g</span><button class="bts7-static-detail" type="button" data-product-info="defense">VIEW DETAILS</button></div><button class="bts7-static-select" type="button" data-static-select-product="defense" aria-pressed="true">IN ROUTINE ✓</button></article>
     </div>
   </section>
 
@@ -254,6 +255,26 @@
     <p>Climate-adapted skincare for life between environments.</p>
     <a href="#products">EXPLORE THE RANGE <span aria-hidden="true">→</span></a>
   </section>
+
+  <div class="bts7-product-sheet" data-bts7-product-sheet hidden>
+    <button class="bts7-sheet__backdrop" data-bts7-product-sheet-close type="button" aria-label="Close product details"></button>
+    <div class="bts7-product-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="BTS7ProductTitle">
+      <div class="bts7-sheet__head">
+        <div><span class="bts7-kicker" data-bts7-product-step>01 · CLEANSE</span><h2 id="BTS7ProductTitle" data-bts7-product-title>Daily Reset Cleanser</h2></div>
+        <button type="button" data-bts7-product-sheet-close aria-label="Close">×</button>
+      </div>
+      <div class="bts7-product-sheet__body">
+        <img data-bts7-product-image src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536">
+        <div>
+          <p data-bts7-product-size>200 ml</p>
+          <strong data-bts7-product-ingredient>Zinc PCA + Green Tea</strong>
+          <p data-bts7-product-role>Step 01 · Cleanse</p>
+          <button type="button" data-bts7-product-toggle>IN ROUTINE ✓</button>
+        </div>
+      </div>
+      <p class="bts7-sheet__status">Launch price and checkout will populate from Shopify when the final product records are approved.</p>
+    </div>
+  </div>
 
   <div class="bts7-sheet" data-bts7-sheet hidden>
     <button class="bts7-sheet__backdrop" data-bts7-sheet-close type="button" aria-label="Close routine review"></button>
