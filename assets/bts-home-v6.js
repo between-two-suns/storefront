@@ -167,13 +167,14 @@
     if(routine){
       const timeButtons=[...routine.querySelectorAll('[data-routine-time]')];
       const count=routine.querySelector('[data-routine-count]');
+      const add=routine.querySelector('[data-routine-add]');
       timeButtons.forEach(btn=>btn.addEventListener('click',()=>{
         const t=btn.dataset.routineTime;
         routine.dataset.time=t;
         timeButtons.forEach(x=>x.setAttribute('aria-pressed',x===btn?'true':'false'));
         if(count)count.textContent=t==='pm'?'3 STEPS · PM':'4 STEPS · AM';
+        if(add)add.innerHTML=t==='pm'?'ADD 3 PRODUCTS <span aria-hidden="true">→</span>':'ADD 4 PRODUCTS <span aria-hidden="true">→</span>';
       }));
-      const add=routine.querySelector('[data-routine-add]');
       add?.addEventListener('click',()=>{
         const old=add.innerHTML;
         add.innerHTML='ROUTINE READY ✓';
