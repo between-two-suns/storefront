@@ -591,3 +591,91 @@
     max-width:178px;
   }
 }
+
+
+/* v7.5 — final jury blockers */
+.bts7-connectors{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  pointer-events:none;
+  overflow:visible;
+}
+.bts7-connectors path{
+  fill:none;
+  stroke:rgba(16,16,16,.13);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+.bts7-connectors circle{
+  fill:#101010;
+  stroke:var(--cream);
+  stroke-width:3;
+  vector-effect:non-scaling-stroke;
+}
+@media(min-width:750px){
+  .bts7-connectors path{stroke:rgba(16,16,16,.09);stroke-width:.8}
+  .bts7-connectors circle{r:4}
+}
+
+.bts7-product-action>div span{
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  line-height:1.16;
+  max-width:24ch;
+}
+.bts7-product-action{border-radius:30px}
+.bts7-product-action>div{min-width:0}
+
+.bts7-kicker{font-size:10px}
+.bts7-env-readout>span{font-size:10px}
+.bts7-env-readout small{font-size:11px}
+.bts7-env-readout em{font-size:10px}
+.bts7-env-tabs button{font-size:10px}
+.bts7-stressors span{font-size:10px}
+.bts7-stepbar span{font-size:9px}
+.bts7-meta{font-size:10px}
+.bts7-benefits span{font-size:10px}
+.bts7-product-action>div span{font-size:10px}
+.bts7-product-action small{font-size:10px}
+.bts7-product-action button{font-size:10px}
+.bts7-detail-link{font-size:10px;min-height:32px}
+.bts7-lineup article span{font-size:9px}
+.bts7-lineup article small{font-size:9px}
+.bts7-routine-card__top>div>span{font-size:10px}
+.bts7-routine-card__top p{font-size:10px}
+.bts7-sheet__item span,.bts7-sheet__item b{font-size:10px}
+
+.bts7-sheet__checkout{
+  width:100%;
+  min-height:52px;
+  margin-top:18px;
+  border:0;
+  border-radius:999px;
+  background:var(--action);
+  color:white;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.bts7-sheet__checkout:disabled{
+  opacity:.48;
+  cursor:not-allowed;
+}
+.bts7-sheet__status{
+  font-size:11px;
+  text-align:center;
+}
+
+@media(max-width:390px){
+  .bts7-product-action{
+    grid-template-columns:minmax(0,1fr) auto;
+    padding-left:13px;
+    gap:8px;
+  }
+  .bts7-product-action>div span{max-width:21ch}
+  .bts7-product-action button{min-width:108px;padding-inline:12px}
+}
