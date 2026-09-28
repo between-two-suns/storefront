@@ -51,7 +51,7 @@
 
         <div class="bts7-actions">
           <a class="bts7-btn bts7-btn--primary" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
-          <a class="bts7-btn bts7-btn--secondary" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+          <a class="bts7-btn bts7-btn--secondary" href="#products">SHOP PRODUCTS</a>
         </div>
 
         <div class="bts7-stressors" aria-label="Environmental stressors">
@@ -87,7 +87,7 @@
     </div>
   </section>
 
-  <section class="bts7-products" data-bts7-products>
+  <section id="products" class="bts7-products" data-bts7-products>
     <div class="bts7-product-stage">
       <div class="bts7-stage-edges" aria-hidden="true"><i></i><i></i></div>
 
@@ -225,25 +225,12 @@
     </div>
   </section>
 
-  <section class="bts7-system">
-    <div class="bts7-system__lead">
-      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="27" height="30" alt="">
-      <p class="bts7-kicker">ONE SYSTEM. CHANGING CONDITIONS.</p>
-      <h2><span>AM.</span><span>PM.</span><span>EVERYDAY CHANGE.</span></h2>
-    </div>
-    <div class="bts7-system__rows">
-      <article><strong>04</strong><div><span>ESSENTIAL STEPS</span><p>Cleanse. Treat. Hydrate. Protect.</p></div></article>
-      <article><strong>AM</strong><div><span>FULL ROUTINE</span><p>All four products, ending with SPF 50.</p></div></article>
-      <article><strong>PM</strong><div><span>RESET + TREAT + HYDRATE</span><p>Three steps after the day is done.</p></div></article>
-    </div>
-  </section>
-
   <section class="bts7-end">
     <div class="bts7-end__word" aria-hidden="true"><span>BETWEEN</span><span>TWO SUNS</span></div>
     <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="31" height="34" alt="">
     <h2>fresh skin. always.</h2>
     <p>Climate-adapted skincare for life between environments.</p>
-    <a href="{{ routes.all_products_collection_url }}">EXPLORE THE RANGE <span aria-hidden="true">→</span></a>
+    <a href="#products">EXPLORE THE RANGE <span aria-hidden="true">→</span></a>
   </section>
 
   <div class="bts7-sheet" data-bts7-sheet hidden>
