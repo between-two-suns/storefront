@@ -27,10 +27,10 @@
       const travel = Math.max(shell.offsetHeight - window.innerHeight, 1);
       const p = clamp(-rect.top / travel);
 
-      const compress = clamp(p / .35);
-      const open = clamp((p - .42) / .58);
-      const heroOpacity = 1 - clamp((p - .18) / .28);
-      const betweenOpacity = clamp((p - .42) / .26);
+      const compress = clamp(p / .16);
+      const open = clamp((p - .16) / .18);
+      const heroOpacity = 1 - clamp((p - .10) / .16);
+      const betweenOpacity = clamp((p - .22) / .16);
 
       stage.style.setProperty('--bts-progress', p.toFixed(4));
       stage.style.setProperty('--bts-compress', compress.toFixed(4));
@@ -39,6 +39,27 @@
       stage.style.setProperty('--bts-between-opacity', betweenOpacity.toFixed(4));
       stage.style.setProperty('--bts-hero-pointer', heroOpacity > .5 ? 'auto' : 'none');
       stage.style.setProperty('--bts-between-pointer', betweenOpacity > .55 ? 'auto' : 'none');
+
+      const envButtons = [...stage.querySelectorAll('[data-env-button]')];
+      if (envButtons.length && p >= .36) {
+        const envProgress = clamp((p - .36) / .64);
+        const envIndex = Math.min(envButtons.length - 1, Math.floor(envProgress * envButtons.length));
+        const active = envButtons[envIndex];
+
+        stage.dataset.env = active.dataset.envButton;
+        envButtons.forEach((item) => {
+          item.setAttribute('aria-pressed', item === active ? 'true' : 'false');
+        });
+
+        const index = stage.querySelector('[data-env-index]');
+        const title = stage.querySelector('[data-env-title]');
+        const copy = stage.querySelector('[data-env-copy]');
+        if (index) index.textContent = active.dataset.index;
+        if (title) title.textContent = active.dataset.title;
+        if (copy) copy.textContent = active.dataset.copy;
+      } else if (p < .36) {
+        stage.dataset.env = 'base';
+      }
 
       ticking = false;
     };
@@ -75,8 +96,24 @@
       if (copy) copy.textContent = button.dataset.copy;
     };
 
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => setState(button));
+    buttons.forEach((button, buttonIndex) => {
+      button.addEventListener('click', () => {
+        setState(button);
+
+        const shell = root.querySelector('[data-bts-hero-shell]');
+        if (!shell || reduceMotion) return;
+
+        const travel = Math.max(shell.offsetHeight - window.innerHeight, 1);
+        const start = .36;
+        const span = .64;
+        const targetProgress = start + span * ((buttonIndex + .35) / buttons.length);
+        const shellTop = window.scrollY + shell.getBoundingClientRect().top;
+
+        window.scrollTo({
+          top: shellTop + travel * targetProgress,
+          behavior: 'smooth'
+        });
+      });
     });
   };
 
