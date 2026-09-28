@@ -498,3 +498,87 @@
 @media(max-width:374px){
   .bts6-layer--hero h1{width:min(100%,304px);font-size:71px}
 }
+
+
+/* v6.4 — connect environment geometry into the product journey */
+.bts6-hero-stage[data-environment="sun"]{--env-left:.5vw;--env-right:.5vw}
+.bts6-hero-stage[data-environment="dust"]{--env-left:1.2vw;--env-right:1.2vw}
+.bts6-hero-stage[data-environment="pollution"]{--env-left:-.6vw;--env-right:-.6vw}
+.bts6-hero-stage[data-environment="dry-ac"]{--env-left:1.8vw;--env-right:1.8vw}
+.bts6-hero-stage[data-environment="humidity"]{--env-left:2.4vw;--env-right:2.4vw}
+.bts6-aperture__form--left{
+  transform:translateX(calc(var(--hero-compress,0)*11vw - var(--hero-open,0)*15vw + var(--env-left,0vw))) rotate(calc(-2deg + var(--hero-compress,0)*1.2deg))
+}
+.bts6-aperture__form--right{
+  transform:translateX(calc(var(--hero-compress,0)*-11vw + var(--hero-open,0)*15vw - var(--env-right,0vw))) rotate(calc(2deg - var(--hero-compress,0)*1.2deg))
+}
+.bts6-hero-stage[data-environment="dust"] .bts6-aperture__form i{border-radius:44% 56% 50% 43%}
+.bts6-hero-stage[data-environment="pollution"] .bts6-aperture__form i{border-radius:39% 48% 42% 46%}
+.bts6-hero-stage[data-environment="dry-ac"] .bts6-aperture__form i{border-radius:52% 48% 55% 45%}
+.bts6-hero-stage[data-environment="humidity"] .bts6-aperture__form i{border-radius:57% 43% 58% 42%}
+
+.bts6-product-aperture{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  opacity:.42;
+}
+.bts6-product-aperture span{
+  position:absolute;
+  top:-15%;
+  bottom:-15%;
+  width:50vw;
+  max-width:300px;
+  border-radius:50%;
+  filter:blur(.2px);
+}
+.bts6-product-aperture__left{
+  left:-39vw;
+  background:linear-gradient(160deg,rgba(199,234,216,.86),rgba(132,201,169,.4));
+}
+.bts6-product-aperture__right{
+  right:-39vw;
+  background:linear-gradient(205deg,rgba(215,237,245,.88),rgba(155,207,225,.4));
+}
+.bts6-product-mark{
+  position:absolute;
+  z-index:3;
+  top:112px;
+  left:50%;
+  width:20px;
+  height:auto;
+  opacity:.16;
+  transform:translateX(-50%);
+}
+
+.bts6-thread{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:visible;
+}
+.bts6-thread__ghost{
+  fill:none;
+  stroke:rgba(16,16,16,.045);
+  stroke-width:1.1;
+  vector-effect:non-scaling-stroke;
+}
+.bts6-thread__draw{
+  fill:none;
+  stroke:url(#bts6-thread-gradient);
+  stroke-width:2.4;
+  stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+  opacity:.54;
+}
+.bts6-thread__node{
+  fill:#59B98A;
+  stroke:var(--cream);
+  stroke-width:4;
+  vector-effect:non-scaling-stroke;
+  filter:drop-shadow(0 3px 8px rgba(30,30,25,.08));
+}
