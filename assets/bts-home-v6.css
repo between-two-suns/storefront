@@ -183,3 +183,42 @@
 @media(prefers-reduced-motion:reduce){
  .bts6-page-progress{display:none}.bts6-aperture__form,.bts6-product-panel,.bts6-product-panel:before,.bts6-product-visual img,.bts6-clarity-lens,.bts6-barrier-ring,.bts6-defense-light,.bts6-lineup,.bts6-lineup article,.bts6-lineup img{transition:none!important}
 }
+
+
+/* v6.1 refinement — transparent product assets + stronger theatre composition */
+.bts6-aperture__form--left{
+  transform:translateX(calc(var(--hero-compress,0)*11vw - var(--hero-open,0)*15vw)) rotate(calc(-2deg + var(--hero-compress,0)*1.2deg))
+}
+.bts6-aperture__form--right{
+  transform:translateX(calc(var(--hero-compress,0)*-11vw + var(--hero-open,0)*15vw)) rotate(calc(2deg - var(--hero-compress,0)*1.2deg))
+}
+.bts6-product-copy{width:48%}
+.bts6-product-copy h2{font-size:88px}
+.bts6-product-copy h3{font-size:34px}
+.bts6-product-copy>p{font-size:10.5px}
+.bts6-product-visual{right:-3vw;top:19%;width:64vw;height:69%}
+.bts6-product-visual img{
+  width:100%;height:100%;mix-blend-mode:normal;
+  filter:drop-shadow(0 25px 24px rgba(32,32,27,.11))
+}
+.bts6-product-visual--clarity img{width:88%;filter:blur(12px) saturate(.74) drop-shadow(0 25px 24px rgba(32,32,27,.09))}
+.bts6-product-panel.is-active .bts6-product-visual--clarity img{filter:blur(0) saturate(1) drop-shadow(0 25px 24px rgba(32,32,27,.09))}
+.bts6-product-visual--barrier img,.bts6-product-visual--defense img{width:92%}
+.bts6-benefits{max-width:190px}
+.bts6-product-commerce{min-height:64px}
+.bts6-lineup-img{height:220px}
+.bts6-lineup img{height:216px;width:145%;mix-blend-mode:normal;filter:drop-shadow(0 12px 14px rgba(32,32,27,.07))}
+.bts6-lineup article:nth-child(2) img{width:127%}
+.bts6-lineup article:nth-child(3) img,.bts6-lineup article:nth-child(4) img{width:132%}
+.bts6-routine{padding-top:104px}
+.bts6-routine-card{margin-top:22px}
+.bts6-routine-card__note{display:none}
+
+@media(max-width:390px){
+  .bts6-layer--hero h1{font-size:74px}
+  .bts6-product-copy h2{font-size:84px}
+  .bts6-product-copy h3{font-size:32px}
+  .bts6-product-visual{width:66vw}
+  .bts6-lineup-img{height:205px}
+  .bts6-lineup img{height:200px}
+}
