@@ -851,3 +851,12 @@
   .bts6-proof__grid span{font-size:8px}
   .bts6-proof__grid p{font-size:11px}
 }
+
+
+/* v6.8 — accessibility gate: contrast without losing the pastel system */
+.bts6{--action:#23845F}
+.bts6-btn--solid,
+.bts6-routine-card>button{background:var(--action);border-color:var(--action);color:#fff}
+.bts6-product-commerce button{color:#101010}
+.bts6-lineup-label small{opacity:1;color:#6F6C66}
+.bts6-routine-path span{color:#101010}
