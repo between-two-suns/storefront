@@ -1,5 +1,7 @@
 (() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionMedia = matchMedia('(prefers-reduced-motion: reduce)');
+  const reduce = motionMedia.matches;
+  motionMedia.addEventListener?.('change', () => location.reload());
   const clamp = (v, a = 0, b = 1) => Math.min(Math.max(v, a), b);
   const mix = (a, b, t) => a + (b - a) * t;
   const smooth = (a, b, v) => {
@@ -28,19 +30,23 @@
 
   const PRODUCTS = {
     reset: {
-      name:'Daily Reset Cleanser', size:'200 ml',
+      name:'Daily Reset Cleanser', size:'200 ml', step:'01 · CLEANSE',
+      ingredient:'Zinc PCA + Green Tea', role:'Step 01 · Cleanse',
       image:'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352'
     },
     clarity: {
-      name:'Clarity Serum', size:'30 ml',
+      name:'Clarity Serum', size:'30 ml', step:'02 · TREAT',
+      ingredient:'Niacinamide + Zinc PCA', role:'Step 02 · Treat',
       image:'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
     },
     barrier: {
-      name:'Daily Barrier Moisturizing Cream', size:'50 g',
+      name:'Daily Barrier Moisturizing Cream', size:'50 g', step:'03 · HYDRATE',
+      ingredient:'Ceramides + Zinc PCA', role:'Step 03 · Hydrate',
       image:'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
     },
     defense: {
-      name:'Daily Defense Sunscreen SPF 50', size:'50 g',
+      name:'Daily Defense Sunscreen SPF 50', size:'50 g', step:'04 · PROTECT',
+      ingredient:'UVA + UVB Filters', role:'Step 04 · Protect · AM',
       image:'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
     }
   };
@@ -87,6 +93,7 @@
     const envIndex = hero?.querySelector('[data-bts7-env-index]');
     const envTitle = hero?.querySelector('[data-bts7-env-title]');
     const envCopy = hero?.querySelector('[data-bts7-env-copy]');
+    const envResponse = hero?.querySelector('[data-bts7-env-response]');
     const heroCopyEl = hero?.querySelector('[data-bts7-hero-copy]');
     const betweenEl = hero?.querySelector('[data-bts7-between]');
     const envTabsEl = hero?.querySelector('[data-bts7-env-tabs]');
@@ -106,6 +113,8 @@
       if (envIndex) envIndex.textContent = env.index;
       if (envTitle) envTitle.textContent = env.title;
       if (envCopy) envCopy.textContent = env.copy;
+      const response = envButtons[idx]?.dataset.response;
+      if (envResponse && response) envResponse.textContent = response;
     };
 
     paintShape(SHAPES.base);
@@ -117,7 +126,7 @@
         if (reduce || !hero) return;
         const travel = Math.max(hero.offsetHeight - innerHeight, 1);
         const heroTop = scrollY + hero.getBoundingClientRect().top;
-        const envStart = .54;
+        const envStart = .40;
         const envEnd = .96;
         const target = envStart + (envEnd - envStart) * (i / (ENV.length - 1));
         scrollTo({ top:heroTop + travel * target, behavior:'smooth' });
@@ -131,14 +140,14 @@
         const travel = Math.max(hero.offsetHeight - innerHeight, 1);
         const p = clamp(-r.top / travel);
 
-        const heroOpacity = 1 - smooth(.10, .19, p);
-        const bridgeIn = smooth(.17, .215, p);
-        const bridgeOut = 1 - smooth(.25, .295, p);
+        const heroOpacity = 1 - smooth(.08, .15, p);
+        const bridgeIn = smooth(.13, .155, p);
+        const bridgeOut = 1 - smooth(.185, .215, p);
         const bridgeOpacity = Math.min(bridgeIn, bridgeOut);
-        const betweenOpacity = smooth(.29, .37, p);
-        const tabsOpacity = smooth(.45, .53, p);
-        const compress = smooth(0, .19, p);
-        const open = smooth(.22, .42, p);
+        const betweenOpacity = smooth(.20, .28, p);
+        const tabsOpacity = smooth(.34, .41, p);
+        const compress = smooth(0, .15, p);
+        const open = smooth(.15, .30, p);
 
         heroStage.style.setProperty('--hero-progress', p.toFixed(4));
         heroStage.style.setProperty('--hero-opacity', heroOpacity.toFixed(4));
@@ -156,14 +165,14 @@
         envButtons.forEach(btn => btn.tabIndex = tabsOpacity > .55 ? 0 : -1);
 
         let shape;
-        if (p < .20) {
-          shape = interpolateShape(SHAPES.base, SHAPES.compress, smooth(0, .20, p));
+        if (p < .15) {
+          shape = interpolateShape(SHAPES.base, SHAPES.compress, smooth(0, .15, p));
           heroStage.dataset.environment = 'base';
-        } else if (p < .48) {
-          shape = interpolateShape(SHAPES.compress, SHAPES.open, smooth(.20, .48, p));
+        } else if (p < .38) {
+          shape = interpolateShape(SHAPES.compress, SHAPES.open, smooth(.15, .38, p));
           heroStage.dataset.environment = 'base';
         } else {
-          const ep = clamp((p - .50) / .47);
+          const ep = clamp((p - .40) / .56);
           const pos = ep * (ENV.length - 1);
           const i = Math.min(ENV.length - 1, Math.floor(pos));
           const j = Math.min(ENV.length - 1, i + 1);
@@ -175,8 +184,14 @@
         paintShape(shape);
         ticking = false;
       };
+      let heroVisible = true;
+      const heroObserver = new IntersectionObserver(entries => {
+        heroVisible = entries[0]?.isIntersecting ?? true;
+        if (heroVisible) updateHero();
+      }, { rootMargin:'25% 0px' });
+      heroObserver.observe(hero);
       const request = () => {
-        if (ticking) return;
+        if (!heroVisible || ticking) return;
         ticking = true;
         requestAnimationFrame(updateHero);
       };
@@ -248,8 +263,14 @@
         ticking = false;
       };
 
+      let productsVisible = true;
+      const productsObserver = new IntersectionObserver(entries => {
+        productsVisible = entries[0]?.isIntersecting ?? true;
+        if (productsVisible) updateProducts();
+      }, { rootMargin:'25% 0px' });
+      productsObserver.observe(products);
       const request = () => {
-        if (ticking) return;
+        if (!productsVisible || ticking) return;
         ticking = true;
         requestAnimationFrame(updateProducts);
       };
@@ -302,12 +323,83 @@
       });
     });
 
+    root.querySelectorAll('[data-static-select-product]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.staticSelectProduct;
+        if (selected.has(key)) selected.delete(key); else selected.add(key);
+        btn.setAttribute('aria-pressed', selected.has(key) ? 'true' : 'false');
+        btn.textContent = selected.has(key) ? 'IN ROUTINE ✓' : 'ADD TO ROUTINE +';
+        renderSelection();
+      });
+    });
+
     routine?.querySelectorAll('[data-routine-time]').forEach(btn => {
       btn.addEventListener('click', () => {
         time = btn.dataset.routineTime;
         routine.dataset.time = time;
         routine.querySelectorAll('[data-routine-time]').forEach(x => x.setAttribute('aria-pressed', x === btn ? 'true' : 'false'));
         renderSelection();
+      });
+    });
+
+    const productSheet = root.querySelector('[data-bts7-product-sheet]');
+    const productSheetTitle = productSheet?.querySelector('[data-bts7-product-title]');
+    const productSheetStep = productSheet?.querySelector('[data-bts7-product-step]');
+    const productSheetImage = productSheet?.querySelector('[data-bts7-product-image]');
+    const productSheetSize = productSheet?.querySelector('[data-bts7-product-size]');
+    const productSheetIngredient = productSheet?.querySelector('[data-bts7-product-ingredient]');
+    const productSheetRole = productSheet?.querySelector('[data-bts7-product-role]');
+    const productSheetToggle = productSheet?.querySelector('[data-bts7-product-toggle]');
+    let productSheetKey = 'reset';
+    let productSheetPreviousFocus = null;
+
+    const renderProductSheetToggle = () => {
+      if (!productSheetToggle) return;
+      const on = selected.has(productSheetKey);
+      productSheetToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+      productSheetToggle.textContent = on ? 'IN ROUTINE ✓' : 'ADD TO ROUTINE +';
+    };
+    const closeProductSheet = () => {
+      if (!productSheet) return;
+      productSheet.hidden = true;
+      document.documentElement.style.overflow = '';
+      productSheetPreviousFocus?.focus();
+      productSheetPreviousFocus = null;
+    };
+    const openProductSheet = (key, trigger) => {
+      const p = PRODUCTS[key];
+      if (!productSheet || !p) return;
+      productSheetKey = key;
+      productSheetPreviousFocus = trigger || document.activeElement;
+      if (productSheetTitle) productSheetTitle.textContent = p.name;
+      if (productSheetStep) productSheetStep.textContent = p.step;
+      if (productSheetImage) {
+        productSheetImage.src = p.image;
+        productSheetImage.alt = p.name;
+      }
+      if (productSheetSize) productSheetSize.textContent = p.size;
+      if (productSheetIngredient) productSheetIngredient.textContent = p.ingredient;
+      if (productSheetRole) productSheetRole.textContent = p.role;
+      renderProductSheetToggle();
+      productSheet.hidden = false;
+      document.documentElement.style.overflow = 'hidden';
+      productSheet.querySelector('[data-bts7-product-sheet-close]')?.focus();
+    };
+
+    root.querySelectorAll('[data-product-info]').forEach(btn => {
+      btn.addEventListener('click', () => openProductSheet(btn.dataset.productInfo, btn));
+    });
+    productSheet?.querySelectorAll('[data-bts7-product-sheet-close]').forEach(btn => btn.addEventListener('click', closeProductSheet));
+    productSheetToggle?.addEventListener('click', () => {
+      if (selected.has(productSheetKey)) selected.delete(productSheetKey); else selected.add(productSheetKey);
+      renderProductSheetToggle();
+      renderSelection();
+      root.querySelectorAll('[data-static-select-product]').forEach(btn => {
+        if (btn.dataset.staticSelectProduct === productSheetKey) {
+          const on = selected.has(productSheetKey);
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          btn.textContent = on ? 'IN ROUTINE ✓' : 'ADD TO ROUTINE +';
+        }
       });
     });
 
@@ -339,6 +431,10 @@
     reviewButton?.addEventListener('click', openSheet);
     sheet?.querySelectorAll('[data-bts7-sheet-close]').forEach(btn => btn.addEventListener('click', closeSheet));
     document.addEventListener('keydown', e => {
+      if (productSheet && !productSheet.hidden && e.key === 'Escape') {
+        closeProductSheet();
+        return;
+      }
       if (!sheet || sheet.hidden) return;
       if (e.key === 'Escape') {
         closeSheet();
