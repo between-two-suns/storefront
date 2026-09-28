@@ -1,0 +1,24 @@
+<footer class="bts-footer">
+  <div class="bts-footer__mark">
+    {% if settings.brand_mark != blank %}
+      {{ settings.brand_mark | image_url: width: 200 | image_tag: widths: '80,120,160,200', loading: 'lazy', alt: '' }}
+    {% else %}
+      <span aria-hidden="true">)(</span>
+    {% endif %}
+  </div>
+  <p class="bts-footer__signature">fresh skin. always.</p>
+  <div class="bts-footer__links">
+    <a href="{{ routes.all_products_collection_url }}">Shop</a>
+    <a href="{{ routes.search_url }}">Search</a>
+    <a href="/policies/shipping-policy">Shipping</a>
+    <a href="/policies/refund-policy">Returns</a>
+  </div>
+  <small>© {{ 'now' | date: '%Y' }} BETWEEN TWO SUNS</small>
+</footer>
+
+{% schema %}
+{
+  "name": "BTS footer",
+  "settings": []
+}
+{% endschema %}
