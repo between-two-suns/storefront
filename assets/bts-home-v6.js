@@ -99,81 +99,11 @@
         if(idx===last)return;
         last=idx;
         panels.forEach((panel,i)=>{
-          panel.classList.toggle('is-active',i===idx);
-          panel.style.pointerEvents=i===idx?'auto':'none';
-        });
-        markers.forEach((marker,i)=>marker.classList.toggle('is-active',i===idx));
-        const sku=getComputedStyle(panels[idx]).getPropertyValue('--sku').trim();
-        stage?.style.setProperty('--active-sku',sku||'#4CB383');
-      };
-
-      const updateProducts=()=>{
-        const r=productJourney.getBoundingClientRect();
-        const travel=Math.max(productJourney.offsetHeight-innerHeight,1);
-        const p=clamp(-r.top/travel);
-        const raw=p*(panels.length-1);
-        const idx=Math.min(panels.length-1,Math.round(raw));
-        activate(idx);
-
-        if(threadPath&&threadLength){
-          const drawn=threadLength*p;
-          threadPath.style.strokeDashoffset=String(threadLength-drawn);
-          if(threadNode){
-            const point=threadPath.getPointAtLength(Math.max(0,Math.min(threadLength,drawn)));
-            threadNode.setAttribute('cx',point.x.toFixed(2));
-            threadNode.setAttribute('cy',point.y.toFixed(2));
-            const colors=['#59B98A','#69B6DF','#B392CB','#EE8B68'];
-            threadNode.style.fill=colors[idx]||colors[0];
-          }
-        }
-
-        panels.forEach((panel,i)=>{
-          const distance=i-raw;
-          const presence=clamp(1-Math.abs(distance));
-          const eased=presence*presence*(3-2*presence);
-          const shift=distance*24;
-          const scale=.975+eased*.025;
-
+          const active=i===idx;
           panel.style.opacity='1';
           panel.style.transform='none';
-          panel.style.setProperty('--presence',eased.toFixed(4));
-          panel.style.setProperty('--distance',distance.toFixed(4));
-
-          const visual=panel.querySelector('.bts6-product-visual img');
-          if(visual){
-            const productShift=distance*34;
-            const productScale=.94+eased*.06;
-            visual.style.opacity=eased.toFixed(4);
-            visual.style.transform=`translateY(${productShift.toFixed(2)}px) scale(${productScale.toFixed(4)})`;
-          }
-
-          if(panel.dataset.productPanel==='1'&&visual){
-            const blur=(1-eased)*11;
-            const sat=.78+eased*.22;
-            visual.style.filter=`blur(${blur.toFixed(2)}px) saturate(${sat.toFixed(2)}) drop-shadow(0 25px 24px rgba(32,32,27,.09))`;
-          }
-
-          const lens=panel.querySelector('.bts6-clarity-lens');
-          if(lens){
-            lens.style.opacity=(.15+eased*.85).toFixed(3);
-            lens.style.transform=`scale(${(.82+eased*.22).toFixed(3)})`;
-          }
-
-          panel.querySelectorAll('.bts6-barrier-ring').forEach((ring,ringIndex)=>{
-            ring.style.opacity=(eased*(ringIndex===0?1:.55)).toFixed(3);
-            ring.style.transform=`scale(${(.78+eased*.22).toFixed(3)})`;
-          });
-
-          const light=panel.querySelector('.bts6-defense-light');
-          if(light){
-            light.style.opacity=eased.toFixed(3);
-            light.style.transform=`rotate(${(-18+eased*23).toFixed(1)}deg)`;
-          }
-
-          const wipe=panel.querySelector('.bts6-reset-wipe');
-          if(wipe){
-            wipe.style.transform=`translateX(${(24-eased*22).toFixed(1)}%) rotate(${(-7+eased*3).toFixed(1)}deg)`;
-          }
+          panel.style.setProperty('--presence',active?'1':'0');
+          panel.style.setProperty('--distance',String(i-raw));
         });
 
         ticking=false;
