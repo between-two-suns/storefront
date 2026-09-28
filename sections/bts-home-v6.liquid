@@ -64,6 +64,11 @@
 
   <section class="bts6-product-journey" data-bts6-products>
     <div class="bts6-product-stage">
+      <div class="bts6-product-aperture" aria-hidden="true">
+        <span class="bts6-product-aperture__left"></span>
+        <span class="bts6-product-aperture__right"></span>
+      </div>
+      <img class="bts6-product-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="24" height="27" alt="" aria-hidden="true">
       <div class="bts6-product-progress" aria-hidden="true">
         <span data-step-marker="0">01</span><span data-step-marker="1">02</span><span data-step-marker="2">03</span><span data-step-marker="3">04</span>
       </div>
@@ -141,7 +146,7 @@
         </div>
       </article>
 
-      <div class="bts6-product-scrollhint" aria-hidden="true">SCROLL THROUGH THE ROUTINE ↓</div>
+      <div class="bts6-product-scrollhint" aria-hidden="true">01 — 04</div>
     </div>
   </section>
 
@@ -161,18 +166,22 @@
       <article data-lineup-step="reset">
         <div class="bts6-lineup-img"><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy"></div>
         <span>01</span><strong>RESET</strong><small>CLEANSE</small>
+        <button class="bts6-lineup-toggle" type="button" data-lineup-toggle="reset" aria-pressed="true" aria-label="RESET included in routine"><span aria-hidden="true">✓</span></button>
       </article>
       <article data-lineup-step="clarity">
         <div class="bts6-lineup-img"><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy"></div>
         <span>02</span><strong>CLARITY</strong><small>TREAT</small>
+        <button class="bts6-lineup-toggle" type="button" data-lineup-toggle="clarity" aria-pressed="true" aria-label="CLARITY included in routine"><span aria-hidden="true">✓</span></button>
       </article>
       <article data-lineup-step="barrier">
         <div class="bts6-lineup-img"><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy"></div>
         <span>03</span><strong>BARRIER</strong><small>HYDRATE</small>
+        <button class="bts6-lineup-toggle" type="button" data-lineup-toggle="barrier" aria-pressed="true" aria-label="BARRIER included in routine"><span aria-hidden="true">✓</span></button>
       </article>
       <article data-lineup-step="defense">
         <div class="bts6-lineup-img"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy"></div>
         <span>04</span><strong>DEFENSE</strong><small>PROTECT</small>
+        <button class="bts6-lineup-toggle" type="button" data-lineup-toggle="defense" aria-pressed="true" aria-label="DEFENSE included in routine"><span aria-hidden="true">✓</span></button>
       </article>
     </div>
 
@@ -181,7 +190,7 @@
         <div><span>COMPLETE ROUTINE</span><strong data-routine-count>4 STEPS · AM</strong></div>
         <p>Built for life between environments.</p>
       </div>
-      <button type="button" data-routine-add>ADD COMPLETE ROUTINE <span aria-hidden="true">→</span></button>
+      <button type="button" data-routine-add>ADD 4 PRODUCTS <span aria-hidden="true">→</span></button>
     </div>
   </section>
 
