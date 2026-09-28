@@ -3,7 +3,14 @@
     {% if settings.logo != blank %}
       {{ settings.logo | image_url: width: 420 | image_tag: class: 'bts-header__logo', widths: '160,240,320,420', loading: 'eager', alt: shop.name }}
     {% else %}
-      <span class="bts-header__wordmark" aria-hidden="true">BETWEEN<br>TWO SUNS</span>
+      <img
+        class="bts-header__logo"
+        src="{{ 'bts-wordmark-ink.svg' | asset_url }}"
+        width="72"
+        height="62"
+        alt="{{ shop.name | escape }}"
+        loading="eager"
+      >
     {% endif %}
   </a>
 
