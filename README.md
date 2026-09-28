@@ -2,14 +2,24 @@
 
 Custom Shopify Online Store 2.0 theme for BETWEEN TWO SUNS.
 
-## Direction
-Climate-adapted skincare for life between environments.
+## Product goal
+Build a mobile-first skincare ecommerce experience that combines:
+- a proprietary digital brand language
+- effortless product discovery and purchasing
+- routine and bundle adoption
+- strong performance, accessibility and reduced-motion support
 
-This repository is the source of truth for the storefront implementation. The build is mobile-first and prioritizes:
-- brand distinctiveness
-- conversion and routine adoption
-- performance and accessibility
-- progressive enhancement and reduced motion
+## Creative system
+The current build is organized around four reusable primitives:
+1. **The Between Space** — a responsive aperture / negative-space system.
+2. **Environmental States** — sun, dust, pollution, dry AC and humidity transform the same composition.
+3. **The Routine Rail** — Reset → Clarity → Barrier → Defense.
+4. **Product Color** — mint, powder blue, lilac and peach.
 
-## Foundation
-The theme structure is based on Shopify's open-source Skeleton Theme (MIT), then extended with a custom BETWEEN TWO SUNS design and interaction system.
+The first build target is the mobile vertical slice:
+**Hero → Environment → Routine → PDP → Add to Bag.**
+
+## Development
+Primary development branch: `build/vertical-slice`
+
+The theme is intentionally custom and does not depend on a page builder.
