@@ -1,0 +1,207 @@
+{% liquid
+  assign reset_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-reset-cleanser.jpg?v=1790626659'
+  assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-serum.jpg?v=1790626663'
+  assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-barrier-moisturizing-cream.jpg?v=1790626668'
+  assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-defense-sunscreen-spf-50.jpg?v=1790626674'
+%}
+
+<section class="bts6" data-bts6>
+  <div class="bts6-page-progress" aria-hidden="true"><span data-bts6-page-progress></span></div>
+
+  <section class="bts6-hero-journey" data-bts6-hero>
+    <div class="bts6-hero-stage" data-environment="base">
+      <div class="bts6-aperture" aria-hidden="true">
+        <div class="bts6-aperture__form bts6-aperture__form--left"><i></i></div>
+        <div class="bts6-aperture__form bts6-aperture__form--right"><i></i></div>
+      </div>
+
+      <div class="bts6-layer bts6-layer--hero" data-bts6-hero-layer>
+        <img class="bts6-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
+        <h1 class="bts6-display">
+          <span>YOUR SKIN</span>
+          <span>MOVES THROUGH</span>
+          <span>A LOT.</span>
+        </h1>
+        <p>Climate-adapted skincare for life between environments.</p>
+
+        <div class="bts6-stressors" aria-label="Environmental stressors">
+          <span>SUN</span><span>DUST</span><span>POLLUTION</span><span>DRY AC</span><span>HUMIDITY</span>
+        </div>
+
+        <div class="bts6-actions">
+          <a class="bts6-btn bts6-btn--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
+          <a class="bts6-btn bts6-btn--ghost" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+        </div>
+
+        <div class="bts6-hero-signoff">
+          <span>DIFFERENT ENVIRONMENTS.<br>HEALTHIER-LOOKING SKIN.</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </div>
+
+      <div class="bts6-layer bts6-layer--between" data-bts6-between-layer aria-hidden="true">
+        <img class="bts6-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
+        <p class="bts6-kicker">DIFFERENT PLACES. SAME YOU.</p>
+        <h2 class="bts6-display"><span>THE SPACE</span><span>BETWEEN.</span></h2>
+        <p class="bts6-between-sub">Skin changes. So does your environment.</p>
+
+        <div class="bts6-env-readout" aria-live="polite">
+          <span data-bts6-env-index>01 / 05</span>
+          <strong data-bts6-env-title>SUN</strong>
+          <small data-bts6-env-copy>Stronger UV. Higher exposure.</small>
+        </div>
+      </div>
+
+      <div class="bts6-env-tabs" data-bts6-env-tabs aria-label="Explore your environment">
+        <button type="button" data-env="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true"><i>☼</i><span>SUN</span></button>
+        <button type="button" data-env="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false"><i>···</i><span>DUST</span></button>
+        <button type="button" data-env="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false"><i>⌁</i><span>POLLUTION</span></button>
+        <button type="button" data-env="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false"><i>≋</i><span>DRY AC</span></button>
+        <button type="button" data-env="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false"><i>◌</i><span>HUMIDITY</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bts6-product-journey" data-bts6-products>
+    <div class="bts6-product-stage">
+      <div class="bts6-product-progress" aria-hidden="true">
+        <span data-step-marker="0">01</span><span data-step-marker="1">02</span><span data-step-marker="2">03</span><span data-step-marker="3">04</span>
+      </div>
+
+      <article class="bts6-product-panel is-active" data-product-panel="0" style="--sku:#59B98A;--sku-soft:#D7EFE1;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>01 / 04</span><span>CLEANSE</span></div>
+          <h2 class="bts6-display">RESET</h2>
+          <h3>A FRESH START, ANYWHERE.</h3>
+          <p>Removes oil, maintains hydration, and leaves skin feeling fresh.</p>
+          <div class="bts6-benefits"><span>OIL BALANCING</span><span>SOOTHES SKIN</span><span>NON-STRIPPING</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--reset">
+          <div class="bts6-reset-wipe" aria-hidden="true"></div>
+          <img src="{{ reset_url }}" alt="BETWEEN TWO SUNS Daily Reset Cleanser" width="1024" height="1536" loading="eager">
+        </div>
+        <div class="bts6-product-commerce">
+          <div><span>DAILY RESET CLEANSER</span><small>200 ml</small></div>
+          <button type="button" data-demo-add="RESET">ADD TO ROUTINE <b>+</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="1" style="--sku:#69B6DF;--sku-soft:#D8EEF7;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>02 / 04</span><span>TREAT</span></div>
+          <h2 class="bts6-display">CLARITY</h2>
+          <h3>FOCUS, WITHOUT THE NOISE.</h3>
+          <p>A daily serum step with Niacinamide + Zinc PCA.</p>
+          <div class="bts6-benefits"><span>DAILY SERUM</span><span>LIGHTWEIGHT</span><span>STEP 02</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--clarity">
+          <div class="bts6-clarity-lens" aria-hidden="true"></div>
+          <img src="{{ clarity_url }}" alt="BETWEEN TWO SUNS Clarity Serum" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div><span>CLARITY SERUM</span><small>30 ml</small></div>
+          <button type="button" data-demo-add="CLARITY">ADD TO ROUTINE <b>+</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="2" style="--sku:#B392CB;--sku-soft:#E7DCF0;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>03 / 04</span><span>HYDRATE</span></div>
+          <h2 class="bts6-display">BARRIER</h2>
+          <h3>COMFORT THAT MOVES WITH YOU.</h3>
+          <p>Daily moisture designed to support skin through changing environments.</p>
+          <div class="bts6-benefits"><span>DAILY MOISTURE</span><span>LIGHTWEIGHT</span><span>STEP 03</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--barrier">
+          <div class="bts6-barrier-ring bts6-barrier-ring--one" aria-hidden="true"></div>
+          <div class="bts6-barrier-ring bts6-barrier-ring--two" aria-hidden="true"></div>
+          <img src="{{ barrier_url }}" alt="BETWEEN TWO SUNS Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div><span>DAILY BARRIER MOISTURIZING CREAM</span><small>50 g</small></div>
+          <button type="button" data-demo-add="BARRIER">ADD TO ROUTINE <b>+</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="3" style="--sku:#EE8B68;--sku-soft:#F9DFD3;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>04 / 04</span><span>PROTECT</span></div>
+          <h2 class="bts6-display">DEFENSE</h2>
+          <h3>READY FOR WHAT COMES NEXT.</h3>
+          <p>SPF 50 is the final step of the morning routine.</p>
+          <div class="bts6-benefits"><span>SPF 50</span><span>UVA + UVB</span><span>AM STEP 04</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--defense">
+          <div class="bts6-defense-light" aria-hidden="true"></div>
+          <img src="{{ defense_url }}" alt="BETWEEN TWO SUNS Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div><span>DAILY DEFENSE SUNSCREEN SPF 50</span><small>50 g</small></div>
+          <button type="button" data-demo-add="DEFENSE">ADD TO ROUTINE <b>+</b></button>
+        </div>
+      </article>
+
+      <div class="bts6-product-scrollhint" aria-hidden="true">SCROLL THROUGH THE ROUTINE ↓</div>
+    </div>
+  </section>
+
+  <section id="routine" class="bts6-routine" data-bts6-routine data-time="am">
+    <div class="bts6-routine-head">
+      <p class="bts6-kicker">THE COMPLETE ROUTINE</p>
+      <h2 class="bts6-display"><span>YOUR ADAPTIVE</span><span>DAILY ROUTINE.</span></h2>
+      <p>Four essentials. Every environment.</p>
+
+      <div class="bts6-time-toggle" role="group" aria-label="Routine time">
+        <button type="button" data-routine-time="am" aria-pressed="true">AM <span>☀</span></button>
+        <button type="button" data-routine-time="pm" aria-pressed="false">PM <span>◐</span></button>
+      </div>
+    </div>
+
+    <div class="bts6-lineup" data-bts6-lineup>
+      <article data-lineup-step="reset">
+        <div class="bts6-lineup-img"><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy"></div>
+        <span>01</span><strong>RESET</strong><small>CLEANSE</small>
+      </article>
+      <article data-lineup-step="clarity">
+        <div class="bts6-lineup-img"><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy"></div>
+        <span>02</span><strong>CLARITY</strong><small>TREAT</small>
+      </article>
+      <article data-lineup-step="barrier">
+        <div class="bts6-lineup-img"><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy"></div>
+        <span>03</span><strong>BARRIER</strong><small>HYDRATE</small>
+      </article>
+      <article data-lineup-step="defense">
+        <div class="bts6-lineup-img"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy"></div>
+        <span>04</span><strong>DEFENSE</strong><small>PROTECT</small>
+      </article>
+    </div>
+
+    <div class="bts6-routine-card">
+      <div class="bts6-routine-card__copy">
+        <div><span>COMPLETE ROUTINE</span><strong data-routine-count>4 STEPS · AM</strong></div>
+        <p>Built for life between environments.</p>
+      </div>
+      <button type="button" data-routine-add>ADD COMPLETE ROUTINE <span aria-hidden="true">→</span></button>
+      <small class="bts6-routine-card__note">Prototype commerce interaction — final price and inventory will populate from Shopify.</small>
+    </div>
+  </section>
+
+  <section class="bts6-end">
+    <div class="bts6-end__word" aria-hidden="true"><span>BETWEEN</span><span>TWO SUNS</span></div>
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="32" height="35" alt="">
+    <h2>fresh skin. always.</h2>
+    <p>Climate-adapted skincare for life between environments.</p>
+    <a href="{{ routes.all_products_collection_url }}">EXPLORE THE RANGE →</a>
+  </section>
+</section>
+
+{{ 'bts-home-v6.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bts-home-v6.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTS Home v6",
+  "settings": [],
+  "presets": [{"name": "BTS Home v6"}]
+}
+{% endschema %}
