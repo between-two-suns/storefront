@@ -406,6 +406,7 @@
     const sheet = root.querySelector('[data-bts7-sheet]');
     const sheetTitle = sheet?.querySelector('[data-bts7-sheet-title]');
     const sheetItems = sheet?.querySelector('[data-bts7-sheet-items]');
+    const sheetCheckout = sheet?.querySelector('[data-bts7-sheet-checkout]');
     let previousFocus = null;
     const closeSheet = () => {
       if (!sheet) return;
@@ -419,6 +420,7 @@
       previousFocus = document.activeElement;
       const keys = availableForTime();
       if (sheetTitle) sheetTitle.textContent = `${time.toUpperCase()} · ${keys.length} STEP${keys.length === 1 ? '' : 'S'}`;
+      if (sheetCheckout) sheetCheckout.innerHTML = `ADD ${keys.length}-STEP ROUTINE TO BAG <span aria-hidden="true">→</span>`;
       sheetItems.innerHTML = keys.map((key, i) => {
         const p = PRODUCTS[key];
         return `<div class="bts7-sheet__item"><img src="${p.image}" alt=""><div><strong>${String(i + 1).padStart(2,'0')} · ${p.name}</strong><span>${p.size}</span></div><b>SELECTED</b></div>`;
@@ -431,8 +433,26 @@
     reviewButton?.addEventListener('click', openSheet);
     sheet?.querySelectorAll('[data-bts7-sheet-close]').forEach(btn => btn.addEventListener('click', closeSheet));
     document.addEventListener('keydown', e => {
-      if (productSheet && !productSheet.hidden && e.key === 'Escape') {
-        closeProductSheet();
+      if (productSheet && !productSheet.hidden) {
+        if (e.key === 'Escape') {
+          closeProductSheet();
+          return;
+        }
+        if (e.key === 'Tab') {
+          const focusable = [...productSheet.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')]
+            .filter(el => !el.hasAttribute('hidden'));
+          if (focusable.length) {
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
         return;
       }
       if (!sheet || sheet.hidden) return;
