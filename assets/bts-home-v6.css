@@ -622,3 +622,21 @@
 }
 .bts6-thread__draw{opacity:.38}
 .bts6-thread__ghost{stroke:rgba(16,16,16,.035)}
+
+
+/* v6.6 — clean product handoffs: no ghost-stack states */
+.bts6-product-visual img{
+  opacity:0 !important;
+  transform:translateY(24px) scale(.965) !important;
+  transition:opacity .22s ease,transform .55s cubic-bezier(.22,1,.36,1),filter .55s ease !important;
+}
+.bts6-product-panel.is-active .bts6-product-visual img{
+  opacity:1 !important;
+  transform:none !important;
+}
+.bts6-product-panel.is-active .bts6-product-visual--clarity img{
+  filter:blur(0) saturate(1) drop-shadow(0 25px 24px rgba(32,32,27,.09)) !important;
+}
+.bts6-product-panel:not(.is-active) .bts6-product-visual--clarity img{
+  filter:blur(10px) saturate(.8) drop-shadow(0 25px 24px rgba(32,32,27,.06)) !important;
+}
