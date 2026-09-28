@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="{{ settings.color_background | default: '#F4F0E8' }}">
     <link rel="canonical" href="{{ canonical_url }}">
+    <link href="{{ 'bts-icon-ink.svg' | asset_url }}" rel="icon" type="image/svg+xml">
     <title>
       {{ page_title }}
       {%- if current_tags %} – {{ current_tags | join: ', ' }}{% endif -%}
