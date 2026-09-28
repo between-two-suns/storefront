@@ -314,14 +314,17 @@
     const sheet = root.querySelector('[data-bts7-sheet]');
     const sheetTitle = sheet?.querySelector('[data-bts7-sheet-title]');
     const sheetItems = sheet?.querySelector('[data-bts7-sheet-items]');
+    let previousFocus = null;
     const closeSheet = () => {
       if (!sheet) return;
       sheet.hidden = true;
       document.documentElement.style.overflow = '';
-      reviewButton?.focus();
+      (previousFocus || reviewButton)?.focus();
+      previousFocus = null;
     };
     const openSheet = () => {
       if (!sheet || !sheetItems) return;
+      previousFocus = document.activeElement;
       const keys = availableForTime();
       if (sheetTitle) sheetTitle.textContent = `${time.toUpperCase()} · ${keys.length} STEP${keys.length === 1 ? '' : 'S'}`;
       sheetItems.innerHTML = keys.map((key, i) => {
@@ -336,7 +339,25 @@
     reviewButton?.addEventListener('click', openSheet);
     sheet?.querySelectorAll('[data-bts7-sheet-close]').forEach(btn => btn.addEventListener('click', closeSheet));
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && sheet && !sheet.hidden) closeSheet();
+      if (!sheet || sheet.hidden) return;
+      if (e.key === 'Escape') {
+        closeSheet();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const focusable = [...sheet.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')]
+          .filter(el => !el.hasAttribute('hidden'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
 
     renderSelection();
