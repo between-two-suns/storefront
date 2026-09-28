@@ -42,6 +42,8 @@
         <span class="bts-signature">fresh skin. always.</span>
         {% if settings.brand_mark != blank %}
           {{ settings.brand_mark | image_url: width: 140 | image_tag: class: 'bts-brand-mark', widths: '70,100,140', loading: 'eager', alt: '' }}
+        {% else %}
+          <img class="bts-brand-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="36" height="39" alt="" loading="eager">
         {% endif %}
       </div>
     </div>
@@ -66,7 +68,7 @@
           {% if settings.brand_mark != blank %}
             {{ settings.brand_mark | image_url: width: 260 | image_tag: widths: '120,180,260', loading: 'lazy', alt: '' }}
           {% else %}
-            <span>BETWEEN</span>
+            <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="92" height="100" alt="" loading="lazy">
           {% endif %}
         </div>
 
