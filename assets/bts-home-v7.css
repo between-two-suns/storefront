@@ -300,3 +300,31 @@
 
 .bts7-products:not([data-motion]) .bts7-product-stage{display:none}
 .bts7-products:not([data-motion]) .bts7-products-static{display:block}
+
+
+/* v7.2 — accessibility and resilient narrative */
+.bts7-env-static{display:none}
+.bts7-env-static__head{display:grid;justify-items:center;gap:12px;text-align:center}
+.bts7-env-static__head img{width:23px;height:auto}
+.bts7-env-static__head h2{font-size:62px;line-height:.78}
+.bts7-env-static__list{margin-top:36px}
+.bts7-env-static__list article{min-height:74px;padding:14px 0;border-top:1px solid rgba(16,16,16,.12);display:grid;grid-template-columns:112px 1fr;gap:15px;align-items:start}
+.bts7-env-static__list article:last-child{border-bottom:1px solid rgba(16,16,16,.12)}
+.bts7-env-static__list strong{font-family:Inter,sans-serif;font-size:9px;font-weight:700;letter-spacing:.08em}
+.bts7-env-static__list span{font-size:11px;line-height:1.4}
+
+.bts7-stressors span,.bts7-benefits span,.bts7-env-tabs button{font-size:8px}
+.bts7-lineup article.is-unselected{opacity:.28;transform:translateY(8px) scale(.94)}
+.bts7-lineup article.is-unselected img{filter:grayscale(.45) saturate(.55)}
+.bts7-product-action>div span{font-size:9px}
+
+@media(prefers-reduced-motion:reduce){
+  .bts7-env-static{display:block;padding:90px 20px 62px;background:var(--cream)}
+}
+.no-js .bts7-env-static{display:block;padding:90px 20px 62px;background:var(--cream)}
+
+@media(min-width:750px){
+  .bts7-env-static{padding-inline:max(7vw,55px)}
+  .bts7-env-static__head h2{font-size:96px}
+  .bts7-env-static__list{width:min(100%,760px);margin-inline:auto}
+}
