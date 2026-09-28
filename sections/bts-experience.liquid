@@ -155,6 +155,11 @@
         <a href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}#{% endif %}">
           <span class="bts-v4-routine-card__step">01</span>
           <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            {% if reset_product != blank and reset_product.featured_image != blank %}
+              {{ reset_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: reset_product.featured_image.alt }}
+            {% endif %}
+          </span>
           <strong>RESET</strong>
           <small>CLEANSE</small>
           <p>{% if reset_product != blank %}{{ reset_product.title }}{% else %}Daily Reset Cleanser{% endif %}</p>
@@ -165,6 +170,11 @@
         <a href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}#{% endif %}">
           <span class="bts-v4-routine-card__step">02</span>
           <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            {% if clarity_product != blank and clarity_product.featured_image != blank %}
+              {{ clarity_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: clarity_product.featured_image.alt }}
+            {% endif %}
+          </span>
           <strong>CLARITY</strong>
           <small>TREAT</small>
           <p>{% if clarity_product != blank %}{{ clarity_product.title }}{% else %}Clarity Serum{% endif %}</p>
@@ -175,6 +185,11 @@
         <a href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}#{% endif %}">
           <span class="bts-v4-routine-card__step">03</span>
           <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            {% if barrier_product != blank and barrier_product.featured_image != blank %}
+              {{ barrier_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: barrier_product.featured_image.alt }}
+            {% endif %}
+          </span>
           <strong>BARRIER</strong>
           <small>HYDRATE</small>
           <p>{% if barrier_product != blank %}{{ barrier_product.title }}{% else %}Daily Barrier Moisturizing Cream{% endif %}</p>
@@ -185,6 +200,11 @@
         <a href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}#{% endif %}">
           <span class="bts-v4-routine-card__step">04</span>
           <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            {% if defense_product != blank and defense_product.featured_image != blank %}
+              {{ defense_product.featured_image | image_url: width: 560 | image_tag: widths: '140,220,320,440,560', sizes: '(max-width: 749px) 23vw, 180px', loading: 'lazy', alt: defense_product.featured_image.alt }}
+            {% endif %}
+          </span>
           <strong>DEFENSE</strong>
           <small>PROTECT</small>
           <p>{% if defense_product != blank %}{{ defense_product.title }}{% else %}Daily Defense Sunscreen SPF 50{% endif %}</p>
