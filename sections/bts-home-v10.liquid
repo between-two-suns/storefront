@@ -19,10 +19,22 @@
         <span class="bts10-light bts10-light--2"></span>
         <span class="bts10-light bts10-light--3"></span>
         <span class="bts10-light bts10-light--4"></span>
-        <img class="bts10-pack bts10-pack--reset" src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" fetchpriority="high">
-        <img class="bts10-pack bts10-pack--clarity" src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" fetchpriority="high">
-        <img class="bts10-pack bts10-pack--barrier" src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" fetchpriority="high">
-        <img class="bts10-pack bts10-pack--defense" src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" fetchpriority="high">
+        <button type="button" class="bts10-heroProduct bts10-heroProduct--reset" data-bts10-detail="reset" aria-label="Daily Reset Cleanser, EGP 399">
+          <img class="bts10-pack bts10-pack--reset" src="{{ reset_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+          <span><strong>RESET</strong><bdi dir="ltr">EGP 399</bdi></span>
+        </button>
+        <button type="button" class="bts10-heroProduct bts10-heroProduct--clarity" data-bts10-detail="clarity" aria-label="Clarity Serum, EGP 499">
+          <img class="bts10-pack bts10-pack--clarity" src="{{ clarity_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+          <span><strong>CLARITY</strong><bdi dir="ltr">EGP 499</bdi></span>
+        </button>
+        <button type="button" class="bts10-heroProduct bts10-heroProduct--barrier" data-bts10-detail="barrier" aria-label="Daily Barrier Moisturizing Cream, EGP 449">
+          <img class="bts10-pack bts10-pack--barrier" src="{{ barrier_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+          <span><strong>BARRIER</strong><bdi dir="ltr">EGP 449</bdi></span>
+        </button>
+        <button type="button" class="bts10-heroProduct bts10-heroProduct--defense" data-bts10-detail="defense" aria-label="Daily Defense Sunscreen SPF 50, EGP 499">
+          <img class="bts10-pack bts10-pack--defense" src="{{ defense_url }}" alt="" width="1024" height="1536" fetchpriority="high">
+          <span><strong>DEFENSE</strong><bdi dir="ltr">EGP 499</bdi></span>
+        </button>
         <div class="bts10-hero__stamp"><img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390"></div>
       </div>
 
@@ -34,7 +46,7 @@
 
       <div class="bts10-hero__commerce">
         <button type="button" class="bts10-bundle" data-bts10-buy-routine>
-          <span><small data-i18n="fullRoutine">FULL ROUTINE · 4 PRODUCTS</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
+          <span><small data-i18n="addFullRoutine">ADD FULL ROUTINE</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
           <span><s><bdi dir="ltr">EGP 1,846</bdi></s><b><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185 · 10%</bdi></b><i class="bts10-arrow">→</i></span>
         </button>
         <a href="#products" data-i18n="shopSingles">Shop individual products</a>
@@ -143,7 +155,7 @@
       </div>
 
       <button type="button" class="bts10-routine__bundle" data-bts10-buy-routine>
-        <span><small data-i18n="fullRoutine">FULL ROUTINE · 4 PRODUCTS</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
+        <span><small data-i18n="addFullRoutine">ADD FULL ROUTINE</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
         <span><s><bdi dir="ltr">EGP 1,846</bdi></s><b><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185 · 10%</bdi></b><i class="bts10-arrow">→</i></span>
       </button>
     </section>
