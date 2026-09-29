@@ -106,7 +106,7 @@
       positioning:'Climate-adapted skincare',fresh:'fresh skin. always.',
       heroBody:'Four essentials. One clear routine. Designed to feel good enough to use every day.',
       fullRoutine:'FULL ROUTINE · 4 PRODUCTS',save:'SAVE',shopSingles:'Shop individual products',
-      shop:'SHOP',productsTitle:'Four products. No filler.',whyFormula:'Why this formula',
+      shop:'SHOP',productsTitle:'Four products. No filler.',add:'Add',insideFormula:'Inside the formula',
       completeRoutine:'THE COMPLETE ROUTINE',addRoutine:'Add all four',
       routineKicker:'YOUR ROUTINE',am:'AM',pm:'PM',cleanse:'Cleanse',treat:'Treat',hydrate:'Hydrate',protect:'Protect',morningOnly:'Morning only',
       whyKicker:'CLIMATE-ADAPTED, BY DESIGN',whyTitle:'Thoughtful formulas, explained simply.',
@@ -122,7 +122,7 @@
       positioning:'عناية بالبشرة متكيفة مع المناخ',fresh:'بشرة منتعشة. دايمًا.',
       heroBody:'4 أساسيات. روتين واضح. معمولين عشان يبقوا سهلين كفاية للاستخدام كل يوم.',
       fullRoutine:'الروتين كامل · 4 منتجات',save:'وفّري',shopSingles:'اشتري كل منتج لوحده',
-      shop:'تسوّقي',productsTitle:'4 منتجات. من غير حشو.',whyFormula:'ليه التركيبة دي؟',
+      shop:'تسوّقي',productsTitle:'4 منتجات. من غير حشو.',add:'ضيفي',insideFormula:'جوه التركيبة',
       completeRoutine:'الروتين الكامل',addRoutine:'ضيفي الأربعة',
       routineKicker:'روتينك',am:'الصبح',pm:'بالليل',cleanse:'تنظيف',treat:'عناية',hydrate:'ترطيب',protect:'حماية',morningOnly:'الصبح بس',
       whyKicker:'متكيفة مع المناخ في صميم التركيبة',whyTitle:'تركيبات مدروسة، متشرحة ببساطة.',
@@ -163,10 +163,13 @@
   function renderCount(){
     $('[data-bts10-count]').textContent=String(selected.size);
     $$('[data-bts10-add]').forEach(btn=>{
-      const on=selected.has(btn.dataset.bts10Add);
+      const key=btn.dataset.bts10Add;
+      const on=selected.has(key);
       btn.classList.toggle('is-added',on);
-      btn.textContent=on?'✓':'+';
       btn.setAttribute('aria-pressed',on?'true':'false');
+      btn.innerHTML=on
+        ? '<span>'+(language==='ar'?'تمت الإضافة':'Added')+' ✓</span>'
+        : '<span>'+t('add')+'</span><span>·</span><bdi dir="ltr">'+egp(PRICE[key])+'</bdi>';
     });
   }
 

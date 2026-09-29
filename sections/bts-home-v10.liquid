@@ -52,13 +52,13 @@
           <div class="bts10-card__media">
             <span class="bts10-card__word">RESET</span>
             <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="eager">
-            <button type="button" class="bts10-card__add" data-bts10-add="reset" aria-label="Add Daily Reset Cleanser">+</button>
+            <button type="button" class="bts10-card__add" data-bts10-add="reset" aria-label="Add Daily Reset Cleanser"><span data-i18n="add">Add</span> · <bdi dir="ltr">EGP 399</bdi></button>
           </div>
           <div class="bts10-card__body">
             <div><p class="bts10-eyebrow" data-role-reset>Cleanse</p><h3>Daily Reset Cleanser</h3></div>
             <bdi dir="ltr">EGP 399</bdi>
             <p data-benefit-reset>Removes excess oil and daily buildup while helping skin maintain hydration.</p>
-            <button type="button" class="bts10-card__learn" data-bts10-detail="reset"><span data-i18n="whyFormula">Why this formula</span><i class="bts10-arrow">→</i></button>
+            <button type="button" class="bts10-card__learn" data-bts10-detail="reset"><span data-i18n="insideFormula">Inside the formula</span><i class="bts10-arrow">→</i></button>
           </div>
         </article>
 
@@ -66,13 +66,13 @@
           <div class="bts10-card__media">
             <span class="bts10-card__word">CLARITY</span>
             <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy">
-            <button type="button" class="bts10-card__add" data-bts10-add="clarity" aria-label="Add Clarity Serum">+</button>
+            <button type="button" class="bts10-card__add" data-bts10-add="clarity" aria-label="Add Clarity Serum"><span data-i18n="add">Add</span> · <bdi dir="ltr">EGP 499</bdi></button>
           </div>
           <div class="bts10-card__body">
             <div><p class="bts10-eyebrow" data-role-clarity>Treat</p><h3>Clarity Serum</h3></div>
             <bdi dir="ltr">EGP 499</bdi>
             <p data-benefit-clarity>Helps even skin tone, reduce the appearance of dark spots and control excess oil while hydrating.</p>
-            <button type="button" class="bts10-card__learn" data-bts10-detail="clarity"><span data-i18n="whyFormula">Why this formula</span><i class="bts10-arrow">→</i></button>
+            <button type="button" class="bts10-card__learn" data-bts10-detail="clarity"><span data-i18n="insideFormula">Inside the formula</span><i class="bts10-arrow">→</i></button>
           </div>
         </article>
 
@@ -80,13 +80,13 @@
           <div class="bts10-card__media">
             <span class="bts10-card__word">BARRIER</span>
             <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
-            <button type="button" class="bts10-card__add" data-bts10-add="barrier" aria-label="Add Daily Barrier Moisturizing Cream">+</button>
+            <button type="button" class="bts10-card__add" data-bts10-add="barrier" aria-label="Add Daily Barrier Moisturizing Cream"><span data-i18n="add">Add</span> · <bdi dir="ltr">EGP 449</bdi></button>
           </div>
           <div class="bts10-card__body">
             <div><p class="bts10-eyebrow" data-role-barrier>Hydrate</p><h3>Daily Barrier Moisturizing Cream</h3></div>
             <bdi dir="ltr">EGP 449</bdi>
             <p data-benefit-barrier>Hydrates without heaviness, helps control oil and supports the skin barrier.</p>
-            <button type="button" class="bts10-card__learn" data-bts10-detail="barrier"><span data-i18n="whyFormula">Why this formula</span><i class="bts10-arrow">→</i></button>
+            <button type="button" class="bts10-card__learn" data-bts10-detail="barrier"><span data-i18n="insideFormula">Inside the formula</span><i class="bts10-arrow">→</i></button>
           </div>
         </article>
 
@@ -94,13 +94,13 @@
           <div class="bts10-card__media">
             <span class="bts10-card__word">DEFENSE</span>
             <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
-            <button type="button" class="bts10-card__add" data-bts10-add="defense" aria-label="Add Daily Defense Sunscreen SPF 50">+</button>
+            <button type="button" class="bts10-card__add" data-bts10-add="defense" aria-label="Add Daily Defense Sunscreen SPF 50"><span data-i18n="add">Add</span> · <bdi dir="ltr">EGP 499</bdi></button>
           </div>
           <div class="bts10-card__body">
             <div><p class="bts10-eyebrow" data-role-defense>Protect</p><h3>Daily Defense Sunscreen SPF 50</h3></div>
             <bdi dir="ltr">EGP 499</bdi>
             <p data-benefit-defense>Broad-spectrum SPF 50 protection in a lightweight, fast-absorbing formula with no white cast.</p>
-            <button type="button" class="bts10-card__learn" data-bts10-detail="defense"><span data-i18n="whyFormula">Why this formula</span><i class="bts10-arrow">→</i></button>
+            <button type="button" class="bts10-card__learn" data-bts10-detail="defense"><span data-i18n="insideFormula">Inside the formula</span><i class="bts10-arrow">→</i></button>
           </div>
         </article>
       </div>
@@ -141,6 +141,11 @@
         <article><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="400" height="600" loading="lazy"><span>03</span><strong>BARRIER</strong><small data-i18n="hydrate">Hydrate</small></article>
         <article class="bts10-routine__defense"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="400" height="600" loading="lazy"><span>04</span><strong>DEFENSE</strong><small data-i18n="protect">Protect</small><em data-i18n="morningOnly">Morning only</em></article>
       </div>
+
+      <button type="button" class="bts10-routine__bundle" data-bts10-buy-routine>
+        <span><small data-i18n="fullRoutine">FULL ROUTINE · 4 PRODUCTS</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
+        <span><s><bdi dir="ltr">EGP 1,846</bdi></s><b><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185 · 10%</bdi></b><i class="bts10-arrow">→</i></span>
+      </button>
     </section>
 
     <section id="why" class="bts10-why">
