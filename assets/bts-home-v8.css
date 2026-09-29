@@ -25,7 +25,7 @@
   overflow:clip;
 }
 .bts8 *{box-sizing:border-box}
-.bts8 button,.bts8 a{font:inherit;color:inherit}
+.bts8 :where(button,a){font:inherit;color:inherit}
 .bts8 h1,.bts8 h2,.bts8 h3,.bts8 p,.bts8 ol{margin:0}
 .bts8 img{display:block;max-width:100%}
 .bts8 [hidden]{display:none!important}
@@ -171,6 +171,8 @@
 .bts8-productinfo{margin-top:26px;display:grid;gap:14px}
 .bts8-productinfo__top{display:flex;justify-content:space-between;gap:16px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em}
 .bts8-productinfo h3{font:400 48px/.92 var(--display);text-transform:uppercase}
+.bts8-productinfo__desc{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bts8-productinfo__size{unicode-bidi:isolate}
 .bts8-productinfo__price{font-size:28px;font-weight:700;letter-spacing:-.02em}
 .bts8-productinfo__benefit{max-width:36ch;font-size:15px;line-height:1.5}
 .bts8-productinfo__claims{display:flex;flex-wrap:wrap;gap:6px}
@@ -290,7 +292,7 @@
 .bts8-drawer__complete{min-height:52px;padding:8px 18px;border:1px solid var(--ink);border-radius:16px;background:transparent;font-size:13px;font-weight:600;cursor:pointer}
 .bts8-drawer__hint{font-size:11px;color:var(--muted)}
 .bts8-drawer__checkout{width:100%;min-height:54px;margin-top:16px;border:0;border-radius:16px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:600}
-.bts8-drawer__checkout:disabled{opacity:.35;cursor:not-allowed}
+.bts8-drawer__checkout:disabled{opacity:1;background:#D9D4CB;color:#4E4943;cursor:not-allowed}
 .bts8-drawer__note{margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--bone);font-size:11px;line-height:1.45;color:#4E4943}
 .bts8-sheet__visual{height:300px;margin-top:18px;border-radius:8px;background:var(--bone);display:grid;place-items:center;overflow:hidden}
 .bts8-sheet__visual[data-key="reset"]{background:var(--mint)}
@@ -313,6 +315,9 @@
 .bts8[dir="rtl"] .bts8-end p{font:700 36px/1.2 "IBM Plex Sans Arabic",sans-serif}
 .bts8[dir="rtl"] .bts8-kicker{letter-spacing:0;font-size:13px;text-transform:none}
 .bts8[dir="rtl"] .bts8-productinfo__top{letter-spacing:0;font-size:13px}
+.bts8[dir="rtl"] .bts8-productinfo__desc{order:0;font:700 26px/1.25 "IBM Plex Sans Arabic",sans-serif;letter-spacing:0;text-transform:none;color:var(--ink)}
+.bts8[dir="rtl"] .bts8-productinfo h3{font-size:24px;line-height:1;color:var(--muted);direction:ltr;text-align:right}
+.bts8[dir="rtl"] .bts8-routine__copy,.bts8[dir="rtl"] .bts8-drawer,.bts8[dir="rtl"] .bts8-total{text-align:right}
 .bts8[dir="rtl"] .bts8-time strong{font-size:17px}
 .bts8[dir="rtl"] .bts8-time small,.bts8[dir="rtl"] .bts8-rpack small{font-size:12px}
 .bts8[dir="rtl"] .bts8-productinfo__claims span{letter-spacing:0;font-size:11px}
@@ -353,6 +358,7 @@
   .bts8-cpack__price{font-size:13px}
   .bts8-productinfo{margin-top:0}
   .bts8-productinfo h3{font-size:72px}
+  .bts8[dir="rtl"] .bts8-productinfo h3{font-size:32px}
   .bts8-productinfo__price{font-size:34px}
   .bts8-productinfo__actions{grid-template-columns:1.3fr .7fr}
   .bts8-routine{padding:130px 48px 110px}

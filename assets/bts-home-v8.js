@@ -5,6 +5,7 @@
 
   const PRODUCTS = {
     reset: {
+      desc: { en:'Daily cleanser', ar:'غسول يومي' },
       image: 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352',
       step: { en:'01 · CLEANSE', ar:'01 · تنظيف' },
       name: 'Daily Reset Cleanser',
@@ -36,6 +37,7 @@
       inci:'Aqua, Sodium Lauryl Sulfosuccinate, Cocamidopropyl Betaine, Coco-Glucoside, Glycerin, Lauryl Glucoside, Propylene Glycol, PEG-120 Methyl Glucose Dioleate, Phenoxyethanol, PEG-7 Glyceryl Cocoate, Panthenol, Poloxamer 184, Polyquaternium-10, Aloe Barbadensis Leaf Extract, Centella Asiatica Extract, Sodium PCA, Zinc PCA, Ethylhexylglycerin, EDTA, Allantoin, Glycyrrhiza Glabra Root Extract, Citric Acid.'
     },
     clarity: {
+      desc: { en:'Treatment serum', ar:'سيروم للعناية' },
       image: 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358',
       step: { en:'02 · TREAT', ar:'02 · عناية' },
       name: 'Clarity Serum',
@@ -67,6 +69,7 @@
       inci:'Aqua, Niacinamide, Glycerin, Tranexamic Acid, Propylene Glycol, Phenoxyethanol, Panthenol, Xylitylglucoside, Anhydroxylitol, Xylitol, Sodium Hyaluronate, Ammonium Acryloyldimethyltaurate/VP Copolymer, Ethylhexylglycerin, EDTA, Allantoin.'
     },
     barrier: {
+      desc: { en:'Daily moisturizing cream', ar:'كريم ترطيب يومي' },
       image: 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363',
       step: { en:'03 · HYDRATE', ar:'03 · ترطيب' },
       name: 'Daily Barrier Moisturizing Cream',
@@ -98,6 +101,7 @@
       inci:'Aqua, Glycerin, Niacinamide, Propylene Glycol, Caprylic/Capric Triglyceride, Glyceryl Stearate, PEG-100 Stearate, Cetearyl Alcohol, Isohexadecane, Squalane, Dimethicone, Panthenol, Phenoxyethanol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Zinc PCA, Sodium Hyaluronate, Sodium PCA, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Sodium Lauroyl Lactylate, Ethylhexylglycerin, Cholesterol, Carbomer, Disodium EDTA, Xanthan Gum.'
     },
     defense: {
+      desc: { en:'Sunscreen SPF 50', ar:'واقي شمس SPF 50' },
       image: 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368',
       step: { en:'04 · PROTECT', ar:'04 · حماية' },
       name: 'Daily Defense Sunscreen SPF 50',
@@ -153,7 +157,7 @@
       cleanse:'Cleanse', treat:'Treat', hydrate:'Hydrate', protect:'Protect', morningOnly:'Morning only',
       amCopy:'Cleanse. Treat. Hydrate. Protect.', pmCopy:'Cleanse. Treat. Hydrate. SPF stays for the morning.',
       fullRoutine:'Full routine',
-      logicKicker:'Climate-adapted, underneath', logicTitle:'Light on skin. Serious in the formula.',
+      logicKicker:'Climate-adapted, by design', logicTitle:'Light on skin. Serious in the formula.',
       logic1t:'Cleansing without stripping', logic1b:'Soap-free gel with Zinc PCA and Centella. Skin feels clean and comfortable, not tight.',
       logic2t:'Barrier support without heaviness', logic2b:'Ceramides, Niacinamide and Squalane in a cream that hydrates without a heavy feel.',
       logic3t:'SPF 50 with no white cast', logic3b:'Broad-spectrum UVA/UVB protection in a lightweight, fast-absorbing, non-greasy finish.',
@@ -180,14 +184,14 @@
       cleanse:'تنظيف', treat:'عناية', hydrate:'ترطيب', protect:'حماية', morningOnly:'الصبح بس',
       amCopy:'تنظيف. عناية. ترطيب. حماية.', pmCopy:'تنظيف. عناية. ترطيب. واقي الشمس للصبح بس.',
       fullRoutine:'الروتين كامل',
-      logicKicker:'متكيفة مع المناخ، من جوه التركيبة', logicTitle:'خفيفة على البشرة. جادة في التركيبة.',
+      logicKicker:'متكيفة مع المناخ في صميم التركيبة', logicTitle:'خفيفة على البشرة. جادة في التركيبة.',
       logic1t:'تنظيف من غير ما يجرّد البشرة', logic1b:'جل خالٍ من الصابون بـ Zinc PCA والسنتيلا. البشرة تحس إنها نضيفة ومرتاحة، مش مشدودة.',
       logic2t:'دعم لحاجز البشرة من غير ثقل', logic2b:'سيراميدات ونياسيناميد وسكوالين في كريم بيرطب من غير إحساس تقيل.',
       logic3t:'SPF 50 من غير أثر أبيض', logic3b:'حماية واسعة الطيف UVA/UVB بتركيبة خفيفة وسريعة الامتصاص وغير دهنية.',
       endLine:'بشرة منتعشة. دايمًا.',
       drawerKicker:'روتينك', products:n => n+(n===1?' منتج':' منتجات'),
       empty:'لسه ما اخترتيش حاجة. اختاري منتج أو خدي الروتين كامل.',
-      remove:'شيلي', listValue:'السعر الأصلي', subtotal:'الإجمالي', routinePrice:'سعر الروتين كامل',
+      remove:'إزالة', listValue:'السعر الأصلي', subtotal:'الإجمالي', routinePrice:'سعر الروتين كامل',
       youSave:'هتوفّري', complete:'كمّلي الروتين', completeHint:n => 'ضيفي الـ '+n+' الباقيين وخدي سعر الروتين كامل.',
       checkoutDisabled:'الدفع هيفتح مع الإطلاق',
       drawerNote:'نسخة تجريبية. الأسعار المعروضة أسعار إطلاق مبدئية وممكن تتغير. الدفع مش متفعّل لسه.',
@@ -226,6 +230,7 @@
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     $('[data-bts8-step]').textContent = p.step[language];
+    $('[data-bts8-desc]').textContent = p.desc[language];
     $('[data-bts8-name]').textContent = p.name;
     $('[data-bts8-size]').textContent = p.size;
     $('[data-bts8-price]').textContent = egp(PRICES[activeProduct]);
@@ -420,28 +425,17 @@
 
   /* Sticky: one CTA, only when no in-flow routine CTA is on screen and never over the end/footer */
   const sticky = $('[data-bts8-sticky]');
-  const hero = $('[data-bts8-hero]');
+  const routineSec = $('[data-bts8-routine]');
   const end = $('.bts8-end');
-  const inflow = new Set();
-  let endVisible = false;
+  /* Hidden through hero, product counter and routine (each has its own CTA); shown only once the routine has fully scrolled away, hidden again at end/footer */
   function updateSticky() {
-    const past = hero.getBoundingClientRect().bottom < 80;
-    const show = past && !inflow.size && !endVisible && drawer.hidden && sheet.hidden;
+    const past = routineSec.getBoundingClientRect().bottom < 0;
+    const endVisible = end.getBoundingClientRect().top < innerHeight;
+    const show = past && !endVisible && drawer.hidden && sheet.hidden;
     sticky.classList.toggle('is-visible', show);
     sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
     sticky.querySelector('button').tabIndex = show ? 0 : -1;
     root.classList.toggle('has-sticky', show);
-  }
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.target === end) endVisible = en.isIntersecting;
-        else if (en.isIntersecting) inflow.add(en.target); else inflow.delete(en.target);
-      });
-      updateSticky();
-    });
-    $$('[data-bts8-inflow-cta]').forEach(el => io.observe(el));
-    io.observe(end);
   }
   addEventListener('scroll', updateSticky, {passive:true});
   addEventListener('resize', updateSticky);
