@@ -1,0 +1,246 @@
+{% liquid
+  assign reset_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352'
+  assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
+  assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
+  assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
+%}
+
+<section class="bts8" data-bts8 data-lang="en" dir="ltr">
+  <header class="bts8-nav">
+    <a class="bts8-nav__mark" href="#top" aria-label="Between Two Suns home">
+      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="30" height="32">
+    </a>
+    <nav class="bts8-nav__links" aria-label="Primary">
+      <a href="#products" data-i18n="navProducts">Products</a>
+      <a href="#routine" data-i18n="navRoutine">Routine</a>
+    </nav>
+    <div class="bts8-nav__tools">
+      <button type="button" class="bts8-lang" data-bts8-lang aria-label="Switch language">AR</button>
+      <button type="button" class="bts8-bag" data-bts8-open-routine aria-label="Open routine">
+        <span data-i18n="bag">Bag</span><b data-bts8-count>4</b>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="bts8-hero" data-bts8-hero>
+      <div class="bts8-hero__brand">
+        <img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390">
+      </div>
+
+      <div class="bts8-hero__eyebrow" data-i18n="positioning">Climate-adapted skincare</div>
+
+      <div class="bts8-family bts8-family--hero" aria-label="Between Two Suns skincare routine">
+        <button type="button" class="bts8-pack bts8-pack--reset" data-bts8-pick="reset" aria-label="Daily Reset Cleanser">
+          <span class="bts8-pack__halo"></span>
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="eager">
+        </button>
+        <button type="button" class="bts8-pack bts8-pack--clarity" data-bts8-pick="clarity" aria-label="Clarity Serum">
+          <span class="bts8-pack__halo"></span>
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="eager">
+        </button>
+        <button type="button" class="bts8-pack bts8-pack--barrier" data-bts8-pick="barrier" aria-label="Daily Barrier Moisturizing Cream">
+          <span class="bts8-pack__halo"></span>
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+        </button>
+        <button type="button" class="bts8-pack bts8-pack--defense" data-bts8-pick="defense" aria-label="Daily Defense Sunscreen SPF 50">
+          <span class="bts8-pack__halo"></span>
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+        </button>
+        <div class="bts8-shelf" aria-hidden="true"></div>
+      </div>
+
+      <div class="bts8-hero__copy">
+        <h1 data-i18n="heroTitle">fresh skin. always.</h1>
+        <p data-i18n="heroBody">Four essentials. One clear routine.</p>
+      </div>
+
+      <div class="bts8-hero__actions">
+        <button class="bts8-btn bts8-btn--primary" type="button" data-bts8-open-routine>
+          <span data-i18n="shopRoutine">Shop the routine</span><span aria-hidden="true">→</span>
+        </button>
+        <a class="bts8-btn bts8-btn--ghost" href="#products" data-i18n="shopProducts">Shop individually</a>
+      </div>
+    </section>
+
+    <section id="products" class="bts8-counter" data-bts8-counter>
+      <div class="bts8-sectionhead">
+        <p class="bts8-kicker" data-i18n="meetKicker">THE FOUR</p>
+        <h2 data-i18n="meetTitle">Everything you need. Nothing extra.</h2>
+      </div>
+
+      <div class="bts8-counter__stage" data-bts8-stage data-selected="reset">
+        <div class="bts8-counter__lineup">
+          <button type="button" class="bts8-counterpack is-selected" data-bts8-select="reset" aria-pressed="true">
+            <span class="bts8-counterpack__num">01</span>
+            <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="eager">
+            <span class="bts8-counterpack__name">RESET</span>
+          </button>
+          <button type="button" class="bts8-counterpack" data-bts8-select="clarity" aria-pressed="false">
+            <span class="bts8-counterpack__num">02</span>
+            <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy">
+            <span class="bts8-counterpack__name">CLARITY</span>
+          </button>
+          <button type="button" class="bts8-counterpack" data-bts8-select="barrier" aria-pressed="false">
+            <span class="bts8-counterpack__num">03</span>
+            <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+            <span class="bts8-counterpack__name">BARRIER</span>
+          </button>
+          <button type="button" class="bts8-counterpack" data-bts8-select="defense" aria-pressed="false">
+            <span class="bts8-counterpack__num">04</span>
+            <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+            <span class="bts8-counterpack__name">DEFENSE</span>
+          </button>
+        </div>
+
+        <article class="bts8-productinfo" aria-live="polite">
+          <div class="bts8-productinfo__top">
+            <div>
+              <span class="bts8-productinfo__step" data-bts8-step>01 · CLEANSE</span>
+              <h3 data-bts8-name>Daily Reset Cleanser</h3>
+            </div>
+            <span class="bts8-productinfo__size" data-bts8-size>200 mL</span>
+          </div>
+
+          <p class="bts8-productinfo__benefit" data-bts8-benefit>Removes excess oil and buildup while helping skin maintain hydration.</p>
+
+          <div class="bts8-productinfo__claims" data-bts8-claims>
+            <span>NON-STRIPPING</span><span>SOAP-FREE</span><span>NON-COMEDOGENIC</span>
+          </div>
+
+          <div class="bts8-formula">
+            <div class="bts8-formula__head">
+              <span data-i18n="whyTitle">Why it works</span>
+              <span data-i18n="whySub">The formula, in plain language.</span>
+            </div>
+            <div class="bts8-formula__items" data-bts8-formula></div>
+          </div>
+
+          <div class="bts8-productinfo__actions">
+            <button type="button" class="bts8-btn bts8-btn--primary" data-bts8-toggle-selected="reset" aria-pressed="true">
+              <span data-i18n="inRoutine">In routine</span><span aria-hidden="true">✓</span>
+            </button>
+            <button type="button" class="bts8-btn bts8-btn--ghost" data-bts8-detail>
+              <span data-i18n="details">Full details</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="routine" class="bts8-routine" data-bts8-routine data-time="am">
+      <div class="bts8-sectionhead bts8-sectionhead--center">
+        <p class="bts8-kicker" data-i18n="routineKicker">YOUR ROUTINE</p>
+        <h2 data-i18n="routineTitle">Simple enough to keep doing.</h2>
+        <p data-i18n="routineBody">Four steps in the morning. Three at night.</p>
+      </div>
+
+      <div class="bts8-time" role="group" aria-label="Routine time">
+        <button type="button" data-bts8-time="am" aria-pressed="true"><span data-i18n="am">AM</span></button>
+        <button type="button" data-bts8-time="pm" aria-pressed="false"><span data-i18n="pm">PM</span></button>
+      </div>
+
+      <div class="bts8-routine__stage">
+        <article class="bts8-routinepack bts8-routinepack--reset" data-routine-pack="reset">
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy">
+          <span>01</span><strong>RESET</strong><small data-i18n="cleanse">CLEANSE</small>
+        </article>
+        <article class="bts8-routinepack bts8-routinepack--clarity" data-routine-pack="clarity">
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy">
+          <span>02</span><strong>CLARITY</strong><small data-i18n="treat">TREAT</small>
+        </article>
+        <article class="bts8-routinepack bts8-routinepack--barrier" data-routine-pack="barrier">
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+          <span>03</span><strong>BARRIER</strong><small data-i18n="hydrate">HYDRATE</small>
+        </article>
+        <article class="bts8-routinepack bts8-routinepack--defense" data-routine-pack="defense">
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+          <span>04</span><strong>DEFENSE</strong><small data-i18n="protect">PROTECT</small>
+        </article>
+      </div>
+
+      <div class="bts8-routine__logic">
+        <div>
+          <span data-bts8-routine-label>AM · 4 STEPS</span>
+          <strong data-i18n="fullRoutine">THE FULL ROUTINE</strong>
+        </div>
+        <p data-bts8-routine-copy>Cleanse. Treat. Hydrate. Protect.</p>
+      </div>
+
+      <button type="button" class="bts8-btn bts8-btn--primary bts8-routine__cta" data-bts8-open-routine>
+        <span data-i18n="reviewRoutine">Review routine</span><span aria-hidden="true">→</span>
+      </button>
+    </section>
+
+    <section class="bts8-climate">
+      <div class="bts8-climate__copy">
+        <p class="bts8-kicker" data-i18n="climateKicker">CLIMATE-ADAPTED, WITHOUT THE COMPLICATED ROUTINE</p>
+        <h2 data-i18n="climateTitle">Made for real days.</h2>
+        <p data-i18n="climateBody">Heat outside. Air-conditioning inside. Oil, humidity, sun and the rest of the day. The formulas are designed to stay easy to use through changing conditions.</p>
+      </div>
+      <div class="bts8-climate__mark" aria-hidden="true">
+        <img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="160" height="180">
+      </div>
+    </section>
+
+    <section class="bts8-end">
+      <img class="bts8-end__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390" loading="lazy">
+      <p data-i18n="endLine">fresh skin. always.</p>
+      <button type="button" class="bts8-btn bts8-btn--primary" data-bts8-open-routine>
+        <span data-i18n="shopRoutine">Shop the routine</span><span aria-hidden="true">→</span>
+      </button>
+    </section>
+  </main>
+
+  <div class="bts8-sticky" data-bts8-sticky>
+    <button type="button" data-bts8-open-routine>
+      <span data-i18n="stickyRoutine">Full routine · 4 steps</span><span aria-hidden="true">→</span>
+    </button>
+  </div>
+
+  <div class="bts8-drawer" data-bts8-drawer hidden>
+    <button class="bts8-drawer__scrim" type="button" data-bts8-close aria-label="Close"></button>
+    <aside class="bts8-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="BTS8DrawerTitle">
+      <div class="bts8-drawer__head">
+        <div>
+          <p class="bts8-kicker" data-i18n="drawerKicker">YOUR ROUTINE</p>
+          <h2 id="BTS8DrawerTitle" data-bts8-drawer-title>AM · 4 STEPS</h2>
+        </div>
+        <button type="button" data-bts8-close aria-label="Close">×</button>
+      </div>
+      <div class="bts8-drawer__items" data-bts8-drawer-items></div>
+      <p class="bts8-drawer__note" data-i18n="drawerNote">Final pricing and checkout will activate when the launch product records are approved.</p>
+      <button type="button" class="bts8-drawer__checkout" disabled data-i18n="checkoutDisabled">Add routine to bag</button>
+    </aside>
+  </div>
+
+  <div class="bts8-sheet" data-bts8-sheet hidden>
+    <button class="bts8-drawer__scrim" type="button" data-bts8-sheet-close aria-label="Close"></button>
+    <aside class="bts8-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="BTS8SheetTitle">
+      <div class="bts8-drawer__head">
+        <div>
+          <p class="bts8-kicker" data-bts8-sheet-step>01 · CLEANSE</p>
+          <h2 id="BTS8SheetTitle" data-bts8-sheet-title>Daily Reset Cleanser</h2>
+        </div>
+        <button type="button" data-bts8-sheet-close aria-label="Close">×</button>
+      </div>
+      <div class="bts8-sheet__visual"><img data-bts8-sheet-image src="{{ reset_url }}" alt=""></div>
+      <p class="bts8-sheet__copy" data-bts8-sheet-copy></p>
+      <div class="bts8-sheet__inci">
+        <button type="button" data-bts8-inci-toggle aria-expanded="false"><span data-i18n="fullInci">Full ingredient list</span><span>+</span></button>
+        <p data-bts8-inci hidden></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{{ 'bts-home-v8.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bts-home-v8.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTS Home v8 Prototype",
+  "settings": [],
+  "presets": [{"name":"BTS Home v8 Prototype"}]
+}
+{% endschema %}
