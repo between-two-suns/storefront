@@ -42,12 +42,12 @@
       skip: 'Skip to content', navRoutine: 'Routine', navTexture: 'Textures', navWhy: 'Formulas', bag: 'Bag',
       tapHint: 'Tap the pack to swatch', add: 'Add to bag', added: 'Added', heroRoutine: 'Or the full routine',
       step: 'Step', role_reset: 'Cleanse', role_clarity: 'Treat', role_barrier: 'Moisturise', role_defense: 'Protect',
-      line_reset: 'Removes oil. Keeps skin hydrated. Feels fresh.',
-      line_clarity: 'Controls oil. Evens skin tone. Hydrates.',
-      line_barrier: 'Strengthens the skin barrier. Controls oil. Lightweight.',
-      line_defense: 'SPF 50 that feels invisible. Lightweight, fast-absorbing.',
+      line_reset: 'Gel cleanser that removes excess oil without leaving skin tight.',
+      line_clarity: 'Light serum for uneven-looking tone and dark spots, with hydration built in.',
+      line_barrier: 'Lightweight barrier cream with Ceramides, Niacinamide and Zinc PCA.',
+      line_defense: 'Broad-spectrum SPF 50. Lightweight, fast-absorbing, no white cast.',
       tex_reset: 'Clear gel', tex_clarity: 'Fluid serum', tex_barrier: 'Soft cream', tex_defense: 'Light SPF',
-      routineEyebrow: 'The full routine · 4 steps', routineTitle: 'Four steps. One easy habit.',
+      routineEyebrow: 'AM · 4 steps / PM · 3 steps', routineTitle: 'The full routine.',
       am: 'Morning', pm: 'Night', pmSkip: 'Mornings only',
       amNote: 'Morning: all four, in order. Cleanse, treat, moisturise, protect.',
       pmNote: 'Night: three steps. Defense sits this one out.',
@@ -59,7 +59,7 @@
       finish_reset: 'Fresh, not tight', finish_clarity: 'Hydrated', finish_barrier: 'Light, never heavy', finish_defense: 'No white cast',
       finishLink: 'Meet Defense SPF 50',
       whyEyebrow: 'Why it works', whyTitle: 'Formulated for skin that gets oily fast.',
-      whyBody: 'Climate-adapted means every formula is built for heat, humidity and long air-conditioned days: oil control and hydration together, in textures light enough to wear daily.',
+      whyBody: 'Oil control, hydration and barrier support together, in textures light enough for daily wear.',
       why_reset: 'Clears excess oil and buildup without stripping — soap-free, non-comedogenic.',
       why_clarity: 'Helps even skin tone and reduce the look of dark spots while keeping oil in check.',
       why_barrier: 'Hydrates without heaviness and supports the skin barrier. Fragrance-free.',
@@ -93,12 +93,12 @@
       skip: 'روحي للمحتوى', navRoutine: 'الروتين', navTexture: 'القوام', navWhy: 'التركيبات', bag: 'الشنطة',
       tapHint: 'دوسي على العبوة وجرّبي القوام', add: 'ضيفيه للشنطة', added: 'اتضاف', heroRoutine: 'أو الروتين كامل',
       step: 'خطوة', role_reset: 'تنضيف', role_clarity: 'علاج', role_barrier: 'ترطيب', role_defense: 'حماية',
-      line_reset: 'بيشيل الزيوت من غير ما ينشّف، وبيسيب بشرتك فريش.',
-      line_clarity: 'بيظبط الزيوت، بيوحّد لون البشرة، وبيرطّب.',
-      line_barrier: 'بيقوّي حاجز البشرة ويظبط الزيوت — وخفيف جدًا.',
-      line_defense: 'حماية SPF 50 مش هتحسي بيها. خفيف وبيتشرب بسرعة.',
+      line_reset: 'جل بينضّف الدهون الزائدة من غير ما يسيب البشرة مشدودة.',
+      line_clarity: 'سيروم خفيف لعدم توحّد مظهر اللون والبقع الداكنة، مع ترطيب جوه التركيبة.',
+      line_barrier: 'كريم خفيف لدعم حاجز البشرة بسيراميدات ونياسيناميد وZinc PCA.',
+      line_defense: 'حماية SPF 50 واسعة الطيف، خفيفة وسريعة الامتصاص ومن غير أثر أبيض.',
       tex_reset: 'جل شفاف', tex_clarity: 'سيروم خفيف', tex_barrier: 'كريم ناعم', tex_defense: 'واقي خفيف',
-      routineEyebrow: 'الروتين الكامل · ٤ خطوات', routineTitle: 'أربع خطوات.\nعادة سهلة كل يوم.',
+      routineEyebrow: 'الصبح · 4 خطوات / بالليل · 3 خطوات', routineTitle: 'الروتين كامل.',
       am: 'الصبح', pm: 'بالليل', pmSkip: 'للصبح بس',
       amNote: 'الصبح: الأربعة بالترتيب — تنضيف، علاج، ترطيب، حماية.',
       pmNote: 'بالليل: تلات خطوات بس، ومن غير واقي الشمس.',
@@ -110,7 +110,7 @@
       finish_reset: 'فريش من غير شد', finish_clarity: 'مترطبة', finish_barrier: 'خفيف مش تقيل', finish_defense: 'من غير أثر أبيض',
       finishLink: 'اتعرفي على Defense SPF 50',
       whyEyebrow: 'بيشتغل إزاي', whyTitle: 'متركّب لبشرة\nبتلمع بسرعة.',
-      whyBody: 'يعني إيه Climate-adapted؟ يعني كل تركيبة معمولة للحر والرطوبة والتكييف طول اليوم: تظبيط للزيوت وترطيب مع بعض، في قوام خفيف يتحط كل يوم.',
+      whyBody: 'توازن للدهون وترطيب ودعم لحاجز البشرة مع بعض، في قوام خفيف للاستخدام اليومي.',
       why_reset: 'بيشيل الزيوت الزيادة والتراكمات من غير ما ينشّف — من غير صابون ومش بيسد المسام.',
       why_clarity: 'بيساعد يوحّد لون البشرة ويخفف شكل البقع الغامقة، وفي نفس الوقت يظبط الزيوت.',
       why_barrier: 'بيرطّب من غير تقل وبيدعم حاجز البشرة. من غير عطر.',
@@ -165,7 +165,10 @@
       if (typeof v !== 'string') return;
       if (v.includes('\n')) { el.innerHTML = v.split('\n').map(esc).join('<br>'); } else { el.textContent = v; }
     });
-    $$('[data-b11-lang]').forEach(b => b.setAttribute('aria-label', t('langLabel')));
+    $$('[data-b11-lang]').forEach(b => { b.setAttribute('aria-label', t('langLabel')); b.textContent = lang === 'ar' ? 'EN' : 'عربي'; });
+    const timeSmalls = $$('[data-b11-time] small');
+    if (timeSmalls[0]) timeSmalls[0].textContent = lang === 'ar' ? 'صباحًا · 4' : 'AM · 4';
+    if (timeSmalls[1]) timeSmalls[1].textContent = lang === 'ar' ? 'مساءً · 3' : 'PM · 3';
     $$('[data-b11-actives]').forEach(el => { el.textContent = P[el.dataset.b11Actives].actives; });
     renderPrices();
     setActive(active, true);

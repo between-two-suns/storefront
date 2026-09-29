@@ -405,3 +405,59 @@ html.b11-lock, html.b11-lock body { overflow: hidden; }
   .b11 *, .b11 *::before, .b11 *::after { transition-duration: .01ms !important; animation: none !important; scroll-behavior: auto !important; }
   .b11-slide__pack { transform: none !important; }
 }
+
+/* v11.1 founder-ready gate: never show unfinished media/policy prototypes */
+.b11-texture,
+.b11-finish,
+.b11-reviews,
+.b11-community,
+.b11-trust,
+.b11-capture{display:none!important}
+.b11-hint{display:none!important}
+
+/* protect critical commerce controls from theme-level button rules */
+.b11 .b11-btn--primary{
+  background:var(--ink)!important;
+  color:var(--paper)!important;
+  border:1px solid var(--ink)!important;
+}
+.b11 .b11-btn--primary *{color:inherit!important}
+.b11-hero__buy .b11-btn--primary{width:100%;min-height:58px}
+
+/* make product navigation feel like a product system, not wireframe tabs */
+.b11-hero__index{border-top:0;gap:8px}
+.b11-hero__index button{position:relative;border-top:0;margin-top:0;padding-top:14px;opacity:.48}
+.b11-hero__index button::before{content:"";position:absolute;inset-inline:0;top:0;height:4px;border-radius:999px;background:var(--muted);opacity:.28}
+.b11-hero__index button:nth-child(1)::before{background:var(--mint);opacity:1}
+.b11-hero__index button:nth-child(2)::before{background:var(--blue);opacity:1}
+.b11-hero__index button:nth-child(3)::before{background:var(--lilac);opacity:1}
+.b11-hero__index button:nth-child(4)::before{background:var(--peach);opacity:1}
+.b11-hero__index button[aria-selected="true"]{opacity:1}
+.b11-hero__index button[aria-selected="true"]::before{height:7px}
+
+/* routine: tighten the conversion moment */
+.b11-routine{padding-top:48px;gap:18px}
+.b11-routine__note{min-height:0;margin-top:-2px}
+.b11-offer{gap:10px;padding-top:14px}
+.b11-offer .b11-btn{margin-top:2px}
+.b11-routine__head .b11-h2{max-width:9ch}
+
+@media(max-width:1023px){
+  .b11-rail{height:max(285px,calc(100svh - 56px - 320px))}
+  .b11-hero__copy{min-height:126px}
+  .b11-hero__name{font-size:43px}
+  .b11-step__surface{aspect-ratio:3/4.15}
+  .b11-routine{padding-bottom:56px}
+}
+
+@media(min-width:1024px){
+  .b11-hero{grid-template-columns:1fr 1fr}
+  .b11-hero__word{width:57vw;inset-inline-start:30%;top:72px}
+  .b11-slide{place-items:end 58%}
+  .b11-slide__pack{height:min(54vh,500px)}
+  .b11-hero__panel{align-content:center;padding:64px 5vw 64px 3vw;max-width:620px}
+  .b11-hero__copy{min-height:0}
+  .b11-routine{grid-template-columns:1fr 1.15fr;column-gap:5vw;padding-block:92px}
+  .b11-steps{grid-row:1/span 4}
+  .b11-offer{align-self:start}
+}

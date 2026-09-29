@@ -24,7 +24,6 @@
     <a href="#b11-main" class="b11-nav__logo" aria-label="Between Two Suns"><img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="22" height="24"></a>
     <nav class="b11-nav__links" aria-label="Primary">
       <a href="#b11-routine" data-t="navRoutine">Routine</a>
-      <a href="#b11-texture" data-t="navTexture">Textures</a>
       <a href="#b11-why" data-t="navWhy">Formulas</a>
     </nav>
     <div class="b11-nav__tools">
@@ -45,7 +44,7 @@
         {%- for key in keys -%}
           <figure class="b11-slide" data-key="{{ key }}" data-texture-src="" aria-roledescription="slide" aria-label="{{ forloop.index }} / 4 · {{ names[forloop.index0] }}">
             {%- comment -%} PENDING H1-{{ key }}: 4:5 / 9:16 hero pack-on-surface. PENDING T1-{{ key }}: texture loop for Drag-to-Swatch (set data-texture-src). {%- endcomment -%}
-            <button type="button" class="b11-slide__pack" data-b11-swatch="{{ key }}" aria-label="{{ names[forloop.index0] }} — texture">
+            <button type="button" class="b11-slide__pack" data-b11-sheet="{{ key }}" aria-label="{{ names[forloop.index0] }} — details">
               <img src="{{ 'bts-' | append: key | append: '-clean-v11.webp' | asset_url }}" alt="{{ names[forloop.index0] }}" width="1024" height="1536" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} draggable="false">
               <span class="b11-slide__shadow" aria-hidden="true"></span>
             </button>
@@ -61,7 +60,7 @@
           {%- endfor -%}
         </div>
         <div class="b11-hero__copy" aria-live="polite">
-          <p class="b11-eyebrow"><span data-b11-h="role">Step 01 · Cleanse</span> <span class="b11-hint" data-t="tapHint">Tap the pack to swatch</span></p>
+          <p class="b11-eyebrow"><span data-b11-h="role">Step 01 · Cleanse</span> </p>
           <h1 class="b11-hero__name" data-b11-h="name">Daily Reset Cleanser</h1>
           <p class="b11-hero__line" data-b11-h="line">Removes oil. Keeps skin hydrated. Feels fresh.</p>
         </div>
