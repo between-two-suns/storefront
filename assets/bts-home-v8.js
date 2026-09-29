@@ -130,116 +130,146 @@
     }
   };
 
+  // Scenario B WORKING PROTOTYPE prices (EGP). Not locked. No checkout.
+  const PRICES = { reset:399, clarity:499, barrier:449, defense:499 };
+  const WORDS = { reset:'RESET', clarity:'CLARITY', barrier:'BARRIER', defense:'DEFENSE' };
+  const ORDER = ['reset','clarity','barrier','defense'];
+  const ROUTINE = { list:1846, price:1661, save:185, pct:10 };
+  const egp = n => 'EGP ' + n.toLocaleString('en-US');
+  const tok = n => '<bdi dir="ltr">' + egp(n) + '</bdi>';
+
   const COPY = {
     en: {
-      navProducts:'Products', navRoutine:'Routine', bag:'Bag', positioning:'Climate-adapted skincare',
-      heroTitle:'fresh skin. always.', heroBody:'Four essentials. One clear routine.',
-      shopRoutine:'Shop the routine', shopProducts:'Shop individually',
-      meetKicker:'THE FOUR', meetTitle:'Everything you need. Nothing extra.',
+      navProducts:'Products', navRoutine:'Routine', bag:'Bag',
+      heroIndex:'Cleanser · Serum · Cream · SPF 50',
+      heroTitle:'fresh skin. always.',
+      heroBody:'Four light-textured essentials that do their job and disappear into your day.',
+      fullRoutine4:'Full routine · 4 products', save:'Save', shopSingle:'Shop individually · from',
+      meetKicker:'The four', meetTitle:'Everything you need. Nothing extra.',
       whyTitle:'Why it works', whySub:'The formula, in plain language.',
-      inRoutine:'In routine', addRoutine:'Add to routine', details:'Full details',
-      routineKicker:'YOUR ROUTINE', routineTitle:'Simple enough to keep doing.',
-      routineBody:'Four steps in the morning. Three at night.', am:'AM', pm:'PM',
-      cleanse:'CLEANSE', treat:'TREAT', hydrate:'HYDRATE', protect:'PROTECT',
-      fullRoutine:'THE FULL ROUTINE', reviewRoutine:'Review routine',
-      climateKicker:'CLIMATE-ADAPTED, WITHOUT THE COMPLICATED ROUTINE',
-      climateTitle:'Made for real days.',
-      climateBody:'Heat outside. Air-conditioning inside. Oil, humidity, sun and the rest of the day. The formulas are designed to stay easy to use through changing conditions.',
-      endLine:'fresh skin. always.', stickyRoutine:'Full routine · 4 steps',
-      drawerKicker:'YOUR ROUTINE',
-      drawerNote:'Final pricing and checkout will activate when the launch product records are approved.',
-      checkoutDisabled:'Add routine to bag', fullInci:'Full ingredient list'
+      addTo:'Add to routine', inRoutine:'In routine', details:'Full details',
+      routineKicker:'Your routine', routineTitle:'Four in the morning. Three at night.',
+      am:'AM', pm:'PM', amSteps:'steps', pmSteps:'steps',
+      cleanse:'Cleanse', treat:'Treat', hydrate:'Hydrate', protect:'Protect', morningOnly:'Morning only',
+      amCopy:'Cleanse. Treat. Hydrate. Protect.', pmCopy:'Cleanse. Treat. Hydrate. SPF stays for the morning.',
+      fullRoutine:'Full routine',
+      logicKicker:'Climate-adapted, underneath', logicTitle:'Light on skin. Serious in the formula.',
+      logic1t:'Cleansing without stripping', logic1b:'Soap-free gel with Zinc PCA and Centella. Skin feels clean and comfortable, not tight.',
+      logic2t:'Barrier support without heaviness', logic2b:'Ceramides, Niacinamide and Squalane in a cream that hydrates without a heavy feel.',
+      logic3t:'SPF 50 with no white cast', logic3b:'Broad-spectrum UVA/UVB protection in a lightweight, fast-absorbing, non-greasy finish.',
+      endLine:'fresh skin. always.',
+      drawerKicker:'Your routine', products:n => n+(n===1?' product':' products'),
+      empty:'Nothing selected yet. Pick a product or take the full routine.',
+      remove:'Remove', listValue:'List value', subtotal:'Subtotal', routinePrice:'Full routine price',
+      youSave:'You save', complete:'Complete the routine', completeHint:n => 'Add the other '+n+' to get the full routine price.',
+      checkoutDisabled:'Checkout opens at launch',
+      drawerNote:'Prototype preview. Prices shown are working launch prices and may change. Checkout is not active yet.',
+      fullInci:'Full ingredient list'
     },
     ar: {
-      navProducts:'المنتجات', navRoutine:'الروتين', bag:'الشنطة', positioning:'عناية بالبشرة متكيفة مع المناخ',
-      heroTitle:'بشرة منتعشة. دايمًا.', heroBody:'٤ أساسيات. روتين واضح وبسيط.',
-      shopRoutine:'اشتري الروتين كامل', shopProducts:'شوف المنتجات',
-      meetKicker:'الأربع خطوات', meetTitle:'كل اللي محتاجاه. من غير تعقيد.',
+      navProducts:'المنتجات', navRoutine:'الروتين', bag:'الشنطة',
+      heroIndex:'غسول · سيروم · كريم · SPF 50',
+      heroTitle:'بشرة منتعشة. دايمًا.',
+      heroBody:'4 أساسيات بقوام خفيف، بتعمل شغلها وتختفي في يومك.',
+      fullRoutine4:'الروتين كامل · 4 منتجات', save:'وفّري', shopSingle:'اشتري كل منتج لوحده · من',
+      meetKicker:'الأربعة', meetTitle:'كل اللي محتاجاه. ولا حاجة زيادة.',
       whyTitle:'ليه التركيبة دي؟', whySub:'المكونات، بطريقة بسيطة وواضحة.',
-      inRoutine:'في الروتين', addRoutine:'ضيفيه للروتين', details:'كل التفاصيل',
-      routineKicker:'روتينك', routineTitle:'روتين بسيط تقدري تكمّلي عليه.',
-      routineBody:'٤ خطوات الصبح. ٣ بالليل.', am:'الصبح', pm:'بالليل',
-      cleanse:'تنظيف', treat:'عناية', hydrate:'ترطيب', protect:'حماية',
-      fullRoutine:'الروتين الكامل', reviewRoutine:'راجعي الروتين',
-      climateKicker:'عناية متكيفة مع المناخ، من غير روتين معقد',
-      climateTitle:'معمولة لليوم الحقيقي.',
-      climateBody:'حر بره. تكييف جوه. دهون، رطوبة، شمس وباقي تفاصيل اليوم. التركيبات معمولة عشان تفضل سهلة ومريحة مع تغيّر الظروف.',
-      endLine:'بشرة منتعشة. دايمًا.', stickyRoutine:'الروتين كامل · ٤ خطوات',
-      drawerKicker:'روتينك',
-      drawerNote:'الأسعار النهائية والدفع هيتفعّلوا بعد اعتماد بيانات المنتجات الخاصة بالإطلاق.',
-      checkoutDisabled:'ضيفي الروتين للشنطة', fullInci:'قائمة المكونات كاملة'
+      addTo:'ضيفيه للروتين', inRoutine:'في الروتين', details:'كل التفاصيل',
+      routineKicker:'روتينك', routineTitle:'4 خطوات الصبح. 3 بالليل.',
+      am:'الصبح', pm:'بالليل', amSteps:'خطوات', pmSteps:'خطوات',
+      cleanse:'تنظيف', treat:'عناية', hydrate:'ترطيب', protect:'حماية', morningOnly:'الصبح بس',
+      amCopy:'تنظيف. عناية. ترطيب. حماية.', pmCopy:'تنظيف. عناية. ترطيب. واقي الشمس للصبح بس.',
+      fullRoutine:'الروتين كامل',
+      logicKicker:'متكيفة مع المناخ، من جوه التركيبة', logicTitle:'خفيفة على البشرة. جادة في التركيبة.',
+      logic1t:'تنظيف من غير ما يجرّد البشرة', logic1b:'جل خالٍ من الصابون بـ Zinc PCA والسنتيلا. البشرة تحس إنها نضيفة ومرتاحة، مش مشدودة.',
+      logic2t:'دعم لحاجز البشرة من غير ثقل', logic2b:'سيراميدات ونياسيناميد وسكوالين في كريم بيرطب من غير إحساس تقيل.',
+      logic3t:'SPF 50 من غير أثر أبيض', logic3b:'حماية واسعة الطيف UVA/UVB بتركيبة خفيفة وسريعة الامتصاص وغير دهنية.',
+      endLine:'بشرة منتعشة. دايمًا.',
+      drawerKicker:'روتينك', products:n => n+(n===1?' منتج':' منتجات'),
+      empty:'لسه ما اخترتيش حاجة. اختاري منتج أو خدي الروتين كامل.',
+      remove:'شيلي', listValue:'السعر الأصلي', subtotal:'الإجمالي', routinePrice:'سعر الروتين كامل',
+      youSave:'هتوفّري', complete:'كمّلي الروتين', completeHint:n => 'ضيفي الـ '+n+' الباقيين وخدي سعر الروتين كامل.',
+      checkoutDisabled:'الدفع هيفتح مع الإطلاق',
+      drawerNote:'نسخة تجريبية. الأسعار المعروضة أسعار إطلاق مبدئية وممكن تتغير. الدفع مش متفعّل لسه.',
+      fullInci:'قائمة المكونات كاملة'
     }
   };
 
-  const selected = new Set(['reset','clarity','barrier','defense']);
+  const selected = new Set();
   let language = 'en';
   let activeProduct = 'reset';
   let routineTime = 'am';
 
   const $ = (s, scope=root) => scope.querySelector(s);
   const $$ = (s, scope=root) => [...scope.querySelectorAll(s)];
+  const t = k => COPY[language][k];
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function renderI18n() {
     $$('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (COPY[language][key] != null) el.textContent = COPY[language][key];
+      const v = t(el.dataset.i18n);
+      if (typeof v === 'string') el.textContent = v;
     });
+    $$('.bts8-arrow').forEach(a => { a.textContent = language === 'ar' ? '←' : '→'; });
   }
 
   function renderProduct() {
     const p = PRODUCTS[activeProduct];
-    $('[data-bts8-stage]').dataset.selected = activeProduct;
+    const stage = $('[data-bts8-stage]');
+    stage.dataset.selected = activeProduct;
+    const idx = ORDER.indexOf(activeProduct);
+    stage.style.setProperty('--cols', ORDER.map((k,i) => i === idx ? '2.3fr' : '1fr').join(' '));
     $$('[data-bts8-select]').forEach(btn => {
       const on = btn.dataset.bts8Select === activeProduct;
       btn.classList.toggle('is-selected', on);
+      btn.classList.toggle('is-added', selected.has(btn.dataset.bts8Select));
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     $('[data-bts8-step]').textContent = p.step[language];
     $('[data-bts8-name]').textContent = p.name;
     $('[data-bts8-size]').textContent = p.size;
+    $('[data-bts8-price]').textContent = egp(PRICES[activeProduct]);
     $('[data-bts8-benefit]').textContent = p.benefit[language];
     $('[data-bts8-claims]').innerHTML = p.claims[language].map(x => '<span>'+x+'</span>').join('');
     $('[data-bts8-formula]').innerHTML = p.formula[language].map(row =>
-      '<div class="bts8-formulaitem"><strong>'+row[0]+'</strong><p>'+row[1]+'</p></div>'
+      '<div class="bts8-formulaitem"><strong dir="ltr">'+row[0]+'</strong><p>'+row[1]+'</p></div>'
     ).join('');
     const toggle = $('[data-bts8-toggle-selected]');
+    const inR = selected.has(activeProduct);
     toggle.dataset.bts8ToggleSelected = activeProduct;
-    toggle.setAttribute('aria-pressed', selected.has(activeProduct) ? 'true' : 'false');
-    toggle.innerHTML = selected.has(activeProduct)
-      ? '<span>'+COPY[language].inRoutine+'</span><span aria-hidden="true">✓</span>'
-      : '<span>'+COPY[language].addRoutine+'</span><span aria-hidden="true">+</span>';
+    toggle.setAttribute('aria-pressed', inR ? 'true' : 'false');
+    toggle.classList.toggle('is-added', inR);
+    toggle.innerHTML = inR
+      ? '<span class="bts8-btn__label">'+t('inRoutine')+' ✓</span>'
+      : '<span class="bts8-btn__label">'+t('addTo')+' — '+tok(PRICES[activeProduct])+'</span>';
   }
 
   function renderRoutine() {
     const routine = $('[data-bts8-routine]');
     routine.dataset.time = routineTime;
     $$('[data-bts8-time]').forEach(btn => btn.setAttribute('aria-pressed', btn.dataset.bts8Time === routineTime ? 'true' : 'false'));
-    $('[data-bts8-routine-label]').textContent = routineTime === 'am'
-      ? (language === 'en' ? 'AM · 4 STEPS' : 'الصبح · ٤ خطوات')
-      : (language === 'en' ? 'PM · 3 STEPS' : 'بالليل · ٣ خطوات');
-    $('[data-bts8-routine-copy]').textContent = routineTime === 'am'
-      ? (language === 'en' ? 'Cleanse. Treat. Hydrate. Protect.' : 'تنظيف. عناية. ترطيب. حماية.')
-      : (language === 'en' ? 'Cleanse. Treat. Hydrate.' : 'تنظيف. عناية. ترطيب.');
-  }
-
-  function visibleRoutineKeys() {
-    const base = routineTime === 'pm' ? ['reset','clarity','barrier'] : ['reset','clarity','barrier','defense'];
-    return base.filter(k => selected.has(k));
+    $('[data-bts8-routine-copy]').textContent = routineTime === 'am' ? t('amCopy') : t('pmCopy');
+    const def = $('[data-routine-pack="defense"]');
+    def.setAttribute('aria-disabled', routineTime === 'pm' ? 'true' : 'false');
   }
 
   function renderCount() {
     $('[data-bts8-count]').textContent = String(selected.size);
+    $$('[data-bts8-select]').forEach(btn => btn.classList.toggle('is-added', selected.has(btn.dataset.bts8Select)));
+  }
+
+  function renderAll() {
+    renderI18n(); renderProduct(); renderRoutine(); renderCount();
+    if (!drawer.hidden) buildDrawer();
   }
 
   function setLanguage(next) {
     language = next;
     root.dataset.lang = language;
     root.dir = language === 'ar' ? 'rtl' : 'ltr';
+    root.lang = language;
     $('[data-bts8-lang]').textContent = language === 'ar' ? 'EN' : 'AR';
-    renderI18n();
-    renderProduct();
-    renderRoutine();
-    renderCount();
+    renderAll();
   }
 
   $$('[data-bts8-select]').forEach(btn => btn.addEventListener('click', () => {
@@ -247,43 +277,16 @@
     renderProduct();
   }));
 
-  $$('[data-bts8-pick]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeProduct = btn.dataset.bts8Pick;
-      $('#products').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
-      setTimeout(renderProduct, 150);
-    });
-    const stop = () => {
-      btn.classList.remove('is-pressing');
-      btn.style.removeProperty('--pick-x');
-      btn.style.removeProperty('--pick-y');
-      btn.style.removeProperty('--pick-r');
-    };
-    btn.addEventListener('pointerdown', e => {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      btn.setPointerCapture?.(e.pointerId);
-      btn.dataset.startX = e.clientX;
-      btn.dataset.startY = e.clientY;
-      btn.classList.add('is-pressing');
-    });
-    btn.addEventListener('pointermove', e => {
-      if (!btn.classList.contains('is-pressing')) return;
-      const dx = Math.max(-10, Math.min(10, e.clientX - Number(btn.dataset.startX || e.clientX)));
-      const dy = Math.max(-5, Math.min(5, e.clientY - Number(btn.dataset.startY || e.clientY)));
-      btn.style.setProperty('--pick-x', dx+'px');
-      btn.style.setProperty('--pick-y', dy+'px');
-      btn.style.setProperty('--pick-r', (dx*.08)+'deg');
-    });
-    btn.addEventListener('pointerup', stop);
-    btn.addEventListener('pointercancel', stop);
-    btn.addEventListener('lostpointercapture', stop);
-  });
+  $$('[data-bts8-pick]').forEach(btn => btn.addEventListener('click', () => {
+    activeProduct = btn.dataset.bts8Pick;
+    renderProduct();
+    $('#products').scrollIntoView({behavior: reduced() ? 'auto' : 'smooth'});
+  }));
 
   $('[data-bts8-toggle-selected]').addEventListener('click', e => {
     const key = e.currentTarget.dataset.bts8ToggleSelected;
-    if (selected.has(key)) selected.delete(key); else selected.add(key);
-    renderProduct();
-    renderCount();
+    if (selected.has(key)) { selected.delete(key); renderProduct(); renderCount(); }
+    else { selected.add(key); renderProduct(); renderCount(); openDrawer(e.currentTarget); }
   });
 
   $$('[data-bts8-time]').forEach(btn => btn.addEventListener('click', () => {
@@ -293,19 +296,36 @@
 
   $('[data-bts8-lang]').addEventListener('click', () => setLanguage(language === 'en' ? 'ar' : 'en'));
 
+  /* Drawer */
   const drawer = $('[data-bts8-drawer]');
   let previousFocus = null;
 
   function buildDrawer() {
-    const keys = visibleRoutineKeys();
-    $('[data-bts8-drawer-title]').textContent = routineTime === 'am'
-      ? (language === 'en' ? 'AM · '+keys.length+' STEPS' : 'الصبح · '+toArabicNumeral(keys.length)+' خطوات')
-      : (language === 'en' ? 'PM · '+keys.length+' STEPS' : 'بالليل · '+toArabicNumeral(keys.length)+' خطوات');
-    $('[data-bts8-drawer-items]').innerHTML = keys.map((key,i) => {
-      const p=PRODUCTS[key];
-      const step = language === 'ar' ? toArabicNumeral(i+1) : String(i+1).padStart(2,'0');
-      return '<div class="bts8-draweritem"><img src="'+p.image+'" alt=""><div><strong>'+step+' · '+p.name+'</strong><span>'+p.size+'</span></div><b>'+ (language === 'en' ? 'SELECTED' : 'مُختار') +'</b></div>';
-    }).join('');
+    const keys = ORDER.filter(k => selected.has(k));
+    $('[data-bts8-drawer-title]').textContent = t('products')(keys.length);
+    const items = $('[data-bts8-drawer-items]');
+    items.innerHTML = keys.length ? keys.map(key => {
+      const p = PRODUCTS[key];
+      return '<div class="bts8-draweritem bts8-draweritem--'+key+'"><span class="bts8-draweritem__img"><img src="'+p.image+'" alt=""></span>'+
+        '<div><strong dir="ltr">'+p.name+'</strong><span dir="ltr">'+p.size+'</span></div>'+
+        '<div class="bts8-draweritem__end"><b>'+tok(PRICES[key])+'</b><button type="button" data-bts8-remove="'+key+'">'+t('remove')+'</button></div></div>';
+    }).join('') : '<p class="bts8-drawer__empty">'+t('empty')+'</p>';
+
+    const list = keys.reduce((s,k) => s + PRICES[k], 0);
+    const totals = $('[data-bts8-drawer-totals]');
+    if (keys.length === 4) {
+      totals.innerHTML =
+        '<div class="bts8-total"><span>'+t('listValue')+'</span><s>'+tok(ROUTINE.list)+'</s></div>'+
+        '<div class="bts8-total bts8-total--save"><span>'+t('youSave')+'</span><b>'+tok(ROUTINE.save)+' · <bdi dir="ltr">'+ROUTINE.pct+'%</bdi></b></div>'+
+        '<div class="bts8-total bts8-total--big"><span>'+t('routinePrice')+'</span><b>'+tok(ROUTINE.price)+'</b></div>';
+    } else {
+      const missing = 4 - keys.length;
+      totals.innerHTML =
+        (keys.length ? '<div class="bts8-total bts8-total--big"><span>'+t('subtotal')+'</span><b>'+tok(list)+'</b></div>' : '')+
+        '<button type="button" class="bts8-drawer__complete" data-bts8-complete><span class="bts8-btn__label">'+
+          (keys.length ? t('complete') : t('fullRoutine'))+' · '+tok(ROUTINE.price)+' · '+t('save')+' '+tok(ROUTINE.save)+'</span></button>'+
+        (keys.length ? '<p class="bts8-drawer__hint">'+t('completeHint')(missing)+'</p>' : '');
+    }
   }
 
   function openDrawer(trigger) {
@@ -313,79 +333,118 @@
     buildDrawer();
     drawer.hidden = false;
     document.documentElement.style.overflow = 'hidden';
-    $('[data-bts8-sticky]').classList.remove('is-visible');
-    $('[data-bts8-close]',drawer)?.focus();
+    updateSticky();
+    $('.bts8-drawer__head [data-bts8-close]', drawer)?.focus();
   }
 
   function closeDrawer() {
     drawer.hidden = true;
     document.documentElement.style.overflow = '';
-    previousFocus?.focus?.();
+    previousFocus?.focus?.({preventScroll:true});
     previousFocus = null;
     updateSticky();
   }
 
-  $$('[data-bts8-open-routine]').forEach(btn => btn.addEventListener('click', () => openDrawer(btn)));
-  $$('[data-bts8-close]').forEach(btn => btn.addEventListener('click', closeDrawer));
+  function buyRoutine(trigger) {
+    ORDER.forEach(k => selected.add(k));
+    renderProduct(); renderCount();
+    openDrawer(trigger);
+  }
 
+  $$('[data-bts8-buy-routine]').forEach(btn => btn.addEventListener('click', () => buyRoutine(btn)));
+  $$('[data-bts8-open-drawer]').forEach(btn => btn.addEventListener('click', () => openDrawer(btn)));
+  $$('[data-bts8-close]').forEach(btn => btn.addEventListener('click', closeDrawer));
+  drawer.addEventListener('click', e => {
+    const rm = e.target.closest('[data-bts8-remove]');
+    if (rm) {
+      selected.delete(rm.dataset.bts8Remove);
+      renderProduct(); renderCount(); buildDrawer();
+      $('.bts8-drawer__head [data-bts8-close]', drawer)?.focus();
+      return;
+    }
+    if (e.target.closest('[data-bts8-complete]')) {
+      ORDER.forEach(k => selected.add(k));
+      renderProduct(); renderCount(); buildDrawer();
+      $('.bts8-drawer__head [data-bts8-close]', drawer)?.focus();
+    }
+  });
+
+  /* Detail sheet */
   const sheet = $('[data-bts8-sheet]');
   let sheetPrevious = null;
   function openSheet() {
-    const p=PRODUCTS[activeProduct];
+    const p = PRODUCTS[activeProduct];
     sheetPrevious = document.activeElement;
     $('[data-bts8-sheet-step]').textContent = p.step[language];
     $('[data-bts8-sheet-title]').textContent = p.name;
-    const img=$('[data-bts8-sheet-image]'); img.src=p.image; img.alt=p.name;
+    $('[data-bts8-sheet-visual]').dataset.key = activeProduct;
+    const img = $('[data-bts8-sheet-image]'); img.src = p.image; img.alt = p.name;
     $('[data-bts8-sheet-copy]').textContent = p.detail[language];
     $('[data-bts8-inci]').textContent = p.inci;
     $('[data-bts8-inci]').hidden = true;
     $('[data-bts8-inci-toggle]').setAttribute('aria-expanded','false');
     $('[data-bts8-inci-toggle]').lastElementChild.textContent = '+';
-    sheet.hidden=false;
-    document.documentElement.style.overflow='hidden';
-    $('[data-bts8-sheet-close]',sheet)?.focus();
+    sheet.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    updateSticky();
+    $('.bts8-drawer__head [data-bts8-sheet-close]', sheet)?.focus();
   }
   function closeSheet() {
-    sheet.hidden=true;
-    document.documentElement.style.overflow='';
-    sheetPrevious?.focus?.(); sheetPrevious=null;
+    sheet.hidden = true;
+    document.documentElement.style.overflow = '';
+    sheetPrevious?.focus?.({preventScroll:true}); sheetPrevious = null;
+    updateSticky();
   }
-  $('[data-bts8-detail]').addEventListener('click',openSheet);
-  $$('[data-bts8-sheet-close]').forEach(btn=>btn.addEventListener('click',closeSheet));
-  $('[data-bts8-inci-toggle]').addEventListener('click',e=>{
-    const content=$('[data-bts8-inci]');
-    content.hidden=!content.hidden;
-    e.currentTarget.setAttribute('aria-expanded',content.hidden?'false':'true');
-    e.currentTarget.lastElementChild.textContent=content.hidden?'+':'−';
+  $('[data-bts8-detail]').addEventListener('click', openSheet);
+  $$('[data-bts8-sheet-close]').forEach(btn => btn.addEventListener('click', closeSheet));
+  $('[data-bts8-inci-toggle]').addEventListener('click', e => {
+    const content = $('[data-bts8-inci]');
+    content.hidden = !content.hidden;
+    e.currentTarget.setAttribute('aria-expanded', content.hidden ? 'false' : 'true');
+    e.currentTarget.lastElementChild.textContent = content.hidden ? '+' : '−';
   });
 
-  function trap(container,e,closeFn){
-    if(e.key==='Escape'){closeFn();return;}
-    if(e.key!=='Tab')return;
-    const els=$$('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',container).filter(x=>x.offsetParent!==null);
-    if(!els.length)return;
-    const first=els[0],last=els[els.length-1];
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  function trap(container, e, closeFn) {
+    if (e.key === 'Escape') { closeFn(); return; }
+    if (e.key !== 'Tab') return;
+    const els = $$('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])', container).filter(x => x.offsetParent !== null);
+    if (!els.length) return;
+    const first = els[0], last = els[els.length-1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
-  document.addEventListener('keydown',e=>{
-    if(!drawer.hidden){trap(drawer,e,closeDrawer);return;}
-    if(!sheet.hidden){trap(sheet,e,closeSheet);}
+  document.addEventListener('keydown', e => {
+    if (!drawer.hidden) { trap(drawer, e, closeDrawer); return; }
+    if (!sheet.hidden) trap(sheet, e, closeSheet);
   });
 
-  function toArabicNumeral(n){
-    return String(n).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+  /* Sticky: one CTA, only when no in-flow routine CTA is on screen and never over the end/footer */
+  const sticky = $('[data-bts8-sticky]');
+  const hero = $('[data-bts8-hero]');
+  const end = $('.bts8-end');
+  const inflow = new Set();
+  let endVisible = false;
+  function updateSticky() {
+    const past = hero.getBoundingClientRect().bottom < 80;
+    const show = past && !inflow.size && !endVisible && drawer.hidden && sheet.hidden;
+    sticky.classList.toggle('is-visible', show);
+    sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
+    sticky.querySelector('button').tabIndex = show ? 0 : -1;
+    root.classList.toggle('has-sticky', show);
   }
-
-  const sticky=$('[data-bts8-sticky]');
-  const hero=$('[data-bts8-hero]');
-  function updateSticky(){
-    if(!drawer.hidden||!sheet.hidden){sticky.classList.remove('is-visible');return;}
-    const r=hero.getBoundingClientRect();
-    sticky.classList.toggle('is-visible',r.bottom<120);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.target === end) endVisible = en.isIntersecting;
+        else if (en.isIntersecting) inflow.add(en.target); else inflow.delete(en.target);
+      });
+      updateSticky();
+    });
+    $$('[data-bts8-inflow-cta]').forEach(el => io.observe(el));
+    io.observe(end);
   }
-  addEventListener('scroll',updateSticky,{passive:true});
-  addEventListener('resize',updateSticky);
+  addEventListener('scroll', updateSticky, {passive:true});
+  addEventListener('resize', updateSticky);
 
   setLanguage('en');
   updateSticky();
