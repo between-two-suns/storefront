@@ -430,3 +430,57 @@
   .bts8 *{scroll-behavior:auto!important;transition-duration:.001ms!important;animation-duration:.001ms!important;animation-iteration-count:1!important}
   .bts8-pack.is-pressing img{transform:none!important}
 }
+
+
+/* v8.1 — first-viewport compression after live 375px review */
+@media(max-width:899px){
+  .bts8-hero{
+    height:100svh;
+    min-height:760px;
+    max-height:880px;
+    padding-top:76px;
+    padding-bottom:max(18px,env(safe-area-inset-bottom));
+    grid-template-rows:auto auto minmax(215px,1fr) auto auto;
+    gap:7px;
+  }
+  .bts8-hero__brand{
+    width:72%;
+    max-width:278px;
+    margin-inline:auto;
+    padding-top:0;
+  }
+  .bts8-hero__eyebrow{
+    margin:0 auto;
+    padding:0;
+    border:0;
+    border-radius:0;
+    font-size:8px;
+    opacity:.66;
+  }
+  .bts8-family{
+    min-height:226px;
+    max-height:268px;
+    padding:12px 4px 15px;
+  }
+  .bts8-pack{height:215px}
+  .bts8-pack--reset{height:232px}
+  .bts8-pack--clarity{height:184px}
+  .bts8-pack--barrier,.bts8-pack--defense{height:214px}
+  .bts8-pack img{width:122%}
+  .bts8-shelf{bottom:8px}
+  .bts8-hero__copy{
+    margin-top:0;
+    align-items:flex-start;
+  }
+  .bts8-hero__copy h1{
+    max-width:none;
+    font-size:31px;
+    white-space:nowrap;
+  }
+  .bts8-hero__copy p{
+    max-width:18ch;
+    font-size:11px;
+  }
+  .bts8-hero__actions{margin-top:4px}
+  .bts8-hero__actions .bts8-btn{min-height:48px}
+}
