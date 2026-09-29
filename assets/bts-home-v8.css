@@ -484,3 +484,45 @@
   .bts8-hero__actions{margin-top:4px}
   .bts8-hero__actions .bts8-btn{min-height:48px}
 }
+
+
+/* v8.2 — clean first-view and bilingual polish */
+.bts8 .bts8-btn{
+  font-size:10px!important;
+  line-height:1!important;
+}
+.bts8 .bts8-btn>span{
+  font:inherit!important;
+  color:inherit!important;
+  line-height:1!important;
+}
+.bts8 .bts8-btn--primary{
+  background:var(--ink)!important;
+  color:var(--bone)!important;
+}
+.bts8 .bts8-btn--ghost{
+  background:transparent!important;
+  color:var(--ink)!important;
+}
+.bts8[dir="rtl"]{
+  font-family:"IBM Plex Sans Arabic",Arial,sans-serif;
+}
+@media(max-width:899px){
+  .bts8-hero{
+    grid-template-rows:auto auto 262px auto auto;
+    align-content:start;
+  }
+  .bts8-hero__brand{
+    width:58%;
+    max-width:225px;
+  }
+  .bts8-family{
+    min-height:262px;
+    max-height:262px;
+    align-self:auto;
+  }
+  .bts8-pack{height:226px}
+  .bts8-pack--reset{height:244px}
+  .bts8-pack--clarity{height:193px}
+  .bts8-pack--barrier,.bts8-pack--defense{height:224px}
+}
