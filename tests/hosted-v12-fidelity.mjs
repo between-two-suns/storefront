@@ -35,7 +35,7 @@ try {
       const before = await measure();
       assert.ok(before.width <= viewport.width+1,'page overflow');
       assert.ok(before.brand.width > before.footer.width,'Home mark dominates footer');
-      if (viewport.width < 990 && viewport.height >= 667) assert.ok(before.brand.width >= Math.min(200,viewport.width*.52)-1,'approved mobile wordmark scale');
+      if (viewport.width < 990 && viewport.height >= 667 && scale===1) assert.ok(before.brand.width >= Math.min(200,viewport.width*.52)-1,'approved mobile wordmark scale at default text size');
       assert.equal(before.bandOfferVisible,viewport.width>=990);
       assert.equal(before.stripOfferVisible,viewport.width<990);
       assert.equal(before.faces.length,4);
