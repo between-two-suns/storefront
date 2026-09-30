@@ -8,9 +8,6 @@
 .bts-routine-line { padding: 24px var(--gutter); }
 .bts-home__emotional { padding-block: 32px; }
 .bts-home__emotional img { display: block; inline-size: 100%; }
-@media (max-width: 989px) and (max-height: 666px) {
-  .bts-home__brand img { inline-size: min(200px, 52vw, calc(clamp(100px, 100svh - 492px, 173px) * 1.15655)); }
-}
 @media (min-width: 990px) {
   .bts-home__band { display: flex; justify-content: space-between; align-items: end; block-size: clamp(120px, 100svh - 620px, 280px); margin-block-end: clamp(0px, 100svh - 640px, 20px); }
   .bts-home__brand { block-size: 100%; }
@@ -41,7 +38,6 @@
 }
 /* Composition stays identical before and after the H1 source swap. */
 .bts-home__offer { display: block; }
-.bts-home__brand img { inline-size: min(200px, 52vw); }
 .bts-home__band { gap: 1rem; align-items: center; }
 @media (max-width: 989px) {
   .bts-shelf { display: grid; grid-auto-flow: column; grid-auto-columns: min(82vw, 420px); grid-template-rows: auto auto auto; column-gap: 16px; row-gap: 0; }
