@@ -63,7 +63,7 @@
   <h1 id="BtsHomeTitle" class="bts-visually-hidden">BETWEEN TWO SUNS</h1>
   <div class="bts-home__band">
     <div class="bts-home__brand"><img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS"></div>
-    <div class="bts-home__offer">{% if request.locale.iso_code == 'en' %}<p class="bts-home__tagline"><bdi lang="en">fresh skin. always.</bdi></p>{% else %}<img class="bts-home__symbol" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">{% endif %}<div class="bts-home__entry"><a href="#BtsShelf">{{ 'bts.shop' | t }} <span aria-hidden="true">↓</span></a>{% render 'bts-routine-link' %}</div></div>
+    <div class="bts-home__offer">{% if request.locale.iso_code == 'en' %}<p class="bts-home__tagline"><bdi lang="en">fresh skin. always.</bdi></p>{% else %}<img class="bts-home__symbol" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">{% endif %}<div class="bts-home__entry"><a href="#BtsShelf">{{ 'bts.shop' | t }} <span aria-hidden="true">↓</span></a>{% render 'bts-routine-link' %}</div><div class="bts-home__routine">{% render 'bts-routine-offer', uid: 'band', sheet: true %}</div></div>
   </div>
   <ul class="bts-shelf" id="BtsShelf" role="list" aria-label="{{ 'bts.collection' | t }}" data-pack-scale="{% if measured %}measured{% else %}neutral{% endif %}"{% if measured %} style="--pf-max-mm:{{ max_mm }};--pf-max-width-mm:{{ max_width_mm }}"{% elsif preview_scale %} data-composition-scale="physical-preview" style="--pf-max-mm:{{ preview_max_mm }};--pf-max-width-mm:{{ preview_max_width }}"{% endif %}>
     {% for handle in products %}

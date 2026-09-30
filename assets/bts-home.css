@@ -41,7 +41,7 @@
 }
 /* Composition stays identical before and after the H1 source swap. */
 .bts-home__offer { display: block; }
-.bts-home__brand img { inline-size: min(150px, 39vw); }
+.bts-home__brand img { inline-size: min(200px, 52vw); }
 .bts-home__band { gap: 1rem; align-items: center; }
 @media (max-width: 989px) {
   .bts-shelf { display: grid; grid-auto-flow: column; grid-auto-columns: min(82vw, 420px); grid-template-rows: auto auto auto; column-gap: 16px; row-gap: 0; }
@@ -60,3 +60,15 @@
 }
 
 @media (min-width: 990px) and (max-height: 800px) { .bts-home__symbol { inline-size: 72px; } }
+
+/* Restore Route B's priced desktop band; the phone keeps its contextual strip. */
+.bts-home__routine { display: none; }
+@media (max-width: 989px) and (max-height: 666px) {
+  .bts-home__brand img { inline-size: min(200px, 52vw, calc(clamp(100px, 100svh - 492px, 173px) * 1.15655)); }
+}
+@media (min-width: 990px) {
+  .bts-home__routine { display: block; }
+  .bts-home__routine a { display: inline-flex; align-items: center; flex-wrap: wrap; min-block-size: 44px; gap: .25rem; text-underline-offset: .3em; }
+  .bts-routine-line { padding-block: 0; }
+  .bts-routine-line > .bts-routine-offer { display: none; }
+}

@@ -62,7 +62,7 @@
 .bts-home__tagline { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3.8vw, 3.75rem); line-height: 1; margin: 0 0 .5rem; max-inline-size: 10ch; }
 .bts-home__symbol { display: block; inline-size: clamp(55px, 8vw, 112px); block-size: auto; margin-inline-start: auto; }
 .bts-home__entry { font-size: .8125rem; gap: .25rem .75rem; }
-.bts-home__brand img { inline-size: min(150px, 39vw); }
+.bts-home__brand img { inline-size: min(200px, 52vw); }
 .bts-shelf-nav[data-enhanced='true'] .bts-shelf-nav__links { display: none; }
 .bts-shelf-nav { justify-content: end; }
 .bts-arrow { display: inline-block; }
