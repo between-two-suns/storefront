@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {canonicalCSS} from './css-asset-parity.mjs';
 const base=process.argv[2];
 assert.ok(base?.startsWith('https://'),'Pass the Shopify preview URL');
 const directory='test-results/v12-shopify-native';await mkdir(directory,{recursive:true});
@@ -11,7 +12,7 @@ const browser=await chromium.launch({headless:true,channel:'chrome',timeout:3000
 const report={previewURL:base,themeID:166903251202,checkedAt:new Date().toISOString(),surfaces:[],assets:[],pageErrors:[],commerceRequests:[]};
 try{
  const context=await browser.newContext({viewport:{width:1440,height:900}});
- await context.addInitScript(()=>localStorage.setItem('bts:proto-cart',JSON.stringify([{handle:'daily-reset-cleanser',qty:2}])));
+ await context.addInitScript(()=>{if(window!==window.top)return;try{localStorage.setItem('bts:proto-cart',JSON.stringify([{handle:'daily-reset-cleanser',qty:2}]));}catch{}});
  context.on('page',page=>page.on('pageerror',error=>report.pageErrors.push(error.message)));
  const assetResponses=new Map();
  context.on('response',response=>{if(/\/assets\/bts-[^?]+/.test(response.url()))assetResponses.set(response.url(),response.status());});
@@ -28,8 +29,9 @@ try{
   assert.equal(await page.locator('body').getAttribute('data-bts-review'),'true',label+' explicit review mode');
   assert.equal((await page.evaluate(()=>window.BTS.adapter.get())).count,0,label+' ignores stale review bag');
   await page.waitForTimeout(400);
-  const adds=await page.evaluate(()=>window.BTS.adapter.add([{handle:'daily-reset-cleanser',qty:1}]));
- await page.locator('[data-bts-add]').evaluateAll(nodes=>nodes.map(n=>({handle:n.dataset.btsAdd,disabled:n.disabled,purchasable:n.dataset.btsPurchasable})));
+  await page.evaluate(()=>window.BTS.adapter.add([{handle:'daily-reset-cleanser',qty:1}]));
+  assert.equal((await page.evaluate(()=>window.BTS.adapter.get())).count,0,label+' direct adapter additions stay disabled');
+  const adds=await page.locator('[data-bts-add]').evaluateAll(nodes=>nodes.map(n=>({handle:n.dataset.btsAdd,disabled:n.disabled,purchasable:n.dataset.btsPurchasable})));
   assert.ok(adds.every(n=>n.disabled&&n.purchasable==='false'),label+' draft Add controls');
   assert.equal(await page.locator('form[action*="cart/add"],a[href="/checkout"]').count(),0);
   const entry={label,url:page.url(),status:response.status(),theme,bytes:source.length,liquidErrors:0,adds};report.surfaces.push(entry);return {source,entry};
@@ -65,14 +67,17 @@ try{
  await page.locator('.bts-header__nav a[href="/collections/all"]').click();await page.waitForURL('**/collections/all');assert.equal(await page.locator('.bts-collection__grid [data-placeholder="true"]').count(),4);report.navigation.push({action:'header Shop',url:page.url()});
  await page.locator('.pf__name a').first().click();await page.waitForFunction(()=>Boolean(document.querySelector('h1.pf__name')));assert.equal(await page.locator('h1.pf__name').innerText(),names[0]);report.navigation.push({action:'product card to PDP',url:page.url()});
  await page.locator('.bts-header__nav a[href="/#bts-home-routine"]').click();await page.waitForURL('**/#bts-home-routine');assert.equal(await page.locator('#bts-home-routine [data-routine-offer]').count(),1);report.navigation.push({action:'header routine anchor',url:page.url()});
+ await page.setViewportSize({width:390,height:844});
  await page.locator('[data-bts-open="bts-menu"]').click();await page.locator('#BtsMenuSearch').fill('clarity');await page.locator('.bts-menu-search button').click();await page.waitForURL('**/search?q=clarity');assert.equal(await page.locator('.pf__name').innerText(),names[1]);report.navigation.push({action:'menu search submission',url:page.url()});assert.equal(await page.evaluate(()=>window.Shopify?.theme?.id),166903251202);
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:1440,height:900}});const nojsPage=await nojs.newPage();const nojsResponse=await nojsPage.goto(base,{waitUntil:'domcontentloaded'});const nojsSource=await nojsResponse.text();assert.doesNotMatch(nojsSource,/Liquid (?:error|syntax error)/i);assert.equal(await nojsPage.locator('.bts-shelf [data-placeholder="true"]').count(),4);for(const name of names)assert.ok(nojsSource.includes(name));await nojsPage.screenshot({path:`${directory}/home-no-js.png`,fullPage:true});report.noJavaScript={products:4,placeholders:4,liquidErrors:0};await nojs.close();
- for(const [url,status] of assetResponses){assert.equal(status,200,'theme asset response '+url);const response=await context.request.get(url);assert.equal(response.status(),200);const body=await response.body();const name=new URL(url).pathname.split('/').pop();const local=await readFile('assets/'+name);const hash=b=>createHash('sha256').update(b).digest('hex');let semanticMatch=false;
+ for(const [url,status] of assetResponses){assert.equal(status,200,'theme asset response '+url);const response=await context.request.get(url);assert.equal(response.status(),200);const body=await response.body();const name=new URL(url).pathname.split('/').pop();const local=await readFile('assets/'+name);const hash=b=>createHash('sha256').update(b).digest('hex');let semanticMatch=false,sourceMapMatch=false;
   if(name.endsWith('.css')) {
-    semanticMatch=await page.evaluate(({remote,local})=>{const a=new CSSStyleSheet(),b=new CSSStyleSheet();a.replaceSync(remote);b.replaceSync(local);const normalize=text=>text.replace(/'([^']*)'/g,'"$1"').replace(/(-?\d*\.?\d+)ms\b/g,(_,n)=>String(Number(n)/1000)+'s').replace(/(?<![\w\d])0?\.(\d+)/g,'0.$1');return JSON.stringify([...a.cssRules].map(r=>normalize(r.cssText)))===JSON.stringify([...b.cssRules].map(r=>normalize(r.cssText)));},{remote:body.toString(),local:local.toString()});
+    semanticMatch=(await page.evaluate(canonicalCSS,body.toString()))===(await page.evaluate(canonicalCSS,local.toString()));
     assert.ok(semanticMatch,'Shopify CSS semantics '+name);
+  } else if(name.endsWith('.js')&&hash(body)!==hash(local)) {
+    const mapURL=new URL(url);mapURL.pathname+='.map';const mapResponse=await context.request.get(mapURL.href);assert.equal(mapResponse.status(),200,'Shopify source map '+name);const map=await mapResponse.json();assert.equal(map.version,3);const sourceIndex=map.sources.findIndex(source=>new URL(source,mapURL).pathname.endsWith('/'+name));sourceMapMatch=sourceIndex>=0&&map.sourcesContent?.[sourceIndex]===local.toString();assert.ok(sourceMapMatch,'Shopify minified JS original source '+name);
   } else assert.equal(hash(body),hash(local),'remote/local asset '+name);
-  report.assets.push({name,url,status,bytes:body.length,sha256:hash(body),localSHA256:hash(local),cssSemanticMatch:semanticMatch});}
+  report.assets.push({name,url,status,bytes:body.length,sha256:hash(body),localSHA256:hash(local),cssSemanticMatch:semanticMatch,sourceMapMatch});}
  assert.ok(report.assets.some(a=>a.name==='bts-wordmark-ink.svg'));for(const name of ['bts-core.js','bts-face.js','bts-shelf.js','bts-home.css','bts-editorial.css','bts-pdp.js'])assert.ok(report.assets.some(a=>a.name===name),name);
  assert.deepEqual(report.pageErrors,[]);assert.deepEqual(report.commerceRequests,[]);report.passed=true;
  await writeFile(`${directory}/remote-verification.json`,JSON.stringify(report,null,2));console.log(JSON.stringify({passed:true,surfaces:report.surfaces.length,assets:report.assets.length,liquidErrors:0,pageErrors:0,commerceRequests:0,previewURL:base},null,2));
