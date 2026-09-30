@@ -17,7 +17,7 @@
   {{ 'bts-editorial.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'bts-core.js' | asset_url }}" type="module"></script>
 </head>
-<body data-bts-mode="{% if bts_is_prototype %}prototype{% else %}launch{% endif %}" data-bts-qty-max="{{ settings.bts_qty_max | default: 6 }}">
+<body data-bts-review="{{ settings.bts_review_fallback | default: false }}" data-bts-mode="{% if bts_is_prototype %}prototype{% else %}launch{% endif %}" data-bts-qty-max="{{ settings.bts_qty_max | default: 6 }}">
   <a class="bts-skip" href="#MainContent">{{ 'bts.skip' | t }}</a>
   {% section 'bts-header' %}
   <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>

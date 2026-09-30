@@ -11,6 +11,7 @@ const browser=await chromium.launch({headless:true,channel:'chrome',timeout:3000
 const report={previewURL:base,themeID:166903251202,checkedAt:new Date().toISOString(),surfaces:[],assets:[],pageErrors:[],commerceRequests:[]};
 try{
  const context=await browser.newContext({viewport:{width:1440,height:900}});
+ await context.addInitScript(()=>localStorage.setItem('bts:proto-cart',JSON.stringify([{handle:'daily-reset-cleanser',qty:2}])));
  context.on('page',page=>page.on('pageerror',error=>report.pageErrors.push(error.message)));
  const assetResponses=new Map();
  context.on('response',response=>{if(/\/assets\/bts-[^?]+/.test(response.url()))assetResponses.set(response.url(),response.status());});
@@ -24,8 +25,11 @@ try{
   await page.waitForFunction(()=>Boolean(window.BTS?.adapter),null,{timeout:15000});
   const theme=await page.evaluate(()=>window.Shopify?.theme);
   assert.equal(theme?.id,166903251202,label+' theme identity');assert.equal(theme?.role,'unpublished');
+  assert.equal(await page.locator('body').getAttribute('data-bts-review'),'true',label+' explicit review mode');
+  assert.equal((await page.evaluate(()=>window.BTS.adapter.get())).count,0,label+' ignores stale review bag');
   await page.waitForTimeout(400);
-  const adds=await page.locator('[data-bts-add]').evaluateAll(nodes=>nodes.map(n=>({handle:n.dataset.btsAdd,disabled:n.disabled,purchasable:n.dataset.btsPurchasable})));
+  const adds=await page.evaluate(()=>window.BTS.adapter.add([{handle:'daily-reset-cleanser',qty:1}]));
+ await page.locator('[data-bts-add]').evaluateAll(nodes=>nodes.map(n=>({handle:n.dataset.btsAdd,disabled:n.disabled,purchasable:n.dataset.btsPurchasable})));
   assert.ok(adds.every(n=>n.disabled&&n.purchasable==='false'),label+' draft Add controls');
   assert.equal(await page.locator('form[action*="cart/add"],a[href="/checkout"]').count(),0);
   const entry={label,url:page.url(),status:response.status(),theme,bytes:source.length,liquidErrors:0,adds};report.surfaces.push(entry);return {source,entry};
@@ -57,10 +61,15 @@ try{
  await visit('/search?view=routine','routine');assert.equal(await page.locator('.bts-collection__grid [data-placeholder="true"]').count(),4);
  await visit('/search?q=clarity','search');assert.equal(await page.locator('.pf__name').count(),1);assert.equal(await page.locator('.pf__name').innerText(),'Clarity Serum');
  await visit('/search?view=product&q=unknown-product','unknown-product');assert.equal(await page.locator('.bts-pdp').count(),0);
+ await visit('/','navigation-home');report.navigation=[];
+ await page.locator('.bts-header__nav a[href="/collections/all"]').click();await page.waitForURL('**/collections/all');assert.equal(await page.locator('.bts-collection__grid [data-placeholder="true"]').count(),4);report.navigation.push({action:'header Shop',url:page.url()});
+ await page.locator('.pf__name a').first().click();await page.waitForFunction(()=>Boolean(document.querySelector('h1.pf__name')));assert.equal(await page.locator('h1.pf__name').innerText(),names[0]);report.navigation.push({action:'product card to PDP',url:page.url()});
+ await page.locator('.bts-header__nav a[href="/#bts-home-routine"]').click();await page.waitForURL('**/#bts-home-routine');assert.equal(await page.locator('#bts-home-routine [data-routine-offer]').count(),1);report.navigation.push({action:'header routine anchor',url:page.url()});
+ await page.locator('[data-bts-open="bts-menu"]').click();await page.locator('#BtsMenuSearch').fill('clarity');await page.locator('.bts-menu-search button').click();await page.waitForURL('**/search?q=clarity');assert.equal(await page.locator('.pf__name').innerText(),names[1]);report.navigation.push({action:'menu search submission',url:page.url()});assert.equal(await page.evaluate(()=>window.Shopify?.theme?.id),166903251202);
  const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:1440,height:900}});const nojsPage=await nojs.newPage();const nojsResponse=await nojsPage.goto(base,{waitUntil:'domcontentloaded'});const nojsSource=await nojsResponse.text();assert.doesNotMatch(nojsSource,/Liquid (?:error|syntax error)/i);assert.equal(await nojsPage.locator('.bts-shelf [data-placeholder="true"]').count(),4);for(const name of names)assert.ok(nojsSource.includes(name));await nojsPage.screenshot({path:`${directory}/home-no-js.png`,fullPage:true});report.noJavaScript={products:4,placeholders:4,liquidErrors:0};await nojs.close();
  for(const [url,status] of assetResponses){assert.equal(status,200,'theme asset response '+url);const response=await context.request.get(url);assert.equal(response.status(),200);const body=await response.body();const name=new URL(url).pathname.split('/').pop();const local=await readFile('assets/'+name);const hash=b=>createHash('sha256').update(b).digest('hex');let semanticMatch=false;
   if(name.endsWith('.css')) {
-    semanticMatch=await page.evaluate(({remote,local})=>{const a=new CSSStyleSheet(),b=new CSSStyleSheet();a.replaceSync(remote);b.replaceSync(local);const normalize=text=>text.replace(/'([^']*)'/g,'"$1"').replace(/(-?\d*\.?\d+)ms\b/g,(_,n)=>String(Number(n)/1000)+'s').replace(/(?<![\w\d])0?\.(\d+)/g,'0.$1');return normalize(JSON.stringify([...a.cssRules].map(r=>r.cssText)))===normalize(JSON.stringify([...b.cssRules].map(r=>r.cssText)));},{remote:body.toString(),local:local.toString()});
+    semanticMatch=await page.evaluate(({remote,local})=>{const a=new CSSStyleSheet(),b=new CSSStyleSheet();a.replaceSync(remote);b.replaceSync(local);const normalize=text=>text.replace(/'([^']*)'/g,'"$1"').replace(/(-?\d*\.?\d+)ms\b/g,(_,n)=>String(Number(n)/1000)+'s').replace(/(?<![\w\d])0?\.(\d+)/g,'0.$1');return JSON.stringify([...a.cssRules].map(r=>normalize(r.cssText)))===JSON.stringify([...b.cssRules].map(r=>normalize(r.cssText)));},{remote:body.toString(),local:local.toString()});
     assert.ok(semanticMatch,'Shopify CSS semantics '+name);
   } else assert.equal(hash(body),hash(local),'remote/local asset '+name);
   report.assets.push({name,url,status,bytes:body.length,sha256:hash(body),localSHA256:hash(local),cssSemanticMatch:semanticMatch});}

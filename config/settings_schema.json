@@ -15,6 +15,13 @@
         "id": "bts_qty_max",
         "label": "Maximum prototype quantity",
         "default": 6
+      },
+      {
+        "type": "checkbox",
+        "id": "bts_review_fallback",
+        "label": "Unpublished review catalog",
+        "info": "Approved theme-local content and display prices for unpublished review only. Disables review bag additions. Keep off for launch.",
+        "default": false
       }
     ]
   }

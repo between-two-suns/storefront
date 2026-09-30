@@ -1,5 +1,5 @@
 {% doc %}
-Theme 166903251202 review-only field fallback generated from approved local seeds.
+Explicit review-setting field fallback generated from approved local seeds.
 @param {string} handle - Approved product identity
 @param {string} field - Scalar field name
 @param {metaobject} [content] - Storefront-readable content
@@ -14,7 +14,7 @@ Theme 166903251202 review-only field fallback generated from approved local seed
   {%- elsif field == 'usage_times' or field == 'components' -%}
     {{- content[field].value | join: '|' -}}
   {%- else -%}{{- content[field].value -}}{%- endif -%}
-{%- elsif theme.id == 166903251202 -%}
+{%- elsif settings.bts_review_fallback == true -%}
   {%- case handle -%}
   {%- when 'daily-reset-cleanser' -%}{%- render 'bts-review-reset-fields', field: field, language: language -%}
   {%- when 'clarity-serum' -%}{%- render 'bts-review-clarity-fields', field: field, language: language -%}

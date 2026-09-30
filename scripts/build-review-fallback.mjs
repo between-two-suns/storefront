@@ -8,7 +8,7 @@ async function emit(file, content) {
   } else await writeFile(file,content);
 }
 let output=`{% doc %}
-Theme 166903251202 review-only field fallback generated from approved local seeds.
+Explicit review-setting field fallback generated from approved local seeds.
 @param {string} handle - Approved product identity
 @param {string} field - Scalar field name
 @param {metaobject} [content] - Storefront-readable content
@@ -23,7 +23,7 @@ Theme 166903251202 review-only field fallback generated from approved local seed
   {%- elsif field == 'usage_times' or field == 'components' -%}
     {{- content[field].value | join: '|' -}}
   {%- else -%}{{- content[field].value -}}{%- endif -%}
-{%- elsif theme.id == 166903251202 -%}
+{%- elsif settings.bts_review_fallback == true -%}
   {%- case handle -%}\n`;
 for(const handle of handles){
  const p=JSON.parse(await readFile(`data/content/products/${handle}.json`,'utf8'));
@@ -66,7 +66,7 @@ Scenario-derived review display value; does not set any Shopify price.
     {%- when 'routine_save' -%}{{- scenario.routine.save -}}
     {%- else -%}{%- if handle == 'the-full-routine' -%}{{- scenario.routine.price -}}{%- else -%}{{- scenario.prices[handle] -}}{%- endif -%}
   {%- endcase -%}
-{%- elsif theme.id == 166903251202 -%}
+{%- elsif settings.bts_review_fallback == true -%}
   {%- case field -%}
     {%- when 'config_json' -%}${JSON.stringify(config)}
     {%- when 'currency' -%}${config.currency}

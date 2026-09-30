@@ -1,5 +1,6 @@
 // Launch is intentionally locked until a real Shopify adapter passes staging QA.
 const mode = 'prototype';
+const reviewOnly = document.body.dataset.btsReview === 'true';
 let config = null;
 try { config = JSON.parse(document.getElementById('bts-proto')?.textContent || 'null'); } catch {}
 let catalog = {};
@@ -25,6 +26,7 @@ class PrototypeCartAdapter {
     return typeof value === 'number' && Number.isFinite(value) && value > 0 ? Math.round(value * 100) : null;
   }
   clean(items) {
+    if (reviewOnly) return [];
     const merged = new Map();
     for (const item of items) {
       if (!item || typeof item.handle !== 'string' || this.price(item.handle) === null) continue;

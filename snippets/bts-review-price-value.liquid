@@ -15,7 +15,7 @@ Scenario-derived review display value; does not set any Shopify price.
     {%- when 'routine_save' -%}{{- scenario.routine.save -}}
     {%- else -%}{%- if handle == 'the-full-routine' -%}{{- scenario.routine.price -}}{%- else -%}{{- scenario.prices[handle] -}}{%- endif -%}
   {%- endcase -%}
-{%- elsif theme.id == 166903251202 -%}
+{%- elsif settings.bts_review_fallback == true -%}
   {%- case field -%}
     {%- when 'config_json' -%}{"scenario":"B","currency":"EGP","scenarios":{"A":{"prices":{"daily-reset-cleanser":349,"clarity-serum":449,"daily-barrier-moisturizing-cream":399,"daily-defense-sunscreen-spf-50":449},"routine":{"list":1646,"price":1481,"save":165,"save_pct":10}},"B":{"prices":{"daily-reset-cleanser":399,"clarity-serum":499,"daily-barrier-moisturizing-cream":449,"daily-defense-sunscreen-spf-50":499},"routine":{"list":1846,"price":1661,"save":185,"save_pct":10}}}}
     {%- when 'currency' -%}EGP

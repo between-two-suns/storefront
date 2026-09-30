@@ -6,7 +6,8 @@
     "color_blue": "#A6DDED",
     "color_lilac": "#C9A8DB",
     "color_peach": "#F2A07D",
-    "motion_enabled": true
+    "motion_enabled": true,
+    "bts_review_fallback": true
   },
   "presets": {}
 }

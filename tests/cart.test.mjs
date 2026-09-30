@@ -7,8 +7,8 @@ const config=JSON.parse(await readFile(new URL('../data/prototype/config.json',i
 const catalog={};
 for(const [handle,price] of Object.entries(config.scenarios.B.prices)) catalog[handle]={name:'label name '+handle,role:'',size:'',colour:''};
 catalog['the-full-routine']={name:'The Full Routine'};
-function setup({stored='[]',blocked=false,data=config,locale='en',catalogData=catalog}={}) {
- const sandbox={document:{body:{dataset:{}},documentElement:{lang:locale},getElementById:id=>({textContent:JSON.stringify(id==='bts-proto'?data:id==='bts-catalog'?catalogData:{pattern:locale==='en'?'__CURRENCY__ __AMOUNT__':'__AMOUNT__ __CURRENCY__',currency_label:locale==='en'?'EGP':'ج.م'})}),querySelectorAll:()=>[],addEventListener:()=>{}},window:{addEventListener:()=>{}},localStorage:{getItem(){if(blocked)throw Error('denied');return stored;},setItem(k,v){if(blocked)throw Error('denied');stored=v;}},console,URLSearchParams,location:{search:'?founder=1'}};
+function setup({stored='[]',blocked=false,data=config,locale='en',catalogData=catalog,reviewOnly=false}={}) {
+ const sandbox={document:{body:{dataset:{btsReview:String(reviewOnly)}},documentElement:{lang:locale},getElementById:id=>({textContent:JSON.stringify(id==='bts-proto'?data:id==='bts-catalog'?catalogData:{pattern:locale==='en'?'__CURRENCY__ __AMOUNT__':'__AMOUNT__ __CURRENCY__',currency_label:locale==='en'?'EGP':'ج.م'})}),querySelectorAll:()=>[],addEventListener:()=>{}},window:{addEventListener:()=>{}},localStorage:{getItem(){if(blocked)throw Error('denied');return stored;},setItem(k,v){if(blocked)throw Error('denied');stored=v;}},console,URLSearchParams,location:{search:'?founder=1'}};
  vm.runInNewContext(code,sandbox);return sandbox.window.BTS;
 }
 test('catalog names and price totals come from approved metadata/config; unknown handles rejected',async()=>{
@@ -31,4 +31,9 @@ test('stored carts resolve current scenario; normalized money has same explicit 
 });
 test('dormant launch adapter refuses mutations and does not expose checkout',async()=>{
  const bts=setup();assert.equal(bts.mode,'prototype');const launch=new bts.ShopifyCartAdapter();for(const action of ['add','change','remove','swapToRoutine'])await assert.rejects(launch[action]());assert.equal('checkout' in bts.adapter,false);
+});
+
+test('explicit Shopify review ignores stored bag items and refuses prototype additions',async()=>{
+ const handle='daily-reset-cleanser';const bts=setup({reviewOnly:true,stored:JSON.stringify([{handle,qty:2}])});
+ assert.equal((await bts.adapter.get()).count,0);await bts.adapter.add([{handle,qty:1}]);await bts.adapter.swapToRoutine();assert.equal((await bts.adapter.get()).count,0);
 });

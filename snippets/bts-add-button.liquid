@@ -8,7 +8,7 @@ bts-add-button foundation helper.
   # Launch is locked until ShopifyCartAdapter and launch QA exist.
 %}
 {% assign purchasable = false %}
-{% if theme.id == 166903251202 %}{% assign shopify_product = all_products[handle] %}{% assign shopify_variant = shopify_product.selected_or_first_available_variant %}{% if shopify_product.published_at != blank and shopify_variant.id != blank and shopify_variant.available and shopify_variant.price > 0 %}{% assign purchasable = true %}{% endif %}{% else %}{% assign purchasable = true %}{% endif %}
+{% unless settings.bts_review_fallback == true %}{% assign purchasable = true %}{% endunless %}
 {% assign label = label | default: 'bts.add' %}
 {% if bts_is_prototype %}
 <button type="button" data-bts-add="{{ handle | escape }}" data-bts-purchasable="{{ purchasable }}" data-added="{{ 'bts.added' | t }}" disabled>{{ label | t }}</button>
