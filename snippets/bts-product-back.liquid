@@ -1,0 +1,26 @@
+{% doc %}
+Approved label content, shared by the face and unfolded PDP. No inferred ingredient attribution.
+@param {string} [handle] - Draft-safe product identity
+@param {metaobject} [content] - bts_product_content
+@param {boolean} [expanded] - Include separately approved formula logic and INCI.
+@param {string} uid - Unique instance id.
+{% enddoc %}
+{% assign handle = handle | default: content.product_handle.value %}
+{% assign language = request.locale.iso_code | split: '-' | first %}
+{% capture suitability %}{% render 'bts-content-field', content: content, handle: handle, field: 'suitability' %}{% endcapture %}{% assign suitability = suitability | strip %}
+
+{% capture description %}{% render 'bts-content-field', content: content, handle: handle, field: 'back_description' %}{% endcapture %}{% assign description = description | strip %}
+
+{% if suitability != blank %}<p class="pf__suitability">{{ suitability }}</p>{% endif %}
+{% if description != blank %}<p class="pf__description">{{ description }}</p>{% endif %}
+<ul class="pf__pills" role="list">{% if content == blank %}{% capture claim_labels %}{% render 'bts-content-field', content: content, handle: handle, field: 'claim_labels' %}{% endcapture %}{% assign claim_labels = claim_labels | strip %}
+{% assign labels = claim_labels | split: '|' %}{% for label in labels %}<li>{{ label | escape }}</li>{% endfor %}{% endif %}{% for claim in content.claims.value %}{% if claim.approved[language] == true and claim.label.approved[language] == true and claim.label[language] != blank %}<li>{{ claim.label[language] | escape }}</li>{% endif %}{% endfor %}</ul>
+{% capture ingredients %}{% for ingredient in content.key_ingredients.value %}{% capture name %}{% render 'bts-localized', field: ingredient.display_name %}{% endcapture %}{% capture why %}{% render 'bts-localized', field: ingredient.why %}{% endcapture %}{% if name != blank and why != blank %}<li><strong><bdi lang="en">{{ name }}</bdi></strong><span>{{ why }}</span></li>{% endif %}{% endfor %}{% endcapture %}
+{% if ingredients != blank %}<ul class="pf__ingredients" role="list">{{ ingredients }}</ul>{% endif %}
+{% if expanded %}
+  {% capture logic %}{% render 'bts-content-field', content: content, handle: handle, field: 'formula_logic' %}{% endcapture %}{% assign logic = logic | strip %}
+
+  {% if logic != blank %}<p class="bts-formula">{{ logic }}</p>{% endif %}
+{% capture inci %}{% render 'bts-content-field', content: content, handle: handle, field: 'inci' %}{% endcapture %}{% assign inci = inci | strip %}
+  {% if inci != blank %}<details class="bts-inci-details" id="inci-{{ uid }}"><summary>{{ 'bts.full_inci' | t }}</summary><p lang="en" dir="ltr">{{ inci | escape }}</p></details>{% endif %}
+{% endif %}

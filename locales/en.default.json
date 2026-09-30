@@ -1,11 +1,66 @@
 {
-  "general": {
-    "skip_to_content": "Skip to content",
+  "bts": {
+    "skip": "Skip to content",
+    "home": "Home",
     "menu": "Menu",
-    "cart": "Bag"
+    "bag": "Bag",
+    "close": "Close",
+    "language": "Language",
+    "apply": "Apply",
+    "prototype": "Prototype · prices not final",
+    "checkout": "Checkout opens at launch",
+    "unavailable": "Shopping is not available in this foundation.",
+    "empty": "Your bag is empty.",
+    "coming_soon": "Coming soon",
+    "add": "Add to bag",
+    "remove": "Remove",
+    "error": "The bag could not be updated. Please try again.",
+    "collection": "Collection",
+    "product": "Product",
+    "not_found": "Page not found",
+    "no_js": "Enable JavaScript to use the prototype bag.",
+    "subtotal": "Subtotal",
+    "quantity": "Quantity",
+    "shop": "Shop",
+    "routine": "Routine",
+    "search": "Search",
+    "turn": "Turn over",
+    "turn_label": "Show the back of the pack",
+    "back": "The Back",
+    "ingredients": "In this formula",
+    "feels_like": "Feels like",
+    "use": "Use",
+    "full_inci": "Full INCI",
+    "all_four": "All four",
+    "add_all": "Add all four",
+    "save": "Save",
+    "added": "Added ✓",
+    "no_results": "No results",
+    "previous_product": "Previous product",
+    "next_product": "Next product",
+    "image_placeholder": "Image placeholder",
+    "layout_preview": "Layout preview · not packaging",
+    "morning_evening": "Morning and evening",
+    "morning_only": "Morning only",
+    "list_total": "Individual total",
+    "routine_price": "Routine price",
+    "brand_frame": "Editorial image placeholder",
+    "texture_frames": "Texture",
+    "texture_placeholder": "Texture image placeholder",
+    "formula_index": "In this formula",
+    "preview_turn_label": "Show the back of the layout preview"
   },
-  "products": {
-    "add_to_cart": "Add to bag",
-    "sold_out": "Sold out"
+  "money": {
+    "pattern": "{{ currency }} {{ amount }}",
+    "currency_label": {
+      "EGP": "EGP"
+    }
+  },
+  "reviews": {
+    "title": "Customer reviews",
+    "empty": "Customer reviews will appear here when available.",
+    "summary": "{{ rating }} out of 5 · {{ count }} published reviews",
+    "rating": "{{ rating }} out of 5",
+    "verified": "Verified purchase"
   }
 }

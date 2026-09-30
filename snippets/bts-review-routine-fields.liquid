@@ -1,0 +1,15 @@
+{% doc %}
+Generated approved review scalars.
+@param {string} field - Scalar key
+@param {string} language - Locale
+{% enddoc %}
+{%- case field -%}
+    {%- when 'product_handle' -%}the-full-routine
+    {%- when 'name' -%}The Full Routine
+    {%- when 'components' -%}daily-reset-cleanser|clarity-serum|daily-barrier-moisturizing-cream|daily-defense-sunscreen-spf-50
+    {%- when 'components_pm' -%}daily-reset-cleanser|clarity-serum|daily-barrier-moisturizing-cream
+    {%- when 'key' -%}routine
+    {%- when 'kind' -%}bundle
+    {%- when 'role' -%}{%- if language == 'en' -%}Routine{%- endif -%}
+    {%- when 'claim_labels' -%}{%- if language == 'en' -%}{%- endif -%}
+{%- endcase -%}

@@ -1,0 +1,5 @@
+{
+  "type": "bts_review_feed",
+  "entries": [],
+  "note": "Intentionally empty. Never seed customer review examples. Runtime empty state requires no entry."
+}

@@ -1,34 +1,15 @@
-<section class="bts-collection">
-  <div class="bts-collection__head">
-    <p class="bts-kicker">THE RANGE</p>
-    <h1 class="bts-display">{{ collection.title }}</h1>
-    {% if collection.description != blank %}
-      <div class="bts-collection__description">{{ collection.description }}</div>
-    {% endif %}
-  </div>
-
+{{ 'bts-face.css' | asset_url | stylesheet_tag }}
+<section class="bts-foundation bts-collection"><h1>{{ 'bts.shop' | t }}</h1>
   <div class="bts-collection__grid">
-    {% for product in collection.products %}
-      <article class="bts-product-card">
-        <a href="{{ product.url }}" class="bts-product-card__media">
-          {% if product.featured_image != blank %}
-            {{ product.featured_image | image_url: width: 720 | image_tag: widths: '240,360,540,720', sizes: '(max-width: 749px) 50vw, 25vw', loading: 'lazy', alt: product.featured_image.alt }}
-          {% endif %}
-        </a>
-        <div class="bts-product-card__meta">
-          <a href="{{ product.url }}">{{ product.title }}</a>
-          <span>{{ product.price | money }}</span>
-        </div>
-      </article>
-    {% else %}
-      <p>No products are available yet.</p>
-    {% endfor %}
+  {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}{% assign products = product_handles | split: '|' %}
+  {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% if name != blank %}
+      {% assign uid = section.id | append: '-' | append: forloop.index %}
+      {% render 'bts-face', content: content, handle: handle, variant: 'grid', uid: uid %}
+    {% endif %}
+  {% endfor %}
   </div>
 </section>
-
 {% schema %}
-{
-  "name": "BTS collection",
-  "settings": []
-}
+{"name":"Static product collection","settings":[]}
 {% endschema %}

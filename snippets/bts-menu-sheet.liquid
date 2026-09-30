@@ -1,0 +1,12 @@
+<dialog id="bts-menu" class="bts-sheet bts-sheet--start" aria-labelledby="BtsMenuTitle">
+  <button type="button" data-bts-close>{{ 'bts.close' | t }}</button>
+  <h2 id="BtsMenuTitle" tabindex="-1">{{ 'bts.menu' | t }}</h2>
+  <form class="bts-menu-search" action="{{ routes.search_url }}" method="get" role="search"><label for="BtsMenuSearch">{{ 'bts.search' | t }}</label><div><input id="BtsMenuSearch" name="q" type="search"><button type="submit">{{ 'bts.search' | t }}</button></div></form>
+  <nav aria-label="{{ 'bts.menu' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'bts.home' | t }}</a>
+    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a>
+    {% render 'bts-routine-link' %}
+    <a href="{{ routes.search_url }}">{{ 'bts.search' | t }}</a>
+    <a href="{{ routes.cart_url }}">{{ 'bts.bag' | t }}</a>
+  </nav>
+</dialog>

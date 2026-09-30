@@ -1,0 +1,58 @@
+{
+  "reset": {
+    "handle": "daily-reset-cleanser",
+    "name": "Daily Reset Cleanser",
+    "front_line": "Removes oil. Maintains hydration. Feels fresh.",
+    "hero_actives": "Zinc PCA + Centella",
+    "size": "200 mL",
+    "pills": [
+      "Non-stripping",
+      "Soap-free",
+      "Non-comedogenic"
+    ],
+    "back_description": "A daily gel cleanser with Zinc PCA, Panthenol and Centella. Removes excess oil and environmental buildup without stripping, while hydrating and leaving skin fresh and comfortable.",
+    "inci": "Aqua, Sodium Lauryl Sulfosuccinate, Cocamidopropyl Betaine, Coco-Glucoside, Glycerin, Lauryl Glucoside, Propylene Glycol, PEG-120 Methyl Glucose Dioleate, Phenoxyethanol, PEG-7 Glyceryl Cocoate, Panthenol, Poloxamer 184, Polyquaternium-10, Aloe Barbadensis Leaf Extract, Centella Asiatica Extract, Sodium PCA, Zinc PCA, Ethylhexylglycerin, EDTA, Allantoin, Glycyrrhiza Glabra Root Extract, Citric Acid.",
+    "inci_version": "FINAL-v5"
+  },
+  "clarity": {
+    "handle": "clarity-serum",
+    "name": "Clarity Serum",
+    "front_line": "Controls oil. Evens skin tone. Hydrates.",
+    "hero_actives": "Niacinamide + Tranexamic Acid",
+    "size": "30 mL",
+    "pills": [],
+    "back_description": "A daily serum with Niacinamide, Tranexamic Acid and Hyaluronic Acid. Helps even skin tone and reduce the appearance of dark spots while controlling excess oil and hydrating skin.",
+    "inci": "Aqua, Niacinamide, Glycerin, Tranexamic Acid, Propylene Glycol, Phenoxyethanol, Panthenol, Xylitylglucoside, Anhydroxylitol, Xylitol, Sodium Hyaluronate, Ammonium Acryloyldimethyltaurate/VP Copolymer, Ethylhexylglycerin, EDTA, Allantoin.",
+    "inci_version": "FINAL-v5"
+  },
+  "barrier": {
+    "handle": "daily-barrier-moisturizing-cream",
+    "name": "Daily Barrier Moisturizing Cream",
+    "front_line": "Strengthens skin barrier. Controls oil. Lightweight.",
+    "hero_actives": "Ceramides + Zinc PCA",
+    "size": "50 gm",
+    "pills": [
+      "Oil-control",
+      "Non-comedogenic",
+      "Fragrance-free"
+    ],
+    "back_description": "A daily moisturizer with Ceramides, Niacinamide and Zinc PCA. Hydrates without heaviness, controls oil, and strengthens the skin barrier — protecting against environmental stress.",
+    "inci": "Aqua, Glycerin, Niacinamide, Propylene Glycol, Caprylic/Capric Triglyceride, Glyceryl Stearate, PEG-100 Stearate, Cetearyl Alcohol, Isohexadecane, Squalane, Dimethicone, Panthenol, Phenoxyethanol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Zinc PCA, Sodium Hyaluronate, Sodium PCA, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Sodium Lauroyl Lactylate, Ethylhexylglycerin, Cholesterol, Carbomer, Disodium EDTA, Xanthan Gum.",
+    "inci_version": "FINAL-v5"
+  },
+  "defense": {
+    "handle": "daily-defense-sunscreen-spf-50",
+    "name": "Daily Defense Sunscreen SPF 50",
+    "front_line": "Invisible. Lightweight. Fast-absorbing.",
+    "hero_actives": "UVA + UVB Filters",
+    "size": "50 gm",
+    "pills": [
+      "Hydrating",
+      "No white cast",
+      "Non-greasy"
+    ],
+    "back_description": "A daily SPF 50 sunscreen with Niacinamide, Panthenol and Bisabolol. Provides broad-spectrum UVA/UVB protection in a lightweight, fast-absorbing formula with no white cast.",
+    "inci": "Aqua, C12-15 Alkyl Benzoate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Ethylhexyl Methoxycinnamate, Ethylhexyl Salicylate, Bis-PEG/PPG-16/16 PEG/PPG-16/16 Dimethicone, Propylene Glycol, Glycerin, Methyl Methacrylate Crosspolymer, Niacinamide, Cetearyl Alcohol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Caprylic/Capric Triglyceride, Caprylyl Methicone, Dimethicone, Phenoxyethanol, Panthenol, Bisabolol, Aloe Barbadensis Leaf Extract, Tocopheryl Acetate, Triethanolamine, Ethylhexylglycerin, EDTA.",
+    "inci_version": "FINAL-v5"
+  }
+}

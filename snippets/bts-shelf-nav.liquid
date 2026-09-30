@@ -1,0 +1,19 @@
+{% doc %}
+Native shelf anchors with optional previous/next controls. Controls stay hidden without JavaScript.
+@param {metaobject[]} products - Ordered approved product identities
+{% enddoc %}
+<nav class="bts-shelf-nav" aria-label="{{ 'bts.collection' | t }}">
+  <div class="bts-shelf-nav__links">
+    {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% capture short_name %}{% render 'bts-content-field', content: content, handle: handle, field: 'short_name' %}{% endcapture %}{% assign short_name = short_name | strip %}
+{% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+{% if name != blank %}
+      <a href="#bts-shelf-{{ handle | escape }}" data-shelf-target="bts-shelf-{{ handle | escape }}" aria-label="{{ name | escape }}"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi><span class="bts-shelf-nav__name"><bdi lang="en">{{ short_name | escape }}</bdi></span></a>
+    {% endif %}{% endfor %}
+  </div>
+  <div class="bts-shelf-nav__controls" hidden data-shelf-controls>
+    <button type="button" data-shelf-direction="previous" aria-label="{{ 'bts.previous_product' | t }}"><span aria-hidden="true">←</span></button>
+    <button type="button" data-shelf-direction="next" aria-label="{{ 'bts.next_product' | t }}"><span aria-hidden="true">→</span></button>
+  </div>
+</nav>
+<script type="module" src="{{ 'bts-shelf.js' | asset_url }}"></script>

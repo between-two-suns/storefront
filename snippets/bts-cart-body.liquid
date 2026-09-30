@@ -1,0 +1,18 @@
+<div data-bts-cart>
+  <p data-bts-empty>{{ 'bts.empty' | t }}</p>
+  <ul class="bts-cart-lines" data-bts-lines></ul>
+  <p data-bts-saving hidden>{{ 'bts.save' | t }}: <bdi data-bts-saving-amount></bdi></p>
+  <p>{{ 'bts.subtotal' | t }}: <bdi data-bts-total>—</bdi></p>
+  <p role="status" aria-live="polite" data-bts-status data-error="{{ 'bts.error' | t | escape }}"></p>
+  <template data-bts-line>
+    <li class="bts-cart-line">
+      <span class="bts-cart-line__chip bts-cap" data-chip></span>
+      <div><bdi lang="en" data-title></bdi><span class="bts-cart-line__meta" data-meta></span>
+        <label>{{ 'bts.quantity' | t }} <input type="number" min="0" inputmode="numeric" data-qty></label>
+        <bdi data-line-total></bdi><button type="button" data-remove>{{ 'bts.remove' | t }}</button>
+      </div>
+    </li>
+  </template>
+  <button type="button" disabled>{{ 'bts.checkout' | t }}</button>
+  <noscript><p>{{ 'bts.no_js' | t }}</p></noscript>
+</div>

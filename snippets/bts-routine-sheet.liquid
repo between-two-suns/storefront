@@ -1,0 +1,8 @@
+{% doc %}
+Prototype routine sheet: approved component identities and one bundle Add.
+{% enddoc %}
+<dialog id="bts-routine" class="bts-sheet" aria-labelledby="BtsRoutineTitle">
+  <button type="button" data-bts-close>{{ 'bts.close' | t }}</button>
+  <h2 id="BtsRoutineTitle" tabindex="-1">{{ 'bts.routine' | t }}</h2>
+  {% render 'bts-routine-offer', uid: 'sheet', panel: true %}
+</dialog>

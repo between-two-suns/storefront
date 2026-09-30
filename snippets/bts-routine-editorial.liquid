@@ -1,0 +1,23 @@
+{% doc %}
+Routine overview using only established step order and usage times. No inferred instruction or efficacy.
+@param {metaobject[]} products - Product identity entries
+@param {string} uid - Section identifier
+{% enddoc %}
+<section class="bts-routine-editorial" aria-labelledby="BtsRoutineTitle-{{ uid }}">
+  <div class="bts-routine-editorial__heading">
+    <h2 id="BtsRoutineTitle-{{ uid }}">{{ 'bts.routine' | t }}</h2>
+
+  </div>
+  <ol class="bts-routine-editorial__steps">
+    {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+{% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+{% if name != blank %}
+      {% capture url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+      <li class="bts-routine-editorial__item" data-colour="{{ colour_key | escape }}">
+        <a href="{{ url | strip }}"><span class="bts-routine-editorial__step"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi></span><span><bdi lang="en">{{ name | escape }}</bdi></span><span class="bts-routine-editorial__time">{% render 'bts-usage-time', content: content, handle: handle %}</span></a>
+      </li>
+    {% endif %}{% endfor %}
+  </ol>
+
+</section>

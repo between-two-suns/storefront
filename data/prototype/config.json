@@ -1,0 +1,34 @@
+{
+  "scenario": "B",
+  "currency": "EGP",
+  "scenarios": {
+    "A": {
+      "prices": {
+        "daily-reset-cleanser": 349,
+        "clarity-serum": 449,
+        "daily-barrier-moisturizing-cream": 399,
+        "daily-defense-sunscreen-spf-50": 449
+      },
+      "routine": {
+        "list": 1646,
+        "price": 1481,
+        "save": 165,
+        "save_pct": 10
+      }
+    },
+    "B": {
+      "prices": {
+        "daily-reset-cleanser": 399,
+        "clarity-serum": 499,
+        "daily-barrier-moisturizing-cream": 449,
+        "daily-defense-sunscreen-spf-50": 499
+      },
+      "routine": {
+        "list": 1846,
+        "price": 1661,
+        "save": 185,
+        "save_pct": 10
+      }
+    }
+  }
+}

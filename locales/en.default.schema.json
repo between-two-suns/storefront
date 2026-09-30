@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "header": "BTS header",
+    "footer": "BTS footer",
+    "foundation": "BTS foundation"
+  },
+  "settings": {
+    "menu": "Menu",
+    "show_routine": "Show routine link"
+  }
+}

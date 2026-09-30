@@ -1,13 +1,4 @@
-<section class="bts-empty-state">
-  <p class="bts-kicker">404</p>
-  <h1 class="bts-display">BETWEEN PAGES.</h1>
-  <p>This one moved. Your skin can too.</p>
-  <a class="bts-button bts-button--solid" href="{{ routes.root_url }}">BACK HOME <span aria-hidden="true">→</span></a>
-</section>
-
+<section class="bts-foundation"><h1>{{ 'bts.not_found' | t }}</h1><a href="{{ routes.root_url }}">{{ 'bts.home' | t }}</a></section>
 {% schema %}
-{
-  "name": "BTS 404",
-  "settings": []
-}
+{"name": "404", "settings": []}
 {% endschema %}

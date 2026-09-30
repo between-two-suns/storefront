@@ -1,0 +1,138 @@
+[
+  {
+    "product_handle": "daily-reset-cleanser",
+    "filename": "daily-reset-cleanser-H1-FINAL-v5.webp",
+    "sha256": null,
+    "label_version": "FINAL-v5",
+    "artwork_path": "opus-brand-pack/production/artwork/v5 - FINAL - Cleanser - Clor.jpg",
+    "artwork_sha256": null,
+    "pack_height_mm": 180,
+    "pump_actuator_finish": null,
+    "silhouette_bbox_px": null,
+    "contact_row_px": null,
+    "signoffs": {
+      "label": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "physical_geometry": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "material": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "crop": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      }
+    }
+  },
+  {
+    "product_handle": "clarity-serum",
+    "filename": "clarity-serum-H1-FINAL-v5.webp",
+    "sha256": null,
+    "label_version": "FINAL-v5",
+    "artwork_path": "opus-brand-pack/production/artwork/v5 - FINAL - Serum.jpg",
+    "artwork_sha256": null,
+    "pack_height_mm": 96,
+    "pump_actuator_finish": null,
+    "silhouette_bbox_px": null,
+    "contact_row_px": null,
+    "signoffs": {
+      "label": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "physical_geometry": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "material": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "crop": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      }
+    }
+  },
+  {
+    "product_handle": "daily-barrier-moisturizing-cream",
+    "filename": "daily-barrier-moisturizing-cream-H1-FINAL-v5.webp",
+    "sha256": null,
+    "label_version": "FINAL-v5",
+    "artwork_path": "opus-brand-pack/production/artwork/Between Two Suns - FINAL - Moisturizer Artwork.pdf",
+    "artwork_sha256": null,
+    "pack_height_mm": 116,
+    "pump_actuator_finish": "MATTE",
+    "silhouette_bbox_px": null,
+    "contact_row_px": null,
+    "signoffs": {
+      "label": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "physical_geometry": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "material": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "crop": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      }
+    }
+  },
+  {
+    "product_handle": "daily-defense-sunscreen-spf-50",
+    "filename": "daily-defense-sunscreen-spf-50-H1-FINAL-v5.webp",
+    "sha256": null,
+    "label_version": "FINAL-v5",
+    "artwork_path": "opus-brand-pack/production/artwork/v5 - FINAL - Sunscreen.jpg",
+    "artwork_sha256": null,
+    "pack_height_mm": 116,
+    "pump_actuator_finish": "MATTE",
+    "silhouette_bbox_px": null,
+    "contact_row_px": null,
+    "signoffs": {
+      "label": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "physical_geometry": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "material": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      },
+      "crop": {
+        "approved": false,
+        "reviewer": null,
+        "date": null
+      }
+    }
+  }
+]

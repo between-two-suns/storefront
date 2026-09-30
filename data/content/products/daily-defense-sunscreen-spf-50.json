@@ -1,0 +1,219 @@
+{
+  "type": "bts_product_content",
+  "handle": "daily-defense-sunscreen-spf-50",
+  "fields": {
+    "product_handle": "daily-defense-sunscreen-spf-50",
+    "name": "Daily Defense Sunscreen SPF 50",
+    "short_name": "Defense",
+    "step": 4,
+    "colour_key": "defense",
+    "size_display": "50 gm",
+    "inci": "Aqua, C12-15 Alkyl Benzoate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Ethylhexyl Methoxycinnamate, Ethylhexyl Salicylate, Bis-PEG/PPG-16/16 PEG/PPG-16/16 Dimethicone, Propylene Glycol, Glycerin, Methyl Methacrylate Crosspolymer, Niacinamide, Cetearyl Alcohol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Caprylic/Capric Triglyceride, Caprylyl Methicone, Dimethicone, Phenoxyethanol, Panthenol, Bisabolol, Aloe Barbadensis Leaf Extract, Tocopheryl Acetate, Triethanolamine, Ethylhexylglycerin, EDTA.",
+    "usage_times": [
+      "am"
+    ],
+    "media_front": null,
+    "media_back": null,
+    "components": [],
+    "key": "defense",
+    "kind": "single",
+    "inci_version": "FINAL-v5",
+    "hero_actives": "UVA + UVB Filters",
+    "media_swatch": null,
+    "media_application": null,
+    "media_emotional": null,
+    "size_label": "50 gm",
+    "size_value": 50,
+    "size_unit": "gm",
+    "pack_height_mm": 116,
+    "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Defense Sunscreen SPF 50; 116 mm. Moisturizer and SPF confirmed same physical bottle.",
+    "pack_ratio_nominal": 0.62,
+    "pack_ratio_source": "Composition-only portrait crop reservation, not a measured H1 crop; revalidate with matched approved photography."
+  },
+  "translations": {
+    "role": {
+      "en": "Protect",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "promise": {
+      "en": "Invisible. Lightweight. Fast-absorbing.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "suitability": {
+      "en": "For All Skin Types",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "back_description": {
+      "en": "A daily SPF 50 sunscreen with Niacinamide, Panthenol and Bisabolol. Provides broad-spectrum UVA/UVB protection in a lightweight, fast-absorbing formula with no white cast.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "does": {
+      "en": "Invisible. Lightweight. Fast-absorbing.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "feels_like": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "formula_logic": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "how_to_use": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    }
+  },
+  "claims": [
+    {
+      "label": {
+        "en": "Hydrating",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "No white cast",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "Non-greasy",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    }
+  ],
+  "translation_status": "AR product claims require authored/regulatory review; null is never published",
+  "key_ingredients": [
+    {
+      "inci_name": "Niacinamide",
+      "display_name": {
+        "en": "Niacinamide",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Panthenol",
+      "display_name": {
+        "en": "Panthenol",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Bisabolol",
+      "display_name": {
+        "en": "Bisabolol",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    }
+  ],
+  "copy_note": "No ingredient-specific efficacy or texture is substantiated by the approved label. Why/feels_like/formula_logic remain null. Pack height sourced from founder physical-pack tape measurements supplied 2026-09-30. Photos are geometry/measurement evidence only; old photographed Cleanser/Serum labels never replace FINAL-v5 source truth."
+}

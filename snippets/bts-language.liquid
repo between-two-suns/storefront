@@ -1,0 +1,13 @@
+{% doc %}
+Native localization form preserves Shopify return routing.
+@param {string} id - Unique form ID.
+{% enddoc %}
+{% if localization.available_languages.size > 1 %}
+  {% form 'localization', id: id, class: 'bts-language' %}
+    {% for language in localization.available_languages %}
+      {% unless language.iso_code == localization.language.iso_code %}
+        <button type="submit" name="language_code" value="{{ language.iso_code }}" lang="{{ language.iso_code }}" aria-label="{{ language.endonym_name | escape }}">{% if language.iso_code == 'ar' %}ع{% else %}EN{% endif %}</button>
+      {% endunless %}
+    {% endfor %}
+  {% endform %}
+{% endif %}

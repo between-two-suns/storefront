@@ -1,30 +1,13 @@
 <footer class="bts-footer">
-  <div class="bts-footer__mark">
-    {% if settings.brand_mark != blank %}
-      {{ settings.brand_mark | image_url: width: 200 | image_tag: widths: '80,120,160,200', loading: 'lazy', alt: '' }}
-    {% else %}
-      <img
-        src="{{ 'bts-icon-white.svg' | asset_url }}"
-        width="48"
-        height="52"
-        alt=""
-        loading="lazy"
-      >
-    {% endif %}
-  </div>
-  <p class="bts-footer__signature">fresh skin. always.</p>
-  <div class="bts-footer__links">
-    <a href="{{ routes.all_products_collection_url }}">Shop</a>
-    <a href="{{ routes.search_url }}">Search</a>
-    <a href="/policies/shipping-policy">Shipping</a>
-    <a href="/policies/refund-policy">Returns</a>
-  </div>
-  <small>© {{ 'now' | date: '%Y' }} BETWEEN TWO SUNS</small>
+  <a href="{{ routes.root_url }}"><img class="bts-footer__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS" loading="lazy"></a>
+  <nav id="bts-menu-nojs" aria-label="{{ 'bts.menu' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'bts.home' | t }}</a>
+    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a>
+    {% render 'bts-routine-link' %}
+    <a href="{{ routes.cart_url }}">{{ 'bts.bag' | t }}</a>
+  </nav>
+  {% render 'bts-internal-marker', key: 'bts.prototype' %}
 </footer>
-
 {% schema %}
-{
-  "name": "BTS footer",
-  "settings": []
-}
+{"name":"Footer","settings":[]}
 {% endschema %}

@@ -1,0 +1,24 @@
+{% doc %}
+Shared money contract: minor units, Western grouping, no decimals; pattern and EGP label from locales. JS reads these exact tokens from bts-money-config.
+@param {number} amount - Minor units
+@param {string} [currency] - Currency code
+{% enddoc %}
+{%- liquid
+  assign currency = currency | default: cart.currency.iso_code | default: 'EGP'
+  assign rounded = amount | divided_by: 100.0 | round | append: ''
+  assign digits = rounded | split: ''
+  assign grouped = ''
+  for digit in digits
+    assign remaining = digits.size | minus: forloop.index
+    assign grouped = grouped | append: digit
+    assign remainder = remaining | modulo: 3
+    if remaining > 0 and remainder == 0
+      assign grouped = grouped | append: ','
+    endif
+  endfor
+  assign currency_label = currency
+  if currency == 'EGP'
+    assign currency_label = 'money.currency_label.EGP' | t
+  endif
+-%}
+<bdi dir="ltr" data-bts-money data-amount="{{ amount }}" data-currency="{{ currency | escape }}">{{ 'money.pattern' | t: amount: grouped, currency: currency_label }}</bdi>

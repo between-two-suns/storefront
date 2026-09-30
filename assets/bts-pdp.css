@@ -1,0 +1,25 @@
+.bts-pdp { padding: 20px var(--gutter) 48px; }
+.bts-pdp__decision { display: block; }
+.bts-pdp__gallery { max-inline-size: 420px; inline-size: 82vw; margin-inline: auto; }
+.bts-pdp__frame { margin: 40px 0; }
+.bts-pdp__frame img { display: block; inline-size: 100%; }
+.bts-pdp__back { padding-block: 40px; max-inline-size: 760px; }
+.bts-pdp__back .pf__ingredients { margin-block: 24px; gap: 24px; }
+.bts-formula { margin-block: 32px; }
+.bts-reviews { border-block-start: 1px solid var(--c-line); padding-block: 2rem; max-inline-size: 760px; }
+.bts-reviews h2 { font-size: 1.5rem; }
+.bts-reviews__list { list-style: none; padding-inline: 0; margin-block: 1.5rem 0; }
+.bts-reviews__item { border-block-start: 1px solid var(--c-line); padding-block: 1rem; overflow-wrap: anywhere; }
+.bts-reviews__item h3 { font-size: 1rem; margin-block: 0 .5rem; }
+.bts-reviews__item p { margin-block: .5rem; }
+.bts-sticky-add { position: fixed; inset-block-end: 0; inset-inline: 0; z-index: var(--z-sticky); background: var(--c-ground); padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 12px; }
+.bts-sticky-add > bdi:first-child { font-size: var(--text-small); margin-inline-end: auto; }
+@media (min-width: 990px) {
+  .bts-sticky-add { display: none; }
+  .bts-pdp__gallery { inline-size: 100%; max-inline-size: none; }
+  .bts-pdp__gallery .pf__inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; column-gap: 8vw; row-gap: 12px; }
+  .bts-pdp__gallery .pf__stage { grid-row: 1 / 3; }
+  .bts-pdp__gallery .pf__info, .bts-pdp__gallery .pf__buy { grid-column: 2; }
+  .bts-pdp__gallery .pf__info { align-self: end; }
+  .bts-pdp__gallery .pf__buy { align-self: start; }
+}

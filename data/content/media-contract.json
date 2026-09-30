@@ -1,0 +1,14 @@
+{
+  "type": "bts_media",
+  "storefront_access": "PUBLIC_READ",
+  "fields": {
+    "file": "file_reference (images only in M2)",
+    "role": "single_line_text_field: H1 | P1_BACK | T2 | P2 | CAMPAIGN",
+    "product_handle": "single_line_text_field",
+    "alt": "json: {en, ar, approved: {en, ar}}",
+    "label_version": "single_line_text_field",
+    "approved": "boolean",
+    "pack_crop_approved": "boolean: H1 crop matches the pack silhouette extents and contact floor; required for physical scale"
+  },
+  "rule": "Approved current-label image, requested role and a real file render. Alt: approved locale text, else nonempty Latin product name; never an English alt sentence fallback. Missing/invalid file emits no frame. Physical scale additionally requires pack_crop_approved so padded crops cannot masquerade as real relative heights. No media entries or crop approvals are seeded."
+}

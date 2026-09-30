@@ -203,7 +203,7 @@
     $('[data-b11-h="line"]').textContent = t('line_' + k);
     $('[data-b11-h="price"]').textContent = money(PRICE[k]);
     $$('[data-b11-goto]').forEach((b, j) => b.setAttribute('aria-selected', String(j === i)));
-    slides.forEach((s, j) => { const b = s.querySelector('[data-b11-swatch]'); b.tabIndex = j === i ? 0 : -1; s.setAttribute('aria-hidden', String(j !== i)); });
+    slides.forEach((s, j) => { const b = s.querySelector('[data-b11-sheet]'); if (b) b.tabIndex = 0; s.removeAttribute('aria-hidden'); });
   }
   function goTo(i, smooth = true) {
     const dir = root.dir === 'rtl' ? -1 : 1;

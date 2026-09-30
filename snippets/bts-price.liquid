@@ -1,0 +1,19 @@
+{% doc %}
+bts-price foundation helper.
+@param {string} handle - Product handle
+@param {product} [product] - Shopify product
+{% enddoc %}
+{% liquid
+  assign bts_is_prototype = true
+  # Launch is locked until ShopifyCartAdapter and launch QA exist.
+%}
+{% if bts_is_prototype %}
+  {% capture amount %}{% render 'bts-review-price-value', handle: handle %}{% endcapture %}{% assign amount = amount | strip %}
+  {% assign amount = amount | plus: 0 %}
+  {% capture review_currency %}{% render 'bts-review-price-value', field: 'currency' %}{% endcapture %}{% assign review_currency = review_currency | strip %}
+  {% if amount != blank and amount > 0 %}
+    {% assign minor_amount = amount | times: 100 | round %}{% render 'bts-money', amount: minor_amount, currency: review_currency %}
+  {% else %}{{ 'bts.coming_soon' | t }}{% endif %}
+{% elsif product.published_at and product.selected_or_first_available_variant.price > 0 %}
+  {% render 'bts-money', amount: product.selected_or_first_available_variant.price %}
+{% else %}{{ 'bts.coming_soon' | t }}{% endif %}

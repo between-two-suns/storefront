@@ -1,0 +1,144 @@
+{
+  "internal_fixture_only": true,
+  "warning": "Only a local simulated Shopify contract. The feed payload mimics approved provider flags to exercise SSR; no actual verification or customers. Never import into content seeds/Admin. Every rendered name/body remains marked INTERNAL FIXTURE.",
+  "feed": {
+    "schema_version": 1,
+    "product_handle": "daily-reset-cleanser",
+    "provider": "INTERNAL LOCAL CONTRACT FIXTURE",
+    "authenticity": "verified_customer",
+    "fixture": false,
+    "approved": true,
+    "records": [
+      {
+        "id": "internal-fixture-0",
+        "product_handle": "daily-reset-cleanser",
+        "authenticity": "verified_customer",
+        "fixture": false,
+        "verified_purchase": true,
+        "published": true,
+        "approved": true,
+        "rating": 3,
+        "display_name": {
+          "en": "INTERNAL FIXTURE 0",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE 0",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        },
+        "body": {
+          "en": "INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        }
+      },
+      {
+        "id": "internal-fixture-1",
+        "product_handle": "daily-reset-cleanser",
+        "authenticity": "verified_customer",
+        "fixture": false,
+        "verified_purchase": true,
+        "published": true,
+        "approved": true,
+        "rating": 4,
+        "display_name": {
+          "en": "INTERNAL FIXTURE 1",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE 1",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        },
+        "body": {
+          "en": "INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        }
+      },
+      {
+        "id": "internal-fixture-2",
+        "product_handle": "daily-reset-cleanser",
+        "authenticity": "verified_customer",
+        "fixture": false,
+        "verified_purchase": true,
+        "published": true,
+        "approved": true,
+        "rating": 4,
+        "display_name": {
+          "en": "INTERNAL FIXTURE 2",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE 2",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        },
+        "body": {
+          "en": "INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        }
+      },
+      {
+        "id": "internal-fixture-3",
+        "product_handle": "daily-reset-cleanser",
+        "authenticity": "verified_customer",
+        "fixture": false,
+        "verified_purchase": true,
+        "published": true,
+        "approved": true,
+        "rating": 5,
+        "display_name": {
+          "en": "INTERNAL FIXTURE 3",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE 3",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        },
+        "body": {
+          "en": "INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        }
+      },
+      {
+        "id": "internal-fixture-4",
+        "product_handle": "daily-reset-cleanser",
+        "authenticity": "verified_customer",
+        "fixture": false,
+        "verified_purchase": true,
+        "published": true,
+        "approved": true,
+        "rating": 5,
+        "display_name": {
+          "en": "INTERNAL FIXTURE 4",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE 4",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        },
+        "body": {
+          "en": "INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "ar": "اختبار داخلي فقط — INTERNAL FIXTURE — NOT A CUSTOMER REVIEW. <script>unsafe</script>",
+          "approved": {
+            "en": true,
+            "ar": true
+          }
+        }
+      }
+    ]
+  }
+}

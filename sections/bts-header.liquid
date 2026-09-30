@@ -1,62 +1,16 @@
-<header class="bts-header" data-bts-header>
-  <a class="bts-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-    {% if settings.logo != blank %}
-      {{ settings.logo | image_url: width: 420 | image_tag: class: 'bts-header__logo', widths: '160,240,320,420', loading: 'eager', alt: shop.name }}
-    {% else %}
-      <img
-        class="bts-header__logo"
-        src="{{ 'bts-wordmark-ink.svg' | asset_url }}"
-        width="72"
-        height="62"
-        alt="{{ shop.name | escape }}"
-        loading="eager"
-      >
-    {% endif %}
-  </a>
-
-  <div class="bts-header__actions">
-    <a class="bts-header__bag" href="{{ routes.cart_url }}">
-      BAG <span aria-hidden="true">({{ cart.item_count }})</span>
-      <span class="visually-hidden">{{ cart.item_count }} items</span>
-    </a>
-
-    <details class="bts-menu">
-      <summary class="bts-menu__toggle">
-        <span>MENU</span>
-      </summary>
-      <div class="bts-menu__panel">
-        <div class="bts-menu__top">
-          <span class="bts-kicker">BETWEEN TWO SUNS</span>
-          <button type="button" class="bts-menu__close">CLOSE</button>
-        </div>
-        <nav aria-label="Primary">
-          <ul class="bts-menu__list" role="list">
-            {% if section.settings.menu != blank %}
-              {% for link in section.settings.menu.links %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {% endfor %}
-            {% else %}
-              <li><a href="/#products">SHOP PRODUCTS</a></li>
-              <li><a href="/#routine">SHOP THE ROUTINE</a></li>
-              <li><a href="/#environment">WHY CLIMATE-ADAPTED</a></li>
-            {% endif %}
-          </ul>
-        </nav>
-        <p class="bts-menu__signature">fresh skin. always.</p>
-      </div>
-    </details>
+<header class="bts-header">
+  <a class="bts-header__menu" href="#bts-menu-nojs" data-bts-open="bts-menu" aria-haspopup="dialog" aria-label="{{ 'bts.menu' | t }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></a>
+  <a class="bts-header__mark" href="{{ routes.root_url }}" aria-label="BETWEEN TWO SUNS"><img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="BETWEEN TWO SUNS"></a>
+  <nav class="bts-header__nav" aria-label="{{ 'bts.collection' | t }}">
+    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a>
+    {% render 'bts-routine-link' %}
+  </nav>
+  <div class="bts-header__tools">
+    <a href="{{ routes.search_url }}" aria-label="{{ 'bts.search' | t }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></a>
+    {% render 'bts-language', id: 'BtsHeaderLanguage' %}
+    <a href="{{ routes.cart_url }}" data-bts-open="bts-drawer" aria-haspopup="dialog">{{ 'bts.bag' | t }} <span class="bts-header__count" data-bts-count>0</span></a>
   </div>
 </header>
-
 {% schema %}
-{
-  "name": "BTS header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu"
-    }
-  ]
-}
+{"name":"Header","class":"bts-global-header","settings":[]}
 {% endschema %}

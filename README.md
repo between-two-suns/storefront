@@ -1,25 +1,39 @@
 # BETWEEN TWO SUNS — Storefront
 
-Custom Shopify Online Store 2.0 theme for BETWEEN TWO SUNS.
+Custom Shopify Online Store 2.0 theme on `build/vertical-slice`.
 
-## Product goal
-Build a mobile-first skincare ecommerce experience that combines:
-- a proprietary digital brand language
-- effortless product discovery and purchasing
-- routine and bundle adoption
-- strong performance, accessibility and reduced-motion support
+V12 follows the corrected FRONT / BACK route in `opus-brand-pack/V12_INDEPENDENT_REVIEW.md`. A shared product face turns only on the Home flagship shelf and PDP, when approved media and approved locale content exist. Compact/collection presentations stay static. Price and Add remain outside the rotating element.
 
-## Creative system
-The current build is organized around four reusable primitives:
-1. **The Between Space** — a responsive aperture / negative-space system.
-2. **Environmental States** — sun, dust, pollution, dry AC and humidity transform the same composition.
-3. **The Routine Rail** — Reset → Clarity → Barrier → Defense.
-4. **Product Color** — mint, powder blue, lilac and peach.
+The shell owns one header/footer, one static server-rendered prototype marker, one cart adapter/count and shared native side sheets. Launch is locked until the Shopify cart adapter and staging QA exist. Draft products do not need publication; local prototype amounts are sourced only from `data/prototype/config.json` and can be displayed by the explicitly theme-scoped review fallback in unpublished theme `166903251202`. They never set Shopify product prices.
 
-The first build target is the mobile vertical slice:
-**Hero → Environment → Routine → PDP → Add to Bag.**
+Approved label content and JSON field mapping live in `data/content/`; `data/labels.json` mirrors the final source. Product Arabic fields and media references are null until authored/approved. Missing approved media renders the approved placeholder-first composition. Runtime reads the native `metaobjects` global. Theme `166903251202` additionally uses generated theme-local review scalars when content/config entries are unavailable; this fallback is disabled in every other theme. Run `node scripts/build-review-fallback.mjs` after approved seed changes, or `--check` to verify parity. Draft-safe Add controls remain disabled without a purchasable Shopify variant; checkout remains locked. Definitions/entries/preview Pages have not been created in Admin.
 
-## Development
-Primary development branch: `build/vertical-slice`
+Local checks:
 
-The theme is intentionally custom and does not depend on a page builder.
+- `npm ci`
+- `npm run check` — structure, source parity, price/climate gates and Node cart/SSR regression tests.
+- `npm run theme-check` — local Shopify Theme Check, without store access.
+- `npm run test:browser` — local LiquidJS fixture server + system Chrome + axe; set `BTS_CHROME_PATH` for another installed Chrome executable. Fixtures simulate Shopify drops and use an explicitly synthetic geometry image. They do not establish Shopify preview or visual approval.
+- `node scripts/seed-metaobjects.mjs --dry-run` — offline definition/field plan only; no Admin/network/mutation implementation.
+
+See `opus-brand-pack/V12_CODEX_M2_FIX_REPORT.md` for exact changes, validation and release blockers. Real H1 media, authored Arabic, self-hosted fonts and rendered Shopify/device/Lighthouse QA remain required. Font integration is described in `data/fonts.md`.
+
+Prior v5–v11 work remains in `archive/v5-v11/` and git history, excluded from upload and active-theme validation. No commit, push, publish or Shopify Admin operation is part of this M2 pass.
+
+M2 gate fixes: Home uses equal desktop tracks, a common shelf floor and commerce baseline. Exact pack heights/source references stay null; measured scale activates only for a complete sourced set with approved H1 crops. Unknown dimensions use neutral presentation sizing. Approved H1 images render in Arabic with proper-name alt fallback, while unapproved Arabic product content stays hidden. Routine offers open a sheet and link to an existing Page or `/search?view=routine` (theme-native alternate search template); search filters content proper names server-side without publishing products. `page.json` and `page.routine.json` are available for later content setup. Misleading launch settings have been removed; prototype mode remains locked.
+
+`npm run test:perf` runs Lighthouse on local stand-ins only. Browser screenshots, geometry, axe and motion assertions are saved in ignored `test-results/`; no fixture image or synthetic test dimensions are seeded as product content.
+
+V12 production foundation: `data/production/h1-manifest.json` names four FINAL-v5 H1 deliveries with sourced 180/96/116/116 mm heights, matte shared pumps and signed tight-crop integration receipts. `node scripts/prepare-h1-integration.mjs --dry-run` reports missing assets without writes/uploads/Admin. No safe final label artwork/H1 is present; media references remain null. `data/fonts.md` now selects exact future bilingual font roles/files and documents licence gaps. `data/translation-drafts/ar-final-v5.json` plus `opus-brand-pack/V12_ARABIC_TRANSLATION_WORKSHEET.md` hold a source-grounded unapproved draft, excluded from seeding.
+
+PDP reviews now have an honest EN/AR empty state and a real-only approved snapshot contract at `data/content/reviews/`. Production review seeds remain empty. The theme gates proof at five complete locale-approved verified-customer records, derives only displayed-snapshot metrics and rejects invalid/fixture records. `npm run test:production-browser` checks local empty/internal-fixture review UI at normal and 200% text sizes. No fixture feed is loaded by the storefront or seed plan. See `opus-brand-pack/V12_PRODUCTION_INTEGRATION.md` for precise delivery and later content integration, and `opus-brand-pack/V12_PRODUCTION_LAYER_REPORT.md` for executed validation and remaining release gates.
+
+V12 visible storefront: `npm run preview:local` serves an interactive **local LiquidJS fixture** at `http://127.0.0.1:8787` (Arabic `/ar`). It uses the actual theme and sourced local content to simulate Shopify drops; it does not connect to Shopify or provide an uploaded preview. Approved H1 media remains null. Home/PDP deliberately use flat product-color typography, with no package representation, turn or unsafe-image module. `npm run test:visible-storefront` checks all four no-photo PDPs/Home in EN/AR at mobile/intermediate/desktop widths and 200% text, and saves screenshots in ignored `test-results/v12-post-opus-live/`. Product navigation falls back to `search.product.json` when preview Pages do not exist. No-JS browsing and native INCI disclosures remain usable. See `opus-brand-pack/V12_VISIBLE_STOREFRONT_BUILD_REPORT.md` for the missing creative-pass input, evidence and remaining gates.
+
+The current reviewed build includes the later changes in `opus-brand-pack/V12_CODEX_POST_OPUS_LIVE_FIX_REPORT.md`: outlined portrait image reservations, sourced proportional geometry, campaign/T2 reservations, formula transparency, and no-media PDPs. Earlier reports describe their individual passes. `tests/visible-storefront.mjs` now exercises Home, Shop and all four PDPs with EN/AR, normal/enlarged text and both motion preferences; its artifacts are in ignored `test-results/v12-post-opus-live/`. Start `npm run preview:local` before that suite or `node tests/live-touch-journeys.mjs`. Checkpoint validation and GitHub verification are recorded in `opus-brand-pack/V12_GITHUB_CHECKPOINT_REPORT.md`.
+
+Reproduce locally with Node 24, `npm ci`, and the commands above. Browser checks require an installed Chrome (`BTS_CHROME_PATH` overrides the macOS default). Git tracks active theme source, content/contracts, exact identity vectors, brand documents, development tools/tests and archived legacy source. Generated screenshots, dependency installs, CLI state, credentials and temporary files stay ignored. Historical archive binaries remain local and recoverable from pre-V12 git history where previously tracked. The four `opus-brand-pack/products/` references are unapproved historical renders; the cleanser is also a required rejection-test input. None is approved H1 media or a storefront fallback. `.shopifyignore` continues to exclude development and brand material from any future separately authorized upload.
+
+The later review-theme fallback additions use the top-level `metaobjects` drop, while `bts-content-field`, `bts-product-handles` and `bts-review-price-value` supply seeded review content only when `theme.id` is `166903251202` and content/config is absent. `scripts/build-review-fallback.mjs` regenerates the content/price snippets from the local seeds/config. This supersedes earlier statements that every path requires populated metaobjects. It does not approve media, Arabic product copy or launch commerce. See the checkpoint report for validation status and concerns.
+
+Native Shopify verification is a separate, later authorized step: `node tests/shopify-native-review.mjs <share-preview-url>`. It requires a review URL and is excluded from this local GitHub checkpoint.

@@ -1,0 +1,16 @@
+{{ 'bts-face.css' | asset_url | stylesheet_tag }}
+<section class="bts-foundation bts-collection bts-routine-page">
+  <h1>{{ 'bts.routine' | t }}</h1>
+  {% render 'bts-routine-offer', uid: section.id %}
+  <div class="bts-collection__grid">
+  {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}{% assign products = product_handles | split: '|' %}
+  {% for handle in products %}
+    {% assign content = metaobjects.bts_product_content[handle] %}
+    {% assign uid = section.id | append: '-' | append: forloop.index %}
+    {% render 'bts-face', content: content, handle: handle, variant: 'grid', uid: uid %}
+  {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Prototype routine","settings":[]}
+{% endschema %}

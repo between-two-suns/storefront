@@ -1,0 +1,174 @@
+{
+  "type": "bts_product_content",
+  "handle": "clarity-serum",
+  "fields": {
+    "product_handle": "clarity-serum",
+    "name": "Clarity Serum",
+    "short_name": "Clarity",
+    "step": 2,
+    "colour_key": "clarity",
+    "size_display": "30 mL",
+    "inci": "Aqua, Niacinamide, Glycerin, Tranexamic Acid, Propylene Glycol, Phenoxyethanol, Panthenol, Xylitylglucoside, Anhydroxylitol, Xylitol, Sodium Hyaluronate, Ammonium Acryloyldimethyltaurate/VP Copolymer, Ethylhexylglycerin, EDTA, Allantoin.",
+    "usage_times": [
+      "am",
+      "pm"
+    ],
+    "media_front": null,
+    "media_back": null,
+    "components": [],
+    "key": "clarity",
+    "kind": "single",
+    "inci_version": "FINAL-v5",
+    "hero_actives": "Niacinamide + Tranexamic Acid",
+    "media_swatch": null,
+    "media_application": null,
+    "media_emotional": null,
+    "size_label": "30 mL",
+    "size_value": 30,
+    "size_unit": "mL",
+    "pack_height_mm": 96,
+    "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Clarity Serum; 96 mm.",
+    "pack_ratio_nominal": 0.62,
+    "pack_ratio_source": "Composition-only portrait crop reservation, not a measured H1 crop; revalidate with matched approved photography."
+  },
+  "translations": {
+    "role": {
+      "en": "Treat",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "promise": {
+      "en": "Controls oil. Evens skin tone. Hydrates.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "suitability": {
+      "en": "",
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "back_description": {
+      "en": "A daily serum with Niacinamide, Tranexamic Acid and Hyaluronic Acid. Helps even skin tone and reduce the appearance of dark spots while controlling excess oil and hydrating skin.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "does": {
+      "en": "Controls oil. Evens skin tone. Hydrates.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "feels_like": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "formula_logic": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "how_to_use": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    }
+  },
+  "claims": [],
+  "translation_status": "AR product claims require authored/regulatory review; null is never published",
+  "key_ingredients": [
+    {
+      "inci_name": "Niacinamide",
+      "display_name": {
+        "en": "Niacinamide",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Tranexamic Acid",
+      "display_name": {
+        "en": "Tranexamic Acid",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Sodium Hyaluronate",
+      "display_name": {
+        "en": "Hyaluronic Acid",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": true,
+      "attribution_approved": false
+    }
+  ],
+  "copy_note": "No ingredient-specific efficacy or texture is substantiated by the approved label. Why/feels_like/formula_logic remain null. Pack height sourced from founder physical-pack tape measurements supplied 2026-09-30. Photos are geometry/measurement evidence only; old photographed Cleanser/Serum labels never replace FINAL-v5 source truth."
+}

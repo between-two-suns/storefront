@@ -1,100 +1,69 @@
+{{ 'bts-face.css' | asset_url | stylesheet_tag }}
+{{ 'bts-pdp.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'bts-face.js' | asset_url }}"></script>
+<script type="module" src="{{ 'bts-pdp.js' | asset_url }}"></script>
 {% liquid
-  assign current_variant = product.selected_or_first_available_variant
-  assign step = product.metafields.custom.routine_step.value | default: '01 / 04'
-  assign role = product.metafields.custom.routine_role.value | default: product.type
+  assign content = page.metafields.bts.content.value | default: product.metafields.bts.content.value
+  if content == blank
+    assign content_handle = page.handle | remove_first: 'preview-' | default: product.handle
+    if content_handle == blank and template.name == 'search' and template.suffix == 'product'
+      assign content_handle = search.terms
+    endif
+    assign content = metaobjects.bts_product_content[content_handle]
+  endif
+  assign uid = section.id | append: '-primary'
+  assign language = request.locale.iso_code | split: '-' | first
 %}
-
-<section class="bts-product" data-bts-product>
-  <div class="bts-product__grid">
-    <div class="bts-product__media">
-      {% if product.featured_image != blank %}
-        {{ product.featured_image | image_url: width: 1100 | image_tag: widths: '420,640,840,1100', sizes: '(max-width: 749px) 88vw, 52vw', loading: 'eager', alt: product.featured_image.alt }}
-      {% else %}
-        <span class="bts-pack bts-pack--reset" aria-hidden="true">{{ role | default: 'PRODUCT' }}</span>
-      {% endif %}
+{% assign handle = content.product_handle.value | default: content_handle %}
+{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% capture short_name %}{% render 'bts-content-field', content: content, handle: handle, field: 'short_name' %}{% endcapture %}{% assign short_name = short_name | strip %}
+{% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+{% if name != blank %}
+<section class="bts-pdp" aria-labelledby="pf-{{ uid }}-name">
+  <nav class="bts-product-path" aria-label="{{ 'bts.collection' | t }}"><a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a><span aria-hidden="true">/</span><bdi lang="en">{{ short_name | escape }}</bdi></nav>
+  <div class="bts-pdp__decision">
+    <div class="bts-pdp__gallery">
+      {% render 'bts-face', content: content, handle: handle, variant: 'pdp', uid: uid, eager: true %}
     </div>
-
-    <div class="bts-product__info">
-      <p class="bts-product__step">{{ step }}{% if role != blank %} · {{ role | upcase }}{% endif %}</p>
-      <h1 class="bts-display bts-product__title">{{ product.title }}</h1>
-
-      {% if product.metafields.custom.core_proposition != blank %}
-        <p class="bts-product__description">{{ product.metafields.custom.core_proposition.value }}</p>
-      {% elsif product.description != blank %}
-        <div class="bts-product__description">{{ product.description | strip_html | truncatewords: 28 }}</div>
-      {% endif %}
-
-      <div class="bts-product__buy">
-        <span class="bts-product__price">{{ current_variant.price | money }}</span>
-
-        {% form 'product', product, class: 'bts-product-form' %}
-          {% if product.has_only_default_variant == false %}
-            <label class="visually-hidden" for="Variant-{{ section.id }}">Variant</label>
-            <select id="Variant-{{ section.id }}" name="id">
-              {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
-                  {{ variant.title }} — {{ variant.price | money }}
-                </option>
-              {% endfor %}
-            </select>
-          {% else %}
-            <input type="hidden" name="id" value="{{ current_variant.id }}">
-          {% endif %}
-          <input type="hidden" name="quantity" value="1">
-          <button class="bts-button bts-button--solid bts-button--wide" type="submit" {% unless current_variant.available %}disabled{% endunless %}>
-            {% if current_variant.available %}ADD TO BAG{% else %}SOLD OUT{% endif %} <span aria-hidden="true">→</span>
-          </button>
-        {% endform %}
-      </div>
-
-      <div class="bts-product__accordion">
-        <details>
-          <summary>PRODUCT DETAILS <span aria-hidden="true">+</span></summary>
-          <div>
-            {% if product.metafields.custom.product_details != blank %}
-              {{ product.metafields.custom.product_details | metafield_tag }}
-            {% else %}
-              {{ product.description }}
-            {% endif %}
-          </div>
-        </details>
-
-        <details>
-          <summary>INGREDIENTS <span aria-hidden="true">+</span></summary>
-          <div>
-            {% if product.metafields.custom.ingredients != blank %}
-              {{ product.metafields.custom.ingredients | metafield_tag }}
-            {% else %}
-              Add the full INCI list to the product metafield <strong>custom.ingredients</strong>.
-            {% endif %}
-          </div>
-        </details>
-
-        <details>
-          <summary>HOW TO USE <span aria-hidden="true">+</span></summary>
-          <div>
-            {% if product.metafields.custom.how_to_use != blank %}
-              {{ product.metafields.custom.how_to_use | metafield_tag }}
-            {% else %}
-              Add usage instructions to <strong>custom.how_to_use</strong>.
-            {% endif %}
-          </div>
-        </details>
-
-        <details>
-          <summary>SHIPPING & RETURNS <span aria-hidden="true">+</span></summary>
-          <div>
-            Delivery and returns information will be localized for Egypt at launch.
-          </div>
-        </details>
-      </div>
+    <div class="bts-pdp__routine">{% render 'bts-routine-link' %}<span>{% render 'bts-usage-time', content: content, handle: handle %}</span></div>
+  </div>
+  {% assign frame_fields = 'media_back,media_swatch,media_application' | split: ',' %}
+  {% for field in frame_fields %}
+    {% liquid
+      assign media_role = 'P1_BACK'
+      if field == 'media_swatch'
+        assign media_role = 'T2'
+      elsif field == 'media_application'
+        assign media_role = 'P2'
+      endif
+    %}
+    {% capture frame %}{% render 'bts-media', content: content, media: content[field].value, role: media_role %}{% endcapture %}
+    {% if frame != blank %}<figure class="bts-pdp__frame">{{ frame }}</figure>{% endif %}
+  {% endfor %}
+  <section class="bts-pdp__back pf" data-colour="{{ colour_key | escape }}" aria-labelledby="BtsBackTitle-{{ section.id }}">
+    <h2 id="BtsBackTitle-{{ section.id }}">{% if language == 'ar' %}<bdi lang="en">INCI</bdi>{% else %}{{ 'bts.ingredients' | t }}{% endif %}</h2>
+    {% render 'bts-product-back', content: content, handle: handle, uid: handle, expanded: true %}
+  </section>
+  <section class="bts-pdp__neighbours" aria-labelledby="BtsNeighbours-{{ section.id }}">
+    <h2 id="BtsNeighbours-{{ section.id }}">{{ 'bts.routine' | t }}</h2>
+    {% render 'bts-routine-offer', uid: 'pdp-neighbours', sheet: true %}
+    <div class="bts-neighbour-grid">
+      {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}{% assign products = product_handles | split: '|' %}
+      {% for neighbour_handle in products %}{% assign neighbour = metaobjects.bts_product_content[neighbour_handle] %}{% if neighbour_handle != handle %}
+        {% assign neighbour_uid = section.id | append: '-neighbour-' | append: forloop.index %}
+        {% render 'bts-face', content: neighbour, handle: neighbour_handle, variant: 'grid', uid: neighbour_uid %}
+      {% endif %}{% endfor %}
     </div>
+  </section>
+  {% render 'bts-reviews' , content: content, uid: section.id %}
+  <div class="bts-sticky-add" data-bts-sticky-add hidden inert>
+    <bdi lang="en">{{ name | escape }}</bdi>
+    {% render 'bts-price', handle: handle %}{% render 'bts-add-button', handle: handle %}
   </div>
 </section>
-
+{% else %}
+<section class="bts-foundation"><h1>{{ 'bts.product' | t }}</h1><p>{{ 'bts.coming_soon' | t }}</p></section>
+{% endif %}
 {% schema %}
-{
-  "name": "BTS product",
-  "settings": []
-}
+{"name":"Product pack and proof","settings":[]}
 {% endschema %}

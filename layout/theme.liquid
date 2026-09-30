@@ -1,31 +1,34 @@
+{% assign bts_is_prototype = true %}
+
+{% assign bts_language = request.locale.iso_code | split: '-' | first %}
 <!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="theme-color" content="{{ settings.color_background | default: '#F4F0E8' }}">
-    <link rel="canonical" href="{{ canonical_url }}">
-    <link href="{{ 'bts-icon-ink.svg' | asset_url }}" rel="icon" type="image/svg+xml">
-    <title>
-      {{ page_title }}
-      {%- if current_tags %} – {{ current_tags | join: ', ' }}{% endif -%}
-      {%- if current_page != 1 %} – Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} – {{ shop.name }}{% endunless -%}
-    </title>
-    {{ content_for_header }}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-    {{ 'bts.css' | asset_url | stylesheet_tag: preload: true }}
-    <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
-  </head>
-  <body class="template-{{ template.name | handle }}">
-    <a class="bts-skip-link" href="#MainContent">Skip to content</a>
-    {% section 'bts-header' %}
-    <main id="MainContent" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
-    {% section 'bts-footer' %}
-    <script src="{{ 'bts.js' | asset_url }}" defer="defer"></script>
-  </body>
+<html lang="{{ request.locale.iso_code }}" dir="{% if bts_language == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  {% if bts_is_prototype %}<meta name="robots" content="noindex,nofollow">{% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="icon" href="{{ 'bts-icon-ink.svg' | asset_url }}" type="image/svg+xml">
+  <title>{{ page_title | escape }} · BETWEEN TWO SUNS</title>
+  {{ content_for_header }}
+  {{ 'bts-tokens.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-base.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-components.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-editorial.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'bts-core.js' | asset_url }}" type="module"></script>
+</head>
+<body data-bts-mode="{% if bts_is_prototype %}prototype{% else %}launch{% endif %}" data-bts-qty-max="{{ settings.bts_qty_max | default: 6 }}">
+  <a class="bts-skip" href="#MainContent">{{ 'bts.skip' | t }}</a>
+  {% section 'bts-header' %}
+  <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
+  {% section 'bts-footer' %}
+  {% render 'bts-drawer' %}
+  {% render 'bts-menu-sheet' %}
+  {% render 'bts-prototype-data' %}
+  {% render 'bts-catalog-json' %}
+  <script id="bts-money-config" type="application/json">{"pattern":{{ 'money.pattern' | t: amount: '__AMOUNT__', currency: '__CURRENCY__' | json }},"currency_label":{{ 'money.currency_label.EGP' | t | json }}}</script>
+  {% render 'bts-inci-sheet' %}
+  {% render 'bts-routine-sheet' %}
+  <p class="bts-visually-hidden" role="status" aria-live="polite" data-bts-added-status></p>
+</body>
 </html>

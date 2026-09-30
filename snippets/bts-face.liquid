@@ -1,0 +1,86 @@
+{% doc %}
+Single product presentation; full turn restricted to shelf/pdp only. Compact contexts have no back markup or transform host.
+@param {string} [handle] - Draft-safe product identity
+@param {metaobject} [content] - bts_product_content
+@param {string} variant - shelf or pdp for turn, otherwise static
+@param {string} uid - unique per section/product occurrence
+@param {boolean} [eager] - LCP media
+@param {boolean} [show_info] - Identity and buy row
+{% enddoc %}
+{% assign handle = handle | default: content.product_handle.value %}
+{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% capture short_name %}{% render 'bts-content-field', content: content, handle: handle, field: 'short_name' %}{% endcapture %}{% assign short_name = short_name | strip %}
+{% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+{% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+{% capture size_display %}{% render 'bts-content-field', content: content, handle: handle, field: 'size_display' %}{% endcapture %}{% assign size_display = size_display | strip %}
+{% capture inci %}{% render 'bts-content-field', content: content, handle: handle, field: 'inci' %}{% endcapture %}{% assign inci = inci | strip %}
+{% capture hero_actives %}{% render 'bts-content-field', content: content, handle: handle, field: 'hero_actives' %}{% endcapture %}{% assign hero_actives = hero_actives | strip %}
+{% capture pack_height_mm %}{% render 'bts-content-field', content: content, handle: handle, field: 'pack_height_mm' %}{% endcapture %}{% assign pack_height_mm = pack_height_mm | strip %}
+{% capture pack_ratio_nominal %}{% render 'bts-content-field', content: content, handle: handle, field: 'pack_ratio_nominal' %}{% endcapture %}{% assign pack_ratio_nominal = pack_ratio_nominal | strip %}
+{% capture back_description %}{% render 'bts-content-field', content: content, handle: handle, field: 'back_description' %}{% endcapture %}{% assign back_description = back_description | strip %}
+{% assign step = step | plus: 0 %}
+{% assign pack_height_mm = pack_height_mm | plus: 0 %}
+{% assign pack_ratio_nominal = pack_ratio_nominal | plus: 0 %}
+{% liquid
+  assign language = request.locale.iso_code | split: '-' | first
+  assign can_turn = false
+  assign has_stage = false
+  if variant == 'shelf' or variant == 'pdp' or variant == 'grid'
+    assign has_stage = true
+    if variant != 'grid' and back_description != blank
+      assign can_turn = true
+    endif
+  endif
+%}
+{% capture url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+{% capture image %}{% render 'bts-media', content: content, media: content.media_front.value, role: 'H1', eager: eager %}{% endcapture %}
+{% assign ratio = content.media_front.value.file.value.aspect_ratio %}
+{% if ratio == blank or ratio <= 0 %}{% assign image = '' %}{% endif %}
+{% if image == blank %}
+  {% assign ratio = pack_ratio_nominal | default: 0.62 %}
+  {% if has_stage and variant != 'grid' %}{% assign can_turn = true %}{% endif %}
+{% endif %}
+{% if name != blank %}
+{% if can_turn %}<bts-product-face class="pf" data-variant="{{ variant }}" data-key="{{ handle | escape }}" data-side="front"{% if image == blank %} data-presentation="placeholder" data-media-approved="false"{% endif %} data-colour="{{ colour_key | escape }}">
+{% else %}<div class="pf" data-variant="{{ variant }}" data-colour="{{ colour_key | escape }}"{% if image == blank and has_stage %} data-presentation="placeholder" data-media-approved="false"{% endif %}>{% endif %}
+  <article class="pf__inner" aria-labelledby="pf-{{ uid }}-name">
+    {% if has_stage %}
+      <div class="pf__stage" data-part="stage"{% if image == blank %} data-placeholder="true"{% endif %} style="--pf-ratio:{{ ratio }};{% if pack_height_mm > 0 %}--pf-mm:{{ pack_height_mm }};{% endif %}">
+        {% if can_turn %}<div class="pf__card" data-part="card" id="pf-{{ uid }}-card">{% endif %}
+          <div class="pf__front"{% if can_turn %} data-part="front"{% endif %}>{% if image != blank %}<a class="pf__media" href="{{ url | strip }}" aria-label="{{ name | escape }}">{{ image }}</a>{% else %}{% render 'bts-editorial-product', url: url, name: name, short_name: short_name, step: step %}{% endif %}</div>
+          {% if can_turn %}
+            <div class="pf__back" data-part="back" hidden inert>
+              <div class="pf__back-head">
+                <img class="pf__wordmark" src="{{ 'bts-wordmark-white.svg' | asset_url }}" width="1448" height="1252" alt="" loading="lazy">
+                {% if inci != blank %}<a class="pf__inci" href="{{ url | strip }}#inci-{{ handle }}" data-part="inci">{{ 'bts.full_inci' | t }}</a>{% endif %}
+              </div>
+              <p class="pf__preview-note">{{ 'bts.layout_preview' | t }}</p>
+              {% if back_description != blank %}
+                {% render 'bts-product-back', content: content, handle: handle, uid: uid %}
+              {% endif %}
+              {% if inci != blank %}
+                <template data-part="inci-template"><p lang="en" dir="ltr">{{ inci | escape }}</p></template>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% if can_turn %}</div>{% endif %}
+      </div>
+    {% elsif image != blank %}<a class="pf__media" href="{{ url | strip }}">{{ image }}</a>
+    {% endif %}
+    {% if show_info != false %}
+      {% capture role %}{% render 'bts-content-field', content: content, handle: handle, field: 'role' %}{% endcapture %}{% assign role = role | strip %}
+      <div class="pf__info">
+        <p class="pf__meta"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi>{% if role != blank %} · {{ role }}{% endif %} · <bdi lang="en">{{ size_display | escape }}</bdi></p>
+        <{% if variant == 'pdp' %}h1{% else %}h2{% endif %} class="pf__name" id="pf-{{ uid }}-name"><a href="{{ url | strip }}"><bdi lang="en">{{ name | escape }}</bdi></a></{% if variant == 'pdp' %}h1{% else %}h2{% endif %}>
+        {% capture promise %}{% render 'bts-content-field', content: content, handle: handle, field: 'promise' %}{% endcapture %}{% assign promise = promise | strip %}
+        {% if promise != blank %}<p class="pf__promise">{{ promise }}</p>{% endif %}
+        {% if variant == 'pdp' and language == 'en' and hero_actives != blank %}<p class="pf__actives"><bdi lang="en">{{ hero_actives | escape }}</bdi></p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="pf__buy"{% if variant == 'pdp' %} data-bts-primary-add{% endif %}>
+      {% if show_info != false %}{% render 'bts-price', handle: handle, product: content.shopify_product.value %}{% render 'bts-add-button', handle: handle %}{% endif %}
+      {% if can_turn %}<button type="button" class="pf__turn" data-part="turn" aria-pressed="false" aria-controls="pf-{{ uid }}-card" aria-label="{% if image == blank %}{{ 'bts.preview_turn_label' | t }}{% else %}{{ 'bts.turn_label' | t }}{% endif %}" hidden>{{ 'bts.turn' | t }}</button>{% elsif has_stage and variant != 'grid' %}<span class="pf__turn-reservation" aria-hidden="true">{{ 'bts.turn' | t }}</span>{% endif %}
+    </div>
+  </article>
+{% if can_turn %}</bts-product-face>{% else %}</div>{% endif %}
+{% endif %}
