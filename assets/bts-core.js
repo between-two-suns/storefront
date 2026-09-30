@@ -38,7 +38,7 @@ class PrototypeCartAdapter {
   async get() {
     const lines = this.items.map(({ handle, qty }) => {
       const unit = this.price(handle);
-      return { key: handle, handle, title: catalog[handle].name, role: catalog[handle].role || '', size: catalog[handle].size || '', colour: catalog[handle].colour || '', step: catalog[handle].step, qty, unit, line: unit * qty, isBundle: handle === 'the-full-routine' };
+      return { key: handle, handle, title: catalog[handle].name, role: catalog[handle].role || '', size: catalog[handle].size || '', colour: catalog[handle].colour || '', step: catalog[handle].step, image: catalog[handle].image || '', qty, unit, line: unit * qty, isBundle: handle === 'the-full-routine' };
     });
     const subtotal = lines.reduce((sum, line) => sum + line.line, 0);
     const bundleQty = lines.find(line => line.isBundle)?.qty || 0;
@@ -92,6 +92,8 @@ function render(cart) {
       const qty = fragment.querySelector('[data-qty]');
       qty.value = String(line.qty); qty.max = String(maxQty); qty.dataset.key = line.key;
       fragment.querySelector('[data-chip]').dataset.colour = line.colour;
+      const image = fragment.querySelector('[data-line-image]');
+      if (image && line.image) { image.src = line.image; image.alt = ''; image.hidden = false; }
       fragment.querySelector('[data-meta]').textContent = [line.step ? String(line.step).padStart(2, '0') : '', line.role, line.size].filter(Boolean).join(' · ');
       fragment.querySelector('[data-line-total]').textContent = money(line.line, cart.currency);
       fragment.querySelector('[data-remove]').dataset.remove = line.key;

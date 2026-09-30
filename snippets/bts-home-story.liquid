@@ -1,49 +1,36 @@
 {% doc %}
-Composition reservations for brand campaign and T2; claims remain sourced and locale approved.
-@param {metaobject[]} products - Single products
-@param {string} uid - Section ID
+Editorial bridge for the FRONT / BACK system. Missing campaign media never renders a placeholder.
 @param {metaobject} [campaign] - Approved campaign image
 {% enddoc %}
+{% assign language = request.locale.iso_code | split: '-' | first %}
 <section class="bts-story" aria-label="BETWEEN TWO SUNS">
-  <div class="bts-story__campaign" data-media-slot="CAMPAIGN" data-final-crop="mobile-4:5 desktop-16:9">
-    {% assign subject = metaobjects.bts_product_content[campaign.product_handle.value] %}
-    {% capture campaign_image %}{% render 'bts-media', media: campaign, content: subject, role: 'CAMPAIGN' %}{% endcapture %}
-    {% if campaign_image != blank %}<div class="bts-story__image">{{ campaign_image }}</div>{% else %}
-    <span class="bts-story__annotation">{{ 'bts.brand_frame' | t }}</span>
-    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">
-    {% endif %}
-    {% if request.locale.iso_code == 'en' %}<p><bdi lang="en">fresh skin. always.</bdi></p>{% endif %}
+  <div class="bts-story__duality">
+    <div class="bts-story__side bts-story__side--front">
+      <span class="bts-story__side-label">{% if language == 'ar' %}الوجه الأمامي{% else %}FRONT{% endif %}</span>
+      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">
+      {% if language == 'en' %}<p>Desire. Product. Texture.</p>{% endif %}
+    </div>
+    <div class="bts-story__side bts-story__side--back">
+      <span class="bts-story__side-label">{% if language == 'ar' %}{{ 'bts.back' | t }}{% else %}BACK{% endif %}</span>
+      {% if language == 'en' %}
+        <h2>Every product has two sides.</h2>
+        <p>The front is why you want it. The back is why you can trust it.</p>
+      {% else %}
+        <img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS">
+      {% endif %}
+    </div>
   </div>
-  <section class="bts-story__texture" aria-labelledby="BtsTexture-{{ uid }}">
-    <h2 id="BtsTexture-{{ uid }}">{{ 'bts.texture_frames' | t }}</h2>
-    <div class="bts-texture-grid">
-      {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
-{% capture short_name %}{% render 'bts-content-field', content: content, handle: handle, field: 'short_name' %}{% endcapture %}{% assign short_name = short_name | strip %}
-{% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
-{% capture hero_actives %}{% render 'bts-content-field', content: content, handle: handle, field: 'hero_actives' %}{% endcapture %}{% assign hero_actives = hero_actives | strip %}
-{% if name != blank %}
-        <figure class="pf" data-colour="{{ colour_key }}">
-          {% capture texture %}{% render 'bts-media', content: content, media: content.media_swatch.value, role: 'T2' %}{% endcapture %}
-          <div class="bts-texture-frame" data-media-slot="T2" data-final-crop="1:1">{% if texture != blank %}{{ texture }}{% else %}<span>{{ 'bts.texture_placeholder' | t }}</span>{% endif %}</div>
-          <figcaption><bdi lang="en">{{ short_name | escape }}</bdi>{% capture feel %}{% render 'bts-localized', field: content.feels_like.value %}{% endcapture %}{% if feel != blank %}<p>{{ feel }}</p>{% endif %}</figcaption>
-        </figure>
-      {% endif %}{% endfor %}
-    </div>
-  </section>
-  <section class="bts-story__proof" aria-labelledby="BtsFormula-{{ uid }}">
-    <h2 id="BtsFormula-{{ uid }}">{{ 'bts.formula_index' | t }}</h2>
-    <div class="bts-proof-grid">
-      {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
-{% capture short_name %}{% render 'bts-content-field', content: content, handle: handle, field: 'short_name' %}{% endcapture %}{% assign short_name = short_name | strip %}
-{% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
-{% capture hero_actives %}{% render 'bts-content-field', content: content, handle: handle, field: 'hero_actives' %}{% endcapture %}{% assign hero_actives = hero_actives | strip %}
-{% if name != blank %}
-        {% capture product_url %}{% render 'bts-url', handle: handle %}{% endcapture %}
-        {% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
-        <article><span class="bts-proof-step"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi></span><h3><a href="{{ product_url | strip }}#inci-{{ handle }}"><bdi lang="en">{{ short_name | escape }}</bdi></a></h3>
-        {% if request.locale.iso_code == 'en' %}<p><bdi lang="en">{{ hero_actives | escape }}</bdi></p>{% endif %}
-        <a href="{{ product_url | strip }}#inci-{{ handle }}">{{ 'bts.full_inci' | t }} <span class="bts-arrow" aria-hidden="true">→</span></a></article>
-      {% endif %}{% endfor %}
-    </div>
-  </section>
+  {% if campaign != blank %}
+    {% assign subject = metaobjects.bts_product_content[campaign.product_handle.value] %}
+    {% capture campaign_image %}{% render 'bts-media', media: campaign, content: subject, handle: campaign.product_handle.value, role: 'CAMPAIGN' %}{% endcapture %}{% assign campaign_image = campaign_image | strip %}
+    {% if campaign_image != blank %}<figure class="bts-story__campaign">{{ campaign_image }}</figure>{% endif %}
+  {% endif %}
+  <div class="bts-story__approach">
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">
+    {% if language == 'en' %}
+      <div><p class="bts-story__eyebrow">OUR APPROACH</p><h2>Climate-adapted skincare.</h2><p>Made for sun, pollution, changing environments &amp; everyday skin.</p></div>
+    {% else %}
+      <div><p class="bts-story__eyebrow">BETWEEN TWO SUNS</p><p>{{ 'bts.collection' | t }} · <bdi lang="en">01—04</bdi></p></div>
+    {% endif %}
+  </div>
 </section>

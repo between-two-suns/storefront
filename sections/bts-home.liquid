@@ -3,83 +3,57 @@
 <script type="module" src="{{ 'bts-face.js' | asset_url }}"></script>
 {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}
 {% assign products = product_handles | split: '|' %}
-{% liquid
-  assign measured = true
-  assign max_mm = 0
-  assign max_width_mm = 0
-  assign singles = 0
-  assign preview_scale = true
-  assign preview_max_mm = 0
-  assign preview_max_width = 0
-  for handle in products
-    assign content = metaobjects.bts_product_content[handle]
-    capture name
-      render 'bts-content-field', content: content, handle: handle, field: 'name'
-    endcapture
-    assign name = name | strip
-    if name != blank
-      assign singles = singles | plus: 1
-      capture safe_image
-        render 'bts-media', content: content, media: content.media_front.value, role: 'H1'
-      endcapture
-      capture mm
-        render 'bts-content-field', content: content, handle: handle, field: 'pack_height_mm'
-      endcapture
-      assign mm = mm | plus: 0
-      capture height_source
-        render 'bts-content-field', content: content, handle: handle, field: 'pack_height_source'
-      endcapture
-      assign height_source = height_source | strip
-      assign whole_mm = mm | round
-      assign nominal_ratio = content.pack_ratio_nominal.value | default: 0.62
-      if mm == blank or mm <= 0 or mm != whole_mm or height_source == blank
-        assign preview_scale = false
-      else
-        assign preview_max_mm = preview_max_mm | at_least: mm
-        assign preview_ratio = nominal_ratio
-        if safe_image != blank
-          assign preview_ratio = content.media_front.value.file.value.aspect_ratio
-        endif
-        assign preview_width = mm | times: preview_ratio
-        assign preview_max_width = preview_max_width | at_least: preview_width
-      endif
-      assign media = content.media_front.value
-      assign ratio = media.file.value.aspect_ratio
-      if mm == blank or mm <= 0 or mm != whole_mm or height_source == blank or ratio == blank or ratio <= 0 or media.approved.value != true or media.role.value != 'H1' or media.file.value.media_type != 'image' or media.pack_crop_approved.value != true or media.label_version.value != content.inci_version.value
-        assign measured = false
-      else
-        assign max_mm = max_mm | at_least: mm
-        assign width_mm = mm | times: ratio
-        assign max_width_mm = max_width_mm | at_least: width_mm
-      endif
-    endif
-  endfor
-  if singles != 4
-    assign measured = false
-    assign preview_scale = false
-  endif
-%}
+{% assign language = request.locale.iso_code | split: '-' | first %}
 <section class="bts-home" aria-labelledby="BtsHomeTitle">
   <h1 id="BtsHomeTitle" class="bts-visually-hidden">BETWEEN TWO SUNS</h1>
-  <div class="bts-home__band">
-    <div class="bts-home__brand"><img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS"></div>
-    <div class="bts-home__offer">{% if request.locale.iso_code == 'en' %}<p class="bts-home__tagline"><bdi lang="en">fresh skin. always.</bdi></p>{% else %}<img class="bts-home__symbol" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">{% endif %}<div class="bts-home__entry"><a href="#BtsShelf">{{ 'bts.shop' | t }} <span aria-hidden="true">↓</span></a>{% render 'bts-routine-link' %}</div><div class="bts-home__routine">{% render 'bts-routine-offer', uid: 'band', sheet: true %}</div></div>
-  </div>
-  <ul class="bts-shelf" id="BtsShelf" role="list" aria-label="{{ 'bts.collection' | t }}" data-pack-scale="{% if measured %}measured{% else %}neutral{% endif %}"{% if measured %} style="--pf-max-mm:{{ max_mm }};--pf-max-width-mm:{{ max_width_mm }}"{% elsif preview_scale %} data-composition-scale="physical-preview" style="--pf-max-mm:{{ preview_max_mm }};--pf-max-width-mm:{{ preview_max_width }}"{% endif %}>
-    {% for handle in products %}
-      {% assign content = metaobjects.bts_product_content[handle] %}
-      {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
-{% if name != blank %}
-        {% assign uid = section.id | append: '-' | append: forloop.index %}
-        {% assign eager = forloop.first %}
-        <li id="bts-shelf-{{ handle | escape }}">{% render 'bts-face', content: content, handle: handle, variant: 'shelf', uid: uid, eager: eager %}</li>
+  <section class="bts-home-hero" aria-label="BETWEEN TWO SUNS">
+    <div class="bts-home-hero__copy">
+      <img class="bts-home-hero__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS">
+      {% if language == 'en' %}
+        <p class="bts-home-hero__kicker"><bdi lang="en">CLIMATE-ADAPTED SKINCARE</bdi></p>
+        <p class="bts-home-hero__line"><bdi lang="en">Made for sun, pollution,<br>changing environments &amp; everyday skin.</bdi></p>
+      {% else %}
+        <p class="bts-home-hero__kicker">{{ 'bts.collection' | t }} <bdi lang="en">01—04</bdi></p>
       {% endif %}
-    {% endfor %}
-  </ul>
-  {% if singles > 0 %}{% render 'bts-shelf-nav', products: products %}{% endif %}
-  <div class="bts-routine-line" id="bts-home-routine">{% render 'bts-routine-offer', uid: 'strip', sheet: true %}</div>
+      <div class="bts-home-hero__actions"><a class="bts-home-hero__shop" href="#BtsShelf">{{ 'bts.shop' | t }} <span class="bts-arrow" aria-hidden="true">↓</span></a>{% render 'bts-routine-offer', uid: 'hero', sheet: true %}</div>
+    </div>
+    <div class="bts-family" aria-label="{{ 'bts.collection' | t }}">
+      <span class="bts-family__floor" aria-hidden="true"></span>
+      {% for handle in products %}
+        {% assign content = metaobjects.bts_product_content[handle] %}
+        {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+        {% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+        {% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+        {% capture mm %}{% render 'bts-content-field', content: content, handle: handle, field: 'pack_height_mm' %}{% endcapture %}{% assign mm = mm | plus: 0 %}
+        {% capture url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+        {% capture hero_image %}{% render 'bts-media', content: content, handle: handle, media: content.media_front.value, role: 'H1', eager: true %}{% endcapture %}{% assign hero_image = hero_image | strip %}
+        {% if name != blank and hero_image != blank %}
+          <a class="bts-family__pack bts-family__pack--{{ forloop.index }} pf" data-colour="{{ colour_key | escape }}" href="{{ url | strip }}" style="--pack-mm:{{ mm | default: 116 }};" aria-label="{{ name | escape }}">
+            <span class="bts-family__image">{{ hero_image }}</span>
+            <span class="bts-family__step"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi></span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="bts-home-hero__cue" aria-hidden="true"><span>FRONT</span><span class="bts-home-hero__cue-line"></span><span>BACK</span></div>
+  </section>
+  <section class="bts-discovery" aria-labelledby="BtsDiscoveryTitle">
+    <header class="bts-discovery__head"><p><bdi lang="en">01—04</bdi></p><h2 id="BtsDiscoveryTitle">{{ 'bts.shop' | t }}</h2></header>
+    <ul class="bts-shelf" id="BtsShelf" role="list" aria-label="{{ 'bts.collection' | t }}">
+      {% for handle in products %}
+        {% assign content = metaobjects.bts_product_content[handle] %}
+        {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+        {% if name != blank %}
+          {% assign uid = section.id | append: '-' | append: forloop.index %}
+          <li id="bts-shelf-{{ handle | escape }}">{% render 'bts-face', content: content, handle: handle, variant: 'shelf', uid: uid, eager: forloop.first %}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% render 'bts-shelf-nav', products: products %}
+  </section>
+  {% render 'bts-home-story', campaign: section.settings.emotional_media %}
+  {% render 'bts-routine-editorial', products: products, uid: section.id %}
 </section>
-{% if singles == 4 %}{% render 'bts-home-story', products: products, uid: section.id, campaign: section.settings.emotional_media %}{% render 'bts-routine-editorial', products: products, uid: section.id %}{% endif %}
 {% schema %}
-{"name":"Home flagship shelf","settings":[{"type":"metaobject","id":"emotional_media","label":"Approved emotional image","metaobject_type":"bts_media"}]}
+{"name":"Home flagship","settings":[{"type":"metaobject","id":"emotional_media","label":"Approved emotional image","metaobject_type":"bts_media"}]}
 {% endschema %}

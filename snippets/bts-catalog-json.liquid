@@ -12,6 +12,7 @@ Catalog identities for the prototype adapter; draft-safe display only.
   {% capture size %}{% render 'bts-content-field', content: content, handle: handle, field: 'size_display' %}{% endcapture %}{% assign size = size | strip %}
   {% capture colour %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour = colour | strip %}
   {% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
-  {{ handle | json }}: {"name": {{ name | json }}, "role": {{ role | json }}, "size": {{ size | json }}, "colour": {{ colour | json }}, "step": {{ step | plus: 0 | json }}}{% unless forloop.last %},{% endunless %}
+  {% capture review_image %}{% render 'bts-review-media-url', handle: handle %}{% endcapture %}{% assign review_image = review_image | strip %}
+  {{ handle | json }}: {"name": {{ name | json }}, "role": {{ role | json }}, "size": {{ size | json }}, "colour": {{ colour | json }}, "step": {{ step | plus: 0 | json }}, "image": {{ review_image | json }}}{% unless forloop.last %},{% endunless %}
 {% endfor %}
 }</script>

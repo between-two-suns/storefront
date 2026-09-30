@@ -1,24 +1,32 @@
 {{ 'bts-face.css' | asset_url | stylesheet_tag }}
-<section class="bts-foundation">
-  <h1>{{ 'bts.search' | t }}</h1>
-  <form action="{{ routes.search_url }}" method="get" role="search">
-    <label for="BtsSearch-{{ section.id }}">{{ 'bts.search' | t }}</label>
-    <input id="BtsSearch-{{ section.id }}" type="search" name="q" value="{{ search.terms | escape }}">
-    <button type="submit">{{ 'bts.search' | t }}</button>
-  </form>
+<section class="bts-search">
+  <header class="bts-search__head">
+    <p><bdi lang="en">BETWEEN TWO SUNS</bdi></p>
+    <h1>{{ 'bts.search' | t }}</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <label class="bts-visually-hidden" for="BtsSearch-{{ section.id }}">{{ 'bts.search' | t }}</label>
+      <input id="BtsSearch-{{ section.id }}" type="search" name="q" value="{{ search.terms | escape }}" autocomplete="off" placeholder="{{ 'bts.search' | t }}">
+      <button type="submit" aria-label="{{ 'bts.search' | t }}">→</button>
+    </form>
+  </header>
   {% assign term = search.terms | downcase | strip %}
   {% assign matches = 0 %}
-  {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}{% assign products = product_handles | split: '|' %}
-  {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
-{% assign name = name | downcase %}
-    {% if name != blank and term != blank and name contains term %}
+  {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}
+  {% assign products = product_handles | split: '|' %}
+  <div class="bts-search__results">
+  {% for handle in products %}
+    {% assign content = metaobjects.bts_product_content[handle] %}
+    {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+    {% assign searchable_name = name | downcase %}
+    {% if name != blank and term == blank or name != blank and searchable_name contains term %}
       {% assign matches = matches | plus: 1 %}
       {% assign uid = section.id | append: '-' | append: forloop.index %}
-      {% render 'bts-face', content: content, handle: handle, variant: 'search', uid: uid %}
+      <article class="bts-search__result">{% render 'bts-face', content: content, handle: handle, variant: 'search', uid: uid %}</article>
     {% endif %}
   {% endfor %}
-  {% if term != blank and matches == 0 %}<p>{{ 'bts.no_results' | t }}</p>{% endif %}
-  {% render 'bts-routine-offer', uid: section.id, sheet: true %}
+  </div>
+  {% if term != blank and matches == 0 %}<p class="bts-search__none">{{ 'bts.no_results' | t }}</p>{% endif %}
+  <div class="bts-search__routine">{% render 'bts-routine-offer', uid: section.id, sheet: true %}</div>
 </section>
 {% schema %}
 {"name":"Prototype catalog search","settings":[]}

@@ -33,13 +33,10 @@ Single product presentation; full turn restricted to shelf/pdp only. Compact con
   endif
 %}
 {% capture url %}{% render 'bts-url', handle: handle %}{% endcapture %}
-{% capture image %}{% render 'bts-media', content: content, media: content.media_front.value, role: 'H1', eager: eager %}{% endcapture %}
+{% capture image %}{% render 'bts-media', content: content, handle: handle, media: content.media_front.value, role: 'H1', eager: eager %}{% endcapture %}{% assign image = image | strip %}
 {% assign ratio = content.media_front.value.file.value.aspect_ratio %}
-{% if ratio == blank or ratio <= 0 %}{% assign image = '' %}{% endif %}
-{% if image == blank %}
-  {% assign ratio = pack_ratio_nominal | default: 0.62 %}
-  {% if has_stage and variant != 'grid' %}{% assign can_turn = true %}{% endif %}
-{% endif %}
+{% if ratio == blank or ratio <= 0 %}{% assign ratio = pack_ratio_nominal | default: 0.62 %}{% endif %}
+{% if image == blank and has_stage and variant != 'grid' %}{% assign can_turn = true %}{% endif %}
 {% if name != blank %}
 {% if can_turn %}<bts-product-face class="pf" data-variant="{{ variant }}" data-key="{{ handle | escape }}" data-side="front"{% if image == blank %} data-presentation="placeholder" data-media-approved="false"{% endif %} data-colour="{{ colour_key | escape }}">
 {% else %}<div class="pf" data-variant="{{ variant }}" data-colour="{{ colour_key | escape }}"{% if image == blank and has_stage %} data-presentation="placeholder" data-media-approved="false"{% endif %}>{% endif %}
@@ -54,7 +51,6 @@ Single product presentation; full turn restricted to shelf/pdp only. Compact con
                 <img class="pf__wordmark" src="{{ 'bts-wordmark-white.svg' | asset_url }}" width="1448" height="1252" alt="" loading="lazy">
                 {% if inci != blank %}<a class="pf__inci" href="{{ url | strip }}#inci-{{ handle }}" data-part="inci">{{ 'bts.full_inci' | t }}</a>{% endif %}
               </div>
-              <p class="pf__preview-note">{{ 'bts.layout_preview' | t }}</p>
               {% if back_description != blank %}
                 {% render 'bts-product-back', content: content, handle: handle, uid: uid %}
               {% endif %}
