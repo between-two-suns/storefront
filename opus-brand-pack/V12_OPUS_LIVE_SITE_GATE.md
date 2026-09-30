@@ -27,7 +27,7 @@ Target: unpublished theme 166903251202 on qfj1gi-c9.myshopify.com. Source is `bu
 - **What the script does not check:** everything below about hierarchy, pacing, crop and brand fit is my visual judgement from the captures.
 - **Not used:** WebFetch. I did no physical-device testing.
 - **Host chrome:** Shopify's black Draft / password-protected toolbar is not part of the site layout. In the full-page captures it gets stamped mid-page (at y≈535 in the 1024 capture, and mid-page in the 390 Barrier PDP and the 200%-text capture). I have not counted it as a site finding.
-- **Evidence gap:** `bts-menu.png`, `bts-routine.png` and `bts-drawer.png` were captured straight after the click (`tests/hosted-design-review.mjs:47–48`). The sheets have a 240 ms entry animation (`bts-components.css:18`, `--dur-sheet`), so each capture is mid-animation: translucent and partly off-screen. **I cannot visually approve the open states of the menu, routine or bag sheets.** Their scripted open/close/focus behaviour did pass. The fixed sticky Add bar on the mobile PDP sits under the host toolbar in every capture, so it can't be judged visually either.
+- **Initial evidence gap (superseded by the supplemental review below):** `bts-menu.png`, `bts-routine.png` and `bts-drawer.png` were captured straight after the click (`tests/hosted-design-review.mjs:47–48`). The sheets have a 240 ms entry animation (`bts-components.css:18`, `--dur-sheet`), so each capture is mid-animation: translucent and partly off-screen. **I cannot visually approve the open states of the menu, routine or bag sheets.** Their scripted open/close/focus behaviour did pass. The fixed sticky Add bar on the mobile PDP sits under the host toolbar in every capture, so it can't be judged visually either.
 
 ## Five strengths
 
@@ -73,3 +73,58 @@ Typography uses system fallbacks: Avenir Next Condensed for display, and the sys
 This independent review assessed deployment `2b8a189` and its captures at 2026-09-30T19:00:27Z. A separate authorized recovery session subsequently pushed and deployed `111141e`, restoring wordmark and desktop routine hierarchy. Findings above remain an assessment of the named earlier revision; they are not a design acceptance for `111141e`.
 
 The coordinator subsequently captured the menu, routine and bag after their entry animations finished, using the actual Shopify Hide bar control. These settled images are in `test-results/v12-shopify-native/design-review-supplement/`; the Search button still wraps. Source inspection also corrects the initial sticky-bar assumption: `assets/bts-pdp.js` intentionally hides the sticky Add when the primary Add is disabled. This review theme therefore cannot receive launch sticky-Add visual acceptance. No commerce control was enabled or DOM-forced for the review.
+
+## Independent Opus supplemental review
+
+# V12 Opus live-site gate: supplement on settled interactions
+
+**What this covers:** settled mobile interaction captures only. The full 24-case design review stays pinned to `2b8a189`. These interaction captures come from the runtime restored by `111141e` (the supplement index records harness `sourceCommit 6577ec9…`, `checkedAt 2026-09-30T19:30:51Z`). This pass does **not** give full visual design acceptance to `111141e`. Its restored wordmark and desktop priced routine band still need a full hosted design pass.
+
+## What I ran and read
+
+- **Command:** `node tests/hosted-design-review.mjs https://3ll4dkhi55qvhmjwsdr3yzhw21hj1-84281229570.shopifypreview.com --interactions-only`. It returned `passed: true`, `errors: []`, `commerceRequests: []` and `previewToolbarHidden: true`.
+- **Captures I viewed**, all in `test-results/v12-shopify-native/design-review-supplement/`: `bts-menu.png`, `bts-routine.png`, `bts-drawer.png`, `mobile-inci.png`, `mobile-scrolled-pdp.png`, `mobile-text-200.png`.
+- **Also read:** `assets/bts-pdp.js`, `V12_OPUS_LIVE_SITE_GATE.md` and `V12_RECOVERY_PROVENANCE.md`.
+
+**What the script checked automatically:**
+- The menu, routine and bag sheets were captured after their animations finished. The script recorded `opacity: 1`, `translate: none` and `activeAnimations: 0` for each.
+- Escape closes each sheet and focus returns to the button that opened it.
+- On the scrolled PDP, `primaryPassed`, `stickyHidden` and `stickyInert` are all true.
+- 200% root text passes.
+- `/ar` and `/ar/collections/all` still return 404 in English/LTR.
+
+**What is my visual judgement:** everything below about quality and hierarchy.
+
+## Evidence limits now resolved
+
+1. **Sheets:** the settled captures are valid, so I can now judge the open menu, routine and bag sheets visually.
+2. **Sticky Add — correction to my gate:** I originally said the sticky Add bar "sits under the host toolbar". That was wrong. `bts-pdp.js:17–18` only shows the bar when `primary … [data-bts-add].disabled === false`. In review mode Add is disabled, so the bar stays `hidden`/`inert` on purpose. That is correct behaviour, not a defect or an obscured element. How the sticky Add looks at launch can't be judged until real commerce is enabled, and that's a launch-gate item, not a design fix.
+
+## Remaining defects in the menu, routine and bag sheets
+
+1. **The menu search button still wraps to "Sear / ch" in the settled capture.** This confirms blocker 5 and fix P5 as a real layout defect, not an animation artefact. The fix is unchanged: `.bts-menu-search button { flex: none; white-space: nowrap; }` (`bts-components.css:45–46, 69`).
+2. **"Close" in all three sheets, and "Checkout opens at launch" in the bag, look like the browser's default buttons:** grey bevel and system font. Next to the display-face headings they look unfinished and generic. Fix: style `.bts-sheet [data-bts-close]` and the review checkout button with the site's own button styles (ink outline or text button, 44 px minimum height). **New finding; rank it just after P5.**
+3. **The empty bag is a dead end.** It shows "Your bag is empty", "Subtotal: EGP 0" and the disabled checkout, with nothing to do next. Fix: in `bts-cart-body.liquid`, add the existing Shop link and routine-sheet opener to the empty state, and hide the subtotal when the bag is empty. Keep checkout visibly unavailable. Add no new claims.
+4. **Search appears twice in the menu:** once as the form and once as a nav link. This is minor. Drop the nav link when the form is present.
+5. **The routine sheet is strong,** and it resolves my earlier worry that the routine sheet was a bare list. It has product-colour chips 01–04, English names, sizes, per-item prices, and a totals block (EGP 1,846 / 1,661 / save 185) that matches Scenario B in `PRICING_SOURCE_OF_TRUTH.md`. Two gaps remain:
+   - The sheet doesn't show Morning vs Evening, so it should use the same AM 4 / PM 3 sequence as P1.
+   - The per-item "Add to bag" buttons are outlined here but grey-filled on the shelf. The disabled review state should look the same everywhere.
+   - The final add-all action is below the 844 px fold. I haven't judged it visually.
+6. **INCI disclosure and 200% text: pass visually.** No toolbar artefact remains in the 200% capture.
+
+## Corrections to the gate and brief
+
+- **Gate, Evidence gap:** the sheets are now visually assessed; the sticky bar was hidden by design, not obscured.
+- **Gate, Mobile menu row:** change it to "Defect confirmed in settled capture (search button wrap, default Close styling); open state approved otherwise."
+- **Brief P5:** drop the test-script wait, which the coordinator has already done. Keep the button fix and add the Close/checkout button styling.
+- **Brief, new P5b:** empty-bag next step (item 3 above).
+- **Brief P1:** extend it to the routine sheet.
+- **Brief, sticky Add:** remove any suggestion to verify it visually in review mode.
+- **Unchanged:** all other original findings (P1–P4, P6–P8).
+
+## Verdicts
+
+- **Placeholder-first design for `2b8a189`: PASS WITH CONDITIONS**, unchanged, plus the sheet findings above.
+- **Revision `111141e`: interactions pass the scripted checks and the visual review, apart from the defects listed above.** Full design acceptance is pending a complete hosted capture review.
+- **Launch: NOT READY.** Launch-gate items: Draft products, missing photography, licensed fonts, policies, real bundle pricing, checkout, and the sticky Add in its enabled state.
+- **Arabic: BLOCKED.** Hosted `/ar` routes still return 404 in English/LTR.

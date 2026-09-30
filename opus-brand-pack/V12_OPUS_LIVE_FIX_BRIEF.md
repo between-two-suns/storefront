@@ -133,3 +133,9 @@
 ## Coordinator scope note
 
 This brief is the reviewer’s recommendation for `2b8a189`, not authorization to apply a new design. A later independent recovery commit `111141e` changed the wordmark and routine hierarchy; re-check the relevant recommendations against that source before implementation. The evidence harness now waits for dialog animations and hides Shopify preview chrome through its actual control. The Search-button defect remains. Sticky Add is intentionally hidden with disabled review commerce, as required by the existing runtime gate.
+
+## Superseding supplemental review instructions
+
+Opus subsequently inspected the settled menu, routine, bag, INCI, scrolled PDP and enlarged-text captures. Keep the Search-button fix in P5; animation waiting and hiding preview chrome are completed in the evidence harness. Remove the instruction to expose sticky Add in this commerce-disabled review configuration: its hidden/inert state is intentional.
+
+Extend P1's AM/PM sequence to the routine sheet. Add consistent branded Close and disabled-checkout button styling, an empty-bag Shop/routine next step with no zero subtotal, consistent disabled Add styling, and removal of the duplicate Search navigation link when the search form is present. These are review recommendations, not changes implemented by this pass. See the independent supplement in `V12_OPUS_LIVE_SITE_GATE.md`.

@@ -30,9 +30,21 @@ export function canonicalCSS(source) {
     }
     result.push(text.slice(start).trim()); return result;
   };
-  const rules = list => [...list].flatMap(rule => {
-    if (rule.type === 1) return selectors(rule.selectorText).map(selector => [normalize(selector), normalize(rule.style.cssText)]);
-    if (rule.cssRules) return [[normalize(rule.cssText.slice(0, rule.cssText.indexOf('{')).trim()), rules(rule.cssRules)]];
+  const unconditional = [...sheet.cssRules].map((rule, index) => ({rule, index})).filter(({rule}) => rule.type === 1);
+  const rules = (list, rootIndex = null) => [...list].flatMap((rule, index) => {
+    const position = rootIndex ?? index;
+    if (rule.type === 1) return selectors(rule.selectorText).flatMap(selector => {
+      // An identical later unconditional selector can make a conditional rule
+      // entirely dead. Shopify removes such rules; do not discard active rules.
+      const shadowed = [...rule.style].every(property => unconditional.some(({rule: later, index: laterIndex}) =>
+        laterIndex > position && selectors(later.selectorText).includes(selector) && later.style.getPropertyValue(property) &&
+        (!rule.style.getPropertyPriority(property) || later.style.getPropertyPriority(property) === 'important')));
+      return shadowed ? [] : [[normalize(selector), normalize(rule.style.cssText)]];
+    });
+    if (rule.cssRules && (rule.type === 4 || rule.type === 12)) {
+      const children = rules(rule.cssRules, position);
+      return children.length ? [[normalize(rule.cssText.slice(0, rule.cssText.indexOf('{')).trim()), children]] : [];
+    }
     return [[normalize(rule.cssText)]];
   });
   return JSON.stringify(rules(sheet.cssRules));
