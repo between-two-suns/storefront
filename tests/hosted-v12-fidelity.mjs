@@ -17,6 +17,11 @@ try {
     if (/\/cart\/(?:add|change|update|clear)(?:\.js)?(?:\?|$)|\/checkout(?:\?|$)/.test(request.url())) report.commerceRequests.push(request.url());
   });
   const page = await context.newPage();
+  // Use Shopify's own preview control so host chrome does not obscure the phone fold.
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto(base,{waitUntil:'networkidle'});
+  const hideBar=page.frameLocator('#PBarNextFrame').getByRole('button',{name:'Hide bar',exact:true});
+  if (await hideBar.isVisible()) {await hideBar.click();report.previewToolbarHidden=true;}
   for (const viewport of [{width:375,height:667},{width:390,height:844},{width:1024,height:600},{width:1440,height:900}]) {
     for (const scale of [1,2]) for (const reducedMotion of ['no-preference','reduce']) {
       await page.setViewportSize(viewport);

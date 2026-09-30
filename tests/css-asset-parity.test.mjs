@@ -15,6 +15,7 @@ test('hosted CSS parity accepts minification and rejects cascade or value change
       .b[hidden],.c[hidden]{visibility:hidden}
       @media(min-width:990px){.a:is([data-x='one'],[data-x='two']){opacity:.8}}`;
     assert.equal(await canonical(source), await canonical(minified));
+    assert.equal(await canonical(`.a{--font:"Avenir Next";content:"it's fine"}`), await canonical(`.a{--font:'Avenir Next';content:'it\\'s fine'}`));
     assert.notEqual(await canonical(source), await canonical(minified.replace('2px', '3px')));
     assert.notEqual(await canonical(source), await canonical(minified.replace('990px', '991px')));
     assert.notEqual(await canonical(source), await canonical(minified.replace('.c[hidden]', '.d[hidden]')));

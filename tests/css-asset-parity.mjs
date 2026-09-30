@@ -4,7 +4,15 @@ export function canonicalCSS(source) {
   const sheet = new CSSStyleSheet();
   sheet.replaceSync(source);
   const normalize = text => text.replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|[^"']+/g, token => {
-    if (token.startsWith('"') || token.startsWith("'")) return token;
+    if (token.startsWith('"') || token.startsWith("'")) {
+      // Shopify also changes quotes inside custom properties; preserve string values.
+      const value = token.slice(1, -1).replace(/\\(?:\r\n|[\n\r\f])|\\([0-9a-fA-F]{1,6})[ \t\r\n\f]?|\\([\s\S])/g, (_, hex, char) => {
+        if (!hex) return char || '';
+        const point = parseInt(hex, 16);
+        return String.fromCodePoint(point === 0 || point > 0x10ffff || (point >= 0xd800 && point <= 0xdfff) ? 0xfffd : point);
+      });
+      return JSON.stringify(value);
+    }
     return token.replace(/(-?\d*\.?\d+)ms\b/g, (_, n) => String(Number(n) / 1000) + 's')
       .replace(/(?<![\w\d])0?\.(\d+)/g, '0.$1').replace(/,\s*/g, ',');
   });
