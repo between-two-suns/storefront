@@ -49,8 +49,9 @@ Config-only prototype bundle offer, with no price or savings fallback.
 {% capture colour_key %}{% render 'bts-content-field', content: component, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
 {% capture size_display %}{% render 'bts-content-field', content: component, handle: handle, field: 'size_display' %}{% endcapture %}{% assign size_display = size_display | strip %}
       {% capture component_url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+      {% capture component_image %}{% render 'bts-media', content: component, handle: handle, media: component.media_front.value, role: 'H1' %}{% endcapture %}{% assign component_image = component_image | strip %}
       <li class="pf" data-colour="{{ colour_key }}">
-        <a class="bts-routine-panel__frame" href="{{ component_url | strip }}" aria-label="{{ name | escape }}"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi></a>
+        <a class="bts-routine-panel__frame" href="{{ component_url | strip }}" aria-label="{{ name | escape }}">{% if component_image != blank %}{{ component_image }}{% else %}<bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi>{% endif %}</a>
         <div><h3><a href="{{ component_url | strip }}"><bdi lang="en">{{ name | escape }}</bdi></a></h3><p><bdi lang="en">{{ size_display | escape }}</bdi></p>{% render 'bts-price', handle: handle %}{% render 'bts-add-button', handle: handle %}</div>
       </li>
     {% endfor %}
