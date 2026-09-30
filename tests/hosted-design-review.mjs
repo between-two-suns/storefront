@@ -43,7 +43,7 @@ try {
   await page.waitForTimeout(400);
   report.interactions.push({action:'mobile back face', screenshot:await capture('mobile-back')});
   for (const id of ['bts-menu', 'bts-routine', 'bts-drawer']) {
-    const opener = page.locator(`[data-bts-open="${id}"]`).first();
+    const opener = page.locator(`[data-bts-open="${id}"]:visible`).first();
     await opener.click(); assert.equal(await page.locator(`#${id}`).evaluate(node => node.open), true);
     report.interactions.push({action:id, screenshot:await capture(id)});
     await page.keyboard.press('Escape'); assert.equal(await page.locator(`#${id}`).evaluate(node => node.open), false);
