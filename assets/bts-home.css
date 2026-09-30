@@ -64,7 +64,7 @@
 }
 @media (min-width: 990px) {
   .bts-home__routine { display: block; }
-  .bts-home__routine a { display: inline-flex; align-items: center; flex-wrap: wrap; min-block-size: 44px; gap: .25rem; text-underline-offset: .3em; }
+  .bts-home__routine a { display: inline-block; min-block-size: 44px; padding-block: 12px; text-underline-offset: .3em; }
   .bts-routine-line { padding-block: 0; }
   .bts-routine-line > .bts-routine-offer { display: none; }
 }

@@ -66,5 +66,12 @@
 .bts-routine-panel .pf[data-colour='clarity'] { --pf-surface: var(--c-clarity); }
 .bts-routine-panel .pf[data-colour='barrier'] { --pf-surface: var(--c-barrier); }
 .bts-routine-panel .pf[data-colour='defense'] { --pf-surface: var(--c-defense); }
-.bts-sheet { overflow-wrap: anywhere; }
+.bts-sheet h3, .bts-sheet [data-title], .bts-sheet p[dir='ltr'] { overflow-wrap: anywhere; }
 .bts-routine-panel h3 bdi:lang(en) { font-family: var(--font-display); line-height: inherit; }
+
+/* Shared sheet controls use the same restrained treatments as the shelf. */
+.bts-sheet button { appearance: none; border-radius: var(--radius-control); border: 1px solid var(--c-line); background: transparent; padding: .5rem .75rem; overflow-wrap: normal; }
+.bts-sheet [data-bts-close] { border: 0; border-block-end: 1px solid var(--c-line); padding-inline: 0; }
+.bts-menu-search button, .bts-sheet [data-bts-cart] > button { background: var(--c-ink); color: var(--c-ground); border-color: var(--c-ink); padding-inline: 1rem; }
+.bts-menu-search button { flex-shrink: 0; white-space: nowrap; min-block-size: 52px; }
+.bts-sheet button:disabled { opacity: .6; }

@@ -28,7 +28,8 @@
 .bts-product-path a { display: inline-flex; align-items: center; min-block-size: 44px; text-underline-offset: .25em; }
 .pf__actives { margin-block: .75rem 0; font-size: .875rem; }
 .bts-collection { max-inline-size: 1400px; }
-.bts-collection h1 { font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -.04em; margin-block-start: 0; }
+.bts-collection h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -.04em; margin-block-start: 0; }
+.bts-collection h1:lang(ar) { font-family: var(--font-ar-display); letter-spacing: 0; }
 .bts-collection__grid { display: grid; gap: 2.5rem; }
 .bts-collection__grid .pf__buy { justify-content: space-between; }
 .bts-collection__grid .pf__info { min-block-size: 9rem; }
