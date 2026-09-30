@@ -18,6 +18,10 @@ const capture = async (name, fullPage = false) => {
   const path = `${directory}/${name}.png`; await page.screenshot({path, fullPage}); return path;
 };
 try {
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto(base,{waitUntil:'networkidle'});
+  const hideBar=page.frameLocator('#PBarNextFrame').getByRole('button',{name:'Hide bar',exact:true});
+  if (await hideBar.isVisible()) {await hideBar.click();report.previewToolbarHidden=true;}
   const surfaces = [['home', '/'], ['collection', '/collections/all'], ...['daily-reset-cleanser', 'clarity-serum', 'daily-barrier-moisturizing-cream', 'daily-defense-sunscreen-spf-50'].map(handle => [handle, `/search?view=product&q=${handle}`])];
   for (const viewport of [{width:375,height:667},{width:390,height:844},{width:1024,height:600},{width:1440,height:900}]) {
     await page.setViewportSize(viewport);
@@ -45,7 +49,9 @@ try {
   for (const id of ['bts-menu', 'bts-routine', 'bts-drawer']) {
     const opener = page.locator(`[data-bts-open="${id}"]:visible`).first();
     await opener.click(); assert.equal(await page.locator(`#${id}`).evaluate(node => node.open), true);
-    report.interactions.push({action:id, screenshot:await capture(id)});
+    await page.locator(`#${id}`).evaluate(node=>Promise.all(node.getAnimations().map(animation=>animation.finished)));
+    assert.equal(await page.locator(`#${id}`).evaluate(node=>getComputedStyle(node).opacity),'1');
+    report.interactions.push({action:id, screenshot:await capture(id),settled:true});
     await page.keyboard.press('Escape'); assert.equal(await page.locator(`#${id}`).evaluate(node => node.open), false);
     assert.equal(await opener.evaluate(node => document.activeElement === node), true, id+' focus return');
   }
