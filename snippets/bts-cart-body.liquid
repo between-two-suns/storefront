@@ -1,5 +1,5 @@
 <div class="bts-cart" data-bts-cart>
-  <p class="bts-cart__empty" data-bts-empty>{{ 'bts.empty' | t }}</p>
+  <div class="bts-cart__empty" data-bts-empty><p>{{ 'bts.empty' | t }}</p><a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }} <span aria-hidden="true">↗</span></a></div>
   <ul class="bts-cart-lines" data-bts-lines></ul>
   <template data-bts-line>
     <li class="bts-cart-line">

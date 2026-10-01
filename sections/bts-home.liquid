@@ -5,20 +5,15 @@
 {% assign products = product_handles | split: '|' %}
 {% assign language = request.locale.iso_code | split: '-' | first %}
 <section class="bts-home" aria-labelledby="BtsHomeTitle">
-  <h1 id="BtsHomeTitle" class="bts-visually-hidden">BETWEEN TWO SUNS</h1>
   <section class="bts-home-hero" aria-label="BETWEEN TWO SUNS">
     <div class="bts-home-hero__copy">
-      <img class="bts-home-hero__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS">
-      {% if language == 'en' %}
-        <p class="bts-home-hero__kicker"><bdi lang="en">CLIMATE-ADAPTED SKINCARE</bdi></p>
-        <p class="bts-home-hero__line"><bdi lang="en">Made for sun, pollution,<br>changing environments &amp; everyday skin.</bdi></p>
-      {% else %}
-        <p class="bts-home-hero__kicker">{{ 'bts.collection' | t }} <bdi lang="en">01—04</bdi></p>
-      {% endif %}
-      <div class="bts-home-hero__actions"><a class="bts-home-hero__shop" href="#BtsShelf">{{ 'bts.shop' | t }} <span class="bts-arrow" aria-hidden="true">↓</span></a>{% render 'bts-routine-offer', uid: 'hero', sheet: true %}</div>
+      <h1 id="BtsHomeTitle"><img class="bts-home-hero__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS"></h1>
+      <p class="bts-home-hero__edition">{{ 'bts.collection' | t }}<br><bdi lang="en">01—04</bdi></p>
+    </div>
+    <div class="bts-home-hero__statement">
+      {% if language == 'en' %}<p>Climate-adapted<br>skincare.</p>{% else %}<p>{{ 'bts.collection' | t }}<br><bdi lang="en">BETWEEN TWO SUNS</bdi></p>{% endif %}
     </div>
     <div class="bts-family" aria-label="{{ 'bts.collection' | t }}">
-      <span class="bts-family__floor" aria-hidden="true"></span>
       {% for handle in products %}
         {% assign content = metaobjects.bts_product_content[handle] %}
         {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
@@ -35,9 +30,14 @@
         {% endif %}
       {% endfor %}
     </div>
+    <div class="bts-home-hero__actions">
+      <a class="bts-home-hero__shop" href="#BtsShelf">{{ 'bts.shop' | t }} <span aria-hidden="true">↗</span></a>
+      {% render 'bts-routine-offer', uid: 'hero', sheet: true %}
+    </div>
+    <p class="bts-home-hero__note">{% if language == 'en' %}Made for sun, pollution, changing environments &amp; everyday skin.{% else %}{{ 'bts.all_four' | t }} · <bdi lang="en">01—04</bdi>{% endif %}</p>
   </section>
   <section class="bts-discovery" aria-labelledby="BtsDiscoveryTitle">
-    <header class="bts-discovery__head"><p><bdi lang="en">01—04</bdi></p><h2 id="BtsDiscoveryTitle">{{ 'bts.shop' | t }}</h2></header>
+    <header class="bts-discovery__head"><p>{{ 'bts.collection' | t }}<br><bdi lang="en">01—04</bdi></p><h2 id="BtsDiscoveryTitle">{{ 'bts.shop' | t }}</h2></header>
     <ul class="bts-shelf" id="BtsShelf" role="list" aria-label="{{ 'bts.collection' | t }}">
       {% for handle in products %}
         {% assign content = metaobjects.bts_product_content[handle] %}
@@ -50,8 +50,8 @@
     </ul>
     {% render 'bts-shelf-nav', products: products %}
   </section>
-  {% render 'bts-home-story', campaign: section.settings.emotional_media %}
   {% render 'bts-routine-editorial', products: products, uid: section.id %}
+  {% render 'bts-home-story', campaign: section.settings.emotional_media %}
 </section>
 {% schema %}
 {"name":"Home flagship","settings":[{"type":"metaobject","id":"emotional_media","label":"Approved emotional image","metaobject_type":"bts_media"}]}

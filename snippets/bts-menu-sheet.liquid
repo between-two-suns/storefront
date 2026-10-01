@@ -1,7 +1,7 @@
 <dialog id="bts-menu" class="bts-sheet bts-sheet--start bts-menu-sheet" aria-labelledby="BtsMenuTitle">
   <div class="bts-sheet__top">
     <img class="bts-menu-sheet__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS">
-    <button type="button" data-bts-close>{{ 'bts.close' | t }}</button>
+    <button type="button" data-bts-close>{{ 'bts.close' | t }} <span aria-hidden="true">×</span></button>
   </div>
   <h2 id="BtsMenuTitle" class="bts-visually-hidden" tabindex="-1">{{ 'bts.menu' | t }}</h2>
   <form class="bts-menu-search" action="{{ routes.search_url }}" method="get" role="search">
@@ -13,7 +13,7 @@
     {% capture routine_url %}{% render 'bts-routine-url' %}{% endcapture %}
     <a href="{{ routine_url | strip }}"><span><bdi lang="en">02</bdi></span>{{ 'bts.routine' | t }}</a>
     <a href="{{ routes.search_url }}"><span><bdi lang="en">03</bdi></span>{{ 'bts.search' | t }}</a>
-    <a href="{{ routes.cart_url }}" data-bts-open="bts-drawer"><span><bdi lang="en">04</bdi></span>{{ 'bts.bag' | t }} <bdi data-bts-count>0</bdi></a>
+    <a href="{{ routes.cart_url }}" data-bts-open="bts-drawer"><span><bdi lang="en">04</bdi></span>{{ 'bts.bag' | t }} <bdi class="bts-menu-sheet__count" data-bts-count>0</bdi></a>
   </nav>
   <div class="bts-menu-sheet__foot">{% render 'bts-language', id: 'BtsMenuLanguage' %}<a href="{{ routes.root_url }}">BETWEEN TWO SUNS</a></div>
 </dialog>

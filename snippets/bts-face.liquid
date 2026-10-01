@@ -71,11 +71,12 @@ Single product presentation; full turn restricted to shelf/pdp only. Compact con
         {% capture promise %}{% render 'bts-content-field', content: content, handle: handle, field: 'promise' %}{% endcapture %}{% assign promise = promise | strip %}
         {% if promise != blank %}<p class="pf__promise">{{ promise }}</p>{% endif %}
         {% if variant == 'pdp' and language == 'en' and hero_actives != blank %}<p class="pf__actives"><bdi lang="en">{{ hero_actives | escape }}</bdi></p>{% endif %}
+        {% if can_turn and variant == 'shelf' %}<button type="button" class="pf__turn" data-part="turn" aria-pressed="false" aria-controls="pf-{{ uid }}-card" aria-label="{% if image == blank %}{{ 'bts.preview_turn_label' | t }}{% else %}{{ 'bts.turn_label' | t }}{% endif %}" hidden>{{ 'bts.turn' | t }} <span aria-hidden="true">↺</span></button>{% endif %}
       </div>
     {% endif %}
     <div class="pf__buy"{% if variant == 'pdp' %} data-bts-primary-add{% endif %}>
-      {% if show_info != false %}{% render 'bts-price', handle: handle, product: content.shopify_product.value %}{% render 'bts-add-button', handle: handle %}{% endif %}
-      {% if can_turn %}<button type="button" class="pf__turn" data-part="turn" aria-pressed="false" aria-controls="pf-{{ uid }}-card" aria-label="{% if image == blank %}{{ 'bts.preview_turn_label' | t }}{% else %}{{ 'bts.turn_label' | t }}{% endif %}" hidden>{{ 'bts.turn' | t }}</button>{% elsif has_stage and variant != 'grid' %}<span class="pf__turn-reservation" aria-hidden="true">{{ 'bts.turn' | t }}</span>{% endif %}
+      {% if show_info != false %}<span class="pf__price">{% render 'bts-price', handle: handle, product: content.shopify_product.value %}{% if settings.bts_review_fallback == true %}<small class="pf__availability">{{ 'bts.coming_soon' | t }}</small>{% endif %}</span>{% render 'bts-add-button', handle: handle %}{% endif %}
+      {% if can_turn and variant != 'shelf' %}<button type="button" class="pf__turn" data-part="turn" aria-pressed="false" aria-controls="pf-{{ uid }}-card" aria-label="{% if image == blank %}{{ 'bts.preview_turn_label' | t }}{% else %}{{ 'bts.turn_label' | t }}{% endif %}" hidden>{{ 'bts.turn' | t }}</button>{% elsif can_turn == false and has_stage and variant != 'grid' %}<span class="pf__turn-reservation" aria-hidden="true">{{ 'bts.turn' | t }}</span>{% endif %}
     </div>
   </article>
 {% if can_turn %}</bts-product-face>{% else %}</div>{% endif %}

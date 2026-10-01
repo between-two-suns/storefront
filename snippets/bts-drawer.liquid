@@ -1,5 +1,8 @@
-<dialog id="bts-drawer" class="bts-sheet" aria-labelledby="BtsBagTitle">
-  <button type="button" data-bts-close>{{ 'bts.close' | t }}</button>
-  <h2 id="BtsBagTitle" tabindex="-1">{{ 'bts.bag' | t }}</h2>
+{% doc %}
+Launch-locked bag dialog, sharing the cart body and existing dialog lifecycle.
+{% enddoc %}
+<dialog id="bts-drawer" class="bts-sheet bts-bag-sheet" aria-labelledby="BtsBagTitle">
+  <div class="bts-sheet__top"><img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt=""><button type="button" data-bts-close>{{ 'bts.close' | t }} <span aria-hidden="true">×</span></button></div>
+  <h2 id="BtsBagTitle" tabindex="-1">{{ 'bts.bag' | t }} <span data-bts-count>0</span></h2>
   {% render 'bts-cart-body' %}
 </dialog>

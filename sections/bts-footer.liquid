@@ -1,12 +1,16 @@
 <footer class="bts-footer">
-  <a href="{{ routes.root_url }}"><img class="bts-footer__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS" loading="lazy"></a>
+  <div class="bts-footer__signature">
+    <a href="{{ routes.root_url }}"><img class="bts-footer__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS" loading="lazy"></a>
+    <img class="bts-footer__icon" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="" loading="lazy">
+  </div>
   <nav id="bts-menu-nojs" aria-label="{{ 'bts.menu' | t }}">
-    <a href="{{ routes.root_url }}">{{ 'bts.home' | t }}</a>
-    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a>
+    <a href="{{ routes.root_url }}">{{ 'bts.home' | t }} <span aria-hidden="true">↗</span></a>
+    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }} <span aria-hidden="true">↗</span></a>
     {% render 'bts-routine-link' %}
-    <a href="{{ routes.cart_url }}">{{ 'bts.bag' | t }}</a>
+    <a href="{{ routes.search_url }}">{{ 'bts.search' | t }} <span aria-hidden="true">↗</span></a>
+    <a href="{{ routes.cart_url }}">{{ 'bts.bag' | t }} <span aria-hidden="true">↗</span></a>
   </nav>
-  {% render 'bts-internal-marker', key: 'bts.prototype' %}
+  <div class="bts-footer__colophon"><span><bdi lang="en">BETWEEN TWO SUNS</bdi></span>{% render 'bts-language', id: 'BtsFooterLanguage' %}</div>
 </footer>
 {% schema %}
 {"name":"Footer","settings":[]}

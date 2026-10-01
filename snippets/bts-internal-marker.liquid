@@ -1,9 +1,0 @@
-{% doc %}
-bts-internal-marker foundation helper.
-@param {string} key - Translation key
-{% enddoc %}
-{% liquid
-  assign bts_is_prototype = true
-  # Launch is locked until ShopifyCartAdapter and launch QA exist.
-%}
-{% if bts_is_prototype %}<p class="bts-marker" data-bts-marker>{{ key | t }}</p>{% endif %}

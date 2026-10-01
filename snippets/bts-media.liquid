@@ -21,5 +21,5 @@ Approved production media, with a centralized review-only H1 fallback for draft 
   {% else %}{{ image | image_url: width: 1600 | image_tag: widths: '240,360,480,640,800,960,1200,1600', sizes: '(min-width: 990px) 42vw, 82vw', loading: 'lazy', alt: alt }}{% endif %}
 {% elsif role == 'H1' %}
   {% capture review_url %}{% render 'bts-review-media-url', handle: handle %}{% endcapture %}{% assign review_url = review_url | strip %}
-  {% if review_url != blank %}<img src="{{ review_url }}" alt="{{ alt | default: handle | escape }}" width="1200" height="1600" {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
+  {% if review_url != blank %}<img data-bts-review-image="true" src="{{ review_url }}" alt="{{ alt | default: handle | escape }}" width="1200" height="1600" {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
 {% endif %}

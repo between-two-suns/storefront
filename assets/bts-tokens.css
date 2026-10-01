@@ -9,9 +9,9 @@
   --font-ar-ui: 'BTS Arabic UI', 'Geeza Pro', 'Noto Sans Arabic', Tahoma, sans-serif;
   --text-small: .8125rem; --text-ui: 1rem; --text-product: clamp(1.35rem, 2.4vw, 2rem);
   --leading-ui: 1.45; --leading-display: 1.08; --leading-ar: 1.7;
-  --gutter: clamp(12px, 3.2vw, 40px); --header-h: 52px; --sticky-h: 0px;
+  --gutter: clamp(12px, 3.2vw, 40px); --header-h: 56px; --sticky-h: 0px;
   --pill-radius: 999px; --radius-control: 0px;
-  --dur-turn: 320ms; --ease-turn: cubic-bezier(.33, 0, .15, 1); --dur-sheet: 240ms; --dur-fade: 120ms;
+  --dur-turn: 240ms; --ease-turn: cubic-bezier(.33, 0, .15, 1); --dur-sheet: 240ms; --dur-fade: 160ms;
   --contact-shadow: 0 4px 8px rgb(20 20 20 / 16%);
   --z-header: 10; --z-sticky: 20; --z-skip: 30; --z-sheet: 40;
   --bts-turn: 1; --dir: var(--bts-turn);

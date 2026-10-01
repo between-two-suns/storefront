@@ -56,9 +56,10 @@
 .pf__back-head .pf__wordmark { filter: brightness(0); }
 .pf__turn { border: 0; border-block-end: 1px solid var(--c-line); padding-inline: .25rem; }
 
-/* The prototype back carries a visible non-final label for both media sources. */
 
 /* Preserve commerce geometry until authored Arabic back content clears its gate. */
 .pf__turn-reservation { display: inline-flex; align-items: center; min-block-size: 52px; padding-inline: .25rem; border-block-end: 1px solid transparent; visibility: hidden; }
 @media (min-width: 990px) { .bts-shelf .pf__turn-reservation { padding-inline: 8px; font-size: .8125rem; } }
 .pf__turn, .pf__turn-reservation { display: inline-flex; align-items: center; padding-block: 0; line-height: inherit; font-family: inherit; font-weight: inherit; }
+
+.pf__availability { display: block; font-size: .625rem; margin-block-start: 2px; }

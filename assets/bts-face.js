@@ -44,7 +44,7 @@ class ProductFace extends HTMLElement {
     front.hidden = false; back.hidden = false;
     this.dataset.side = side;
     front.inert = side === 'back'; back.inert = side === 'front';
-    this.hideTimer = setTimeout(() => { front.hidden = side === 'back'; back.hidden = side === 'front'; }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 120 : 320);
+    this.hideTimer = setTimeout(() => { front.hidden = side === 'back'; back.hidden = side === 'front'; }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 160 : 240);
     turn.setAttribute('aria-pressed', String(side === 'back'));
     window.BTS?.track('bts_product_turn', { side_to: side, sku_handle: this.dataset.key, surface: this.dataset.variant });
   }

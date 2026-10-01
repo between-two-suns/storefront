@@ -4,18 +4,19 @@ if (shelf && nav && typeof IntersectionObserver === 'function') {
   const items = [...shelf.children];
   const links = [...nav.querySelectorAll('[data-shelf-target]')];
   const controls = nav.querySelector('[data-shelf-controls]');
-  const mobile = matchMedia('(max-width: 989px)');
-  nav.dataset.enhanced = 'true';
-  let current = 0;
+  const previous = nav.querySelector('[data-shelf-direction="previous"]');
+  const next = nav.querySelector('[data-shelf-direction="next"]');
   const ratios = new Map();
+  let current = 0;
+  nav.dataset.enhanced = 'true';
   const update = () => {
-    controls.hidden = !mobile.matches || items.length < 2;
+    controls.hidden = items.length < 2;
     links.forEach((link, index) => {
-      if (mobile.matches && index === current) link.setAttribute('aria-current', 'true');
+      if (index === current) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
     });
-    nav.querySelector('[data-shelf-direction="previous"]').disabled = current === 0;
-    nav.querySelector('[data-shelf-direction="next"]').disabled = current === items.length - 1;
+    previous.disabled = current === 0;
+    next.disabled = current === items.length - 1;
   };
   const go = index => {
     current = Math.max(0, Math.min(items.length - 1, index));
@@ -24,12 +25,12 @@ if (shelf && nav && typeof IntersectionObserver === 'function') {
   };
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) ratios.set(entry.target, entry.intersectionRatio);
-    if (mobile.matches) current = items.reduce((index, item, next) => (ratios.get(item) || 0) > (ratios.get(items[index]) || 0) ? next : index, 0);
+    current = items.reduce((index, item, candidate) => (ratios.get(item) || 0) > (ratios.get(items[index]) || 0) ? candidate : index, 0);
     update();
   }, { root: shelf, threshold: [0, .25, .5, .75, 1] });
   items.forEach(item => observer.observe(item));
-  links.forEach((link, index) => link.addEventListener('click', event => { if (mobile.matches) { event.preventDefault(); go(index); } }));
-  nav.querySelectorAll('[data-shelf-direction]').forEach(button => button.addEventListener('click', () => go(current + (button.dataset.shelfDirection === 'next' ? 1 : -1))));
-  mobile.addEventListener('change', update);
+  links.forEach((link, index) => link.addEventListener('click', event => { event.preventDefault(); go(index); }));
+  previous.addEventListener('click', () => go(current - 1));
+  next.addEventListener('click', () => go(current + 1));
   update();
 }
