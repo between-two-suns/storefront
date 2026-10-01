@@ -138,3 +138,11 @@
 .bts-search__routine,.bts-search__none{grid-column:2}
 }
 @media(prefers-reduced-motion:reduce){.bts-sheet[open]{animation:none}.bts-menu-sheet__nav a{transition:none}}
+
+/* V16 authored utility surfaces */
+.bts-search__results{border-top:1px solid #14141445}
+.bts-search__result{background:transparent!important;border:0!important;border-bottom:1px solid #14141445!important}
+.bts-search__result .pf{background:transparent!important}
+.bts-search__result .pf__media{background:transparent!important}
+.bts-search__result .pf__media img[data-bts-review-image]{mix-blend-mode:multiply!important}
+#bts-drawer .bts-cart__summary{margin-top:auto}
