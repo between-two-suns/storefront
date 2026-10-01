@@ -262,3 +262,34 @@
   .bts-shelf .pf[data-colour='barrier'] .pf__front .pf__media,.bts-shelf .pf[data-colour='defense'] .pf__front .pf__media{height:390px;block-size:390px;width:144px;inline-size:144px}
   .bts-story__approach h2{font-size:clamp(4.8rem,5.6vw,6.4rem);max-inline-size:12ch}
 }
+
+/* V17 — tighten the award-gate composition */
+.bts-home-hero__line{font-size:1.18rem;line-height:.98;max-width:17ch}
+.bts-home-hero__kicker{opacity:.72}
+.bts-discovery__head p{opacity:.65}
+@media(max-width:989px){
+  .bts-home-hero__copy{grid-template-columns:92px 1fr;gap:0 12px}
+  .bts-home-hero__wordmark{width:92px}
+  .bts-home-hero__line{font-size:1.14rem}
+  .bts-family__pack--1{left:-8%;transform:rotate(-4deg)}
+  .bts-family__pack--2{left:31%;bottom:9%;transform:rotate(4deg)}
+  .bts-family__pack--3{left:52%;bottom:5%;transform:rotate(-3deg)}
+  .bts-family__pack--4{right:-5%;bottom:10%;transform:rotate(5deg)}
+  .bts-discovery{padding-top:42px}
+  .bts-discovery__head{padding-bottom:10px}
+  .bts-shelf{grid-auto-columns:88vw;gap:3vw}
+  .bts-shelf .pf__inner{min-height:640px;grid-template-rows:minmax(350px,1fr) auto auto}
+  .bts-shelf .pf__stage{min-height:350px}
+  .bts-routine-editorial{padding-top:54px}
+}
+@media(min-width:990px){
+  .bts-home-hero__line{font-size:1.75rem;max-width:15ch}
+  .bts-home-hero__copy{grid-template-columns:150px 420px}
+  .bts-home-hero__wordmark{width:150px}
+  .bts-discovery__head{align-items:start}
+  .bts-discovery__head h2{font-size:clamp(7rem,9vw,10rem)}
+  .bts-shelf>li::before{color:#1414140d}
+  .bts-shelf .pf__info{padding-top:18px}
+  .bts-shelf .pf__name{font-size:clamp(4rem,5.1vw,6.3rem)}
+  .bts-routine-editorial h2{font-size:clamp(7rem,9vw,10rem)}
+}
