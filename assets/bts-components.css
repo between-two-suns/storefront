@@ -146,3 +146,7 @@
 .bts-search__result .pf__media{background:transparent!important}
 .bts-search__result .pf__media img[data-bts-review-image]{mix-blend-mode:multiply!important}
 #bts-drawer .bts-cart__summary{margin-top:auto}
+@media(max-width:989px){
+  #bts-drawer{background:linear-gradient(145deg,#f1eee9 0%,#ece6ee 62%,#edd6c8 100%)}
+  .bts-search{background:linear-gradient(155deg,#edf0e9 0%,#dce9e7 48%,#e6ddeb 76%,#edd7c9 100%)}
+}
