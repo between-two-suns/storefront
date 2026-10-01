@@ -1,10 +1,10 @@
 {% doc %}
-Central review-only H1 source for draft Shopify products. Replace here when final production media lands.
+Central review-only H1 source for draft Shopify products. These cutouts preserve the supplied product photography and remove only the connected near-white studio background for composition.
 @param {string} handle - Product handle
 {% enddoc %}
 {% case handle %}
-  {% when 'daily-reset-cleanser' %}https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-reset-cleanser.jpg?v=1790626659
-  {% when 'clarity-serum' %}https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-serum.jpg?v=1790626663
-  {% when 'daily-barrier-moisturizing-cream' %}https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-barrier-moisturizing-cream.jpg?v=1790626668
-  {% when 'daily-defense-sunscreen-spf-50' %}https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-defense-sunscreen-spf-50.jpg?v=1790626674
+  {% when 'daily-reset-cleanser' %}{{ 'bts-reset-cutout.png' | asset_url }}
+  {% when 'clarity-serum' %}{{ 'bts-clarity-cutout.png' | asset_url }}
+  {% when 'daily-barrier-moisturizing-cream' %}{{ 'bts-barrier-cutout.png' | asset_url }}
+  {% when 'daily-defense-sunscreen-spf-50' %}{{ 'bts-defense-cutout.png' | asset_url }}
 {% endcase %}
