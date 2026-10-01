@@ -52,3 +52,6 @@
 .bts-shelf>li{translate:0}.bts-shelf .pf__inner{min-height:720px}.bts-shelf .pf__stage{min-height:510px;padding:38px 30px 0}.bts-shelf .pf__name{font-size:clamp(3rem,4vw,5rem)}
 .bts-shelf-nav{display:none}}
 @media(prefers-reduced-motion:reduce){.bts-family__pack{transition:none}}
+
+/* V14 hosted-render correction: compress the first fold and dissolve image-box edges. */
+@media(max-width:989px){.bts-home-hero{min-block-size:calc(100svh - var(--header-h));padding-block-end:10px}.bts-family{inset:88px 0 18px}.bts-family__pack--1{height:min(76vw,296px);left:-7%;bottom:2%}.bts-family__pack--2{height:min(40vw,156px);left:35%;bottom:13%}.bts-family__pack--3{height:min(48vw,187px);left:52%;bottom:2%}.bts-family__pack--4{height:min(48vw,187px);left:73%;bottom:11%}.bts-family__image img{mix-blend-mode:multiply}.bts-family__step{display:none}.bts-discovery{padding-top:34px}.bts-shelf .pf__front .pf__media img{mix-blend-mode:multiply}.bts-shelf .pf__stage{padding-inline:0}.bts-shelf .pf__info{padding-inline:16px}.bts-shelf .pf__buy{padding-inline:16px}}

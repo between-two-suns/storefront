@@ -4,22 +4,6 @@ Editorial bridge for the FRONT / BACK system. Missing campaign media never rende
 {% enddoc %}
 {% assign language = request.locale.iso_code | split: '-' | first %}
 <section class="bts-story" aria-label="BETWEEN TWO SUNS">
-  <div class="bts-story__duality">
-    <div class="bts-story__side bts-story__side--front">
-      <span class="bts-story__side-label">{% if language == 'ar' %}الوجه الأمامي{% else %}FRONT{% endif %}</span>
-      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">
-      {% if language == 'en' %}<p>Desire. Product. Texture.</p>{% endif %}
-    </div>
-    <div class="bts-story__side bts-story__side--back">
-      <span class="bts-story__side-label">{% if language == 'ar' %}{{ 'bts.back' | t }}{% else %}BACK{% endif %}</span>
-      {% if language == 'en' %}
-        <h2>Every product has two sides.</h2>
-        <p>The front is why you want it. The back is why you can trust it.</p>
-      {% else %}
-        <img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" width="1448" height="1252" alt="BETWEEN TWO SUNS">
-      {% endif %}
-    </div>
-  </div>
   {% if campaign != blank %}
     {% assign subject = metaobjects.bts_product_content[campaign.product_handle.value] %}
     {% capture campaign_image %}{% render 'bts-media', media: campaign, content: subject, handle: campaign.product_handle.value, role: 'CAMPAIGN' %}{% endcapture %}{% assign campaign_image = campaign_image | strip %}

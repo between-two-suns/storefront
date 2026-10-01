@@ -208,3 +208,15 @@
   .bts-search__result .pf__buy { grid-column: 2; }
 }
 
+
+/* V14 connected routine: one progression, not a card rail. */
+.bts-routine-editorial__steps{position:relative;display:grid;grid-template-columns:1fr;margin:0;padding:0;overflow:visible;gap:0}
+.bts-routine-editorial__steps::before{content:"";position:absolute;inset-block:20px 20px;inset-inline-start:20px;width:1px;background:var(--c-ink);opacity:.22}
+.bts-routine-editorial__steps li{position:relative;min-inline-size:0!important;background:transparent!important;border:0!important}
+.bts-routine-editorial__steps a{display:grid!important;grid-template-columns:54px minmax(0,1fr) 86px;align-items:center;min-height:116px;padding:10px 0!important;border-block-start:1px solid var(--c-line)}
+.bts-routine-editorial__media{grid-column:3;grid-row:1;height:96px!important;border:0!important;overflow:visible!important;background:transparent}
+.bts-routine-editorial__media img{height:100%!important;width:100%!important;object-fit:contain;mix-blend-mode:multiply}
+.bts-routine-editorial__copy{grid-column:1/3;grid-row:1;display:grid!important;grid-template-columns:54px 1fr;padding:0!important;gap:2px 0!important;align-items:center}
+.bts-routine-editorial__step{grid-column:1;grid-row:1/4;position:relative;z-index:1;width:40px;height:40px!important;border:1px solid var(--c-ink);border-radius:50%;background:var(--c-ground)!important;display:grid!important;place-items:center!important}
+.bts-routine-editorial__copy strong,.bts-routine-editorial__time{grid-column:2}.bts-routine-editorial__copy strong{font-size:1.45rem}.bts-routine-editorial__time{font-size:.68rem}
+@media(min-width:990px){.bts-routine-editorial__steps{grid-template-columns:repeat(4,1fr);gap:0}.bts-routine-editorial__steps::before{inset:20px 8% auto;height:1px;width:auto}.bts-routine-editorial__steps a{grid-template-columns:1fr;grid-template-rows:54px 280px auto;padding:0 18px 24px!important;border-block-start:0;border-inline-start:1px solid var(--c-line)}.bts-routine-editorial__media{grid-column:1;grid-row:2;height:260px!important}.bts-routine-editorial__copy{grid-column:1;grid-row:1/4;grid-template-columns:1fr;padding:0!important}.bts-routine-editorial__step{grid-column:1;grid-row:1}.bts-routine-editorial__copy strong,.bts-routine-editorial__time{grid-column:1}.bts-routine-editorial__copy strong{grid-row:3;font-size:1.8rem}.bts-routine-editorial__time{grid-row:4}}
