@@ -293,3 +293,39 @@
   .bts-shelf .pf__name{font-size:clamp(4rem,5.1vw,6.3rem)}
   .bts-routine-editorial h2{font-size:clamp(7rem,9vw,10rem)}
 }
+
+/* V18 — mobile-first editorial correction from V17 render gate */
+@media(max-width:989px){
+  .bts-home-hero{min-height:760px}
+  .bts-home-hero__copy{inset:14px var(--gutter) auto;grid-template-columns:78px 1fr}
+  .bts-home-hero__wordmark{width:78px}
+  .bts-home-hero__line{font-size:1.24rem;max-width:13ch;margin-top:76px}
+  .bts-home-hero__kicker{position:absolute;right:0;top:2px}
+  .bts-home-hero__actions{position:absolute;left:0;right:0;top:618px;display:grid;grid-template-columns:1fr auto;border-top:1px solid #14141455;padding-top:9px}
+  .bts-home-hero__shop{background:transparent;color:var(--c-ink);border-radius:0;padding:0;min-height:30px;text-decoration:underline;text-underline-offset:5px}
+  .bts-home-hero__actions .bts-routine-offer a{min-height:30px}
+  .bts-family__floor{bottom:155px}
+  .bts-family__pack--1{height:385px;left:-10%;bottom:155px}
+  .bts-family__pack--2{height:205px;left:30%;bottom:158px}
+  .bts-family__pack--3{height:248px;left:52%;bottom:160px}
+  .bts-family__pack--4{height:248px;right:-4%;bottom:185px}
+  .bts-discovery{padding:0 0 62px}
+  .bts-discovery__head{position:relative;padding:30px var(--gutter) 18px}
+  .bts-discovery__head h2{font-size:4.6rem;line-height:.76}
+  .bts-shelf{grid-auto-columns:92vw;gap:2vw;padding-left:var(--gutter);padding-right:0}
+  .bts-shelf .pf{min-height:650px}
+  .bts-shelf .pf:before{clip-path:none;inset:0}
+  .bts-shelf .pf__inner{min-height:650px;grid-template-rows:390px auto 58px}
+  .bts-shelf .pf__stage{min-height:390px;padding-top:10px}
+  .bts-shelf .pf__info{padding:12px 16px 10px}
+  .bts-shelf .pf__name{font-size:3.25rem;line-height:.78}
+  .bts-shelf .pf__promise{font-size:.76rem;max-width:26ch}
+  .bts-shelf .pf__buy{padding:0 16px 14px}
+  .bts-shelf-nav{padding:10px var(--gutter) 0}
+  .bts-routine-editorial{padding:56px var(--gutter) 70px}
+  .bts-routine-editorial h2{font-size:4.9rem}
+  .bts-routine-editorial__steps a{min-height:116px!important;grid-template-columns:48px minmax(0,1fr) 88px!important}
+  .bts-routine-editorial__copy{grid-template-columns:48px 1fr!important}
+  .bts-routine-editorial__copy strong{font-size:1.45rem}
+  .bts-routine-editorial__media{height:104px!important}
+}
