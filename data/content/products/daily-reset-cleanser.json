@@ -1,0 +1,220 @@
+{
+  "type": "bts_product_content",
+  "handle": "daily-reset-cleanser",
+  "fields": {
+    "product_handle": "daily-reset-cleanser",
+    "name": "Daily Reset Cleanser",
+    "short_name": "Reset",
+    "step": 1,
+    "colour_key": "reset",
+    "size_display": "200 mL",
+    "inci": "Aqua, Sodium Lauryl Sulfosuccinate, Cocamidopropyl Betaine, Coco-Glucoside, Glycerin, Lauryl Glucoside, Propylene Glycol, PEG-120 Methyl Glucose Dioleate, Phenoxyethanol, PEG-7 Glyceryl Cocoate, Panthenol, Poloxamer 184, Polyquaternium-10, Aloe Barbadensis Leaf Extract, Centella Asiatica Extract, Sodium PCA, Zinc PCA, Ethylhexylglycerin, EDTA, Allantoin, Glycyrrhiza Glabra Root Extract, Citric Acid.",
+    "usage_times": [
+      "am",
+      "pm"
+    ],
+    "media_front": null,
+    "media_back": null,
+    "components": [],
+    "key": "reset",
+    "kind": "single",
+    "inci_version": "FINAL-v5",
+    "hero_actives": "Zinc PCA + Centella",
+    "media_swatch": null,
+    "media_application": null,
+    "media_emotional": null,
+    "size_label": "200 mL",
+    "size_value": 200,
+    "size_unit": "mL",
+    "pack_height_mm": 180,
+    "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Reset Cleanser; 180 mm.",
+    "pack_ratio_nominal": 0.62,
+    "pack_ratio_source": "Composition-only portrait crop reservation, not a measured H1 crop; revalidate with matched approved photography."
+  },
+  "translations": {
+    "role": {
+      "en": "Cleanse",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "promise": {
+      "en": "Removes oil. Maintains hydration. Feels fresh.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "suitability": {
+      "en": "For Oily to Combination Skin",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "back_description": {
+      "en": "A daily gel cleanser with Zinc PCA, Panthenol and Centella. Removes excess oil and environmental buildup without stripping, while hydrating and leaving skin fresh and comfortable.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "does": {
+      "en": "Removes oil. Maintains hydration. Feels fresh.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "feels_like": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "formula_logic": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "how_to_use": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    }
+  },
+  "claims": [
+    {
+      "label": {
+        "en": "Non-stripping",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "Soap-free",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "Non-comedogenic",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    }
+  ],
+  "translation_status": "AR product claims require authored/regulatory review; null is never published",
+  "key_ingredients": [
+    {
+      "inci_name": "Zinc PCA",
+      "display_name": {
+        "en": "Zinc PCA",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Panthenol",
+      "display_name": {
+        "en": "Panthenol",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Centella Asiatica Extract",
+      "display_name": {
+        "en": "Centella",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    }
+  ],
+  "copy_note": "No ingredient-specific efficacy or texture is substantiated by the approved label. Why/feels_like/formula_logic remain null. Pack height sourced from founder physical-pack tape measurements supplied 2026-09-30. Photos are geometry/measurement evidence only; old photographed Cleanser/Serum labels never replace FINAL-v5 source truth."
+}

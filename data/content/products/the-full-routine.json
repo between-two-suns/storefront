@@ -1,0 +1,33 @@
+{
+  "type": "bts_product_content",
+  "handle": "the-full-routine",
+  "fields": {
+    "product_handle": "the-full-routine",
+    "name": "The Full Routine",
+    "components": [
+      "daily-reset-cleanser",
+      "clarity-serum",
+      "daily-barrier-moisturizing-cream",
+      "daily-defense-sunscreen-spf-50"
+    ],
+    "components_pm": [
+      "daily-reset-cleanser",
+      "clarity-serum",
+      "daily-barrier-moisturizing-cream"
+    ],
+    "media_front": null,
+    "key": "routine",
+    "kind": "bundle"
+  },
+  "translations": {
+    "role": {
+      "en": "Routine",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    }
+  },
+  "claims": []
+}

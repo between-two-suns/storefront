@@ -1,0 +1,55 @@
+{% doc %}
+Approved real verified-customer review snapshots only; empty state contains no social proof.
+@param {metaobject} content - Product content for the review lookup
+@param {string} uid - Unique heading identifier
+{% enddoc %}
+{% liquid
+  assign language = request.locale.iso_code | split: '-' | first
+  assign handle = content.product_handle.value
+  assign review_entry = metaobjects.bts_review_feed[handle]
+  assign feed = review_entry.feed.value
+  assign eligible = false
+  assign count = feed.records.size
+  assign sum = 0
+  assign unique_ids = feed.records | map: 'id' | uniq
+  if feed.schema_version == 1 and feed.approved == true and feed.fixture == false and feed.authenticity == 'verified_customer' and feed.provider != blank and feed.product_handle == handle and review_entry.product_handle.value == handle
+    if count >= 5 and count <= 50 and unique_ids.size == count
+      assign eligible = true
+      for review in feed.records
+        assign rating_number = review.rating | plus: 0
+        assign rating_fraction = rating_number | modulo: 1
+        if review.id == blank or review.product_handle != handle or review.authenticity != 'verified_customer' or review.fixture != false or review.verified_purchase != true or review.published != true or review.approved != true
+          assign eligible = false
+        endif
+        if review.rating != rating_number or rating_number < 1 or rating_number > 5 or rating_fraction != 0
+          assign eligible = false
+        endif
+        if review.body.approved[language] != true or review.body[language] == blank or review.display_name.approved[language] != true or review.display_name[language] == blank
+          assign eligible = false
+        endif
+        assign sum = sum | plus: rating_number
+      endfor
+    endif
+  endif
+%}
+{% if eligible %}
+<section class="bts-reviews" aria-labelledby="BtsReviews-{{ uid | escape }}">
+  <h2 id="BtsReviews-{{ uid | escape }}">{{ 'reviews.title' | t }}</h2>
+  {% if eligible %}
+    {% assign average = sum | times: 1.0 | divided_by: count | round: 1 %}
+    <p class="bts-reviews__summary">{{ 'reviews.summary' | t: rating: average, count: count }}</p>
+    <ol class="bts-reviews__list">
+      {% for review in feed.records %}
+        <li>
+          <article class="bts-reviews__item">
+            <h3>{{ review.display_name[language] | escape }}</h3>
+            <p>{{ 'reviews.rating' | t: rating: review.rating }} · {{ 'reviews.verified' | t }}</p>
+            <p dir="auto">{{ review.body[language] | escape }}</p>
+          </article>
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+</section>
+
+{% endif %}

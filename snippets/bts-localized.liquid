@@ -1,0 +1,6 @@
+{% doc %}
+Approved localized product field; missing AR never falls back to English.
+@param {object} field - JSON envelope with en/ar and approved.en/ar.
+{% enddoc %}
+{%- assign language = request.locale.iso_code | split: '-' | first -%}
+{%- if field.approved[language] == true and field[language] != blank -%}{{- field[language] | escape -}}{%- endif -%}

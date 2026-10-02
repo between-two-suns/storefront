@@ -1,0 +1,30 @@
+node_modules/
+test-results/
+
+# Generated review captures and quarantined archive images.
+/review-assets/
+/final-review-v8/
+/live-review-v8/
+/opus-brand-pack/reference/
+/archive/**/*.png
+/archive/**/*.webp
+/playwright-report/
+/coverage/
+
+# Local credentials, CLI state, logs and temporary files.
+.env
+.env.*
+!.env.example
+!.env.*.example
+.shopify/
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store

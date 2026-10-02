@@ -1,0 +1,12 @@
+{% doc %}
+bts-prototype-data foundation helper.
+
+{% enddoc %}
+{% liquid
+  assign bts_is_prototype = true
+  # Launch is locked until ShopifyCartAdapter and launch QA exist.
+%}
+{% if bts_is_prototype %}
+{% capture review_config %}{% render 'bts-review-price-value', field: 'config_json' %}{% endcapture %}{% assign review_config = review_config | strip %}
+<script type="application/json" id="bts-proto">{% if review_config != blank %}{{ review_config }}{% else %}null{% endif %}</script>
+{% endif %}

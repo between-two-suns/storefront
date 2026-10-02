@@ -1,0 +1,19 @@
+You are Claude Opus, design lead for BETWEEN TWO SUNS. Review the completed MINIMAL M0/M1 recovery only. Do not edit code.
+
+Read:
+- opus-brand-pack/V12_CREATIVE_DIRECTIONS.md
+- opus-brand-pack/V12_CHATGPT_REVIEW_GATE.md
+- opus-brand-pack/V12_CODEX_M0_M1_REPORT.md
+- layout/theme.liquid
+- assets/bts-base.css
+- assets/bts-components.css
+- sections/bts-header.liquid
+- sections/bts-footer.liquid
+- sections/bts-foundation-home.liquid
+- snippets/bts-drawer.liquid
+- snippets/bts-menu-sheet.liquid
+- locales/en.default.json
+- locales/ar.json
+
+Write opus-brand-pack/V12_OPUS_M0_M1_GATE.md.
+This is a foundation gate, not visual approval of the final storefront. Assess whether it preserves the FRONT/BACK route cleanly for M2, brand integrity, mobile/Arabic foundations, generic styling that should be removed before M2, and what must be true in M2 product-face/PDP so it becomes world-class rather than a generic ecommerce card flip. Give a clear PASS, PASS WITH CONDITIONS, or FAIL for proceeding to M2. Be severe and specific.

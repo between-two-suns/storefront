@@ -1,0 +1,16 @@
+<header class="bts-header">
+  <a class="bts-header__menu" href="#bts-menu-nojs" data-bts-open="bts-menu" aria-haspopup="dialog" aria-label="{{ 'bts.menu' | t }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></a>
+  <a class="bts-header__mark" href="{{ routes.root_url }}" aria-label="BETWEEN TWO SUNS"><img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="BETWEEN TWO SUNS"></a>
+  <nav class="bts-header__nav" aria-label="{{ 'bts.collection' | t }}">
+    <a href="{{ routes.all_products_collection_url }}">{{ 'bts.shop' | t }}</a>
+    {% render 'bts-routine-link' %}
+  </nav>
+  <div class="bts-header__tools">
+    <a href="{{ routes.search_url }}" aria-label="{{ 'bts.search' | t }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg></a>
+    {% render 'bts-language', id: 'BtsHeaderLanguage' %}
+    <a href="{{ routes.cart_url }}" data-bts-open="bts-drawer" aria-haspopup="dialog">{{ 'bts.bag' | t }} <span class="bts-header__count" data-bts-count>0</span></a>
+  </div>
+</header>
+{% schema %}
+{"name":"Header","class":"bts-global-header","settings":[]}
+{% endschema %}

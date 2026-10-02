@@ -1,0 +1,15 @@
+{{ 'bts-face.css' | asset_url | stylesheet_tag }}
+<section class="bts-foundation bts-collection"><h1>{{ 'bts.shop' | t }}</h1>
+  <div class="bts-collection__grid">
+  {% capture product_handles %}{% render 'bts-product-handles' %}{% endcapture %}{% assign product_handles = product_handles | strip %}{% assign products = product_handles | split: '|' %}
+  {% for handle in products %}{% assign content = metaobjects.bts_product_content[handle] %}{% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% if name != blank %}
+      {% assign uid = section.id | append: '-' | append: forloop.index %}
+      {% render 'bts-face', content: content, handle: handle, variant: 'grid', uid: uid %}
+    {% endif %}
+  {% endfor %}
+  </div>
+</section>
+{% schema %}
+{"name":"Static product collection","settings":[]}
+{% endschema %}

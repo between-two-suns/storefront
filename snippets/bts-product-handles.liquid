@@ -1,0 +1,4 @@
+{% doc %}
+Ordered storefront content handles, with four theme-local review identities.
+{% enddoc %}
+{%- if settings.bts_review_fallback == true -%}daily-reset-cleanser|clarity-serum|daily-barrier-moisturizing-cream|daily-defense-sunscreen-spf-50{%- else -%}{%- assign products = metaobjects.bts_product_content.values | sort: 'step' -%}{%- for content in products -%}{%- if content.kind.value == 'single' -%}{{- content.product_handle.value -}}|{%- endif -%}{%- endfor -%}{%- endif -%}

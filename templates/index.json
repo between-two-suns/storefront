@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "bts-home",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

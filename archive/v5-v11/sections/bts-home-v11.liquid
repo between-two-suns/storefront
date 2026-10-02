@@ -1,0 +1,310 @@
+{%- comment -%}
+  BETWEEN TWO SUNS — Homepage v11 "SWATCH". LOCAL ONLY — not wired into templates/index.json.
+  Pack media: TEMPORARY cleaned renders (bts-*-clean-v11.png). Label artwork on these is NOT authoritative,
+  so packs are deliberately held at moderate scale. Replace with H1 (hero) / P1 (pack suite) when produced.
+  Prices are rendered by JS from one pricing table (assets/bts-home-v11.js → PRICING). The values
+  written here are the Scenario B no-JS fallback only.
+  Internal markers (.b11-internal) are hidden with ?founder=1 for founder screenshots.
+{%- endcomment -%}
+{%- liquid
+  assign keys = 'reset,clarity,barrier,defense' | split: ','
+  assign names = 'Daily Reset Cleanser,Clarity Serum,Daily Barrier Moisturizing Cream,Daily Defense Sunscreen SPF 50' | split: ','
+  assign shorts = 'Reset,Clarity,Barrier,Defense' | split: ','
+  assign roles = 'Cleanse,Treat,Moisturise,Protect' | split: ','
+  assign prices = '399,499,449,499' | split: ','
+  assign sizes = '200 mL,30 mL,50 g,50 g' | split: ','
+-%}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&display=swap">
+{{ 'bts-home-v11.css' | asset_url | stylesheet_tag }}
+
+<div class="b11" data-b11 data-scenario="B" data-lang="en" dir="ltr" lang="en" data-active="reset">
+  <a class="b11-skip" href="#b11-main" data-t="skip">Skip to content</a>
+
+  <header class="b11-nav">
+    <a href="#b11-main" class="b11-nav__logo" aria-label="Between Two Suns"><img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="22" height="24"></a>
+    <nav class="b11-nav__links" aria-label="Primary">
+      <a href="#b11-routine" data-t="navRoutine">Routine</a>
+      <a href="#b11-why" data-t="navWhy">Formulas</a>
+    </nav>
+    <div class="b11-nav__tools">
+      <button type="button" class="b11-lang" data-b11-lang aria-label="التبديل إلى العربية"><span lang="ar">عربي</span></button>
+      <button type="button" class="b11-bagbtn" data-b11-open-bag aria-haspopup="dialog"><span data-t="bag">Bag</span> <b data-b11-count>0</b></button>
+    </div>
+  </header>
+
+  <main id="b11-main">
+
+    {%- comment -%} 1 · SWATCH RAIL HERO {%- endcomment -%}
+    <section class="b11-hero" aria-roledescription="carousel" aria-label="Products">
+      <div class="b11-hero__field" aria-hidden="true">
+        <img class="b11-hero__word" src="{{ 'bts-wordmark-white.svg' | asset_url }}" alt="" width="1448" height="1252">
+      </div>
+
+      <div class="b11-rail" data-b11-rail tabindex="0" aria-label="Swipe to change product">
+        {%- for key in keys -%}
+          <figure class="b11-slide" data-key="{{ key }}" data-texture-src="" aria-roledescription="slide" aria-label="{{ forloop.index }} / 4 · {{ names[forloop.index0] }}">
+            {%- comment -%} PENDING H1-{{ key }}: 4:5 / 9:16 hero pack-on-surface. PENDING T1-{{ key }}: texture loop for Drag-to-Swatch (set data-texture-src). {%- endcomment -%}
+            <button type="button" class="b11-slide__pack" data-b11-sheet="{{ key }}" aria-label="{{ names[forloop.index0] }} — details">
+              <img src="{{ 'bts-' | append: key | append: '-clean-v11.webp' | asset_url }}" alt="{{ names[forloop.index0] }}" width="1024" height="1536" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %} draggable="false">
+              <span class="b11-slide__shadow" aria-hidden="true"></span>
+            </button>
+            <div class="b11-smear b11-tex--{{ key }}" aria-hidden="true"><span data-t="tex_{{ key }}"></span></div>
+          </figure>
+        {%- endfor -%}
+      </div>
+
+      <div class="b11-hero__panel">
+        <div class="b11-hero__index" role="tablist" aria-label="Products">
+          {%- for key in keys -%}
+            <button type="button" role="tab" data-b11-goto="{{ forloop.index0 }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"><span>0{{ forloop.index }}</span> <span class="b11-hero__indexname">{{ shorts[forloop.index0] }}</span></button>
+          {%- endfor -%}
+        </div>
+        <div class="b11-hero__copy" aria-live="polite">
+          <p class="b11-eyebrow"><span data-b11-h="role">Step 01 · Cleanse</span> </p>
+          <h1 class="b11-hero__name" data-b11-h="name">Daily Reset Cleanser</h1>
+          <p class="b11-hero__line" data-b11-h="line">Removes oil. Keeps skin hydrated. Feels fresh.</p>
+        </div>
+        <div class="b11-hero__buy">
+          <button type="button" class="b11-btn b11-btn--primary" data-b11-add-active>
+            <span data-t="add">Add to bag</span><bdi data-b11-h="price">EGP 399</bdi>
+          </button>
+          <a href="#b11-routine" class="b11-routinelink"><span data-t="heroRoutine">Or the full routine</span> <bdi data-price="routine">EGP 1,661</bdi> <i class="b11-arrow" aria-hidden="true">→</i></a>
+        </div>
+      </div>
+    </section>
+
+    {%- comment -%} 2 · FULL ROUTINE OFFER (primary AOV module) {%- endcomment -%}
+    <section class="b11-routine" id="b11-routine" data-b11-routine data-time="am" aria-labelledby="b11-routine-h">
+      <div class="b11-routine__head">
+        <p class="b11-eyebrow" data-t="routineEyebrow">The full routine · 4 steps</p>
+        <h2 id="b11-routine-h" class="b11-h2" data-t="routineTitle">Four steps. One easy habit.</h2>
+      </div>
+      <div class="b11-seg" role="group" aria-label="AM / PM">
+        <button type="button" data-b11-time="am" aria-pressed="true"><span data-t="am">Morning</span> <small>AM · 4</small></button>
+        <button type="button" data-b11-time="pm" aria-pressed="false"><span data-t="pm">Night</span> <small>PM · 3</small></button>
+      </div>
+      {%- comment -%} PENDING R3: routine tabletop still can replace this pack row. {%- endcomment -%}
+      <ol class="b11-steps">
+        {%- for key in keys -%}
+          <li class="b11-step b11-step--{{ key }}">
+            <span class="b11-step__surface"><img src="{{ 'bts-' | append: key | append: '-clean-v11.webp' | asset_url }}" alt="" width="1024" height="1536" loading="lazy"></span>
+            <span class="b11-step__n">0{{ forloop.index }}</span>
+            <strong class="b11-step__name">{{ shorts[forloop.index0] }}</strong>
+            <span class="b11-step__role" data-t="role_{{ key }}">{{ roles[forloop.index0] }}</span>
+            {%- if key == 'defense' -%}<span class="b11-step__pm" data-t="pmSkip">Mornings only</span>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+      <p class="b11-routine__note" data-b11-routine-note data-t="amNote">Morning: all four, in order. Cleanse, treat, moisturise, protect.</p>
+      <div class="b11-offer">
+        <div class="b11-offer__price">
+          <bdi class="b11-offer__now" data-price="routine">EGP 1,661</bdi>
+          <span class="b11-offer__was"><span data-t="insteadOf">instead of</span> <s><bdi data-price="list">EGP 1,846</bdi></s></span>
+          <span class="b11-offer__save"><span data-t="save">Save</span> <bdi data-price="save">EGP 185</bdi> <bdi>· 10%</bdi></span>
+        </div>
+        <button type="button" class="b11-btn b11-btn--primary b11-btn--wide" data-b11-add-routine><span data-t="addRoutine">Add the full routine</span><bdi data-price="routine">EGP 1,661</bdi></button>
+        <p class="b11-fine" data-t="routineFine">Four full-size products. The routine price applies automatically when all four are in your bag.</p>
+      </div>
+    </section>
+
+    {%- comment -%} 3 · TEXTURE WALL — media slots PENDING T1 (loops) / T2 (stills). CSS surfaces are temporary stand-ins. {%- endcomment -%}
+    <section class="b11-texture" id="b11-texture" aria-labelledby="b11-tex-h">
+      <div class="b11-texture__head">
+        <p class="b11-eyebrow" data-t="texEyebrow">Texture</p>
+        <h2 id="b11-tex-h" class="b11-h2" data-t="texTitle">Swatch it before you buy it.</h2>
+      </div>
+      <div class="b11-wall">
+        {%- for key in keys -%}
+          <button type="button" class="b11-tile b11-tile--{{ key }} b11-tex--{{ key }}" data-b11-sheet="{{ key }}" data-media-slot="T1-{{ key }}" data-media-still="T2-{{ key }}" data-media-status="pending">
+            {%- comment -%} PENDING T1-{{ key }} (4–6s muted loop, play in view only) / T2-{{ key }} still for reduced motion. {%- endcomment -%}
+            <span class="b11-internal">T1/T2 · media pending</span>
+            <span class="b11-tile__word" data-t="tex_{{ key }}"></span>
+            <span class="b11-tile__meta"><strong>{{ shorts[forloop.index0] }}</strong> <bdi data-price="{{ key }}">EGP {{ prices[forloop.index0] }}</bdi> <i class="b11-plus" aria-hidden="true">+</i></span>
+          </button>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    {%- comment -%} 4 · ON-SKIN / FINISH — PENDING S1 (real skin, 4+ tones) and S2 (SPF finish, real product only). No placeholder image is presented as proof. {%- endcomment -%}
+    <section class="b11-finish" aria-labelledby="b11-finish-h">
+      <div class="b11-finish__copy">
+        <p class="b11-eyebrow" data-t="finishEyebrow">The finish</p>
+        <h2 id="b11-finish-h" class="b11-h2" data-t="finishTitle">Skin that looks like skin. Just fresher.</h2>
+        <p class="b11-body" data-t="finishBody">Light layers that sink in, so nothing sits on top. What you see after the full routine is your skin — clean, comfortable, with no white cast from the SPF.</p>
+      </div>
+      <ul class="b11-finish__grid">
+        {%- for key in keys -%}
+          <li class="b11-finish__panel b11-finish__panel--{{ key }}" data-media-slot="{% if key == 'defense' %}S2{% else %}S1{% endif %}-{{ key }}" data-media-status="pending">
+            <span class="b11-internal">{% if key == 'defense' %}S2{% else %}S1{% endif %} · sample / media pending</span>
+            <span class="b11-finish__word" data-t="finish_{{ key }}"></span>
+            <span class="b11-finish__src">{{ shorts[forloop.index0] }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <a href="#" class="b11-textlink" data-b11-sheet="defense"><span data-t="finishLink">Meet Defense SPF 50</span> <i class="b11-arrow" aria-hidden="true">→</i></a>
+    </section>
+
+    {%- comment -%} 5 · WHY IT WORKS — the ONLY climate-adapted module on the homepage. Formula-first; actives from FINAL_LABEL_SOURCE_OF_TRUTH. {%- endcomment -%}
+    <section class="b11-why" id="b11-why" aria-labelledby="b11-why-h">
+      <div class="b11-why__head">
+        <p class="b11-eyebrow" data-t="whyEyebrow">Why it works</p>
+        <h2 id="b11-why-h" class="b11-h2" data-t="whyTitle">Formulated for skin that gets oily fast.</h2>
+        <p class="b11-body" data-t="whyBody">Climate-adapted means every formula is built for heat, humidity and long air-conditioned days: oil control and hydration together, in textures light enough to wear daily.</p>
+      </div>
+      <ol class="b11-why__list">
+        {%- for key in keys -%}
+          <li class="b11-why__row b11-why__row--{{ key }}">
+            <span class="b11-why__chip" aria-hidden="true"></span>
+            <div>
+              <p class="b11-why__actives" dir="ltr" data-b11-actives="{{ key }}"></p>
+              <p class="b11-why__does" data-t="why_{{ key }}"></p>
+            </div>
+            <button type="button" class="b11-why__more" data-b11-sheet="{{ key }}" aria-label="{{ names[forloop.index0] }}"><span>{{ shorts[forloop.index0] }}</span> <i class="b11-arrow" aria-hidden="true">→</i></button>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </section>
+
+    {%- comment -%} 6 · REVIEWS — SAMPLE / PLACEHOLDER ONLY. No aggregate rating. Replace with real review app data before production. {%- endcomment -%}
+    <section class="b11-reviews" aria-labelledby="b11-rev-h" data-sample="true">
+      <div class="b11-reviews__head">
+        <p class="b11-eyebrow" data-t="revEyebrow">Reviews</p>
+        <h2 id="b11-rev-h" class="b11-h2" data-t="revTitle">In their words.</h2>
+        <p class="b11-fine" data-t="revNote">Reviews open at launch. The cards below are layout samples, not customer reviews.</p>
+      </div>
+      <div class="b11-reviews__rail">
+        {%- for i in (1..3) -%}
+          {%- assign k = keys[forloop.index0] -%}
+          <article class="b11-review b11-review--{{ k }}" data-sample="true">
+            <span class="b11-sample">SAMPLE / PLACEHOLDER</span>
+            <p class="b11-review__quote" data-t="rev{{ i }}"></p>
+            <p class="b11-review__meta"><span data-t="sampleName">Sample reviewer</span> · <span>{{ shorts[forloop.index0] }}</span></p>
+          </article>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    {%- comment -%} 7 · COMMUNITY — PENDING U1 (UGC clips) / U2 (stills). Each slot links to a SKU. {%- endcomment -%}
+    <section class="b11-community" aria-labelledby="b11-com-h">
+      <div class="b11-community__head">
+        <p class="b11-eyebrow" data-t="comEyebrow">On the shelf</p>
+        <h2 id="b11-com-h" class="b11-h2" data-t="comTitle">Mirror. Bag. Desk. Repeat.</h2>
+      </div>
+      <div class="b11-strip">
+        {%- assign spots = 'mirror,bag,desk,gym,vanity' | split: ',' -%}
+        {%- assign spotkeys = 'reset,defense,clarity,barrier,defense' | split: ',' -%}
+        {%- for spot in spots -%}
+          {%- assign sk = spotkeys[forloop.index0] -%}
+          <figure class="b11-ugc b11-ugc--{{ sk }}" data-media-slot="U1-{{ spot }}" data-media-status="pending">
+            <span class="b11-internal">U1 · {{ spot }} · media pending</span>
+            <figcaption>
+              <span class="b11-ugc__where" data-t="spot_{{ spot }}"></span>
+              <button type="button" class="b11-ugc__add" data-b11-add="{{ sk }}"><span class="b11-ugc__dot" aria-hidden="true"></span>{{ sk | capitalize }} <bdi data-price="{{ sk }}"></bdi> <i class="b11-plus" aria-hidden="true">+</i></button>
+            </figcaption>
+          </figure>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    {%- comment -%} 8 · TRUST / SERVICE — STRUCTURAL. Operational policy not yet confirmed; no threshold, no durations invented. {%- endcomment -%}
+    <section class="b11-trust" aria-labelledby="b11-trust-h">
+      <h2 id="b11-trust-h" class="b11-eyebrow" data-t="trustTitle">Buying from us</h2>
+      <ul class="b11-trust__list">
+        {%- assign trusts = 'cod,delivery,returns,whatsapp' | split: ',' -%}
+        {%- for t in trusts -%}
+          <li>
+            <strong data-t="trust_{{ t }}"></strong>
+            <span data-t="trust_{{ t }}_d"></span>
+            <span class="b11-internal">Policy to confirm</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    {%- comment -%} 9 · CAPTURE — prototype: nothing is submitted. {%- endcomment -%}
+    <section class="b11-capture" aria-labelledby="b11-cap-h">
+      <img class="b11-capture__icon" src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="44" height="48" loading="lazy">
+      <h2 id="b11-cap-h" class="b11-h2" data-t="capTitle">First to know when we launch.</h2>
+      <p class="b11-body" data-t="capBody">Launch date, restocks and new textures. Nothing else.</p>
+      <form class="b11-form" data-b11-form novalidate>
+        <div class="b11-seg b11-seg--small" role="group" aria-label="Channel">
+          <button type="button" data-b11-channel="email" aria-pressed="true">Email</button>
+          <button type="button" data-b11-channel="whatsapp" aria-pressed="false">WhatsApp</button>
+        </div>
+        <label class="b11-field">
+          <span class="b11-visually-hidden" data-b11-field-label>Email</span>
+          <input type="email" name="contact" autocomplete="email" inputmode="email" placeholder="you@email.com" data-b11-input required>
+        </label>
+        <button type="submit" class="b11-btn b11-btn--outline b11-btn--wide"><span data-t="notify">Notify me</span></button>
+        <p class="b11-fine" data-b11-form-msg role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  {%- comment -%} 10 · FOOTER {%- endcomment -%}
+  <footer class="b11-footer">
+    <img class="b11-footer__word" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="1448" height="1252" loading="lazy">
+    <p class="b11-footer__line" data-t="tagline">fresh skin. always.</p>
+    <div class="b11-footer__cols">
+      <div>
+        <h3 data-t="fShop">Shop</h3>
+        <ul>
+          {%- for key in keys -%}<li><button type="button" data-b11-sheet="{{ key }}">{{ names[forloop.index0] }}</button></li>{%- endfor -%}
+          <li><a href="#b11-routine" data-t="fRoutine">The full routine</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-t="fHelp">Help</h3>
+        <ul>
+          <li><a href="#" data-t="fShipping">Delivery</a></li>
+          <li><a href="#" data-t="fPayment">Payment &amp; cash on delivery</a></li>
+          <li><a href="#" data-t="fReturns">Returns</a></li>
+          <li><a href="#" data-t="fPatch">Patch-test guide</a></li>
+          <li><a href="#" data-t="fWhatsApp">WhatsApp us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-t="fBrand">Between Two Suns</h3>
+        <ul>
+          <li><a href="#" data-t="fAbout">About</a></li>
+          <li><a href="#" data-t="fIngredients">Ingredient glossary</a></li>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="b11-footer__base">
+      <button type="button" class="b11-lang b11-lang--foot" data-b11-lang><span lang="en">English</span> / <span lang="ar">عربي</span></button>
+      <p><span>© 2026 Between Two Suns</span> · <a href="#" data-t="fPrivacy">Privacy</a> · <a href="#" data-t="fTerms">Terms</a></p>
+    </div>
+  </footer>
+
+  {%- comment -%} CART DRAWER (inline-end; flips in RTL) {%- endcomment -%}
+  <div class="b11-layer" data-b11-bag hidden>
+    <button type="button" class="b11-layer__scrim" data-b11-close tabindex="-1" aria-label="Close"></button>
+    <aside class="b11-drawer" role="dialog" aria-modal="true" aria-labelledby="b11-bag-h" tabindex="-1">
+      <div class="b11-drawer__head">
+        <h2 id="b11-bag-h" data-t="yourBag">Your bag</h2>
+        <button type="button" class="b11-close" data-b11-close aria-label="Close">×</button>
+      </div>
+      <div class="b11-drawer__body" data-b11-lines></div>
+      <div class="b11-drawer__upsell" data-b11-upsell hidden></div>
+      <div class="b11-drawer__foot" data-b11-totals></div>
+    </aside>
+  </div>
+
+  {%- comment -%} QUICK SHEET (texture wall / why / footer) {%- endcomment -%}
+  <div class="b11-layer b11-layer--sheet" data-b11-quick hidden>
+    <button type="button" class="b11-layer__scrim" data-b11-close tabindex="-1" aria-label="Close"></button>
+    <aside class="b11-sheet" role="dialog" aria-modal="true" aria-labelledby="b11-sheet-h" tabindex="-1" data-b11-sheet-body></aside>
+  </div>
+
+  <div class="b11-toast" data-b11-toast role="status" aria-live="polite"></div>
+</div>
+
+<script>window.BTS11_ASSETS={ {%- for key in keys -%}"{{ key }}":"{{ 'bts-' | append: key | append: '-clean-v11.webp' | asset_url }}"{% unless forloop.last %},{% endunless %}{%- endfor -%} };</script>
+<script src="{{ 'bts-home-v11.js' | asset_url }}" defer></script>
+
+{% schema %}
+{"name":"BTS Home v11","settings":[],"presets":[{"name":"BTS Home v11"}]}
+{% endschema %}

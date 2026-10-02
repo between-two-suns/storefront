@@ -1,0 +1,4 @@
+{% doc %}
+Existing routine Page or a theme-native search alternate template; needs no Admin-created Page.
+{% enddoc %}
+{%- if pages.routine != blank -%}{{ pages.routine.url }}{%- else -%}{{ routes.search_url }}?view=routine{%- endif -%}

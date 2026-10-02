@@ -1,0 +1,276 @@
+{% liquid
+  assign reset_product = section.settings.product_1
+  assign clarity_product = section.settings.product_2
+  assign barrier_product = section.settings.product_3
+  assign defense_product = section.settings.product_4
+
+  if reset_product == blank
+    assign reset_product = all_products['daily-reset-cleanser']
+  endif
+  if clarity_product == blank
+    assign clarity_product = all_products['clarity-serum']
+  endif
+  if barrier_product == blank
+    assign barrier_product = all_products['daily-barrier-moisturizing-cream']
+  endif
+  if defense_product == blank
+    assign defense_product = all_products['daily-defense-sunscreen-spf-50']
+  endif
+
+  assign reset_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-reset-cleanser.jpg?v=1790626659'
+  assign clarity_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-serum.jpg?v=1790626663'
+  assign barrier_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-barrier-moisturizing-cream.jpg?v=1790626668'
+  assign defense_render = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-daily-defense-sunscreen-spf-50.jpg?v=1790626674'
+%}
+
+<section
+  class="bts-experience bts-experience--v4"
+  data-bts-experience
+  style="
+    --bts-bg: {{ settings.color_background | default: '#F4F0E8' }};
+    --bts-ink: {{ settings.color_ink | default: '#111111' }};
+    --bts-mint: {{ settings.color_mint | default: '#8DDAB2' }};
+    --bts-blue: {{ settings.color_blue | default: '#A6DDED' }};
+    --bts-lilac: {{ settings.color_lilac | default: '#C9A8DB' }};
+    --bts-peach: {{ settings.color_peach | default: '#F2A07D' }};
+  "
+>
+  <section class="bts-v4-hero-shell" data-bts-hero-shell>
+    <div class="bts-v4-hero-stage" data-env="base">
+      <div class="bts-v4-aperture" aria-hidden="true">
+        <div class="bts-v4-form bts-v4-form--left"></div>
+        <div class="bts-v4-form bts-v4-form--right"></div>
+      </div>
+
+      <div class="bts-v4-hero-state" data-bts-hero-state>
+        <div class="bts-v4-hero-copy">
+          <img class="bts-v4-hero-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
+          <h1 class="bts-display bts-v4-hero-title">
+            <span>YOUR</span>
+            <span>SKIN</span>
+            <span>MOVES</span>
+            <span>THROUGH</span>
+            <span>A LOT.</span>
+          </h1>
+          <p>Climate-adapted skincare for life between environments.</p>
+        </div>
+
+        <div class="bts-v4-stressors" aria-label="Environmental stressors">
+          <span>SUN</span>
+          <span>DUST</span>
+          <span>POLLUTION</span>
+          <span>DRY AC</span>
+          <span>HUMIDITY</span>
+        </div>
+
+        <div class="bts-v4-hero-actions">
+          <a class="bts-button bts-button--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
+          <a class="bts-button bts-button--outline" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+        </div>
+
+        <div class="bts-v4-hero-foot">
+          <span>DIFFERENT ENVIRONMENTS.<br>HEALTHIER SKIN.</span>
+          <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="30" height="33" alt="">
+        </div>
+      </div>
+
+      <div class="bts-v4-between-state" data-bts-between-state aria-hidden="true">
+        <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="30" height="33" alt="">
+        <p class="bts-kicker">DIFFERENT PLACES. SAME YOU.</p>
+        <h2 class="bts-display">
+          <span>THE SPACE</span>
+          <span>BETWEEN.</span>
+        </h2>
+        <p class="bts-v4-between-copy">Skin changes. So does your environment.</p>
+
+        <div class="bts-v4-env-state" aria-live="polite">
+          <span data-env-index>01 / 05</span>
+          <strong data-env-title>SUN</strong>
+          <small data-env-copy>Stronger UV. Higher exposure.</small>
+        </div>
+      </div>
+
+      <div class="bts-v4-env-wrap">
+        <span class="bts-kicker">SCROLL TO SHIFT YOUR ENVIRONMENT</span>
+        <div class="bts-v4-env-nav" role="group" aria-label="Explore your environment">
+        <button type="button" data-env-button="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true">SUN</button>
+        <button type="button" data-env-button="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false">DUST</button>
+        <button type="button" data-env-button="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false">POLLUTION</button>
+        <button type="button" data-env-button="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false">DRY AC</button>
+        <button type="button" data-env-button="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false">HUMIDITY</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bts-v4-reset">
+    <div class="bts-v4-reset__inner">
+      <div class="bts-v4-reset__copy">
+        <div class="bts-v4-reset__eyebrow">
+          <span>01 / 04</span>
+          <span>CLEANSE</span>
+        </div>
+
+        <h2 class="bts-display bts-v4-reset__title">RESET</h2>
+        <h3>A FRESH START, ANYWHERE.</h3>
+        <p>Removes oil and buildup without stripping. Keeps skin balanced, fresh and ready for what's next.</p>
+
+        <div class="bts-v4-reset__benefits">
+          <span>OIL BALANCING</span>
+          <span>SOOTHES SKIN</span>
+          <span>NON-STRIPPING</span>
+        </div>
+
+        {% if reset_product != blank %}
+          <a class="bts-button bts-button--solid" href="{{ reset_product.url }}">DISCOVER RESET <span aria-hidden="true">→</span></a>
+        {% endif %}
+      </div>
+
+      <div class="bts-v4-reset__visual">
+        <img
+          src="{{ reset_render }}"
+          class="bts-v4-reset__product"
+          alt="BETWEEN TWO SUNS Daily Reset Cleanser"
+          loading="lazy"
+          width="1024"
+          height="1536"
+        >
+      </div>
+    </div>
+  </section>
+
+  <section id="routine" class="bts-v4-routine" data-bts-routine data-time="am">
+    <div class="bts-v4-routine__head">
+      <p class="bts-kicker">BUILD YOUR ROUTINE</p>
+      <h2 class="bts-display">
+        <span>FOUR STEPS.</span>
+        <span>EVERY ENVIRONMENT.</span>
+      </h2>
+      <p>Four essentials. One adaptive system.</p>
+
+      <div class="bts-time-toggle" role="group" aria-label="Routine time">
+        <button type="button" data-time-button="am" aria-pressed="true">AM <span aria-hidden="true">☀</span></button>
+        <button type="button" data-time-button="pm" aria-pressed="false">PM <span aria-hidden="true">◐</span></button>
+      </div>
+    </div>
+
+    <div class="bts-v4-routine__path">
+      <span class="bts-v4-routine__line" aria-hidden="true"></span>
+
+      <article class="bts-v4-routine-card bts-v4-routine-card--reset" data-routine-item data-time="am,pm" data-step="01" data-variant-id="{% if reset_product != blank %}{{ reset_product.selected_or_first_available_variant.id }}{% endif %}">
+        <a href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}#{% endif %}">
+          <span class="bts-v4-routine-card__step">01</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            <img src="{{ reset_render }}" alt="Daily Reset Cleanser" loading="lazy" width="1024" height="1536">
+          </span>
+          <strong>RESET</strong>
+          <small>CLEANSE</small>
+          <p>{% if reset_product != blank %}{{ reset_product.title }}{% else %}Daily Reset Cleanser{% endif %}</p>
+        </a>
+      </article>
+
+      <article class="bts-v4-routine-card bts-v4-routine-card--clarity" data-routine-item data-time="am,pm" data-step="02" data-variant-id="{% if clarity_product != blank %}{{ clarity_product.selected_or_first_available_variant.id }}{% endif %}">
+        <a href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}#{% endif %}">
+          <span class="bts-v4-routine-card__step">02</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            <img src="{{ clarity_render }}" alt="Clarity Serum" loading="lazy" width="1024" height="1536">
+          </span>
+          <strong>CLARITY</strong>
+          <small>TREAT</small>
+          <p>{% if clarity_product != blank %}{{ clarity_product.title }}{% else %}Clarity Serum{% endif %}</p>
+        </a>
+      </article>
+
+      <article class="bts-v4-routine-card bts-v4-routine-card--barrier" data-routine-item data-time="am,pm" data-step="03" data-variant-id="{% if barrier_product != blank %}{{ barrier_product.selected_or_first_available_variant.id }}{% endif %}">
+        <a href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}#{% endif %}">
+          <span class="bts-v4-routine-card__step">03</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            <img src="{{ barrier_render }}" alt="Daily Barrier Moisturizing Cream" loading="lazy" width="1024" height="1536">
+          </span>
+          <strong>BARRIER</strong>
+          <small>HYDRATE</small>
+          <p>{% if barrier_product != blank %}{{ barrier_product.title }}{% else %}Daily Barrier Moisturizing Cream{% endif %}</p>
+        </a>
+      </article>
+
+      <article class="bts-v4-routine-card bts-v4-routine-card--defense" data-routine-item data-time="am" data-defense data-step="04" data-variant-id="{% if defense_product != blank %}{{ defense_product.selected_or_first_available_variant.id }}{% endif %}">
+        <a href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}#{% endif %}">
+          <span class="bts-v4-routine-card__step">04</span>
+          <span class="bts-v4-routine-card__dot"></span>
+          <span class="bts-v4-routine-card__product">
+            <img src="{{ defense_render }}" alt="Daily Defense Sunscreen SPF 50" loading="lazy" width="1024" height="1536">
+          </span>
+          <strong>DEFENSE</strong>
+          <small>PROTECT</small>
+          <p>{% if defense_product != blank %}{{ defense_product.title }}{% else %}Daily Defense Sunscreen SPF 50{% endif %}</p>
+        </a>
+      </article>
+    </div>
+
+    <div class="bts-v4-routine__commerce">
+      <div>
+        <div>
+          <span class="bts-kicker">COMPLETE ROUTINE</span>
+          <strong data-routine-count>4 STEPS · AM</strong>
+        </div>
+        <span class="bts-v4-routine__promise">Built for life between environments.</span>
+      </div>
+
+      <button
+        class="bts-button bts-button--solid bts-button--wide"
+        type="button"
+        data-bts-add-routine
+        {% unless reset_product != blank and clarity_product != blank and barrier_product != blank and defense_product != blank %}disabled{% endunless %}
+      >
+        ADD COMPLETE ROUTINE <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="bts-v4-end">
+    <div class="bts-v4-end__word">BETWEEN TWO SUNS</div>
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="34" height="37" alt="">
+    <h2>fresh skin. always.</h2>
+    <p>Climate-adapted skincare for life between environments.</p>
+  </section>
+</section>
+
+{% schema %}
+{
+  "name": "BTS signature experience",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Routine products"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "01 — Daily Reset Cleanser"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "02 — Clarity Serum"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "03 — Daily Barrier Moisturizing Cream"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "04 — Daily Defense Sunscreen SPF 50"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BTS signature experience"
+    }
+  ]
+}
+{% endschema %}

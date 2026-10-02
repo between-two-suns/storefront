@@ -1,0 +1,25 @@
+{% doc %}
+Explicit review-setting field fallback generated from approved local seeds.
+@param {string} handle - Approved product identity
+@param {string} field - Scalar field name
+@param {metaobject} [content] - Storefront-readable content
+{% enddoc %}
+{%- liquid
+  assign language = request.locale.iso_code | split: '-' | first
+  assign localized_fields = 'role,promise,suitability,back_description,does,feels_like,formula_logic,how_to_use' | split: ','
+-%}
+{%- if content != blank -%}
+  {%- if localized_fields contains field -%}
+    {%- render 'bts-localized', field: content[field].value -%}
+  {%- elsif field == 'usage_times' or field == 'components' -%}
+    {{- content[field].value | join: '|' -}}
+  {%- else -%}{{- content[field].value -}}{%- endif -%}
+{%- elsif settings.bts_review_fallback == true -%}
+  {%- case handle -%}
+  {%- when 'daily-reset-cleanser' -%}{%- render 'bts-review-reset-fields', field: field, language: language -%}
+  {%- when 'clarity-serum' -%}{%- render 'bts-review-clarity-fields', field: field, language: language -%}
+  {%- when 'daily-barrier-moisturizing-cream' -%}{%- render 'bts-review-barrier-fields', field: field, language: language -%}
+  {%- when 'daily-defense-sunscreen-spf-50' -%}{%- render 'bts-review-defense-fields', field: field, language: language -%}
+  {%- when 'the-full-routine' -%}{%- render 'bts-review-routine-fields', field: field, language: language -%}
+  {%- endcase -%}
+{%- endif -%}

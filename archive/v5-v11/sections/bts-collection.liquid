@@ -1,0 +1,34 @@
+<section class="bts-collection">
+  <div class="bts-collection__head">
+    <p class="bts-kicker">THE RANGE</p>
+    <h1 class="bts-display">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="bts-collection__description">{{ collection.description }}</div>
+    {% endif %}
+  </div>
+
+  <div class="bts-collection__grid">
+    {% for product in collection.products %}
+      <article class="bts-product-card">
+        <a href="{{ product.url }}" class="bts-product-card__media">
+          {% if product.featured_image != blank %}
+            {{ product.featured_image | image_url: width: 720 | image_tag: widths: '240,360,540,720', sizes: '(max-width: 749px) 50vw, 25vw', loading: 'lazy', alt: product.featured_image.alt }}
+          {% endif %}
+        </a>
+        <div class="bts-product-card__meta">
+          <a href="{{ product.url }}">{{ product.title }}</a>
+          <span>{{ product.price | money }}</span>
+        </div>
+      </article>
+    {% else %}
+      <p>No products are available yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "BTS collection",
+  "settings": []
+}
+{% endschema %}

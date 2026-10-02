@@ -1,0 +1,353 @@
+{% liquid
+  assign reset_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352'
+  assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
+  assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
+  assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
+  assign reset_product = all_products['daily-reset-cleanser']
+  assign clarity_product = all_products['clarity-serum']
+  assign barrier_product = all_products['daily-barrier-moisturizing-cream']
+  assign defense_product = all_products['daily-defense-sunscreen-spf-50']
+%}
+
+<section class="bts6" data-bts6>
+  <div class="bts6-page-progress" aria-hidden="true"><span data-bts6-page-progress></span></div>
+
+  <section id="environment" class="bts6-hero-journey" data-bts6-hero>
+    <div class="bts6-hero-stage" data-environment="base">
+      <div class="bts6-aperture" aria-hidden="true">
+        <svg class="bts6-aperture__svg" viewBox="0 0 390 844" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="bts6-mint-surface" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D7F0E2"/>
+              <stop offset="42%" stop-color="#A9DDBF"/>
+              <stop offset="100%" stop-color="#79C69F"/>
+            </linearGradient>
+            <linearGradient id="bts6-blue-surface" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E1F2F7"/>
+              <stop offset="44%" stop-color="#B8E0EC"/>
+              <stop offset="100%" stop-color="#92CDE1"/>
+            </linearGradient>
+            <linearGradient id="bts6-sheen-left" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".04"/>
+              <stop offset="70%" stop-color="#FFFFFF" stop-opacity=".34"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".08"/>
+            </linearGradient>
+            <linearGradient id="bts6-sheen-right" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".04"/>
+              <stop offset="70%" stop-color="#FFFFFF" stop-opacity=".34"/>
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity=".08"/>
+            </linearGradient>
+            <filter id="bts6-surface-grain" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency=".016 .04" numOctaves="2" seed="7" result="noise"/>
+              <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+              <feComponentTransfer in="mono" result="softNoise">
+                <feFuncA type="table" tableValues="0 .11"/>
+              </feComponentTransfer>
+              <feBlend in="SourceGraphic" in2="softNoise" mode="soft-light"/>
+            </filter>
+          </defs>
+
+          <g class="bts6-aperture__surface bts6-aperture__surface--left">
+            <path class="bts6-aperture__body" fill="url(#bts6-mint-surface)" filter="url(#bts6-surface-grain)"
+              d="M0 0H74C112 75 132 180 126 304C121 407 121 442 128 546C135 669 113 773 73 844H0Z"/>
+            <path class="bts6-aperture__sheen" fill="url(#bts6-sheen-left)"
+              d="M0 0H55C92 90 106 194 103 306C99 416 100 439 105 545C110 666 93 766 56 844H0Z"/>
+            <path class="bts6-aperture__edge" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="1"
+              d="M74 0C112 75 132 180 126 304C121 407 121 442 128 546C135 669 113 773 73 844"/>
+          </g>
+
+          <g class="bts6-aperture__surface bts6-aperture__surface--right">
+            <path class="bts6-aperture__body" fill="url(#bts6-blue-surface)" filter="url(#bts6-surface-grain)"
+              d="M390 0H316C278 75 258 180 264 304C269 407 269 442 262 546C255 669 277 773 317 844H390Z"/>
+            <path class="bts6-aperture__sheen" fill="url(#bts6-sheen-right)"
+              d="M390 0H335C298 90 284 194 287 306C291 416 290 439 285 545C280 666 297 766 334 844H390Z"/>
+            <path class="bts6-aperture__edge" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="1"
+              d="M316 0C278 75 258 180 264 304C269 407 269 442 262 546C255 669 277 773 317 844"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="bts6-layer bts6-layer--hero" data-bts6-hero-layer>
+        <img class="bts6-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
+        <h1 class="bts6-display">
+          <span>YOUR SKIN</span>
+          <span>MOVES THROUGH</span>
+          <span>A LOT.</span>
+        </h1>
+        <p>Climate-adapted skincare for life between environments.</p>
+
+        <div class="bts6-stressors" aria-label="Environmental stressors">
+          <span>SUN</span><span>DUST</span><span>POLLUTION</span><span>DRY AC</span><span>HUMIDITY</span>
+        </div>
+
+        <div class="bts6-hero-products" aria-label="The four-step routine">
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536">
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536">
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536">
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536">
+        </div>
+
+        <div class="bts6-actions">
+          <a class="bts6-btn bts6-btn--solid" href="#routine">SHOP THE ROUTINE <span aria-hidden="true">→</span></a>
+          <a class="bts6-btn bts6-btn--ghost" href="{{ routes.all_products_collection_url }}">SHOP PRODUCTS</a>
+        </div>
+
+        <div class="bts6-hero-signoff">
+          <span>DIFFERENT ENVIRONMENTS.<br>HEALTHIER-LOOKING SKIN.</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </div>
+
+      <div class="bts6-bridge" data-bts6-bridge aria-hidden="true">
+        <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="42" height="46" alt="">
+      </div>
+
+      <div class="bts6-layer bts6-layer--between" data-bts6-between-layer>
+        <img class="bts6-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="28" height="31" alt="">
+        <p class="bts6-kicker">DIFFERENT PLACES. SAME YOU.</p>
+        <h2 class="bts6-display"><span>THE SPACE</span><span>BETWEEN.</span></h2>
+        <p class="bts6-between-sub">Skin changes. So does your environment.</p>
+
+        <div class="bts6-env-readout" aria-live="polite">
+          <span data-bts6-env-index>01 / 05</span>
+          <strong data-bts6-env-title>SUN</strong>
+          <small data-bts6-env-copy>Stronger UV. Higher exposure.</small>
+        </div>
+      </div>
+
+      <div class="bts6-env-tabs" data-bts6-env-tabs aria-label="Explore your environment">
+        <button type="button" data-env="sun" data-index="01 / 05" data-title="SUN" data-copy="Stronger UV. Higher exposure." aria-pressed="true"><i>☼</i><span>SUN</span></button>
+        <button type="button" data-env="dust" data-index="02 / 05" data-title="DUST" data-copy="Fine particles. Constant contact." aria-pressed="false"><i>···</i><span>DUST</span></button>
+        <button type="button" data-env="pollution" data-index="03 / 05" data-title="POLLUTION" data-copy="Urban exposure. Particles and buildup." aria-pressed="false"><i>⌁</i><span>POLLUTION</span></button>
+        <button type="button" data-env="dry-ac" data-index="04 / 05" data-title="DRY AC" data-copy="Cooler air. Lower humidity." aria-pressed="false"><i>≋</i><span>DRY AC</span></button>
+        <button type="button" data-env="humidity" data-index="05 / 05" data-title="HUMIDITY" data-copy="More moisture. Oil and comfort can shift." aria-pressed="false"><i>◌</i><span>HUMIDITY</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bts6-product-journey" data-bts6-products>
+    <div class="bts6-product-stage">
+      <div class="bts6-product-aperture" aria-hidden="true">
+        <svg viewBox="0 0 390 844" preserveAspectRatio="none">
+          <path class="bts6-product-aperture__left" d="M0 0H48C78 112 86 245 78 391C70 544 75 690 48 844H0Z"/>
+          <path class="bts6-product-aperture__right" d="M390 0H342C312 112 304 245 312 391C320 544 315 690 342 844H390Z"/>
+        </svg>
+      </div>
+      <img class="bts6-product-mark" src="{{ 'bts-icon-ink.svg' | asset_url }}" width="24" height="27" alt="" aria-hidden="true">
+
+      <svg class="bts6-thread" viewBox="0 0 390 844" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="bts6-thread-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#59B98A"/>
+            <stop offset="34%" stop-color="#69B6DF"/>
+            <stop offset="67%" stop-color="#B392CB"/>
+            <stop offset="100%" stop-color="#EE8B68"/>
+          </linearGradient>
+        </defs>
+        <path class="bts6-thread__ghost" d="M195 -60 C 70 110, 310 180, 215 305 S 70 480, 190 610 S 325 720, 195 910"/>
+        <path class="bts6-thread__draw" data-bts6-thread-path d="M195 -60 C 70 110, 310 180, 215 305 S 70 480, 190 610 S 325 720, 195 910"/>
+        <circle class="bts6-thread__node" data-bts6-thread-node r="5" cx="195" cy="-60"/>
+      </svg>
+
+      <div class="bts6-product-progress" aria-hidden="true">
+        <span data-step-marker="0">01</span><span data-step-marker="1">02</span><span data-step-marker="2">03</span><span data-step-marker="3">04</span>
+      </div>
+
+      <article class="bts6-product-panel is-active" data-product-panel="0" style="--sku:#59B98A;--sku-soft:#D7EFE1;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>01 / 04</span><span>CLEANSE</span></div>
+          <h2 class="bts6-display">RESET</h2>
+          <h3>A FRESH START, ANYWHERE.</h3>
+          <p>Removes oil, maintains hydration, and leaves skin feeling fresh.</p>
+          <div class="bts6-benefits"><span>OIL BALANCING</span><span>SOOTHES SKIN</span><span>NON-STRIPPING</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--reset">
+          <div class="bts6-reset-wipe" aria-hidden="true"></div>
+          <img src="{{ reset_url }}" alt="BETWEEN TWO SUNS Daily Reset Cleanser" width="1024" height="1536" loading="eager">
+        </div>
+        <div class="bts6-product-commerce">
+          <div>
+            <a href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY RESET CLEANSER</a>
+            <small>200 ml</small>
+          </div>
+          <button type="button" data-routine-toggle="reset" aria-pressed="true">IN ROUTINE <b>✓</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="1" style="--sku:#69B6DF;--sku-soft:#D8EEF7;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>02 / 04</span><span>TREAT</span></div>
+          <h2 class="bts6-display">CLARITY</h2>
+          <h3>CLEARER-LOOKING SKIN.</h3>
+          <p>A focused daily serum step for uneven-looking tone and excess oil.</p>
+          <div class="bts6-benefits"><span>DAILY SERUM</span><span>LIGHTWEIGHT</span><span>STEP 02</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--clarity">
+          <div class="bts6-clarity-lens" aria-hidden="true"></div>
+          <img src="{{ clarity_url }}" alt="BETWEEN TWO SUNS Clarity Serum" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div>
+            <a href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">CLARITY SERUM</a>
+            <small>30 ml</small>
+          </div>
+          <button type="button" data-routine-toggle="clarity" aria-pressed="true">IN ROUTINE <b>✓</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="2" style="--sku:#B392CB;--sku-soft:#E7DCF0;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>03 / 04</span><span>HYDRATE</span></div>
+          <h2 class="bts6-display">BARRIER</h2>
+          <h3>BARRIER SUPPORT. LIGHT FEEL.</h3>
+          <p>Lightweight daily moisture for skin that moves between environments.</p>
+          <div class="bts6-benefits"><span>DAILY MOISTURE</span><span>LIGHTWEIGHT</span><span>STEP 03</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--barrier">
+          <div class="bts6-barrier-ring bts6-barrier-ring--one" aria-hidden="true"></div>
+          <div class="bts6-barrier-ring bts6-barrier-ring--two" aria-hidden="true"></div>
+          <img src="{{ barrier_url }}" alt="BETWEEN TWO SUNS Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div>
+            <a href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY BARRIER MOISTURIZING CREAM</a>
+            <small>50 g</small>
+          </div>
+          <button type="button" data-routine-toggle="barrier" aria-pressed="true">IN ROUTINE <b>✓</b></button>
+        </div>
+      </article>
+
+      <article class="bts6-product-panel" data-product-panel="3" style="--sku:#EE8B68;--sku-soft:#F9DFD3;">
+        <div class="bts6-product-copy">
+          <div class="bts6-meta"><span>04 / 04</span><span>PROTECT</span></div>
+          <h2 class="bts6-display">DEFENSE</h2>
+          <h3>YOUR AM FINISHING STEP.</h3>
+          <p>SPF 50 for the final step of the morning routine.</p>
+          <div class="bts6-benefits"><span>SPF 50</span><span>UVA + UVB</span><span>AM STEP 04</span></div>
+        </div>
+        <div class="bts6-product-visual bts6-product-visual--defense">
+          <div class="bts6-defense-light" aria-hidden="true"></div>
+          <img src="{{ defense_url }}" alt="BETWEEN TWO SUNS Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+        </div>
+        <div class="bts6-product-commerce">
+          <div>
+            <a href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">DAILY DEFENSE SUNSCREEN SPF 50</a>
+            <small>50 g</small>
+          </div>
+          <button type="button" data-routine-toggle="defense" aria-pressed="true">IN ROUTINE <b>✓</b></button>
+        </div>
+      </article>
+
+      <div class="bts6-product-scrollhint" aria-hidden="true">01 — 04</div>
+    </div>
+  </section>
+
+  <section id="routine" class="bts6-routine" data-bts6-routine data-time="am">
+    <div class="bts6-routine-head">
+      <p class="bts6-kicker">THE COMPLETE ROUTINE</p>
+      <h2 class="bts6-display"><span>YOUR ADAPTIVE</span><span>DAILY ROUTINE.</span></h2>
+      <p>Four essentials. Every environment.</p>
+
+      <div class="bts6-time-toggle" role="group" aria-label="Routine time">
+        <button type="button" data-routine-time="am" aria-pressed="true">AM <span>☀</span></button>
+        <button type="button" data-routine-time="pm" aria-pressed="false">PM <span>◐</span></button>
+      </div>
+    </div>
+
+    <div class="bts6-lineup" data-bts6-lineup>
+      <div class="bts6-lineup__halo" aria-hidden="true"></div>
+
+      <article data-lineup-step="reset">
+        <a class="bts6-lineup-img" href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy"></a>
+        <div class="bts6-lineup-label"><span>01</span><strong>RESET</strong><small>CLEANSE</small></div>
+      </article>
+
+      <article data-lineup-step="clarity">
+        <a class="bts6-lineup-img" href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy"></a>
+        <div class="bts6-lineup-label"><span>02</span><strong>CLARITY</strong><small>TREAT</small></div>
+      </article>
+
+      <article data-lineup-step="barrier">
+        <a class="bts6-lineup-img" href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy"></a>
+        <div class="bts6-lineup-label"><span>03</span><strong>BARRIER</strong><small>HYDRATE</small></div>
+      </article>
+
+      <article data-lineup-step="defense">
+        <a class="bts6-lineup-img" href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy"></a>
+        <div class="bts6-lineup-label"><span>04</span><strong>DEFENSE</strong><small>PROTECT</small></div>
+      </article>
+    </div>
+
+    <div class="bts6-routine-path" aria-hidden="true">
+      <span style="--c:#59B98A">01</span>
+      <i></i>
+      <span style="--c:#69B6DF">02</span>
+      <i></i>
+      <span style="--c:#B392CB">03</span>
+      <i></i>
+      <span style="--c:#EE8B68">04</span>
+    </div>
+
+    <div class="bts6-routine-card">
+      <div class="bts6-routine-card__copy">
+        <div><span>COMPLETE ROUTINE</span><strong data-routine-count>4 STEPS · AM</strong></div>
+        <p>Built for life between environments.</p>
+      </div>
+      <button type="button" data-routine-review>REVIEW 4-PRODUCT ROUTINE <span aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <aside class="bts6-routine-drawer" data-routine-drawer hidden aria-labelledby="RoutineDrawerTitle">
+    <button class="bts6-routine-drawer__scrim" type="button" data-routine-close aria-label="Close routine review"></button>
+    <div class="bts6-routine-drawer__panel">
+      <div class="bts6-routine-drawer__top">
+        <div>
+          <p class="bts6-kicker">YOUR ROUTINE</p>
+          <h2 id="RoutineDrawerTitle" class="bts6-display" data-routine-drawer-title>4 PRODUCTS · AM</h2>
+        </div>
+        <button type="button" data-routine-close aria-label="Close routine review">CLOSE</button>
+      </div>
+      <div class="bts6-routine-drawer__items">
+        <a data-drawer-item="reset" href="{% if reset_product != blank %}{{ reset_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ reset_url }}" alt=""><span><b>01 · RESET</b><small>Daily Reset Cleanser · 200 ml</small></span><i>→</i></a>
+        <a data-drawer-item="clarity" href="{% if clarity_product != blank %}{{ clarity_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ clarity_url }}" alt=""><span><b>02 · CLARITY</b><small>Clarity Serum · 30 ml</small></span><i>→</i></a>
+        <a data-drawer-item="barrier" href="{% if barrier_product != blank %}{{ barrier_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ barrier_url }}" alt=""><span><b>03 · BARRIER</b><small>Daily Barrier Moisturizing Cream · 50 g</small></span><i>→</i></a>
+        <a data-drawer-item="defense" href="{% if defense_product != blank %}{{ defense_product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"><img src="{{ defense_url }}" alt=""><span><b>04 · DEFENSE</b><small>Daily Defense Sunscreen SPF 50 · 50 g</small></span><i>→</i></a>
+      </div>
+      <a class="bts6-routine-drawer__shop" href="{{ routes.all_products_collection_url }}">EXPLORE ALL PRODUCTS <span aria-hidden="true">→</span></a>
+      <p>Final prices, availability and checkout actions will be sourced from Shopify when launch product data is finalized.</p>
+    </div>
+  </aside>
+
+  <section class="bts6-proof">
+    <div class="bts6-proof__lead">
+      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="26" height="29" alt="">
+      <p class="bts6-kicker">ONE SYSTEM. CHANGING CONDITIONS.</p>
+      <h2 class="bts6-display"><span>AM.</span><span>PM.</span><span>EVERYDAY CHANGE.</span></h2>
+    </div>
+
+    <div class="bts6-proof__grid">
+      <article><strong>04</strong><span>ESSENTIAL STEPS</span><p>Cleanse. Treat. Hydrate. Protect.</p></article>
+      <article><strong>AM</strong><span>FULL ROUTINE</span><p>All four products, ending with SPF 50.</p></article>
+      <article><strong>PM</strong><span>RESET + TREAT + HYDRATE</span><p>Three steps after the day is done.</p></article>
+    </div>
+  </section>
+
+  <section class="bts6-end">
+    <div class="bts6-end__word" aria-hidden="true"><span>BETWEEN</span><span>TWO SUNS</span></div>
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="32" height="35" alt="">
+    <h2>fresh skin. always.</h2>
+    <p>Climate-adapted skincare for life between environments.</p>
+    <a href="{{ routes.all_products_collection_url }}">EXPLORE THE RANGE →</a>
+  </section>
+</section>
+
+{{ 'bts-home-v6.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bts-home-v6.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTS Home v6",
+  "settings": [],
+  "presets": [{"name": "BTS Home v6"}]
+}
+{% endschema %}

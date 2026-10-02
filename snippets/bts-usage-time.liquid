@@ -1,0 +1,8 @@
+{% doc %}
+Existing approved usage times, including review-only fallback.
+@param {metaobject} [content] - Product content
+@param {string} [handle] - Product handle
+{% enddoc %}
+{% assign handle = handle | default: content.product_handle.value %}
+{% capture usage_times %}{% render 'bts-content-field', content: content, handle: handle, field: 'usage_times' %}{% endcapture %}{% assign usage_times = usage_times | strip %}
+{% if usage_times contains 'pm' %}{{ 'bts.morning_evening' | t }}{% elsif usage_times contains 'am' %}{{ 'bts.morning_only' | t }}{% endif %}

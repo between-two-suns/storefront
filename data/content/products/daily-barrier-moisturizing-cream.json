@@ -1,0 +1,220 @@
+{
+  "type": "bts_product_content",
+  "handle": "daily-barrier-moisturizing-cream",
+  "fields": {
+    "product_handle": "daily-barrier-moisturizing-cream",
+    "name": "Daily Barrier Moisturizing Cream",
+    "short_name": "Barrier",
+    "step": 3,
+    "colour_key": "barrier",
+    "size_display": "50 gm",
+    "inci": "Aqua, Glycerin, Niacinamide, Propylene Glycol, Caprylic/Capric Triglyceride, Glyceryl Stearate, PEG-100 Stearate, Cetearyl Alcohol, Isohexadecane, Squalane, Dimethicone, Panthenol, Phenoxyethanol, Ammonium Acryloyldimethyltaurate/VP Copolymer, Zinc PCA, Sodium Hyaluronate, Sodium PCA, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Sodium Lauroyl Lactylate, Ethylhexylglycerin, Cholesterol, Carbomer, Disodium EDTA, Xanthan Gum.",
+    "usage_times": [
+      "am",
+      "pm"
+    ],
+    "media_front": null,
+    "media_back": null,
+    "components": [],
+    "key": "barrier",
+    "kind": "single",
+    "inci_version": "FINAL-v5",
+    "hero_actives": "Ceramides + Zinc PCA",
+    "media_swatch": null,
+    "media_application": null,
+    "media_emotional": null,
+    "size_label": "50 gm",
+    "size_value": 50,
+    "size_unit": "gm",
+    "pack_height_mm": 116,
+    "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Barrier Moisturizing Cream; 116 mm. Moisturizer and SPF confirmed same physical bottle.",
+    "pack_ratio_nominal": 0.62,
+    "pack_ratio_source": "Composition-only portrait crop reservation, not a measured H1 crop; revalidate with matched approved photography."
+  },
+  "translations": {
+    "role": {
+      "en": "Moisturize",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "promise": {
+      "en": "Strengthens skin barrier. Controls oil. Lightweight.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "suitability": {
+      "en": "For Oily to Combination Skin",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "back_description": {
+      "en": "A daily moisturizer with Ceramides, Niacinamide and Zinc PCA. Hydrates without heaviness, controls oil, and strengthens the skin barrier — protecting against environmental stress.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "does": {
+      "en": "Strengthens skin barrier. Controls oil. Lightweight.",
+      "ar": null,
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    "feels_like": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "formula_logic": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    },
+    "how_to_use": {
+      "en": null,
+      "ar": null,
+      "approved": {
+        "en": false,
+        "ar": false
+      }
+    }
+  },
+  "claims": [
+    {
+      "label": {
+        "en": "Oil-control",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "Non-comedogenic",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    },
+    {
+      "label": {
+        "en": "Fragrance-free",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "source": "label_pill",
+      "approved": {
+        "en": true,
+        "ar": false
+      }
+    }
+  ],
+  "translation_status": "AR product claims require authored/regulatory review; null is never published",
+  "key_ingredients": [
+    {
+      "inci_name": "Ceramide NP",
+      "display_name": {
+        "en": "Ceramides",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Niacinamide",
+      "display_name": {
+        "en": "Niacinamide",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    },
+    {
+      "inci_name": "Zinc PCA",
+      "display_name": {
+        "en": "Zinc PCA",
+        "ar": null,
+        "approved": {
+          "en": true,
+          "ar": false
+        }
+      },
+      "why": {
+        "en": null,
+        "ar": null,
+        "approved": {
+          "en": false,
+          "ar": false
+        }
+      },
+      "why_scope": null,
+      "source": "FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "consumer_alias_approved": false,
+      "attribution_approved": false
+    }
+  ],
+  "copy_note": "No ingredient-specific efficacy or texture is substantiated by the approved label. Why/feels_like/formula_logic remain null. Pack height sourced from founder physical-pack tape measurements supplied 2026-09-30. Photos are geometry/measurement evidence only; old photographed Cleanser/Serum labels never replace FINAL-v5 source truth."
+}

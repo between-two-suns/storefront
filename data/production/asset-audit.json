@@ -1,0 +1,157 @@
+{
+  "audited_on": "2026-09-30",
+  "scope": "Entire workspace including ignored node_modules font binaries; application assets, brand pack and archive inspected. .git and test-results are not source assets.",
+  "inventory": [
+    {
+      "path": "opus-brand-pack/logos/bts-icon-ink.svg",
+      "sha256": "2a967e41e399b061523670e2e454ce6204e922376798726b4a01e228b9068e78",
+      "classification": "exact supplied identity vector",
+      "reuse": "Use unchanged geometry for identity only; not a complete label master.",
+      "runtime_copy": "assets/bts-icon-ink.svg",
+      "byte_identical": true,
+      "rights_evidence": "BRAND_MANIFEST.md authorizes these supplied exact identity assets; no separate general redistribution licence supplied."
+    },
+    {
+      "path": "opus-brand-pack/logos/bts-icon-white.svg",
+      "sha256": "851579690993677b7afd3b28c497c5a9c1dfce24ea6794307ad1d1e1baed5bf3",
+      "classification": "exact supplied identity vector",
+      "reuse": "Use unchanged geometry for identity only; not a complete label master.",
+      "runtime_copy": "assets/bts-icon-white.svg",
+      "byte_identical": true,
+      "rights_evidence": "BRAND_MANIFEST.md authorizes these supplied exact identity assets; no separate general redistribution licence supplied."
+    },
+    {
+      "path": "opus-brand-pack/logos/bts-wordmark-ink.svg",
+      "sha256": "606020d369f12681be8badf34aa82aefa7ffc4b19278f9059ce148302dc6690b",
+      "classification": "exact supplied identity vector",
+      "reuse": "Use unchanged geometry for identity only; not a complete label master.",
+      "runtime_copy": "assets/bts-wordmark-ink.svg",
+      "byte_identical": true,
+      "rights_evidence": "BRAND_MANIFEST.md authorizes these supplied exact identity assets; no separate general redistribution licence supplied."
+    },
+    {
+      "path": "opus-brand-pack/logos/bts-wordmark-white.svg",
+      "sha256": "4fb0f969f77d63b224c285e189065bb0a149c1aa8d77f9a3adf371efdeebfcb6",
+      "classification": "exact supplied identity vector",
+      "reuse": "Use unchanged geometry for identity only; not a complete label master.",
+      "runtime_copy": "assets/bts-wordmark-white.svg",
+      "byte_identical": true,
+      "rights_evidence": "BRAND_MANIFEST.md authorizes these supplied exact identity assets; no separate general redistribution licence supplied."
+    },
+    {
+      "path": "opus-brand-pack/products/01-daily-reset-cleanser.webp",
+      "sha256": "be287c6bb7b9d106d5a8e7f5a069eca53b1187c0799b24d8568f9667afdfcee2",
+      "actual_format": "PNG despite .webp extension",
+      "width_px": 1024,
+      "height_px": 1536,
+      "classification": "temporary render / not final artwork",
+      "reuse": "Internal composition reference only; not a label or H1 source.",
+      "rejection_reason": "Old Green Tea territory and old promise; never use label pixels."
+    },
+    {
+      "path": "opus-brand-pack/products/02-clarity-serum.webp",
+      "sha256": "def36535cf354e5b17272ccf7e8e35958900945494634f6a125f86968a1e7691",
+      "actual_format": "PNG despite .webp extension",
+      "width_px": 1024,
+      "height_px": 1536,
+      "classification": "temporary render / not final artwork",
+      "reuse": "Internal composition reference only; not a label or H1 source.",
+      "rejection_reason": "Old actives, Niacinimide typo and old breakout claim; never use label pixels."
+    },
+    {
+      "path": "opus-brand-pack/products/03-daily-barrier-moisturizer.webp",
+      "sha256": "ba9b48702378444c28cac1b1f85a53699d6a7d9d3de24e3e2172d194c001174d",
+      "actual_format": "PNG despite .webp extension",
+      "width_px": 1024,
+      "height_px": 1536,
+      "classification": "temporary render / not final artwork",
+      "reuse": "Internal composition reference only; not a label or H1 source.",
+      "rejection_reason": "Front wording appears consistent but no FINAL-v5 file/crop approval; glossy closure conflicts with matte pump instruction."
+    },
+    {
+      "path": "opus-brand-pack/products/04-daily-defense-spf50.webp",
+      "sha256": "30478684347da75a4452e6bca72b3f470880796d3cc2c0af578eb8fb5a7bb87c",
+      "actual_format": "PNG despite .webp extension",
+      "width_px": 1024,
+      "height_px": 1536,
+      "classification": "temporary render / not final artwork",
+      "reuse": "Internal composition reference only; not a label or H1 source.",
+      "rejection_reason": "Old Daily Face product name; no FINAL-v5 approval; glossy closure conflicts with matte pump instruction."
+    },
+    {
+      "path": "assets/bts-barrier-interim.webp",
+      "sha256": "88c6902e1bd066299f7e66c6f074becff778f4b50d318588e44a910aeb0a4ec8",
+      "classification": "permitted hash-pinned interim; unwired",
+      "reuse": "Internal reference only. Final gate prohibits wiring as H1."
+    }
+  ],
+  "missing_final_artwork": {
+    "reset": [
+      "v5 - FINAL - Cleanser - Clor.jpg",
+      "Reset Cleanser .pdf"
+    ],
+    "clarity": [
+      "v5 - FINAL - Serum.jpg"
+    ],
+    "barrier": [
+      "Between Two Suns - FINAL - Moisturizer Artwork.pdf"
+    ],
+    "defense": [
+      "v5 - FINAL - Sunscreen.jpg"
+    ]
+  },
+  "finding": "No final label artwork/vector/raster masters present. FINAL label text document and exact identity SVGs are reusable; they do not replace artwork files. Archive/review PNGs are rejected screenshots or legacy renders, never artwork truth. No founder measurement photos exist locally.",
+  "fonts": [
+    {
+      "path": "node_modules/@shopify/cli/dist/assets/hydrogen/virtual-routes/assets/inter-variable-font.woff2",
+      "sha256": "e931823ffd0b6cfd1624e3a7c1c49861ed3420297862e727f07e04c8be1cc89b",
+      "license_evidence": null,
+      "license_sha256": null,
+      "eligible_for_bts_system": false,
+      "reason": "No font-specific licensing established alongside these tooling binaries; do not copy them into theme."
+    },
+    {
+      "path": "node_modules/@shopify/cli/dist/assets/hydrogen/virtual-routes/assets/jetbrainsmono-variable-font.woff2",
+      "sha256": "7bce144958cd137044faee5dc6ac9ddc95e7ea415def4ed685d942a9c6bceaa6",
+      "license_evidence": null,
+      "license_sha256": null,
+      "eligible_for_bts_system": false,
+      "reason": "No font-specific licensing established alongside these tooling binaries; do not copy them into theme."
+    },
+    {
+      "path": "node_modules/@shopify/cli/dist/assets/speedscope/SourceCodePro-Regular.ttf.f546cbe0.woff2",
+      "sha256": "8badfe75c98da1e8315a52619f177def4618350f7b3e496baf5b8894da2c2ac0",
+      "license_evidence": "node_modules/@shopify/cli/dist/assets/speedscope/source-code-pro.LICENSE.md",
+      "license_sha256": "2e14ee65e55dbcc7d66347cd7c76a10a1a18ac49dd7989a2b3838b479676f746",
+      "eligible_for_bts_system": false,
+      "reason": "Licensed monospace developer font; inappropriate for condensed display / neutral UI / Arabic pair."
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/dashboard/assets/codicon-DCmgc-ay.ttf",
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9",
+      "license_evidence": null,
+      "license_sha256": null,
+      "eligible_for_bts_system": false,
+      "reason": "No font-specific licensing established alongside these tooling binaries; do not copy them into theme."
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/recorder/assets/codicon-DCmgc-ay.ttf",
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9",
+      "license_evidence": null,
+      "license_sha256": null,
+      "eligible_for_bts_system": false,
+      "reason": "No font-specific licensing established alongside these tooling binaries; do not copy them into theme."
+    },
+    {
+      "path": "node_modules/playwright-core/lib/vite/traceViewer/codicon.DCmgc-ay.ttf",
+      "sha256": "0f1d5219934e96e83b8db162d60b4d8c09b5de1e7d38031cbafe4a3c0f2889c9",
+      "license_evidence": null,
+      "license_sha256": null,
+      "eligible_for_bts_system": false,
+      "reason": "No font-specific licensing established alongside these tooling binaries; do not copy them into theme."
+    }
+  ],
+  "theme_font_files": [],
+  "theme_font_license_files": [],
+  "note": "Dependency software licences do not establish rights to unrelated bundled fonts. No complete legally established BTS bilingual type set in repo."
+}

@@ -1,0 +1,11 @@
+{% doc %}
+Non-final portrait H1 crop reservation. Abstract type frame, never package artwork or approved media.
+@param {string} name - Product name
+@param {string} short_name - Short name
+@param {number} step - Step
+@param {string} url - Product destination
+{% enddoc %}
+<a class="bts-editorial-product" href="{{ url | strip }}" aria-label="{{ name | escape }} · {{ 'bts.image_placeholder' | t }}" data-editorial-product>
+  <span class="bts-editorial-product__number" aria-hidden="true"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi> · {{ 'bts.image_placeholder' | t }}</span>
+  <span class="bts-editorial-product__name" aria-hidden="true"><bdi lang="en">{{ short_name | escape }}</bdi></span>
+</a>

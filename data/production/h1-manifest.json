@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "status": "production_spec_only_no_approved_files",
+  "source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md",
+  "source_sha256": "8bc91c6ceac6b63985a75311c87624542f1d0489c34c2d9d97a241e117594d12",
+  "measurement_source": "opus-brand-pack/V12_H1_PRODUCTION_BRIEF.md",
+  "precedence": "V12_OPUS_M2_FINAL_GATE §4.1 overrides padded V11 H1/4:5 framing. Editorial crops are separate, never physical-scale H1.",
+  "family_capture": {
+    "camera": "Single setup: same camera height, lens, distance, orientation, daylight/studio lighting and colour-management across all four packs.",
+    "ground": "Transparent alpha preferred; #f7f7f5 accepted only with approved tight silhouette extents.",
+    "crop": "Tight silhouette on all four sides; highest point at y=0; physical contact point at y=height-1; no empty margins, clipping, diffuse shadow padding or baked page UI.",
+    "shadow": "Contact shadow inside silhouette bounds only; do not enlarge bbox for cast shadow.",
+    "compositing": "Photograph exact FINAL-v5 packs preferred. If generated geometry/background is used, remove all generated label pixels and composite exact supplied approved FINAL-v5 artwork as an immutable layer with real cylindrical/perspective wrapping. Never redraw text, hallucinate glyphs, retouch spelling or recolour from CSS swatches. Current gate forbids substituting old renders. Any generated/composited result still needs independent physical/label approval.",
+    "materials": "Matte/soft-touch pack body; Moisturizer and SPF actual pump/actuator MATTE, never gloss. Transparent protective cap must follow verified pack, do not infer its finish.",
+    "print_colour": "Pantone U targets from BRAND_MANIFEST, confirmed against physical pack; CSS tokens are provisional, never colour targets.",
+    "label_checks": "Exact proper names, actives, promise, suitability, size (200 mL / 30 mL / 50 gm / 50 gm), white identity geometry and complete back/INCI from FINAL-v5. Old photographed Cleanser/Serum labels are forbidden.",
+    "export": "Genuine WebP encoded sRGB with alpha or matching ground, no metadata dependency; H1 portrait silhouette height 2400 px with actual measured width. Retain lossless compositing master.",
+    "approval_receipt": "Record original artwork file + SHA256, output SHA256, width/height, silhouette extents/contact row, reviewer/date and separate label/material/crop signoffs. All approval defaults false; production file reference remains null until signed off."
+  },
+  "integration": "Files delivery is content work: create approved bts_media entries and link each product-content media_front in a later authorized operation. The existing real image_url/image_tag path consumes references; filenames alone never enable media. No code change required for approved H1 files. All four approved crops plus existing sourced measurements enable measured shelf.",
+  "assets": [
+    {
+      "product_handle": "daily-reset-cleanser",
+      "name": "Daily Reset Cleanser",
+      "pack_height_mm": 180,
+      "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Reset Cleanser; 180 mm.",
+      "physical_width_mm": null,
+      "label_version": "FINAL-v5",
+      "artwork_source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "required_original_artwork": [
+        "v5 - FINAL - Cleanser - Clor.jpg",
+        "Reset Cleanser .pdf"
+      ],
+      "artwork_file": null,
+      "artwork_approved": false,
+      "pump_actuator_finish": null,
+      "closure_geometry": "Finished pack standing with cap on; verify physical pack. No dimensions inferred from render.",
+      "same_physical_bottle_as": null,
+      "size_label": "200 mL",
+      "h1": {
+        "filename": "daily-reset-cleanser-H1-FINAL-v5.webp",
+        "delivery_directory": "opus-brand-pack/production/media/",
+        "height_px": 2400,
+        "width_px": null,
+        "width_rule": "round(2400 * measured tight silhouette width / measured tight silhouette height); record actual integer width in delivery receipt. Unknown physical width is not guessed.",
+        "long_edge_min_px": 1600,
+        "mime_type": "image/webp",
+        "file": null,
+        "approved": false,
+        "pack_crop_approved": false,
+        "alt": {
+          "en": null,
+          "ar": null,
+          "approved": {
+            "en": false,
+            "ar": false
+          }
+        },
+        "target_media_handle": "daily-reset-cleanser-h1-final-v5",
+        "target_product_field": "media_front"
+      },
+      "additional_deliverables": {
+        "layered_master": "daily-reset-cleanser-composite-FINAL-v5.psd",
+        "master_dimensions_px": [
+          2400,
+          3000
+        ],
+        "editorial_4x5": "daily-reset-cleanser-editorial-4x5-FINAL-v5.webp",
+        "editorial_dimensions_px": [
+          2400,
+          3000
+        ],
+        "social_9x16": "daily-reset-cleanser-social-9x16-FINAL-v5.webp",
+        "social_dimensions_px": [
+          1800,
+          3200
+        ],
+        "p1_back": "daily-reset-cleanser-P1_BACK-FINAL-v5.webp",
+        "p1_back_height_px": 2400,
+        "p1_back_width_rule": "Same measured tight silhouette rule as H1, from the back shot.",
+        "required_for_h1_integration": false
+      }
+    },
+    {
+      "product_handle": "clarity-serum",
+      "name": "Clarity Serum",
+      "pack_height_mm": 96,
+      "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Clarity Serum; 96 mm.",
+      "physical_width_mm": null,
+      "label_version": "FINAL-v5",
+      "artwork_source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "required_original_artwork": [
+        "v5 - FINAL - Serum.jpg"
+      ],
+      "artwork_file": null,
+      "artwork_approved": false,
+      "pump_actuator_finish": null,
+      "closure_geometry": "Finished pack standing with cap on; verify physical pack. No dimensions inferred from render.",
+      "same_physical_bottle_as": null,
+      "size_label": "30 mL",
+      "h1": {
+        "filename": "clarity-serum-H1-FINAL-v5.webp",
+        "delivery_directory": "opus-brand-pack/production/media/",
+        "height_px": 2400,
+        "width_px": null,
+        "width_rule": "round(2400 * measured tight silhouette width / measured tight silhouette height); record actual integer width in delivery receipt. Unknown physical width is not guessed.",
+        "long_edge_min_px": 1600,
+        "mime_type": "image/webp",
+        "file": null,
+        "approved": false,
+        "pack_crop_approved": false,
+        "alt": {
+          "en": null,
+          "ar": null,
+          "approved": {
+            "en": false,
+            "ar": false
+          }
+        },
+        "target_media_handle": "clarity-serum-h1-final-v5",
+        "target_product_field": "media_front"
+      },
+      "additional_deliverables": {
+        "layered_master": "clarity-serum-composite-FINAL-v5.psd",
+        "master_dimensions_px": [
+          2400,
+          3000
+        ],
+        "editorial_4x5": "clarity-serum-editorial-4x5-FINAL-v5.webp",
+        "editorial_dimensions_px": [
+          2400,
+          3000
+        ],
+        "social_9x16": "clarity-serum-social-9x16-FINAL-v5.webp",
+        "social_dimensions_px": [
+          1800,
+          3200
+        ],
+        "p1_back": "clarity-serum-P1_BACK-FINAL-v5.webp",
+        "p1_back_height_px": 2400,
+        "p1_back_width_rule": "Same measured tight silhouette rule as H1, from the back shot.",
+        "required_for_h1_integration": false
+      }
+    },
+    {
+      "product_handle": "daily-barrier-moisturizing-cream",
+      "name": "Daily Barrier Moisturizing Cream",
+      "pack_height_mm": 116,
+      "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Barrier Moisturizing Cream; 116 mm. Moisturizer and SPF confirmed same physical bottle.",
+      "physical_width_mm": null,
+      "label_version": "FINAL-v5",
+      "artwork_source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "required_original_artwork": [
+        "Between Two Suns - FINAL - Moisturizer Artwork.pdf"
+      ],
+      "artwork_file": null,
+      "artwork_approved": false,
+      "pump_actuator_finish": "MATTE",
+      "closure_geometry": "Finished pack standing with cap on; verify physical pack. No dimensions inferred from render.",
+      "same_physical_bottle_as": "daily-defense-sunscreen-spf-50",
+      "size_label": "50 gm",
+      "h1": {
+        "filename": "daily-barrier-moisturizing-cream-H1-FINAL-v5.webp",
+        "delivery_directory": "opus-brand-pack/production/media/",
+        "height_px": 2400,
+        "width_px": null,
+        "width_rule": "round(2400 * measured tight silhouette width / measured tight silhouette height); record actual integer width in delivery receipt. Unknown physical width is not guessed.",
+        "long_edge_min_px": 1600,
+        "mime_type": "image/webp",
+        "file": null,
+        "approved": false,
+        "pack_crop_approved": false,
+        "alt": {
+          "en": null,
+          "ar": null,
+          "approved": {
+            "en": false,
+            "ar": false
+          }
+        },
+        "target_media_handle": "daily-barrier-moisturizing-cream-h1-final-v5",
+        "target_product_field": "media_front"
+      },
+      "additional_deliverables": {
+        "layered_master": "daily-barrier-moisturizing-cream-composite-FINAL-v5.psd",
+        "master_dimensions_px": [
+          2400,
+          3000
+        ],
+        "editorial_4x5": "daily-barrier-moisturizing-cream-editorial-4x5-FINAL-v5.webp",
+        "editorial_dimensions_px": [
+          2400,
+          3000
+        ],
+        "social_9x16": "daily-barrier-moisturizing-cream-social-9x16-FINAL-v5.webp",
+        "social_dimensions_px": [
+          1800,
+          3200
+        ],
+        "p1_back": "daily-barrier-moisturizing-cream-P1_BACK-FINAL-v5.webp",
+        "p1_back_height_px": 2400,
+        "p1_back_width_rule": "Same measured tight silhouette rule as H1, from the back shot.",
+        "required_for_h1_integration": false
+      }
+    },
+    {
+      "product_handle": "daily-defense-sunscreen-spf-50",
+      "name": "Daily Defense Sunscreen SPF 50",
+      "pack_height_mm": 116,
+      "pack_height_source": "Founder physical-pack tape measurements supplied 2026-09-30; Daily Defense Sunscreen SPF 50; 116 mm. Moisturizer and SPF confirmed same physical bottle.",
+      "physical_width_mm": null,
+      "label_version": "FINAL-v5",
+      "artwork_source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md",
+      "required_original_artwork": [
+        "v5 - FINAL - Sunscreen.jpg"
+      ],
+      "artwork_file": null,
+      "artwork_approved": false,
+      "pump_actuator_finish": "MATTE",
+      "closure_geometry": "Finished pack standing with cap on; verify physical pack. No dimensions inferred from render.",
+      "same_physical_bottle_as": "daily-barrier-moisturizing-cream",
+      "size_label": "50 gm",
+      "h1": {
+        "filename": "daily-defense-sunscreen-spf-50-H1-FINAL-v5.webp",
+        "delivery_directory": "opus-brand-pack/production/media/",
+        "height_px": 2400,
+        "width_px": null,
+        "width_rule": "round(2400 * measured tight silhouette width / measured tight silhouette height); record actual integer width in delivery receipt. Unknown physical width is not guessed.",
+        "long_edge_min_px": 1600,
+        "mime_type": "image/webp",
+        "file": null,
+        "approved": false,
+        "pack_crop_approved": false,
+        "alt": {
+          "en": null,
+          "ar": null,
+          "approved": {
+            "en": false,
+            "ar": false
+          }
+        },
+        "target_media_handle": "daily-defense-sunscreen-spf-50-h1-final-v5",
+        "target_product_field": "media_front"
+      },
+      "additional_deliverables": {
+        "layered_master": "daily-defense-sunscreen-spf-50-composite-FINAL-v5.psd",
+        "master_dimensions_px": [
+          2400,
+          3000
+        ],
+        "editorial_4x5": "daily-defense-sunscreen-spf-50-editorial-4x5-FINAL-v5.webp",
+        "editorial_dimensions_px": [
+          2400,
+          3000
+        ],
+        "social_9x16": "daily-defense-sunscreen-spf-50-social-9x16-FINAL-v5.webp",
+        "social_dimensions_px": [
+          1800,
+          3200
+        ],
+        "p1_back": "daily-defense-sunscreen-spf-50-P1_BACK-FINAL-v5.webp",
+        "p1_back_height_px": 2400,
+        "p1_back_width_rule": "Same measured tight silhouette rule as H1, from the back shot.",
+        "required_for_h1_integration": false
+      }
+    }
+  ]
+}

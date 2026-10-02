@@ -1,0 +1,16 @@
+{% doc %}
+bts-add-button foundation helper.
+@param {string} [label] - Translation key for the control
+@param {string} handle - Prototype product handle
+{% enddoc %}
+{% liquid
+  assign bts_is_prototype = true
+  # Launch is locked until ShopifyCartAdapter and launch QA exist.
+%}
+{% assign purchasable = false %}
+{% unless settings.bts_review_fallback == true %}{% assign purchasable = true %}{% endunless %}
+{% assign label = label | default: 'bts.add' %}
+{% if bts_is_prototype %}
+<button type="button" data-bts-add="{{ handle | escape }}" data-bts-purchasable="{{ purchasable }}" data-added="{{ 'bts.added' | t }}" disabled>{{ label | t }}</button>
+<noscript>{{ 'bts.no_js' | t }}</noscript>
+{% else %}<button type="button" disabled>{{ 'bts.coming_soon' | t }}</button>{% endif %}

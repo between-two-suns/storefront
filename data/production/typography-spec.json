@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "status": "selected_for_procurement_not_licensed_or_active",
+  "license_established_in_repo": false,
+  "reference": "https://github.com/IBM/plex",
+  "selection_reason": "A cohesive condensed Latin display with neutral text and authored Arabic shaping; exact wordmark SVG remains the only tall brand mark. Selection is a design specification, not a web licence assertion.",
+  "roles": [
+    {
+      "token": "--font-display",
+      "family": "IBM Plex Sans Condensed",
+      "weight": 600,
+      "uses": "Latin proper product names and PDP title only",
+      "required_file": "bts-display-latin-600.woff2",
+      "fallback": "'Avenir Next Condensed', 'DIN Condensed', 'Roboto Condensed', 'Arial Narrow', sans-serif"
+    },
+    {
+      "token": "--font-ui",
+      "family": "IBM Plex Sans",
+      "weight": [
+        400,
+        500
+      ],
+      "uses": "Latin body, UI, prices, claims, back and INCI",
+      "required_files": [
+        "bts-ui-latin-400.woff2",
+        "bts-ui-latin-500.woff2"
+      ],
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    },
+    {
+      "token": "--font-ar-display",
+      "family": "IBM Plex Sans Arabic",
+      "weight": 600,
+      "uses": "Arabic display headings only, never retypes Latin logo or names",
+      "required_file": "bts-arabic-600.woff2",
+      "fallback": "'Geeza Pro', 'Noto Sans Arabic', Tahoma, sans-serif"
+    },
+    {
+      "token": "--font-ar-ui",
+      "family": "IBM Plex Sans Arabic",
+      "weight": 400,
+      "uses": "Arabic UI, body and approved translated label copy",
+      "required_file": "bts-arabic-400.woff2",
+      "fallback": "'Geeza Pro', 'Noto Sans Arabic', Tahoma, sans-serif"
+    }
+  ],
+  "delivery": "Flat assets/*.woff2 with exact upstream version, hashes, full font-specific copyright/licence evidence retained in data/production/licenses/ and distributable licence included with theme fonts. No download/import in this task.",
+  "runtime": "No font-face or preload until local licensing/provenance is established. Prototype uses locally installed/system fonts via safe fallback stacks; future licensed BTS slots unchanged. No binaries copied or downloaded.",
+  "metrics": "Measure glyph coverage, x-height/ascent/descent and shaping; never guess size-adjust/ascent-override. UI 16px/1.45, back at least 14px, AR line-height 1.7 and zero tracking; recheck E1 widths, all E2 200% cells, contact floor, INCI, CLS and Arabic line breaks."
+}

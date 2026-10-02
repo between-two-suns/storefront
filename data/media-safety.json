@@ -1,0 +1,28 @@
+{
+  "allowed_interim": {
+    "file": "bts-barrier-interim.webp",
+    "sha256": "88c6902e1bd066299f7e66c6f074becff778f4b50d318588e44a910aeb0a4ec8",
+    "scope": "Barrier only, retained from the permitted existing render; not wired as H1 or used as missing-media fallback"
+  },
+  "h1_production_metadata": {
+    "source": "Founder physical-pack evidence and production instructions supplied 2026-09-30",
+    "evidence_scope": "Geometry/measurement evidence only, NOT label/artwork source. Cleanser and Serum photographed labels are old and must never replace FINAL-v5 source truth.",
+    "measurements_mm": {
+      "daily-reset-cleanser": 180,
+      "clarity-serum": 96,
+      "daily-barrier-moisturizing-cream": 116,
+      "daily-defense-sunscreen-spf-50": 116
+    },
+    "shared_physical_bottle": [
+      "daily-barrier-moisturizing-cream",
+      "daily-defense-sunscreen-spf-50"
+    ],
+    "pump_actuator_finish": {
+      "daily-barrier-moisturizing-cream": "MATTE",
+      "daily-defense-sunscreen-spf-50": "MATTE"
+    },
+    "production_note": "Actual Moisturizer and SPF pump/actuator finish is MATTE, not shiny/glossy. Preserve in H1 asset production; do not fabricate media.",
+    "artwork_source": "opus-brand-pack/FINAL_LABEL_SOURCE_OF_TRUTH.md (FINAL-v5)",
+    "media_approval": "No H1 file or crop approval supplied; measurements do not authorize photographs as storefront media."
+  }
+}

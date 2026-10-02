@@ -1,0 +1,20 @@
+{% doc %}
+Brand approach with approved campaign media. Missing campaign media never renders a placeholder.
+@param {metaobject} [campaign] - Approved campaign image
+{% enddoc %}
+{% assign language = request.locale.iso_code | split: '-' | first %}
+<section class="bts-story" aria-label="BETWEEN TWO SUNS">
+  {% if campaign != blank %}
+    {% assign subject = metaobjects.bts_product_content[campaign.product_handle.value] %}
+    {% capture campaign_image %}{% render 'bts-media', media: campaign, content: subject, handle: campaign.product_handle.value, role: 'CAMPAIGN' %}{% endcapture %}{% assign campaign_image = campaign_image | strip %}
+    {% if campaign_image != blank %}<figure class="bts-story__campaign">{{ campaign_image }}</figure>{% endif %}
+  {% endif %}
+  <div class="bts-story__approach">
+    <img src="{{ 'bts-icon-ink.svg' | asset_url }}" width="501" height="547" alt="">
+    {% if language == 'en' %}
+      <div><p class="bts-story__eyebrow">OUR APPROACH</p><h2>Climate-adapted skincare.</h2><p>Made for sun, pollution, changing environments &amp; everyday skin.</p></div>
+    {% else %}
+      <div><p class="bts-story__eyebrow">BETWEEN TWO SUNS</p><p>{{ 'bts.collection' | t }} · <bdi lang="en">01—04</bdi></p></div>
+    {% endif %}
+  </div>
+</section>

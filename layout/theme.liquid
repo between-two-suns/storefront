@@ -1,0 +1,34 @@
+{% assign bts_is_prototype = true %}
+
+{% assign bts_language = request.locale.iso_code | split: '-' | first %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{% if bts_language == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  {% if bts_is_prototype %}<meta name="robots" content="noindex,nofollow">{% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="icon" href="{{ 'bts-icon-ink.svg' | asset_url }}" type="image/svg+xml">
+  <title>{{ page_title | escape }} · BETWEEN TWO SUNS</title>
+  {{ content_for_header }}
+  {{ 'bts-tokens.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-base.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-components.css' | asset_url | stylesheet_tag }}
+  {{ 'bts-editorial.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'bts-core.js' | asset_url }}" type="module"></script>
+</head>
+<body data-bts-review="{{ settings.bts_review_fallback | default: false }}" data-bts-mode="{% if bts_is_prototype %}prototype{% else %}launch{% endif %}" data-bts-qty-max="{{ settings.bts_qty_max | default: 6 }}">
+  <a class="bts-skip" href="#MainContent">{{ 'bts.skip' | t }}</a>
+  {% section 'bts-header' %}
+  <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
+  {% section 'bts-footer' %}
+  {% render 'bts-drawer' %}
+  {% render 'bts-menu-sheet' %}
+  {% render 'bts-prototype-data' %}
+  {% render 'bts-catalog-json' %}
+  <script id="bts-money-config" type="application/json">{"pattern":{{ 'money.pattern' | t: amount: '__AMOUNT__', currency: '__CURRENCY__' | json }},"currency_label":{{ 'money.currency_label.EGP' | t | json }}}</script>
+  {% render 'bts-inci-sheet' %}
+  {% render 'bts-routine-sheet' %}
+  <p class="bts-visually-hidden" role="status" aria-live="polite" data-bts-added-status></p>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% doc %}
+Config-only prototype bundle offer, with no price or savings fallback.
+@param {string} uid - Unique offer instance.
+@param {boolean} [panel] - Verified component panel and totals.
+@param {boolean} [sheet] - Open routine sheet with a real route fallback.
+{% enddoc %}
+{% assign routine = metaobjects.bts_product_content['the-full-routine'] %}
+{% capture product_handles %}{% render 'bts-content-field', content: routine, handle: 'the-full-routine', field: 'components' %}{% endcapture %}{% assign product_handles = product_handles | strip %}
+{% assign components = product_handles | split: '|' %}
+{% capture routine_price %}{% render 'bts-review-price-value', handle: 'the-full-routine' %}{% endcapture %}{% assign routine_price = routine_price | strip %}
+{% capture routine_list %}{% render 'bts-review-price-value', field: 'routine_list' %}{% endcapture %}{% assign routine_list = routine_list | strip %}
+{% capture routine_save %}{% render 'bts-review-price-value', field: 'routine_save' %}{% endcapture %}{% assign routine_save = routine_save | strip %}
+{% capture review_currency %}{% render 'bts-review-price-value', field: 'currency' %}{% endcapture %}{% assign review_currency = review_currency | strip %}
+{% liquid
+  assign routine_price = routine_price | plus: 0
+  assign routine_list = routine_list | plus: 0
+  assign routine_save = routine_save | plus: 0
+  assign computed_list = 0
+  assign verified = true
+  assign count = 0
+  for handle in components
+    assign component = metaobjects.bts_product_content[handle]
+    capture name
+      render 'bts-content-field', content: component, handle: handle, field: 'name'
+    endcapture
+    capture price
+      render 'bts-review-price-value', handle: handle
+    endcapture
+    assign name = name | strip
+    assign price = price | plus: 0
+    if name == blank or price <= 0
+      assign verified = false
+    endif
+    assign computed_list = computed_list | plus: price
+    assign count = count | plus: 1
+  endfor
+  assign computed_save = computed_list | minus: routine_price
+  if count != 4 or review_currency == blank or routine_price <= 0 or computed_list != routine_list or computed_save != routine_save or computed_save <= 0
+    assign verified = false
+  endif
+%}
+{% if verified %}
+  {% capture url %}{% render 'bts-routine-url' %}{% endcapture %}
+  {% if panel %}
+    <ul class="bts-routine-panel" role="list">
+    {% for handle in components %}{% assign component = metaobjects.bts_product_content[handle] %}
+{% capture name %}{% render 'bts-content-field', content: component, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+{% capture step %}{% render 'bts-content-field', content: component, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+{% capture colour_key %}{% render 'bts-content-field', content: component, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+{% capture size_display %}{% render 'bts-content-field', content: component, handle: handle, field: 'size_display' %}{% endcapture %}{% assign size_display = size_display | strip %}
+      {% capture component_url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+      {% capture component_image %}{% render 'bts-media', content: component, handle: handle, media: component.media_front.value, role: 'H1' %}{% endcapture %}{% assign component_image = component_image | strip %}
+      <li class="pf" data-colour="{{ colour_key }}">
+        <a class="bts-routine-panel__frame" href="{{ component_url | strip }}" aria-label="{{ name | escape }}">{% if component_image != blank %}{{ component_image }}{% else %}<bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi>{% endif %}</a>
+        <div><h3><a href="{{ component_url | strip }}"><bdi lang="en">{{ name | escape }}</bdi></a></h3><p><bdi lang="en">{{ size_display | escape }}</bdi></p>{% render 'bts-price', handle: handle %}{% render 'bts-add-button', handle: handle %}</div>
+      </li>
+    {% endfor %}
+    </ul>
+    <dl class="bts-routine-totals">
+      <div><dt>{{ 'bts.list_total' | t }}</dt><dd>{% assign list_minor = routine_list | times: 100 | round %}{% render 'bts-money', amount: list_minor, currency: review_currency %}</dd></div>
+      <div><dt>{{ 'bts.routine_price' | t }}</dt><dd>{% render 'bts-price', handle: 'the-full-routine' %}</dd></div>
+      <div><dt>{{ 'bts.save' | t }}</dt><dd>{% assign save_minor = routine_save | times: 100 | round %}{% render 'bts-money', amount: save_minor, currency: review_currency %}</dd></div>
+    </dl>
+  {% endif %}
+  <div class="bts-routine-offer" data-routine-offer="{{ uid | escape }}">
+    <a href="{{ url | strip }}"{% if sheet %} data-bts-open="bts-routine" aria-haspopup="dialog"{% endif %}>{{ 'bts.all_four' | t }} · {% render 'bts-price', handle: 'the-full-routine' %} · {{ 'bts.save' | t }} {% assign saving = routine_save | times: 100 | round %}{% render 'bts-money', amount: saving, currency: review_currency %} <span class="bts-arrow" aria-hidden="true">→</span></a>
+    {% unless sheet %}{% render 'bts-add-button', handle: 'the-full-routine', label: 'bts.add_all' %}{% endunless %}
+  </div>
+{% endif %}

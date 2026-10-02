@@ -1,0 +1,19 @@
+{
+  "type": "bts_review_feed",
+  "storefront_access": "PUBLIC_READ",
+  "status": "Definition plan only; entries absent",
+  "fields": {
+    "product_handle": "single_line_text_field",
+    "feed": "json"
+  },
+  "lookup": "shop.metaobjects.bts_review_feed[content.product_handle.value].feed.value",
+  "schema": "data/content/reviews/feed.schema.json",
+  "rules": [
+    "Only a later authorized real review-provider adapter can create entries. No app installed or Admin write in this task.",
+    "Adapter validates full JSON schema, real verified purchase provenance, publication consent and moderation before approved=true. Never treat a supplied boolean as verification evidence.",
+    "Opaque review IDs / public display names only; no email, order ID or private purchase evidence in storefront JSON.",
+    "Locale-complete snapshots contain 5\u201350 actual verified customer reviews for one product. Feed count and displayed average derive only from these records. These are displayed-snapshot counts, not asserted lifetime provider totals. Larger feeds require pagination integration; never silently truncate.",
+    "Minimum five locale-approved reviews for social proof. Below threshold or invalid feed: neutral empty message, no rating/count/stars or structured review data. This empty UI follows the current user instruction and supersedes prior no-empty-state gate.",
+    "No fixture, prototype reviews or unapproved English fallback in Arabic."
+  ]
+}

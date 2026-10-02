@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BTS approved review snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "product_handle",
+    "provider",
+    "authenticity",
+    "fixture",
+    "approved",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "product_handle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authenticity": {
+      "const": "verified_customer"
+    },
+    "fixture": {
+      "const": false
+    },
+    "approved": {
+      "const": true
+    },
+    "records": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "product_handle",
+          "authenticity",
+          "fixture",
+          "verified_purchase",
+          "published",
+          "approved",
+          "rating",
+          "display_name",
+          "body"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "product_handle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authenticity": {
+            "const": "verified_customer"
+          },
+          "fixture": {
+            "const": false
+          },
+          "verified_purchase": {
+            "const": true
+          },
+          "published": {
+            "const": true
+          },
+          "approved": {
+            "const": true
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "display_name": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "en",
+              "ar",
+              "approved"
+            ],
+            "properties": {
+              "en": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ar": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "approved": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "en",
+                  "ar"
+                ],
+                "properties": {
+                  "en": {
+                    "type": "boolean"
+                  },
+                  "ar": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "body": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "en",
+              "ar",
+              "approved"
+            ],
+            "properties": {
+              "en": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ar": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "approved": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "en",
+                  "ar"
+                ],
+                "properties": {
+                  "en": {
+                    "type": "boolean"
+                  },
+                  "ar": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$comment": "Cross-field checks also require matching product_handle and unique record IDs, per-locale approved nonempty name/body, and real provider purchase verification/consent. JSON alone cannot prove authenticity."
+}

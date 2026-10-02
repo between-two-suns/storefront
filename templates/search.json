@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "bts-search",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,12 @@
+extends: theme-check:recommended
+ignore:
+  - archive/**
+  - opus-brand-pack/**
+  - review-assets/**
+  - final-review-v8/**
+  - live-review-v8/**
+  - data/**
+  - scripts/**
+  - tests/**
+  - node_modules/**
+  - test-results/**

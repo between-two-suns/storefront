@@ -1,0 +1,259 @@
+{% liquid
+  assign reset_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352'
+  assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
+  assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
+  assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
+%}
+
+<section class="bts9" data-bts9 data-lang="en" dir="ltr">
+  <header class="bts9-nav" data-bts9-nav>
+    <a href="#top" class="bts9-nav__mark" aria-label="Between Two Suns home">
+      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="30" height="32">
+    </a>
+    <nav class="bts9-nav__links" aria-label="Primary">
+      <a href="#shop" data-i18n="products">Products</a>
+      <a href="#routine" data-i18n="routine">Routine</a>
+      <a href="#why" data-i18n="why">Why BTS</a>
+    </nav>
+    <div class="bts9-nav__tools">
+      <button type="button" class="bts9-lang" data-bts9-lang aria-label="Switch language">AR</button>
+      <button type="button" class="bts9-bag" data-bts9-open-bag>
+        <span data-i18n="bag">Bag</span><b data-bts9-count>0</b>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="bts9-hero" data-bts9-hero>
+      <div class="bts9-hero__brand">
+        <img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390">
+        <p data-i18n="positioning">Climate-adapted skincare</p>
+      </div>
+
+      <div class="bts9-lanes" data-bts9-lanes data-selected="reset">
+        <button class="bts9-lane bts9-lane--reset is-selected" type="button" data-bts9-lane="reset" aria-pressed="true">
+          <span class="bts9-lane__meta"><b>01</b><span>RESET</span></span>
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="eager" fetchpriority="high">
+          <span class="bts9-lane__info">
+            <small data-role>Cleanse</small>
+            <strong>Daily Reset Cleanser</strong>
+            <bdi dir="ltr">EGP 399</bdi>
+            <em data-benefit>Removes excess oil while helping skin keep its comfort.</em>
+          </span>
+        </button>
+
+        <button class="bts9-lane bts9-lane--clarity" type="button" data-bts9-lane="clarity" aria-pressed="false">
+          <span class="bts9-lane__meta"><b>02</b><span>CLARITY</span></span>
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="eager">
+          <span class="bts9-lane__info">
+            <small data-role>Treat</small>
+            <strong>Clarity Serum</strong>
+            <bdi dir="ltr">EGP 499</bdi>
+            <em data-benefit>Targets uneven-looking tone while keeping hydration in the formula.</em>
+          </span>
+        </button>
+
+        <button class="bts9-lane bts9-lane--barrier" type="button" data-bts9-lane="barrier" aria-pressed="false">
+          <span class="bts9-lane__meta"><b>03</b><span>BARRIER</span></span>
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="eager">
+          <span class="bts9-lane__info">
+            <small data-role>Hydrate</small>
+            <strong>Daily Barrier Moisturizing Cream</strong>
+            <bdi dir="ltr">EGP 449</bdi>
+            <em data-benefit>Barrier support and hydration without a heavy finish.</em>
+          </span>
+        </button>
+
+        <button class="bts9-lane bts9-lane--defense" type="button" data-bts9-lane="defense" aria-pressed="false">
+          <span class="bts9-lane__meta"><b>04</b><span>DEFENSE</span></span>
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="eager">
+          <span class="bts9-lane__info">
+            <small data-role>Protect</small>
+            <strong>Daily Defense Sunscreen SPF 50</strong>
+            <bdi dir="ltr">EGP 499</bdi>
+            <em data-benefit>Broad-spectrum SPF 50 with a lightweight, no-white-cast finish.</em>
+          </span>
+        </button>
+      </div>
+
+      <div class="bts9-hero__bottom">
+        <div class="bts9-hero__line">
+          <h1 data-i18n="fresh">fresh skin. always.</h1>
+          <p data-i18n="heroBody">Four essentials designed to work together — without turning skincare into a project.</p>
+        </div>
+
+        <button type="button" class="bts9-routineoffer" data-bts9-buy-routine>
+          <span>
+            <small data-i18n="fullRoutine">FULL ROUTINE · 4 PRODUCTS</small>
+            <strong><s><bdi dir="ltr">EGP 1,846</bdi></s> <bdi dir="ltr">EGP 1,661</bdi></strong>
+          </span>
+          <span class="bts9-routineoffer__save"><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185 · 10%</bdi><i class="bts9-arrow">→</i></span>
+        </button>
+      </div>
+    </section>
+
+    <section id="shop" class="bts9-shop" data-bts9-shop data-product="reset">
+      <div class="bts9-shop__rail" role="group" aria-label="Choose product">
+        <button type="button" data-bts9-product="reset" aria-pressed="true"><span>01</span><strong>RESET</strong><bdi dir="ltr">399</bdi></button>
+        <button type="button" data-bts9-product="clarity" aria-pressed="false"><span>02</span><strong>CLARITY</strong><bdi dir="ltr">499</bdi></button>
+        <button type="button" data-bts9-product="barrier" aria-pressed="false"><span>03</span><strong>BARRIER</strong><bdi dir="ltr">449</bdi></button>
+        <button type="button" data-bts9-product="defense" aria-pressed="false"><span>04</span><strong>DEFENSE</strong><bdi dir="ltr">499</bdi></button>
+      </div>
+
+      <div class="bts9-shop__visual">
+        <div class="bts9-shop__number" aria-hidden="true" data-bts9-number>01</div>
+        <img data-bts9-image src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="eager">
+        <div class="bts9-shop__word" data-bts9-word>RESET</div>
+      </div>
+
+      <article class="bts9-shop__detail">
+        <div class="bts9-shop__head">
+          <div>
+            <p class="bts9-kicker" data-bts9-step>01 · CLEANSE</p>
+            <h2 data-bts9-name>Daily Reset Cleanser</h2>
+          </div>
+          <div class="bts9-shop__price"><bdi dir="ltr" data-bts9-price>EGP 399</bdi><small data-bts9-size>200 mL</small></div>
+        </div>
+
+        <p class="bts9-shop__benefit" data-bts9-benefit>Removes excess oil and daily buildup while helping skin maintain hydration.</p>
+
+        <div class="bts9-shop__claims" data-bts9-claims>
+          <span>NON-STRIPPING</span><span>SOAP-FREE</span><span>NON-COMEDOGENIC</span>
+        </div>
+
+        <div class="bts9-formula">
+          <div class="bts9-formula__title">
+            <span data-i18n="formulaTitle">WHY THIS FORMULA</span>
+            <small data-i18n="formulaSub">Useful science. No textbook.</small>
+          </div>
+          <div data-bts9-formula></div>
+        </div>
+
+        <div class="bts9-shop__actions">
+          <button type="button" class="bts9-btn bts9-btn--dark" data-bts9-add>
+            <span data-i18n="add">Add to bag</span><span>·</span><bdi dir="ltr">EGP 399</bdi>
+          </button>
+          <button type="button" class="bts9-btn bts9-btn--line" data-bts9-details data-i18n="details">Full details</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="routine" class="bts9-routine" data-bts9-routine data-time="am">
+      <div class="bts9-routine__head">
+        <p class="bts9-kicker" data-i18n="routineKicker">YOUR ROUTINE</p>
+        <h2 data-i18n="routineTitle">FOUR IN THE MORNING.<br>THREE AT NIGHT.</h2>
+        <div class="bts9-time" role="group" aria-label="Routine time">
+          <button type="button" data-bts9-time="am" aria-pressed="true"><b>4</b><span data-i18n="am">AM</span></button>
+          <button type="button" data-bts9-time="pm" aria-pressed="false"><b>3</b><span data-i18n="pm">PM</span></button>
+        </div>
+      </div>
+
+      <div class="bts9-routine__stage">
+        <article class="bts9-routinepack bts9-routinepack--reset">
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy">
+          <span>01</span><strong>RESET</strong><small data-i18n="cleanse">Cleanse</small>
+        </article>
+        <article class="bts9-routinepack bts9-routinepack--clarity">
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy">
+          <span>02</span><strong>CLARITY</strong><small data-i18n="treat">Treat</small>
+        </article>
+        <article class="bts9-routinepack bts9-routinepack--barrier">
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+          <span>03</span><strong>BARRIER</strong><small data-i18n="hydrate">Hydrate</small>
+        </article>
+        <article class="bts9-routinepack bts9-routinepack--defense" data-bts9-defense>
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+          <span>04</span><strong>DEFENSE</strong><small data-i18n="protect">Protect</small><em data-i18n="morningOnly">Morning only</em>
+        </article>
+      </div>
+
+      <div class="bts9-routine__footer">
+        <p data-bts9-routine-copy>Cleanse. Treat. Hydrate. Protect.</p>
+        <button type="button" class="bts9-routine__buy" data-bts9-buy-routine>
+          <span><small data-i18n="fullRoutine">FULL ROUTINE</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
+          <span><s><bdi dir="ltr">EGP 1,846</bdi></s><br><b><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185</bdi></b></span>
+          <i class="bts9-arrow">→</i>
+        </button>
+      </div>
+    </section>
+
+    <section id="why" class="bts9-why">
+      <div class="bts9-why__intro">
+        <p class="bts9-kicker" data-i18n="whyKicker">CLIMATE-ADAPTED, BY DESIGN</p>
+        <h2 data-i18n="whyTitle">LESS ABOUT WEATHER.<br>MORE ABOUT HOW SKIN ACTUALLY LIVES.</h2>
+      </div>
+      <div class="bts9-why__grid">
+        <article>
+          <span>01</span><strong data-i18n="whyOneTitle">Clean without over-cleansing.</strong>
+          <p data-i18n="whyOneBody">The cleanser balances effective surfactants with Glycerin, Panthenol, Sodium PCA and Centella for a comfortable after-feel.</p>
+        </article>
+        <article>
+          <span>02</span><strong data-i18n="whyTwoTitle">Treat without forgetting hydration.</strong>
+          <p data-i18n="whyTwoBody">Niacinamide and Tranexamic Acid target uneven-looking tone while humectants keep hydration built into the serum.</p>
+        </article>
+        <article>
+          <span>03</span><strong data-i18n="whyThreeTitle">Support the barrier without heaviness.</strong>
+          <p data-i18n="whyThreeBody">Ceramides, Niacinamide, Squalane and Zinc PCA work inside a moisturizer designed for oily-to-combination skin.</p>
+        </article>
+        <article>
+          <span>04</span><strong data-i18n="whyFourTitle">Wear SPF without fighting the finish.</strong>
+          <p data-i18n="whyFourBody">SPF 50 broad-spectrum protection in a lightweight, fast-absorbing, non-greasy formula with no white cast.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bts9-end">
+      <img src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390" loading="lazy">
+      <p data-i18n="fresh">fresh skin. always.</p>
+      <button type="button" class="bts9-btn bts9-btn--dark" data-bts9-buy-routine><span data-i18n="shopRoutine">Shop the routine</span><i class="bts9-arrow">→</i></button>
+    </section>
+  </main>
+
+  <div class="bts9-sticky" data-bts9-sticky>
+    <button type="button" data-bts9-buy-routine>
+      <span><small data-i18n="fullRoutine">FULL ROUTINE</small><strong><bdi dir="ltr">EGP 1,661</bdi></strong></span>
+      <span><span data-i18n="save">SAVE</span> <bdi dir="ltr">EGP 185</bdi> <i class="bts9-arrow">→</i></span>
+    </button>
+  </div>
+
+  <div class="bts9-drawer" data-bts9-drawer hidden>
+    <button class="bts9-drawer__scrim" type="button" data-bts9-close aria-label="Close"></button>
+    <aside class="bts9-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="BTS9DrawerTitle">
+      <div class="bts9-drawer__head">
+        <div><p class="bts9-kicker" data-i18n="bag">Bag</p><h2 id="BTS9DrawerTitle" data-bts9-drawer-title>0 products</h2></div>
+        <button type="button" data-bts9-close aria-label="Close">×</button>
+      </div>
+      <div class="bts9-drawer__items" data-bts9-drawer-items></div>
+      <div class="bts9-drawer__totals" data-bts9-drawer-totals></div>
+      <button type="button" class="bts9-drawer__checkout" disabled data-i18n="checkout">Checkout opens at launch</button>
+      <p class="bts9-drawer__note" data-i18n="prototype">Prototype preview. Working launch prices shown; checkout is not active yet.</p>
+    </aside>
+  </div>
+
+  <div class="bts9-sheet" data-bts9-sheet hidden>
+    <button class="bts9-drawer__scrim" type="button" data-bts9-sheet-close aria-label="Close"></button>
+    <aside class="bts9-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="BTS9SheetTitle">
+      <div class="bts9-drawer__head">
+        <div><p class="bts9-kicker" data-bts9-sheet-step>01 · CLEANSE</p><h2 id="BTS9SheetTitle" data-bts9-sheet-title>Daily Reset Cleanser</h2></div>
+        <button type="button" data-bts9-sheet-close aria-label="Close">×</button>
+      </div>
+      <div class="bts9-sheet__visual"><img data-bts9-sheet-image src="{{ reset_url }}" alt=""></div>
+      <p class="bts9-sheet__copy" data-bts9-sheet-copy></p>
+      <div class="bts9-sheet__inci">
+        <button type="button" data-bts9-inci-toggle aria-expanded="false"><span data-i18n="fullInci">Full ingredient list</span><span>+</span></button>
+        <p data-bts9-inci dir="ltr" hidden></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{{ 'bts-home-v9.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bts-home-v9.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTS Home v9",
+  "settings": [],
+  "presets": [{"name":"BTS Home v9"}]
+}
+{% endschema %}

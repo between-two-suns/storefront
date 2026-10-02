@@ -1,0 +1,25 @@
+{% doc %}
+Approved production media, with a centralized review-only H1 fallback for draft products.
+@param {metaobject} [media] - bts_media
+@param {metaobject} [content] - bts_product_content
+@param {string} [handle] - Draft-safe product handle
+@param {string} role - Required media role
+@param {boolean} [eager] - LCP candidate
+{% enddoc %}
+{% assign language = request.locale.iso_code | split: '-' | first %}
+{% assign handle = handle | default: content.product_handle.value %}
+{% assign image = media.file.value %}
+{% assign approved = false %}
+{% if media.approved.value == true and media.label_version.value == content.inci_version.value and media.role.value == role and image.media_type == 'image' and image != blank %}
+  {% assign approved = true %}
+{% endif %}
+{% assign alt = content.name.value %}
+{% if alt == blank %}{% capture alt %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign alt = alt | strip %}{% endif %}
+{% if media.alt.value.approved[language] == true and media.alt.value[language] != blank %}{% assign alt = media.alt.value[language] %}{% endif %}
+{% if approved and alt != blank %}
+  {% if eager %}{{ image | image_url: width: 1600 | image_tag: widths: '240,360,480,640,800,960,1200,1600', sizes: '(min-width: 990px) 42vw, 82vw', loading: 'eager', fetchpriority: 'high', alt: alt }}
+  {% else %}{{ image | image_url: width: 1600 | image_tag: widths: '240,360,480,640,800,960,1200,1600', sizes: '(min-width: 990px) 42vw, 82vw', loading: 'lazy', alt: alt }}{% endif %}
+{% elsif role == 'H1' %}
+  {% capture review_url %}{% render 'bts-review-media-url', handle: handle %}{% endcapture %}{% assign review_url = review_url | strip %}
+  {% if review_url != blank %}<img data-bts-review-image="true" src="{{ review_url }}" alt="{{ alt | default: handle | escape }}" width="1200" height="1600" {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
+{% endif %}

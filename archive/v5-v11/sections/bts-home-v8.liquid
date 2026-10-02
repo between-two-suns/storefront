@@ -1,0 +1,248 @@
+{% liquid
+  assign reset_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-reset-transparent.webp?v=1790629352'
+  assign clarity_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-clarity-transparent.webp?v=1790629358'
+  assign barrier_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-barrier-transparent.webp?v=1790629363'
+  assign defense_url = 'https://cdn.shopify.com/s/files/1/0842/8122/9570/files/bts-defense-transparent.webp?v=1790629368'
+%}
+{%- comment -%}
+  Prices = Scenario B WORKING PROTOTYPE values (not locked). Checkout intentionally disabled.
+  Reset 399 · Clarity 499 · Barrier 449 · Defense 499 · list 1,846 · routine 1,661 · save 185 / 10%.
+{%- endcomment -%}
+
+<section class="bts8" data-bts8 data-lang="en" dir="ltr">
+  <header class="bts8-nav">
+    <a class="bts8-nav__mark" href="#top" aria-label="Between Two Suns home">
+      <img src="{{ 'bts-icon-ink.svg' | asset_url }}" alt="" width="30" height="32">
+    </a>
+    <nav class="bts8-nav__links" aria-label="Primary">
+      <a href="#products" data-i18n="navProducts">Products</a>
+      <a href="#routine" data-i18n="navRoutine">Routine</a>
+    </nav>
+    <div class="bts8-nav__tools">
+      <button type="button" class="bts8-lang" data-bts8-lang aria-label="Switch language">AR</button>
+      <button type="button" class="bts8-bag" data-bts8-open-drawer aria-label="Open routine bag">
+        <span data-i18n="bag">Bag</span><b data-bts8-count>0</b>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO — product-led editorial stage -->
+    <section class="bts8-hero" data-bts8-hero>
+      <div class="bts8-hero__top">
+        <img class="bts8-hero__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390">
+        <p class="bts8-hero__index"><span data-i18n="heroIndex">Cleanser · Serum · Cream · SPF 50</span></p>
+      </div>
+
+      <div class="bts8-hero__stage" aria-label="The four products">
+        <div class="bts8-hero__floor" aria-hidden="true"></div>
+        <button type="button" class="bts8-hpack bts8-hpack--barrier" data-bts8-pick="barrier" aria-label="Daily Barrier Moisturizing Cream">
+          <img src="{{ barrier_url }}" alt="" width="1024" height="1536" loading="eager" fetchpriority="high">
+        </button>
+        <button type="button" class="bts8-hpack bts8-hpack--reset" data-bts8-pick="reset" aria-label="Daily Reset Cleanser">
+          <img src="{{ reset_url }}" alt="" width="1024" height="1536" loading="eager" fetchpriority="high">
+        </button>
+        <button type="button" class="bts8-hpack bts8-hpack--defense" data-bts8-pick="defense" aria-label="Daily Defense Sunscreen SPF 50">
+          <img src="{{ defense_url }}" alt="" width="1024" height="1536" loading="eager">
+        </button>
+        <button type="button" class="bts8-hpack bts8-hpack--clarity" data-bts8-pick="clarity" aria-label="Clarity Serum">
+          <img src="{{ clarity_url }}" alt="" width="1024" height="1536" loading="eager">
+        </button>
+      </div>
+
+      <div class="bts8-hero__copy">
+        <h1 data-i18n="heroTitle">fresh skin. always.</h1>
+        <p data-i18n="heroBody">Four light-textured essentials that do their job and disappear into your day.</p>
+      </div>
+
+      <div class="bts8-offer" data-bts8-inflow-cta>
+        <button type="button" class="bts8-offer__buy" data-bts8-buy-routine>
+          <span class="bts8-offer__label"><span data-i18n="fullRoutine4">Full routine · 4 products</span><small><span data-i18n="save">Save</span> <bdi dir="ltr">EGP 185</bdi> · 10%</small></span>
+          <span class="bts8-offer__price"><s><bdi dir="ltr">EGP 1,846</bdi></s><b><bdi dir="ltr">EGP 1,661</bdi></b></span>
+        </button>
+        <a class="bts8-offer__single" href="#products">
+          <span><span data-i18n="shopSingle">Shop individually · from</span> <bdi dir="ltr">EGP 399</bdi></span><span class="bts8-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- PRODUCT COUNTER — signature interaction -->
+    <section id="products" class="bts8-counter" data-bts8-counter>
+      <div class="bts8-sectionhead">
+        <p class="bts8-kicker" data-i18n="meetKicker">The four</p>
+        <h2 data-i18n="meetTitle">Everything you need. Nothing extra.</h2>
+      </div>
+
+      <div class="bts8-counter__stage" data-bts8-stage data-selected="reset">
+        <div class="bts8-counter__lineup" role="group" aria-label="Choose a product">
+          {%- assign keys = 'reset,clarity,barrier,defense' | split: ',' -%}
+          {%- for key in keys -%}
+            {%- case key -%}
+              {%- when 'reset' -%}{%- assign u = reset_url -%}{%- assign n = 'Daily Reset Cleanser' -%}{%- assign w = 'RESET' -%}{%- assign pr = 'EGP 399' -%}
+              {%- when 'clarity' -%}{%- assign u = clarity_url -%}{%- assign n = 'Clarity Serum' -%}{%- assign w = 'CLARITY' -%}{%- assign pr = 'EGP 499' -%}
+              {%- when 'barrier' -%}{%- assign u = barrier_url -%}{%- assign n = 'Daily Barrier Moisturizing Cream' -%}{%- assign w = 'BARRIER' -%}{%- assign pr = 'EGP 449' -%}
+              {%- when 'defense' -%}{%- assign u = defense_url -%}{%- assign n = 'Daily Defense Sunscreen SPF 50' -%}{%- assign w = 'DEFENSE' -%}{%- assign pr = 'EGP 499' -%}
+            {%- endcase -%}
+            <button type="button" class="bts8-cpack bts8-cpack--{{ key }}{% if forloop.first %} is-selected{% endif %}" data-bts8-select="{{ key }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ n }}, {{ pr }}">
+              <span class="bts8-cpack__num">0{{ forloop.index }}</span>
+              <span class="bts8-cpack__img"><img src="{{ u }}" alt="" width="1024" height="1536" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"></span>
+              <span class="bts8-cpack__word">{{ w }}</span>
+              <bdi class="bts8-cpack__price" dir="ltr">{{ pr }}</bdi>
+            </button>
+          {%- endfor -%}
+        </div>
+
+        <article class="bts8-productinfo" aria-live="polite">
+          <div class="bts8-productinfo__top">
+            <span class="bts8-productinfo__step" data-bts8-step>01 · CLEANSE</span>
+            <span class="bts8-productinfo__size" dir="ltr" data-bts8-size>200 mL</span>
+          </div>
+          <p class="bts8-productinfo__desc" data-bts8-desc>Daily cleanser</p>
+          <h3 data-bts8-name>Daily Reset Cleanser</h3>
+          <p class="bts8-productinfo__price"><bdi dir="ltr" data-bts8-price>EGP 399</bdi></p>
+          <p class="bts8-productinfo__benefit" data-bts8-benefit>Removes excess oil and daily buildup while helping skin maintain hydration.</p>
+          <div class="bts8-productinfo__claims" data-bts8-claims></div>
+
+          <div class="bts8-formula">
+            <div class="bts8-formula__head">
+              <span data-i18n="whyTitle">Why it works</span>
+              <span data-i18n="whySub">The formula, in plain language.</span>
+            </div>
+            <div class="bts8-formula__items" data-bts8-formula></div>
+          </div>
+
+          <div class="bts8-productinfo__actions">
+            <button type="button" class="bts8-btn bts8-btn--primary" data-bts8-toggle-selected="reset" aria-pressed="false">Add to routine — EGP 399</button>
+            <button type="button" class="bts8-btn bts8-btn--ghost" data-bts8-detail><span data-i18n="details">Full details</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ROUTINE — AM 4 / PM 3 -->
+    <section id="routine" class="bts8-routine" data-bts8-routine data-time="am">
+      <div class="bts8-sectionhead">
+        <p class="bts8-kicker" data-i18n="routineKicker">Your routine</p>
+        <h2 data-i18n="routineTitle">Four in the morning. Three at night.</h2>
+      </div>
+
+      <div class="bts8-time" role="group" aria-label="Routine time">
+        <button type="button" data-bts8-time="am" aria-pressed="true">
+          <b>4</b><span><strong data-i18n="am">AM</strong><small data-i18n="amSteps">steps</small></span>
+        </button>
+        <button type="button" data-bts8-time="pm" aria-pressed="false">
+          <b>3</b><span><strong data-i18n="pm">PM</strong><small data-i18n="pmSteps">steps</small></span>
+        </button>
+      </div>
+
+      <ol class="bts8-routine__row">
+        <li class="bts8-rpack" data-routine-pack="reset">
+          <img src="{{ reset_url }}" alt="Daily Reset Cleanser" width="1024" height="1536" loading="lazy">
+          <span class="bts8-rpack__n">01</span><strong>RESET</strong><small data-i18n="cleanse">Cleanse</small>
+        </li>
+        <li class="bts8-rpack" data-routine-pack="clarity">
+          <img src="{{ clarity_url }}" alt="Clarity Serum" width="1024" height="1536" loading="lazy">
+          <span class="bts8-rpack__n">02</span><strong>CLARITY</strong><small data-i18n="treat">Treat</small>
+        </li>
+        <li class="bts8-rpack" data-routine-pack="barrier">
+          <img src="{{ barrier_url }}" alt="Daily Barrier Moisturizing Cream" width="1024" height="1536" loading="lazy">
+          <span class="bts8-rpack__n">03</span><strong>BARRIER</strong><small data-i18n="hydrate">Hydrate</small>
+        </li>
+        <li class="bts8-rpack bts8-rpack--defense" data-routine-pack="defense">
+          <img src="{{ defense_url }}" alt="Daily Defense Sunscreen SPF 50" width="1024" height="1536" loading="lazy">
+          <span class="bts8-rpack__n">04</span><strong>DEFENSE</strong><small data-i18n="protect">Protect</small>
+          <em class="bts8-rpack__only" data-i18n="morningOnly">Morning only</em>
+        </li>
+      </ol>
+
+      <p class="bts8-routine__copy" data-bts8-routine-copy>Cleanse. Treat. Hydrate. Protect.</p>
+
+      <div data-bts8-inflow-cta>
+        <button type="button" class="bts8-btn bts8-btn--primary bts8-btn--wide" data-bts8-buy-routine>
+          <span class="bts8-btn__label"><span data-i18n="fullRoutine">Full routine</span> · <bdi dir="ltr">EGP 1,661</bdi> · <span data-i18n="save">Save</span> <bdi dir="ltr">EGP 185</bdi></span><span class="bts8-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CLIMATE — one section, product logic -->
+    <section class="bts8-logic">
+      <div class="bts8-sectionhead">
+        <p class="bts8-kicker" data-i18n="logicKicker">Climate-adapted, by design</p>
+        <h2 data-i18n="logicTitle">Light on skin. Serious in the formula.</h2>
+      </div>
+      <div class="bts8-logic__rows">
+        <div class="bts8-logic__row">
+          <img src="{{ reset_url }}" alt="" width="1024" height="1536" loading="lazy">
+          <div><strong data-i18n="logic1t">Cleansing without stripping</strong><p data-i18n="logic1b">Soap-free gel with Zinc PCA and Centella. Skin feels clean and comfortable, not tight.</p></div>
+        </div>
+        <div class="bts8-logic__row">
+          <img src="{{ barrier_url }}" alt="" width="1024" height="1536" loading="lazy">
+          <div><strong data-i18n="logic2t">Barrier support without heaviness</strong><p data-i18n="logic2b">Ceramides, Niacinamide and Squalane in a cream that hydrates without a heavy feel.</p></div>
+        </div>
+        <div class="bts8-logic__row">
+          <img src="{{ defense_url }}" alt="" width="1024" height="1536" loading="lazy">
+          <div><strong data-i18n="logic3t">SPF 50 with no white cast</strong><p data-i18n="logic3b">Broad-spectrum UVA/UVB protection in a lightweight, fast-absorbing, non-greasy finish.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bts8-end">
+      <p data-i18n="endLine">fresh skin. always.</p>
+      <img class="bts8-end__wordmark" src="{{ 'bts-wordmark-ink.svg' | asset_url }}" alt="BETWEEN TWO SUNS" width="900" height="390" loading="lazy">
+    </section>
+  </main>
+
+  <div class="bts8-sticky" data-bts8-sticky>
+    <button type="button" data-bts8-buy-routine>
+      <span class="bts8-btn__label"><span data-i18n="fullRoutine">Full routine</span> · <bdi dir="ltr">EGP 1,661</bdi></span>
+      <span class="bts8-sticky__save"><span data-i18n="save">Save</span> <bdi dir="ltr">EGP 185</bdi> <span class="bts8-arrow" aria-hidden="true">→</span></span>
+    </button>
+  </div>
+
+  <div class="bts8-drawer" data-bts8-drawer hidden>
+    <button class="bts8-drawer__scrim" type="button" data-bts8-close aria-label="Close" tabindex="-1"></button>
+    <aside class="bts8-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="BTS8DrawerTitle">
+      <div class="bts8-drawer__head">
+        <div>
+          <p class="bts8-kicker" data-i18n="drawerKicker">Your routine</p>
+          <h2 id="BTS8DrawerTitle" data-bts8-drawer-title>4 products</h2>
+        </div>
+        <button type="button" data-bts8-close aria-label="Close">×</button>
+      </div>
+      <div class="bts8-drawer__items" data-bts8-drawer-items></div>
+      <div class="bts8-drawer__totals" data-bts8-drawer-totals></div>
+      <button type="button" class="bts8-drawer__checkout" disabled><span data-i18n="checkoutDisabled">Checkout opens at launch</span></button>
+      <p class="bts8-drawer__note" data-i18n="drawerNote">Prototype preview. Prices shown are working launch prices and may change. Checkout is not active yet.</p>
+    </aside>
+  </div>
+
+  <div class="bts8-sheet" data-bts8-sheet hidden>
+    <button class="bts8-drawer__scrim" type="button" data-bts8-sheet-close aria-label="Close" tabindex="-1"></button>
+    <aside class="bts8-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="BTS8SheetTitle">
+      <div class="bts8-drawer__head">
+        <div>
+          <p class="bts8-kicker" data-bts8-sheet-step>01 · CLEANSE</p>
+          <h2 id="BTS8SheetTitle" data-bts8-sheet-title>Daily Reset Cleanser</h2>
+        </div>
+        <button type="button" data-bts8-sheet-close aria-label="Close">×</button>
+      </div>
+      <div class="bts8-sheet__visual" data-bts8-sheet-visual><img data-bts8-sheet-image src="{{ reset_url }}" alt=""></div>
+      <p class="bts8-sheet__copy" data-bts8-sheet-copy></p>
+      <div class="bts8-sheet__inci">
+        <button type="button" data-bts8-inci-toggle aria-expanded="false"><span data-i18n="fullInci">Full ingredient list</span><span>+</span></button>
+        <p data-bts8-inci dir="ltr" hidden></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{{ 'bts-home-v8.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bts-home-v8.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "BTS Home v8 Prototype",
+  "settings": [],
+  "presets": [{"name":"BTS Home v8 Prototype"}]
+}
+{% endschema %}

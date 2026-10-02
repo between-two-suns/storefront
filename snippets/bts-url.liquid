@@ -1,0 +1,14 @@
+{% doc %}
+Existing preview Page or theme-native product search view. Never requires publishing a draft product.
+@param {string} handle - Content product handle
+{% enddoc %}
+{%- liquid
+  assign preview_handle = 'preview-' | append: handle
+  assign preview = pages[preview_handle]
+  if preview != blank
+    echo preview.url
+  else
+    assign safe_handle = handle | url_encode
+    echo routes.search_url | append: '?view=product&q=' | append: safe_handle
+  endif
+-%}

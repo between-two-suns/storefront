@@ -1,0 +1,31 @@
+{% doc %}
+Compact routine overview with real product media and one clear bundle path.
+@param {metaobject[]} products - Product identity entries
+@param {string} uid - Section identifier
+{% enddoc %}
+<section id="bts-home-routine" class="bts-routine-editorial" aria-labelledby="BtsRoutineTitle-{{ uid }}">
+  <div class="bts-routine-editorial__heading">
+    <p><bdi lang="en">01—04</bdi></p>
+    <h2 id="BtsRoutineTitle-{{ uid }}">{{ 'bts.routine' | t }}</h2>
+  </div>
+  <ol class="bts-routine-editorial__steps">
+    {% for handle in products %}
+      {% assign content = metaobjects.bts_product_content[handle] %}
+      {% capture name %}{% render 'bts-content-field', content: content, handle: handle, field: 'name' %}{% endcapture %}{% assign name = name | strip %}
+      {% capture step %}{% render 'bts-content-field', content: content, handle: handle, field: 'step' %}{% endcapture %}{% assign step = step | strip %}
+      {% capture colour_key %}{% render 'bts-content-field', content: content, handle: handle, field: 'colour_key' %}{% endcapture %}{% assign colour_key = colour_key | strip %}
+      {% capture mm %}{% render 'bts-content-field', content: content, handle: handle, field: 'pack_height_mm' %}{% endcapture %}{% assign mm = mm | plus: 0 %}
+      {% capture url %}{% render 'bts-url', handle: handle %}{% endcapture %}
+      {% capture image %}{% render 'bts-media', content: content, handle: handle, media: content.media_front.value, role: 'H1' %}{% endcapture %}{% assign image = image | strip %}
+      {% if name != blank %}
+        <li class="bts-routine-editorial__item pf" data-colour="{{ colour_key | escape }}" style="--pack-mm:{{ mm }}">
+          <a href="{{ url | strip }}">
+            <span class="bts-routine-editorial__media">{% if image != blank %}{{ image }}{% endif %}</span>
+            <span class="bts-routine-editorial__copy"><span class="bts-routine-editorial__step"><bdi lang="en">{{ step | prepend: '0' | slice: -2, 2 }}</bdi><span class="bts-routine-editorial__connector" aria-hidden="true">↗</span></span><strong><bdi lang="en">{{ name | escape }}</bdi></strong><span class="bts-routine-editorial__time">{% render 'bts-usage-time', content: content, handle: handle %}</span></span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+  <div class="bts-routine-editorial__offer">{% render 'bts-routine-offer', uid: 'strip', sheet: true %}</div>
+</section>
